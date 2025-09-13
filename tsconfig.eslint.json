@@ -1,0 +1,19 @@
+{
+  "extends": "./tsconfig.json",
+  // "include": [
+  //     "src",
+  //     "stories",
+  //     ".storybook",
+  //     "*.config.ts",
+  //     "eslint.config.ts"
+  // ]
+  "include": [
+    "src",
+    "stories",
+    ".storybook",
+    "vitest.config.ts",
+    "vitest.shims.d.ts",
+    "tsup.config.ts",
+    "eslint.config.ts"
+  ]
+}
