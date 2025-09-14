@@ -1,12 +1,12 @@
 import React from "react";
 import ButtonBase from "./ButtonBase";
-import { ButtonProps } from "./Button.types";
+import { BUTTON_VARIANTS, ButtonProps, ICON_POSITIONS } from "./Button.types";
 
 const Button: React.FC<ButtonProps> = ({
-  variant = "primary",
+  variant = BUTTON_VARIANTS.PRIMARY,
   icon,
   children,
-  iconPosition = "start",
+  iconPosition = ICON_POSITIONS.START,
   ariaLabel,
   ...rest
 }) => {

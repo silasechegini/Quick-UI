@@ -32,3 +32,29 @@ export type ButtonProps = BaseProps &
     type?: "button" | "submit" | "reset";
     styleOverride?: StyleOverride;
   };
+
+export enum BUTTON_TYPES {
+  BUTTON = "button",
+  SUBMIT = "submit",
+  RESET = "reset",
+}
+
+export enum BUTTON_SIZES {
+  XXLARGE = "xxl",
+  XLARGE = "xl",
+  LARGE = "l",
+  MEDIUM = "m",
+  SMALL = "s",
+  EXTRASMALL = "xs",
+}
+
+export enum BUTTON_VARIANTS {
+  PRIMARY = "primary",
+  SECONDARY = "secondary",
+  TERTIARY = "tertiary",
+}
+
+export enum ICON_POSITIONS {
+  START = "start",
+  END = "end",
+}

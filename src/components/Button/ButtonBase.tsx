@@ -1,16 +1,21 @@
 import React from "react";
 import styles from "./Button.module.css";
-import { ButtonProps } from "./Button.types";
+import {
+  BUTTON_SIZES,
+  BUTTON_VARIANTS,
+  ButtonProps,
+  ICON_POSITIONS,
+} from "./Button.types";
 import classNames from "classnames";
 
 const ButtonBase: React.FC<ButtonProps> = ({
   children,
   icon,
-  iconPosition = "start",
+  iconPosition = ICON_POSITIONS.START,
   isLoading = false,
   loadingText,
-  size = "m",
-  variant = "primary",
+  size = BUTTON_SIZES.MEDIUM,
+  variant = BUTTON_VARIANTS.PRIMARY,
   fullWidth = false,
   className,
   styleOverride,
@@ -35,7 +40,7 @@ const ButtonBase: React.FC<ButtonProps> = ({
   const content = (
     <>
       {isLoading && <span className={styles.icon}>⏳</span>}
-      {!isLoading && icon && iconPosition === "start" && (
+      {!isLoading && icon && iconPosition === ICON_POSITIONS.START && (
         <span className={classNames(styles.icon, styles.iconStart)}>
           {icon}
         </span>
@@ -43,7 +48,7 @@ const ButtonBase: React.FC<ButtonProps> = ({
       {children && (
         <span>{isLoading ? loadingText || children : children}</span>
       )}
-      {!isLoading && icon && iconPosition === "end" && (
+      {!isLoading && icon && iconPosition === ICON_POSITIONS.END && (
         <span className={classNames(styles.icon, styles.iconEnd)}>{icon}</span>
       )}
     </>
