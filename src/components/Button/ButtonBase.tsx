@@ -1,6 +1,7 @@
 import React from "react";
-import styles from "./Button.module.css";
+import styles from "./styles.module.scss";
 import {
+  BUTTON_SHAPES,
   BUTTON_SIZES,
   BUTTON_VARIANTS,
   ButtonProps,
@@ -30,10 +31,11 @@ import classNames from "classnames";
 const ButtonBase: React.FC<ButtonProps> = ({
   children,
   icon,
-  iconPosition = ICON_POSITIONS.START,
+  iconPosition = ICON_POSITIONS.CUSTOM,
   isLoading = false,
   loadingText,
-  size = BUTTON_SIZES.MEDIUM,
+  size = BUTTON_SIZES.CUSTOM,
+  shape = BUTTON_SHAPES.SQUARE,
   variant = BUTTON_VARIANTS.PRIMARY,
   fullWidth = false,
   className,
@@ -48,6 +50,7 @@ const ButtonBase: React.FC<ButtonProps> = ({
     styles.button,
     styles[variant],
     styles[size],
+    styles[shape],
     {
       [styles.fullWidth]: fullWidth,
       [styles.loading]: isLoading,
@@ -70,6 +73,7 @@ const ButtonBase: React.FC<ButtonProps> = ({
       {!isLoading && icon && iconPosition === ICON_POSITIONS.END && (
         <span className={classNames(styles.icon, styles.iconEnd)}>{icon}</span>
       )}
+      {!isLoading && isIconOnly && <span className={styles.icon}>{icon}</span>}
     </>
   );
 

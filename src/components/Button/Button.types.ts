@@ -11,8 +11,9 @@ import { ButtonHTMLAttributes, ReactNode, ElementType } from "react";
  * License: MIT
  */
 type ButtonVariants = "primary" | "secondary" | "tertiary";
-type ButtonSizes = "xxl" | "xl" | "l" | "m" | "s" | "xs";
-type IconPosition = "start" | "end";
+type ButtonSizes = "xxl" | "xl" | "l" | "m" | "s" | "xs" | "custom";
+type IconPosition = "start" | "end" | "custom";
+type ButtonShapes = "square" | "circular" | "pill";
 
 /**
  * BaseProps - Common properties for all button types
@@ -32,6 +33,7 @@ type BaseProps = {
   children?: ReactNode;
   size?: ButtonSizes;
   variant?: ButtonVariants;
+  shape?: ButtonShapes;
   icon?: ReactNode;
   iconPosition?: IconPosition;
   isLoading?: boolean;
@@ -91,6 +93,7 @@ export enum BUTTON_SIZES {
   MEDIUM = "m",
   SMALL = "s",
   EXTRASMALL = "xs",
+  CUSTOM = "custom",
 }
 
 /** Enums for Button Variants */
@@ -100,8 +103,15 @@ export enum BUTTON_VARIANTS {
   TERTIARY = "tertiary",
 }
 
+export enum BUTTON_SHAPES {
+  SQUARE = "square",
+  CIRCULAR = "circular",
+  PILL = "pill",
+}
+
 /** Enums for Icon Positions */
 export enum ICON_POSITIONS {
   START = "start",
   END = "end",
+  CUSTOM = "custom",
 }

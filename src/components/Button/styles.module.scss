@@ -12,6 +12,8 @@
 }
 
 .fullWidth {
+  font-size: 1.25rem;
+  padding: 1rem 2rem;
   width: 100%;
 }
 
@@ -53,29 +55,61 @@
 .xxl {
   font-size: 1.25rem;
   padding: 1rem 2rem;
+  min-width: 300px;
+  max-width: 500px;
 }
 
 .xl {
   font-size: 1.125rem;
   padding: 0.75rem 1.75rem;
+  min-width: 250px;
+  max-width: 300px;
 }
 
 .l {
   font-size: 1rem;
   padding: 0.6rem 1.5rem;
+  min-width: 200px;
+  max-width: 250px;
 }
 
 .m {
   font-size: 0.95rem;
   padding: 0.5rem 1.25rem;
+  min-width: 110px;
+  max-width: 150px;
 }
 
 .s {
   font-size: 0.85rem;
   padding: 0.4rem 1rem;
+  min-width: 80px;
+  max-width: 110px;
 }
 
 .xs {
   font-size: 0.75rem;
   padding: 0.3rem 0.75rem;
+}
+
+/* Shapes */
+.square {
+  border-radius: 6px;
+}
+
+.circular {
+  border-radius: 50%;
+  padding: 0.5rem;
+  min-height: 40px;
+  min-width: 40px;
+}
+
+.pill {
+  border-radius: 9999px;
+}
+
+/* Adjust icon size for circular buttons */
+.circular .icon {
+  width: 20px;
+  height: 20px;
 }
