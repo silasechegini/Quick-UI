@@ -1,9 +1,33 @@
 import { ButtonHTMLAttributes, ReactNode, ElementType } from "react";
 
+/**
+ * Button Component Types and Enums
+ * This file defines the types and enums used in the Button component.
+ * It includes props for different button variants, sizes, and icon positions.
+ * It also defines the base props for the button and specific props for icon buttons.
+ * Author: Ngozi Echegini
+ * Date: 2024-06-20
+ * Version: 1.0.0
+ * License: MIT
+ */
 type ButtonVariants = "primary" | "secondary" | "tertiary";
 type ButtonSizes = "xxl" | "xl" | "l" | "m" | "s" | "xs";
 type IconPosition = "start" | "end";
 
+/**
+ * BaseProps - Common properties for all button types
+ * @property {ReactNode} children - The content of the button
+ * @property {ButtonSizes} size - The size of the button
+ * @property {ButtonVariants} variant - The variant/style of the button
+ * @property {ReactNode} icon - Optional icon to display in the button
+ * @property {IconPosition} iconPosition - Position of the icon (start or end)
+ * @property {boolean} isLoading - Whether the button is in a loading state
+ * @property {string} loadingText - Text to display when loading
+ * @property {boolean} fullWidth - Whether the button should take full width
+ * @property {ElementType} as - The HTML element or component to render as  (e.g., 'button', 'a', etc.)
+ * @property {string} className - Additional CSS class names
+ * @property {string} ariaLabel - ARIA label for accessibility
+ */
 type BaseProps = {
   children?: ReactNode;
   size?: ButtonSizes;
@@ -18,27 +42,48 @@ type BaseProps = {
   ariaLabel?: string;
 };
 
+/**
+ * IconButtonProps - Props specific to icon-only buttons
+ * Extends BaseProps but omits children and iconPosition
+ * @property {string} label - Accessible label for the icon button
+ */
 export type IconButtonProps = Omit<ButtonProps, "children" | "iconPosition"> & {
   label: string;
 };
 
+/**
+ * StyleOverride - Custom styles for the button
+ * @property {string} className - Custom CSS class name
+ * @property {React.CSSProperties} style - Inline styles
+ */
 export type StyleOverride = {
   className?: string;
   style?: React.CSSProperties;
 };
 
+/**
+ * ButtonProps - Props for the Button component
+ * Extends BaseProps and standard button HTML attributes (excluding 'type')
+ * @property {("button" | "submit" | "reset")} type - The button type attribute
+ * @property {StyleOverride} styleOverride - Custom styles for the button
+ */
 export type ButtonProps = BaseProps &
   Omit<ButtonHTMLAttributes<HTMLButtonElement>, "type"> & {
     type?: "button" | "submit" | "reset";
     styleOverride?: StyleOverride;
   };
 
+/**
+ * Enums for Button Component
+ * These enums define the possible values for button types, sizes, variants, and icon positions.
+ */
 export enum BUTTON_TYPES {
   BUTTON = "button",
   SUBMIT = "submit",
   RESET = "reset",
 }
 
+/** Enums for Button Sizes, Variants, and Icon Positions */
 export enum BUTTON_SIZES {
   XXLARGE = "xxl",
   XLARGE = "xl",
@@ -48,12 +93,14 @@ export enum BUTTON_SIZES {
   EXTRASMALL = "xs",
 }
 
+/** Enums for Button Variants */
 export enum BUTTON_VARIANTS {
   PRIMARY = "primary",
   SECONDARY = "secondary",
   TERTIARY = "tertiary",
 }
 
+/** Enums for Icon Positions */
 export enum ICON_POSITIONS {
   START = "start",
   END = "end",

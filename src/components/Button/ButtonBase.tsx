@@ -8,6 +8,25 @@ import {
 } from "./Button.types";
 import classNames from "classnames";
 
+/** * ButtonBase - The foundational button component handling core functionality and styling.
+ *
+ * @param {React.ReactNode} children - The content of the button.
+ * @param {React.ReactNode} icon - Optional icon to display within the button.
+ * @param {("start" | "end")} iconPosition - Position of the icon relative to the text (default: START).
+ * @param {boolean} isLoading - Whether the button is in a loading state (default: false).
+ * @param {string} loadingText - Text to display when the button is loading.
+ * @param {BUTTON_SIZES} size - The size of the button (default: MEDIUM).
+ * @param {BUTTON_VARIANTS} variant - The visual style of the button (default: PRIMARY).
+ * @param {boolean} fullWidth - Whether the button should take full width of its container (default: false).
+ * @param {StyleOverride} styleOverride - Custom styles for the button.
+ * @param {string} ariaLabel - Accessible label for icon-only buttons.
+ * @param {string} className - Additional CSS class names.
+ * @param {React.ElementType} as - The HTML element or component to render as (default: 'button').
+ * @param {object} rest - Additional props passed to the underlying button element.
+ *
+ * @returns {JSX.Element} The rendered ButtonBase component.
+ */
+
 const ButtonBase: React.FC<ButtonProps> = ({
   children,
   icon,
