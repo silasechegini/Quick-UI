@@ -8,7 +8,20 @@
   cursor: pointer;
   border: none;
   transition: all 0.2s ease-in-out;
+  box-shadow: 0 2px 4px darkslategray;
   border-radius: 6px;
+}
+
+.button:hover {
+  text-decoration: none;
+  opacity: 0.85;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.button:active {
+  opacity: 0.9;
+  box-shadow: 0 0 2px darkslategray;
+  transform: translateY(2px);
 }
 
 .fullWidth {
@@ -98,6 +111,7 @@
 }
 
 .circular {
+  border: 2px solid transparent;
   border-radius: 50%;
   padding: 0.5rem;
   min-height: 40px;
