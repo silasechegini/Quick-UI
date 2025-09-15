@@ -22,11 +22,11 @@
 
 /* Utility classes for margins and paddings */
 $spacing-map: (
-  xs: 'xs',
-  sm: 'sm',
-  md: 'md',
-  lg: 'lg',
-  xl: 'xl'
+  xs: 1,
+  sm: 2,
+  md: 3,
+  lg: 4,
+  xl: 5
 );
 
 @mixin spacing($property, $size) {
