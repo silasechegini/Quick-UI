@@ -2,7 +2,7 @@ import React from "react";
 import ButtonBase from "./ButtonBase";
 import { BUTTON_VARIANTS, ButtonProps, ICON_POSITIONS } from "./Button.types";
 
-/** * Button - A versatile button component supporting various styles, sizes, and states.
+/** Button - A versatile button component supporting various styles, sizes, and states.
  *
  * @param {BUTTON_VARIANTS} variant - The visual style of the button (default: PRIMARY).
  * @param {React.ReactNode} icon - Optional icon to display within the button.

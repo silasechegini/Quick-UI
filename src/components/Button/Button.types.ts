@@ -45,15 +45,6 @@ type BaseProps = {
 };
 
 /**
- * IconButtonProps - Props specific to icon-only buttons
- * Extends BaseProps but omits children and iconPosition
- * @property {string} label - Accessible label for the icon button
- */
-export type IconButtonProps = Omit<ButtonProps, "children" | "iconPosition"> & {
-  label: string;
-};
-
-/**
  * StyleOverride - Custom styles for the button
  * @property {string} className - Custom CSS class name
  * @property {React.CSSProperties} style - Inline styles
@@ -74,6 +65,15 @@ export type ButtonProps = BaseProps &
     type?: "button" | "submit" | "reset";
     styleOverride?: StyleOverride;
   };
+
+/**
+ * IconButtonProps - Props specific to icon-only buttons
+ * Extends BaseProps but omits children and iconPosition
+ * @property {string} label - Accessible label for the icon button
+ */
+export type IconButtonProps = Omit<ButtonProps, "children" | "iconPosition"> & {
+  label: string;
+};
 
 /**
  * Enums for Button Component

@@ -9,7 +9,7 @@ import {
 } from "./Button.types";
 import classNames from "classnames";
 
-/** * ButtonBase - The foundational button component handling core functionality and styling.
+/** ButtonBase - The foundational button component handling core functionality and styling.
  *
  * @param {React.ReactNode} children - The content of the button.
  * @param {React.ReactNode} icon - Optional icon to display within the button.
