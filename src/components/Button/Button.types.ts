@@ -37,7 +37,7 @@ type BaseProps = {
   fullWidth?: boolean;
   as?: ElementType;
   className?: string;
-  ariaLabel: string;
+  ariaLabel?: string;
 };
 
 /**
