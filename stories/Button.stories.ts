@@ -24,7 +24,7 @@ const meta = {
   args: {
     onClick: fn(),
     variant: BUTTON_VARIANTS.PRIMARY,
-    size: BUTTON_SIZES.CUSTOM,
+    size: BUTTON_SIZES.DEFAULT,
   },
 } satisfies Meta<typeof Button>;
 
@@ -108,6 +108,7 @@ export const IconOnly: Story = {
     size: BUTTON_SIZES.SMALL,
     icon: "⭐",
     ariaLabel: "Star",
+    iconPosition: ICON_POSITIONS.DEFAULT,
   },
 };
 

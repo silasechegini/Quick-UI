@@ -18,7 +18,7 @@ const Button: React.FC<ButtonProps> = ({
   variant = BUTTON_VARIANTS.PRIMARY,
   icon,
   children,
-  iconPosition = ICON_POSITIONS.CUSTOM,
+  iconPosition = ICON_POSITIONS.DEFAULT,
   ariaLabel,
   ...rest
 }) => {
@@ -29,7 +29,7 @@ const Button: React.FC<ButtonProps> = ({
       variant={variant}
       icon={icon}
       iconPosition={iconPosition}
-      ariaLabel={isIconOnly ? ariaLabel : undefined}
+      ariaLabel={ariaLabel}
       {...(isIconOnly && !ariaLabel ? { "aria-label": "icon button" } : {})}
       {...rest}
     >

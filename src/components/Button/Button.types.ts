@@ -5,14 +5,10 @@ import { ButtonHTMLAttributes, ReactNode, ElementType } from "react";
  * This file defines the types and enums used in the Button component.
  * It includes props for different button variants, sizes, and icon positions.
  * It also defines the base props for the button and specific props for icon buttons.
- * Author: Ngozi Echegini
- * Date: 2024-06-20
- * Version: 1.0.0
- * License: MIT
  */
 type ButtonVariants = "primary" | "secondary" | "tertiary";
-type ButtonSizes = "xxl" | "xl" | "l" | "m" | "s" | "xs" | "custom";
-type IconPosition = "start" | "end" | "custom";
+type ButtonSizes = "xxl" | "xl" | "l" | "m" | "s" | "xs" | "fullWidth";
+type IconPosition = "start" | "end" | "default";
 type ButtonShapes = "square" | "circular" | "pill";
 
 /**
@@ -41,7 +37,7 @@ type BaseProps = {
   fullWidth?: boolean;
   as?: ElementType;
   className?: string;
-  ariaLabel?: string;
+  ariaLabel: string;
 };
 
 /**
@@ -93,7 +89,7 @@ export enum BUTTON_SIZES {
   MEDIUM = "m",
   SMALL = "s",
   EXTRASMALL = "xs",
-  CUSTOM = "custom",
+  DEFAULT = "fullWidth",
 }
 
 /** Enums for Button Variants */
@@ -113,5 +109,5 @@ export enum BUTTON_SHAPES {
 export enum ICON_POSITIONS {
   START = "start",
   END = "end",
-  CUSTOM = "custom",
+  DEFAULT = "default",
 }

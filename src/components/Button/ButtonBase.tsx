@@ -31,10 +31,10 @@ import classNames from "classnames";
 const ButtonBase: React.FC<ButtonProps> = ({
   children,
   icon,
-  iconPosition = ICON_POSITIONS.CUSTOM,
+  iconPosition = ICON_POSITIONS.DEFAULT,
   isLoading = false,
   loadingText,
-  size = BUTTON_SIZES.CUSTOM,
+  size = BUTTON_SIZES.DEFAULT,
   shape = BUTTON_SHAPES.SQUARE,
   variant = BUTTON_VARIANTS.PRIMARY,
   fullWidth = false,
