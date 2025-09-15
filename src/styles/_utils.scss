@@ -1,0 +1,25 @@
+/* Screen-reader only */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Clearfix */
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+/* Utility classes for margins and paddings */
+@mixin spacing($property, $size) {
+  #{$property}-top: var(--space-#{$size});
+  #{$property}-right: var(--space-#{$size});
+  #{$property}-bottom: var(--space-#{$size});
+  #{$property}-left: var(--space-#{$size});
+}

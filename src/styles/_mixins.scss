@@ -1,0 +1,21 @@
+@mixin center-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin respond-small {
+  @media (max-width: var(--width-600)) {
+    @content;
+  }
+}
+@mixin respond-medium {
+  @media (max-width: var(--width-900)) {
+    @content;
+  }
+}
+@mixin respond-large {
+  @media (max-width: var(--width-1200)) {
+    @content;
+  }
+}
