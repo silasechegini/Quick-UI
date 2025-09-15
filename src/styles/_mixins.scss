@@ -21,9 +21,21 @@
 }
 
 /* Utility classes for margins and paddings */
+$spacing-map: (
+  xs: 'xs',
+  sm: 'sm',
+  md: 'md',
+  lg: 'lg',
+  xl: 'xl'
+);
+
 @mixin spacing($property, $size) {
-  #{$property}-top: var(--space-#{$size});
-  #{$property}-right: var(--space-#{$size});
-  #{$property}-bottom: var(--space-#{$size});
-  #{$property}-left: var(--space-#{$size});
+  $space-value: map-get($spacing-map, $size);
+  @if $space-value == null {
+    @error "Invalid spacing size `#{$size}` passed to spacing mixin. Allowed values: #{map-keys($spacing-map)}";
+  }
+  #{$property}-top: var(--space-#{$space-value});
+  #{$property}-right: var(--space-#{$space-value});
+  #{$property}-bottom: var(--space-#{$space-value});
+  #{$property}-left: var(--space-#{$space-value});
 }
