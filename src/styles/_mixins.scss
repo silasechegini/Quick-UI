@@ -26,7 +26,7 @@ $spacing-map: (
   sm: 2,
   md: 3,
   lg: 4,
-  xl: 5
+  xl: 5,
 );
 
 @mixin spacing($property, $size) {
@@ -38,4 +38,88 @@ $spacing-map: (
   #{$property}-right: var(--space-#{$space-value});
   #{$property}-bottom: var(--space-#{$space-value});
   #{$property}-left: var(--space-#{$space-value});
+}
+
+@mixin flex-container(
+  $direction: row,
+  $justify: flex-start,
+  $align: stretch,
+  $wrap: nowrap
+) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  flex-wrap: $wrap;
+}
+
+@mixin flex-item($grow: 0, $shrink: 1, $basis: auto, $align: null) {
+  flex: $grow $shrink $basis;
+
+  @if $align != null {
+    align-self: $align;
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-responsive(
+  $mobile-direction: column,
+  $desktop-direction: row,
+  $breakpoint: 768px
+) {
+  display: flex;
+  flex-direction: $mobile-direction;
+
+  @media (min-width: $breakpoint) {
+    flex-direction: $desktop-direction;
+  }
+}
+
+@mixin flex-gap($gap: 1rem, $direction: row) {
+  display: flex;
+  flex-direction: $direction;
+
+  > *:not(:last-child) {
+    margin-right: if($direction == row, $gap, 0);
+    margin-bottom: if($direction == column, $gap, 0);
+  }
+}
+
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+  width: 100%;
+  padding-top: ($height / $width) * 100%;
+
+  > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@mixin text-truncate($lines: 1) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
 }
