@@ -2,12 +2,12 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-weight: 500;
+  font-weight: var(--font-weight-normal);
   cursor: pointer;
   border: none;
   transition: all 0.2s ease-in-out;
   box-shadow: 0 2px 4px darkslategray;
-  border-radius: 6px;
+  border-radius: var(--radius-md);
 }
 
 .button:hover {
@@ -23,7 +23,7 @@
 }
 
 .fullWidth {
-  font-size: 1.25rem;
+  font-size: var(--font-size-xl);
   padding: 1rem 2rem;
   width: 100%;
 }
@@ -38,82 +38,82 @@
 }
 
 .iconStart {
-  margin-right: 0.5em;
+  margin-right: var(--space-2);
 }
 
 .iconEnd {
-  margin-left: 0.5em;
+  margin-left: var(--space-2);
 }
 
 /* Variants */
 .primary {
-  background-color: #1e40af;
-  color: white;
+  background-color: var(--color-primary);
+  color: var(--color-white);
 }
 
 .secondary {
-  background-color: white;
-  border: 1px solid #1e40af;
-  color: #1e40af;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-secondary);
+  color: var(--color-black);
 }
 
 .tertiary {
   background: none;
-  color: #1e40af;
+  color: var(--color-black);
 }
 
 /* Sizes */
 .xxl {
-  font-size: 1.25rem;
-  padding: 1rem 2rem;
-  min-width: 300px;
-  max-width: 500px;
+  font-size: var(--font-size-xl);
+  padding: var(--space-4) var(--space-8);
+  min-width: var(--width-300);
+  max-width: var(--width-500);
 }
 
 .xl {
-  font-size: 1.125rem;
+  font-size: var(--font-size-xl);
   padding: 0.75rem 1.75rem;
-  min-width: 250px;
-  max-width: 300px;
+  min-width: var(--width-250);
+  max-width: var(--width-300);
 }
 
 .l {
-  font-size: 1rem;
+  font-size: var(--font-size-base);
   padding: 0.6rem 1.5rem;
-  min-width: 200px;
-  max-width: 250px;
+  min-width: var(--width-200);
+  max-width: var(--width-250);
 }
 
 .m {
-  font-size: 0.95rem;
+  font-size: var(--font-size-md);
   padding: 0.5rem 1.25rem;
-  min-width: 110px;
-  max-width: 150px;
+  min-width: var(--width-110);
+  max-width: var(--width-150);
 }
 
 .s {
-  font-size: 0.85rem;
+  font-size: var(--font-size-sm);
   padding: 0.4rem 1rem;
-  min-width: 80px;
-  max-width: 110px;
+  min-width: var(--width-80);
+  max-width: var(--width-110);
 }
 
 .xs {
-  font-size: 0.75rem;
+  font-size: var(--font-size-xs);
   padding: 0.3rem 0.75rem;
 }
 
 /* Shapes */
 .square {
-  border-radius: 6px;
+  border-radius: var(--radius-md);
 }
 
 .circular {
   border: 2px solid transparent;
   border-radius: 50%;
   padding: 0.5rem;
-  min-height: 40px;
-  min-width: 40px;
+  min-height: var(--width-40);
+  min-width: var(--width-40);
 }
 
 .pill {
@@ -122,6 +122,6 @@
 
 /* Adjust icon size for circular buttons */
 .circular .icon {
-  width: 20px;
-  height: 20px;
+  width: var(--width-20);
+  height: var(--width-20);
 }

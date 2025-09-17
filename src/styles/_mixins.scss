@@ -1,0 +1,134 @@
+// Define SCSS variables for breakpoints
+$width-600: 600px;
+$width-900: 900px;
+$width-1200: 1200px;
+
+@mixin respond-small {
+  @media (max-width: #{$width-600}) {
+    @content;
+  }
+}
+@mixin respond-medium {
+  @media (max-width: #{$width-900}) {
+    @content;
+  }
+}
+@mixin respond-large {
+  @media (max-width: #{$width-1200}) {
+    @content;
+  }
+}
+
+/* Utility classes for margins and paddings */
+$spacing-map: (
+  xs: 1,
+  sm: 2,
+  md: 3,
+  lg: 4,
+  xl: 5,
+);
+
+@mixin spacing($property, $size) {
+  $space-value: map-get($spacing-map, $size);
+  @if $space-value == null {
+    @error "Invalid spacing size `#{$size}` passed to spacing mixin. Allowed values: #{map-keys($spacing-map)}";
+  }
+  #{$property}-top: var(--space-#{$space-value});
+  #{$property}-right: var(--space-#{$space-value});
+  #{$property}-bottom: var(--space-#{$space-value});
+  #{$property}-left: var(--space-#{$space-value});
+}
+
+@mixin flex-container(
+  $direction: row,
+  $justify: flex-start,
+  $align: stretch,
+  $wrap: nowrap
+) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  flex-wrap: $wrap;
+}
+
+@mixin flex-item($grow: 0, $shrink: 1, $basis: auto, $align: null) {
+  flex: $grow $shrink $basis;
+
+  @if $align != null {
+    align-self: $align;
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-responsive(
+  $mobile-direction: column,
+  $desktop-direction: row,
+  $breakpoint: 768px
+) {
+  display: flex;
+  flex-direction: $mobile-direction;
+
+  @media (min-width: $breakpoint) {
+    flex-direction: $desktop-direction;
+  }
+}
+
+@mixin flex-gap($gap: 1rem, $direction: row) {
+  display: flex;
+  flex-direction: $direction;
+  gap: $gap;
+}
+
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+  width: 100%;
+  padding-top: ($height / $width) * 100%;
+
+  > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@mixin text-truncate($lines: 1) {
+  @if $lines == 1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+  } @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    // Fallback for browsers that don't support -webkit-line-clamp
+    display: block;
+    white-space: normal;
+    // You may want to set a max-height based on the number of lines and line-height
+    // Example: max-height: calc(#{$lines} * 1.2em);
+    // If you use a custom line-height, adjust accordingly
+    max-height: calc(#{$lines} * 1.2em);
+  }
+}
+
+@mixin visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
