@@ -4,18 +4,23 @@
   justify-content: center;
 }
 
+// Define SCSS variables for breakpoints
+$width-600: 600px;
+$width-900: 900px;
+$width-1200: 1200px;
+
 @mixin respond-small {
-  @media (max-width: var(--width-600)) {
+  @media (max-width: #{$width-600}) {
     @content;
   }
 }
 @mixin respond-medium {
-  @media (max-width: var(--width-900)) {
+  @media (max-width: #{$width-900}) {
     @content;
   }
 }
 @mixin respond-large {
-  @media (max-width: var(--width-1200)) {
+  @media (max-width: #{$width-1200}) {
     @content;
   }
 }
