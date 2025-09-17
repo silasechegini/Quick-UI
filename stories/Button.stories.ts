@@ -43,8 +43,8 @@ export const Primary: Story = {
 export const Secondary: Story = {
   args: {
     variant: BUTTON_VARIANTS.SECONDARY,
-    size: BUTTON_SIZES.MEDIUM,
-    children: "Secondary Btn",
+    size: BUTTON_SIZES.LARGE,
+    children: "Secondary Button",
   },
 };
 
