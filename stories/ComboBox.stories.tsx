@@ -3,9 +3,7 @@ import { useState } from "react";
 import { fn } from "storybook/test";
 
 import { ComboBox, ComboBoxOption } from "../src/components/ComboBox";
-// import type { ComboBoxOption } from "../src/components/ComboBox/ComboBox.types";
 
-// Sample options
 const options: ComboBoxOption[] = [
   { label: "Apple", value: "apple" },
   { label: "Banana", value: "banana" },
@@ -31,10 +29,8 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof ComboBox>;
 
-// ✅ Default ComboBox
 export const Default: Story = {};
 
-// 🧠 Controlled ComboBox
 export const Controlled: Story = {
   render: (args) => {
     const [value, setValue] = useState<string | null>("banana");
@@ -51,7 +47,6 @@ export const Controlled: Story = {
   },
 };
 
-// ⌨️ Searchable ComboBox
 export const Searchable: Story = {
   render: (args) => {
     const [inputOptions, setInputOptions] = useState(options);
@@ -70,7 +65,6 @@ export const Searchable: Story = {
   },
 };
 
-// 🛰️ Async Loading ComboBox
 export const AsyncLoading: Story = {
   render: (args) => {
     const [results, setResults] = useState<ComboBoxOption[]>([]);
@@ -98,7 +92,6 @@ export const AsyncLoading: Story = {
   },
 };
 
-// 🚫 Disabled ComboBox
 export const Disabled: Story = {
   args: {
     disabled: true,
@@ -106,7 +99,6 @@ export const Disabled: Story = {
   },
 };
 
-// 🎨 Custom Render Option
 export const CustomRender: Story = {
   args: {
     renderOption: (option, isActive) => (
@@ -117,7 +109,6 @@ export const CustomRender: Story = {
   },
 };
 
-// ❌ No Results State
 export const EmptyState: Story = {
   args: {
     options: [],
@@ -125,7 +116,6 @@ export const EmptyState: Story = {
   },
 };
 
-// 🐢 Custom Debounce Time
 export const CustomDebounce: Story = {
   args: {
     debounceDelay: 1000,
