@@ -35,6 +35,8 @@
   &__option {
     padding: var(--space-2) var(--space-3);
     cursor: pointer;
+    text-decoration: none;
+    list-style: none;
 
     &.active {
       background-color: var(--gray-100);
@@ -50,6 +52,8 @@
     padding: var(--space-2) var(--space-3);
     color: var(--gray-500);
     font-style: italic;
+    text-decoration: none;
+    list-style: none;
   }
 
   &.disabled {
