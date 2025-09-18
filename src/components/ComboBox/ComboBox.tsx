@@ -18,26 +18,30 @@ const ComboBox: React.FC<ComboBoxProps> = ({
 }) => {
   const isControlled = value !== undefined && value !== null;
 
-  const [inputValue, setInputValue] = useState(() => {
-    const initial = isControlled
-      ? options.find((opt) => opt.value === value)?.label || ""
-      : options.find((opt) => opt.value === defaultValue)?.label || "";
-    return initial;
+  const getLabelByValue = (val: string | number | null | undefined): string =>
+    options.find((opt) => opt.value === val)?.label ?? "";
+
+  const [inputValue, setInputValue] = useState<string>(() => {
+    return isControlled
+      ? getLabelByValue(value)
+      : getLabelByValue(defaultValue);
   });
+
   const [filteredOptions, setFilteredOptions] =
     useState<ComboBoxOption[]>(options);
+
   const [isOpen, setIsOpen] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
-
   const inputRef = useRef<HTMLInputElement>(null);
 
+  // Sync input value with controlled value
   useEffect(() => {
     if (isControlled) {
-      const selected = options.find((opt) => opt.value === value);
-      setInputValue(selected?.label || "");
+      setInputValue(getLabelByValue(value));
     }
   }, [value, options]);
 
+  // Filter options or run search on input change
   useEffect(() => {
     if (onSearch) {
       const timeout = setTimeout(() => {
@@ -52,12 +56,48 @@ const ComboBox: React.FC<ComboBoxProps> = ({
     }
   }, [inputValue, options, onSearch, debounceDelay]);
 
+  // Recalculate filteredOptions when options change (fallback search)
+  useEffect(() => {
+    if (!onSearch) {
+      const filtered = options.filter((opt) =>
+        opt.label.toLowerCase().includes(inputValue.toLowerCase()),
+      );
+      setFilteredOptions(filtered);
+    }
+  }, [options]);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newVal = e.target.value;
+    if (!isControlled) {
+      setInputValue(newVal);
+    }
+
+    if (onSearch) {
+      onSearch(newVal);
+    } else {
+      const filtered = options.filter((opt) =>
+        opt.label.toLowerCase().includes(newVal.toLowerCase()),
+      );
+      setFilteredOptions(filtered);
+    }
+
+    setIsOpen(true);
+    setHighlightedIndex(-1);
+  };
+
   const handleSelect = (option: ComboBoxOption, index: number) => {
-    setInputValue(option.label);
+    const selectedLabel = option.label;
+
+    if (!isControlled) {
+      setInputValue(selectedLabel);
+    }
+
     setIsOpen(false);
-    const stringValue =
-      typeof option.value === "number" ? option.value.toString() : option.value;
-    onChange?.(stringValue, option);
+    onChange?.(
+      typeof option.value === "number" ? option.value.toString() : option.value,
+      option,
+    );
+
     setHighlightedIndex(index);
   };
 
@@ -71,8 +111,9 @@ const ComboBox: React.FC<ComboBoxProps> = ({
         className={styles.comboBox__input}
         value={inputValue}
         placeholder={placeholder}
-        onChange={(e) => setInputValue(e.target.value)}
+        onChange={handleInputChange}
         onFocus={() => setIsOpen(true)}
+        onBlur={() => setTimeout(() => setIsOpen(false), 100)}
         disabled={disabled}
         autoFocus={autoFocus}
         aria-autocomplete="list"
@@ -97,9 +138,11 @@ const ComboBox: React.FC<ComboBoxProps> = ({
           {isLoading && (
             <li className={styles.comboBox__loading}>Loading...</li>
           )}
+
           {!isLoading && filteredOptions.length === 0 && (
             <li className={styles.comboBox__empty}>No results found</li>
           )}
+
           {!isLoading &&
             filteredOptions.map((opt, index) => (
               <li
@@ -108,7 +151,7 @@ const ComboBox: React.FC<ComboBoxProps> = ({
                 className={`${styles.comboBox__option} ${
                   index === highlightedIndex ? styles.active : ""
                 }`}
-                onClick={() => handleSelect(opt, index)}
+                onMouseDown={() => handleSelect(opt, index)}
                 role="option"
                 aria-selected={index === highlightedIndex}
               >
