@@ -111,8 +111,6 @@ $spacing-map: (
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    // Fallback for browsers that don't support -webkit-line-clamp
-    display: block;
     white-space: normal;
     // You may want to set a max-height based on the number of lines and line-height
     // Example: max-height: calc(#{$lines} * 1.2em);
