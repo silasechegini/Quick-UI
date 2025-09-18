@@ -1,4 +1,9 @@
 :root {
+  /* Font Families */
+  --font-sans: "Inter", "Segoe UI", "Roboto", "Helvetica Neue", sans-serif;
+  --font-heading: "Poppins", "Inter", sans-serif;
+  --font-mono: "SFMono-Regular", Menlo, Consolas, "Courier New", monospace;
+
   // ========================================
   // COLORS
   // ========================================
@@ -181,4 +186,69 @@
   --breakpoint-lg: 1024px;
   --breakpoint-xl: 1280px;
   --breakpoint-2xl: 1536px;
+}
+
+html {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: var(--line-height-normal);
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-normal);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: var(--line-height-normal);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-color);
+  line-height: var(--line-height-tight);
+}
+
+p {
+  margin-bottom: 1em;
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+}
+
+code,
+pre {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background-color: var(--code-bg);
+  color: var(--code-text);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background-color: inherit;
+}
+
+a {
+  color: var(--color-primary, #2563eb); /* default to blue-600 if undefined */
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
 }

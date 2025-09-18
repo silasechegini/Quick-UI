@@ -34,7 +34,7 @@ const ComboBox: React.FC<ComboBoxProps> = ({
       );
       setFilteredOptions(filtered);
     }
-  }, [inputValue, options]);
+  }, [inputValue, options, onSearch, debounceDelay]);
 
   const handleSelect = (option: ComboBoxOption, index: number) => {
     setInputValue(option.label);
@@ -47,7 +47,7 @@ const ComboBox: React.FC<ComboBoxProps> = ({
 
   return (
     <div
-      className={`${styles.comboBox} ${disabled ? "disabled" : ""} ${className}`}
+      className={`${styles.comboBox} ${disabled ? styles.disabled : ""} ${className}`}
     >
       <input
         ref={inputRef}
@@ -67,7 +67,11 @@ const ComboBox: React.FC<ComboBoxProps> = ({
       />
 
       {isOpen && (
-        <ul className="combo-box__list" role="listbox" id="combo-box-list">
+        <ul
+          className={styles.comboBox__list}
+          role="listbox"
+          id="combo-box-list"
+        >
           {isLoading && (
             <li className={styles.comboBox__loading}>Loading...</li>
           )}
