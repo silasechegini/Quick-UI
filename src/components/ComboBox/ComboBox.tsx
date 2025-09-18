@@ -5,6 +5,8 @@ import styles from "./styles.module.scss";
 const ComboBox: React.FC<ComboBoxProps> = ({
   options = [],
   onChange,
+  value,
+  defaultValue,
   onSearch,
   debounceDelay = 300,
   placeholder = "Select...",
@@ -14,13 +16,27 @@ const ComboBox: React.FC<ComboBoxProps> = ({
   className = "",
   autoFocus,
 }) => {
-  const [inputValue, setInputValue] = useState("");
+  const isControlled = value !== undefined && value !== null;
+
+  const [inputValue, setInputValue] = useState(() => {
+    const initial = isControlled
+      ? options.find((opt) => opt.value === value)?.label || ""
+      : options.find((opt) => opt.value === defaultValue)?.label || "";
+    return initial;
+  });
   const [filteredOptions, setFilteredOptions] =
     useState<ComboBoxOption[]>(options);
   const [isOpen, setIsOpen] = useState(false);
-  const [highlightedIndex, setHighlightedIndex] = useState(0);
+  const [highlightedIndex, setHighlightedIndex] = useState(-1);
 
   const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (isControlled) {
+      const selected = options.find((opt) => opt.value === value);
+      setInputValue(selected?.label || "");
+    }
+  }, [value, options]);
 
   useEffect(() => {
     if (onSearch) {
@@ -63,7 +79,13 @@ const ComboBox: React.FC<ComboBoxProps> = ({
         role="combobox"
         aria-expanded={isOpen}
         aria-controls="combo-box-list"
-        aria-activedescendant={`combo-box-option-${highlightedIndex}`}
+        aria-activedescendant={
+          isOpen &&
+          highlightedIndex >= 0 &&
+          highlightedIndex < filteredOptions.length
+            ? `combo-box-option-${highlightedIndex}`
+            : undefined
+        }
       />
 
       {isOpen && (
@@ -86,7 +108,7 @@ const ComboBox: React.FC<ComboBoxProps> = ({
                 className={`${styles.comboBox__option} ${
                   index === highlightedIndex ? styles.active : ""
                 }`}
-                onMouseDown={() => handleSelect(opt, index)}
+                onClick={() => handleSelect(opt, index)}
                 role="option"
                 aria-selected={index === highlightedIndex}
               >

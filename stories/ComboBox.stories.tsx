@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
-import { fn } from "storybook/test";
 
 import { ComboBox, ComboBoxOption } from "../src/components/ComboBox";
+import { fn } from "storybook/test";
 
 const options: ComboBoxOption[] = [
   { label: "Apple", value: "apple" },
