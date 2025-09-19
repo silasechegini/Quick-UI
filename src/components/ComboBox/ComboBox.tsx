@@ -19,6 +19,9 @@ const ComboBox: React.FC<ComboBoxProps> = ({
 }) => {
   const isControlled = value !== undefined && value !== null;
 
+  const comboRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
   const getLabelByValue = (val: string | number | null | undefined): string =>
     options.find((opt) => opt.value === val)?.label ?? "";
 
@@ -30,10 +33,8 @@ const ComboBox: React.FC<ComboBoxProps> = ({
 
   const [filteredOptions, setFilteredOptions] =
     useState<ComboBoxOption[]>(options);
-
   const [isOpen, setIsOpen] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
-  const inputRef = useRef<HTMLInputElement>(null);
 
   // Sync input value with controlled value
   useEffect(() => {
@@ -50,19 +51,9 @@ const ComboBox: React.FC<ComboBoxProps> = ({
       }, debounceDelay);
       return () => clearTimeout(timeout);
     } else {
-      const filtered = options.filter((opt) =>
-        opt.label.toLowerCase().includes(inputValue.toLowerCase()),
-      );
-      setFilteredOptions(filtered);
-    }
-  }, [inputValue, options, onSearch, debounceDelay]);
-
-  // Recalculate filteredOptions when options change (fallback search)
-  useEffect(() => {
-    if (!onSearch) {
       handleFilteredOptions(inputValue);
     }
-  }, [options, inputValue, onSearch]);
+  }, [inputValue, options, onSearch, debounceDelay]);
 
   const handleFilteredOptions = (input: string) => {
     const filtered = options.filter((opt) =>
@@ -73,7 +64,10 @@ const ComboBox: React.FC<ComboBoxProps> = ({
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newVal = e.target.value;
-    setInputValue(newVal);
+
+    if (!isControlled) {
+      setInputValue(newVal);
+    }
 
     if (onSearch) {
       onSearch(newVal);
@@ -88,28 +82,39 @@ const ComboBox: React.FC<ComboBoxProps> = ({
   const handleSelect = (option: ComboBoxOption, index: number) => {
     const selectedLabel = option.label;
 
-    setInputValue(selectedLabel);
+    if (!isControlled) {
+      setInputValue(selectedLabel);
+    }
 
     setIsOpen(false);
+    setFilteredOptions(options);
+    setHighlightedIndex(index);
+
     onChange?.(
       typeof option.value === "number" ? option.value.toString() : option.value,
       option,
     );
-
-    setHighlightedIndex(index);
   };
 
   const handleBlur = (e: React.FocusEvent) => {
     const nextFocusedElement = e.relatedTarget as HTMLElement | null;
-
-    if (!inputRef?.current?.contains(nextFocusedElement)) {
+    if (!comboRef.current?.contains(nextFocusedElement)) {
       setIsOpen(false);
     }
   };
 
+  const handleFocus = () => {
+    setIsOpen(true);
+    setFilteredOptions(options);
+    setHighlightedIndex(-1);
+  };
+
   return (
     <div
+      ref={comboRef}
       className={`${styles.comboBox} ${disabled ? styles.disabled : ""} ${className}`}
+      onBlurCapture={handleBlur}
+      onFocusCapture={handleFocus}
     >
       <input
         ref={inputRef}
@@ -118,8 +123,6 @@ const ComboBox: React.FC<ComboBoxProps> = ({
         value={inputValue}
         placeholder={placeholder}
         onChange={handleInputChange}
-        onFocusCapture={() => setIsOpen(true)}
-        onBlurCapture={handleBlur}
         disabled={disabled}
         autoFocus={autoFocus}
         aria-autocomplete="list"
