@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { ComboBoxProps, ComboBoxOption } from "./ComboBox.types";
 import styles from "./styles.module.scss";
+import { PLACE_HOLDER } from "./ComboBox.utils";
 
 const ComboBox: React.FC<ComboBoxProps> = ({
   options = [],
@@ -9,7 +10,7 @@ const ComboBox: React.FC<ComboBoxProps> = ({
   defaultValue,
   onSearch,
   debounceDelay = 300,
-  placeholder = "Select...",
+  placeholder = PLACE_HOLDER,
   isLoading = false,
   disabled = false,
   renderOption,
@@ -59,12 +60,16 @@ const ComboBox: React.FC<ComboBoxProps> = ({
   // Recalculate filteredOptions when options change (fallback search)
   useEffect(() => {
     if (!onSearch) {
-      const filtered = options.filter((opt) =>
-        opt.label.toLowerCase().includes(inputValue.toLowerCase()),
-      );
-      setFilteredOptions(filtered);
+      handleFilteredOptions(inputValue);
     }
-  }, [options]);
+  }, [options, inputValue, onSearch]);
+
+  const handleFilteredOptions = (input: string) => {
+    const filtered = options.filter((opt) =>
+      opt.label.toLowerCase().includes(input.toLowerCase()),
+    );
+    setFilteredOptions(filtered);
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newVal = e.target.value;
@@ -75,10 +80,7 @@ const ComboBox: React.FC<ComboBoxProps> = ({
     if (onSearch) {
       onSearch(newVal);
     } else {
-      const filtered = options.filter((opt) =>
-        opt.label.toLowerCase().includes(newVal.toLowerCase()),
-      );
-      setFilteredOptions(filtered);
+      handleFilteredOptions(newVal);
     }
 
     setIsOpen(true);
