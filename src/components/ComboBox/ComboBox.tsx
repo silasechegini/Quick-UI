@@ -73,9 +73,7 @@ const ComboBox: React.FC<ComboBoxProps> = ({
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newVal = e.target.value;
-    if (!isControlled) {
-      setInputValue(newVal);
-    }
+    setInputValue(newVal);
 
     if (onSearch) {
       onSearch(newVal);
@@ -90,9 +88,7 @@ const ComboBox: React.FC<ComboBoxProps> = ({
   const handleSelect = (option: ComboBoxOption, index: number) => {
     const selectedLabel = option.label;
 
-    if (!isControlled) {
-      setInputValue(selectedLabel);
-    }
+    setInputValue(selectedLabel);
 
     setIsOpen(false);
     onChange?.(
@@ -101,6 +97,14 @@ const ComboBox: React.FC<ComboBoxProps> = ({
     );
 
     setHighlightedIndex(index);
+  };
+
+  const handleBlur = (e: React.FocusEvent) => {
+    const nextFocusedElement = e.relatedTarget as HTMLElement | null;
+
+    if (!inputRef?.current?.contains(nextFocusedElement)) {
+      setIsOpen(false);
+    }
   };
 
   return (
@@ -114,8 +118,8 @@ const ComboBox: React.FC<ComboBoxProps> = ({
         value={inputValue}
         placeholder={placeholder}
         onChange={handleInputChange}
-        onFocus={() => setIsOpen(true)}
-        onBlur={() => setTimeout(() => setIsOpen(false), 100)}
+        onFocusCapture={() => setIsOpen(true)}
+        onBlurCapture={handleBlur}
         disabled={disabled}
         autoFocus={autoFocus}
         aria-autocomplete="list"
