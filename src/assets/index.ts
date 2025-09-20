@@ -1,3 +1,4 @@
+import { FC, SVGProps } from "react";
 import { ReactComponent as searchIcon } from "./icons/search.svg";
 import { ReactComponent as closeIcon } from "./icons/close.svg";
 import { ReactComponent as chevronDownIcon } from "./icons/chevron-down.svg";
@@ -19,9 +20,8 @@ import { ReactComponent as downloadIcon } from "./icons/download.svg";
 import { ReactComponent as settingsIcon } from "./icons/settings.svg";
 import { ReactComponent as trashIcon } from "./icons/trash.svg";
 import { ReactComponent as userIcon } from "./icons/user.svg";
-import { FC } from "react";
 
-const iconSvgMapping: { [key: string]: FC<React.SVGProps<SVGSVGElement>> } = {
+const iconSvgMapping: { [key: string]: FC<SVGProps<SVGSVGElement>> } = {
   search_icon: searchIcon,
   close_icon: closeIcon,
   chevron_down_icon: chevronDownIcon,
