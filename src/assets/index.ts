@@ -20,29 +20,7 @@ import { ReactComponent as downloadIcon } from "./icons/download.svg";
 import { ReactComponent as settingsIcon } from "./icons/settings.svg";
 import { ReactComponent as trashIcon } from "./icons/trash.svg";
 import { ReactComponent as userIcon } from "./icons/user.svg";
-
-type IconKey =
-  | "search_icon"
-  | "close_icon"
-  | "chevron_down_icon"
-  | "chevron_up_icon"
-  | "chevron_left_icon"
-  | "chevron_right_icon"
-  | "dropdown_arrow_icon"
-  | "clear_icon"
-  | "plus_icon"
-  | "minus_icon"
-  | "checkmark_icon"
-  | "spinner_icon"
-  | "calendar_icon"
-  | "clock_icon"
-  | "eye_icon"
-  | "eye_off_icon"
-  | "upload_icon"
-  | "download_icon"
-  | "settings_icon"
-  | "trash_icon"
-  | "user_icon";
+import { IconKey } from "./icons/iconType";
 
 const iconSvgMapping: Record<IconKey, FC<SVGProps<SVGSVGElement>>> = {
   search_icon: searchIcon,
