@@ -19,7 +19,7 @@ const config: StorybookConfig = {
     options: {},
   },
 
-  viteFinal: async (config, { configType }) => {
+  viteFinal: async (config) => {
     config.plugins = [...(config.plugins || [])];
 
     config.plugins.unshift(
