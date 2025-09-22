@@ -20,8 +20,17 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noEmit": false,
+    "baseUrl": ".",
+    "rootDir": "./src",
+    "paths": {
+      "@assets/*": ["src/assets/*"],
+      "@components/*": ["src/components/*"],
+      "@utils/*": ["src/utils/*"],
+      "@styles/*": ["src/styles/*"],
+      "@*": ["src/*"]
+    },
     "typeRoots": ["./node_modules/@types", "./src/types"]
   },
-  "include": ["src"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules", "dist", "test"]
 }
