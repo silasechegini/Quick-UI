@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+  useDeferredValue,
+} from "react";
 import type { MultiSelectProps, MultiSelectOption } from "./MultiSelect.types";
 import iconSvgMapping from "@assets/iconSvgMapping ";
 import styles from "./styles.module.scss";
@@ -14,7 +20,6 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
   isLoading = false,
   disabled = false,
   searchable = true,
-  debounceDelay = 300,
   renderOption,
   className = "",
   name,
@@ -25,12 +30,17 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
   const isControlled = value !== undefined;
   const [inputValue, setInputValue] = useState("");
   const [selected, setSelected] = useState<(string | number)[]>(() =>
-    isControlled ? value! : defaultValue,
+    isControlled
+      ? value!
+      : options
+          .filter((opt) => defaultValue.includes(opt.value))
+          .map((opt) => opt.value),
   );
   const [isOpen, setIsOpen] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(0);
   const [filteredOptions, setFilteredOptions] =
     useState<MultiSelectOption[]>(options);
+  const debouncedValue = useDeferredValue(inputValue);
 
   const wrapperRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -56,24 +66,19 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
-  // Debounce inputValue changes
   useEffect(() => {
-    const handler = setTimeout(() => {
-      const query = inputValue.toLowerCase().trim();
+    const query = debouncedValue.toLowerCase().trim();
 
-      if (query === "") {
-        setFilteredOptions(options);
-        return;
-      }
+    if (query === "") {
+      setFilteredOptions(options);
+      return;
+    }
 
-      const filtered = options.filter((opt) =>
-        opt.label.toLowerCase().includes(query),
-      );
-      setFilteredOptions(filtered);
-    }, debounceDelay);
-
-    return () => clearTimeout(handler);
-  }, [inputValue, options, debounceDelay]);
+    const filtered = options.filter((opt) =>
+      opt.label.toLowerCase().includes(query),
+    );
+    setFilteredOptions(filtered);
+  }, [debouncedValue, options]);
 
   const updateSelection = useCallback(
     (newSelected: (string | number)[]) => {
@@ -125,99 +130,107 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
 
   const selectedOptions = options.filter((opt) => selected.includes(opt.value));
 
+  const renderInputText = () => {
+    if (selectedOptions.length === 0) return placeholder;
+    if (selectedOptions.length === 1) return selectedOptions[0].label;
+    return `${selectedOptions.length} options selected`;
+  };
+
   return (
-    <div className={`${styles.multiSelect} ${className}`} ref={wrapperRef}>
-      <div
-        className={`${styles.inputWrapper} ${disabled ? styles.disabled : ""}`}
-        onClick={() => inputRef.current?.focus()}
-      >
-        <div className={styles.tags}>
-          {selectedOptions.map((opt) => (
-            <span key={opt.value} className={styles.tag}>
-              {opt.label}
-              <span
-                className={styles.removeIcon}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleRemove(opt.value);
-                }}
-              >
-                <CloseIcon aria-label="Remove tag" />
-              </span>
-            </span>
-          ))}
-          {searchable && (
-            <input
-              type="text"
-              name={name}
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              onFocus={() => setIsOpen(true)}
-              ref={inputRef}
-              placeholder={selected.length ? "" : placeholder}
-              disabled={disabled}
-              autoFocus={autoFocus}
-              className={styles.input}
-            />
+    <>
+      <div className={`${styles.multiSelect} ${className}`} ref={wrapperRef}>
+        <div
+          className={`${styles.inputWrapper} ${disabled ? styles.disabled : ""}`}
+          onClick={() => inputRef.current?.focus()}
+        >
+          <div className={styles.tags}>
+            {searchable && (
+              <input
+                type="text"
+                name={name}
+                value={debouncedValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                onFocus={() => setIsOpen(true)}
+                ref={inputRef}
+                placeholder={renderInputText()}
+                disabled={disabled}
+                autoFocus={autoFocus}
+                className={styles.input}
+              />
+            )}
+          </div>
+
+          {clearable && selected.length > 0 && (
+            <button
+              className={styles.clearBtn}
+              onClick={(e) => {
+                e.stopPropagation();
+                handleClearAll();
+              }}
+              type="button"
+            >
+              <CloseIcon aria-label="Remove tag" className={styles.closeIcon} />
+            </button>
           )}
         </div>
 
-        {clearable && selected.length > 0 && (
-          <button
-            className={styles.clearBtn}
-            onClick={(e) => {
-              e.stopPropagation();
-              handleClearAll();
-            }}
-            type="button"
-          >
-            <CloseIcon aria-label="Remove tag" className={styles.closeIcon} />
-          </button>
+        {isOpen && (
+          <ul className={styles.dropdown}>
+            {isLoading ? (
+              <li className={styles.loading}>Loading...</li>
+            ) : filteredOptions.length === 0 ? (
+              <li className={styles.empty}>No options</li>
+            ) : (
+              filteredOptions.map((opt, index) => {
+                const isSelected = selected.includes(opt.value);
+                const isHighlighted = highlightedIndex === index;
+
+                return (
+                  <li
+                    key={opt.value}
+                    className={`${styles.option} ${isSelected ? styles.selected : ""} ${
+                      isHighlighted ? styles.highlighted : ""
+                    }`}
+                    onClick={() => handleSelect(opt, index)}
+                  >
+                    {renderOption ? (
+                      renderOption(opt, isSelected, isHighlighted)
+                    ) : (
+                      <label className={styles.checkboxLabel}>
+                        <input
+                          type="checkbox"
+                          checked={isSelected}
+                          readOnly
+                          className={styles.checkbox}
+                          onClick={(e) => e.stopPropagation()}
+                        />
+                        <span className={styles.labelText}>{opt.label}</span>
+                      </label>
+                    )}
+                  </li>
+                );
+              })
+            )}
+          </ul>
         )}
       </div>
-
-      {isOpen && (
-        <ul className={styles.dropdown}>
-          {isLoading ? (
-            <li className={styles.loading}>Loading...</li>
-          ) : filteredOptions.length === 0 ? (
-            <li className={styles.empty}>No options</li>
-          ) : (
-            filteredOptions.map((opt, index) => {
-              const isSelected = selected.includes(opt.value);
-              const isHighlighted = highlightedIndex === index;
-
-              return (
-                <li
-                  key={opt.value}
-                  className={`${styles.option} ${isSelected ? styles.selected : ""} ${
-                    isHighlighted ? styles.highlighted : ""
-                  }`}
-                >
-                  {renderOption ? (
-                    renderOption(opt, isSelected, isHighlighted)
-                  ) : (
-                    <label className={styles.checkboxLabel}>
-                      <input
-                        type="checkbox"
-                        checked={isSelected}
-                        readOnly
-                        className={styles.checkbox}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleSelect(opt, index);
-                        }}
-                      />
-                      <span className={styles.labelText}>{opt.label}</span>
-                    </label>
-                  )}
-                </li>
-              );
-            })
-          )}
-        </ul>
-      )}
-    </div>
+      <div className={styles.tagContainer}>
+        {selectedOptions.map((opt) => (
+          <span key={opt.value} className={styles.tag}>
+            {opt.label}
+            <span
+              className={styles.removeIcon}
+              onClick={(e) => {
+                e.stopPropagation();
+                handleRemove(opt.value);
+              }}
+            >
+              <CloseIcon aria-label="Remove tag" className={styles.closeIcon} />
+            </span>
+          </span>
+        ))}
+      </div>
+    </>
   );
 };
 
