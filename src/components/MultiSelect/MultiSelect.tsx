@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import type { MultiSelectProps, MultiSelectOption } from "./MultiSelect.types";
 import iconSvgMapping from "@assets/iconSvgMapping ";
 import styles from "./styles.module.scss";
@@ -37,7 +37,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
 
   useEffect(() => {
     if (isControlled) setSelected(value!);
-  }, [value]);
+  }, [value, isControlled]);
 
   useEffect(() => {
     setFilteredOptions(options);
@@ -75,29 +75,39 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
     return () => clearTimeout(handler);
   }, [inputValue, options, debounceDelay]);
 
-  const updateSelection = (newSelected: (string | number)[]) => {
-    if (!isControlled) {
-      setSelected(newSelected);
-    }
-    onChange?.(newSelected);
-  };
+  const updateSelection = useCallback(
+    (newSelected: (string | number)[]) => {
+      if (!isControlled) {
+        setSelected(newSelected);
+      }
+      onChange?.(newSelected);
+    },
+    [isControlled, onChange],
+  );
 
-  const handleSelect = (option: MultiSelectOption, index: number) => {
-    const exists = selected.includes(option.value);
-    const newSelected = exists
-      ? selected.filter((v) => v !== option.value)
-      : [...selected, option.value];
+  const handleSelect = useCallback(
+    (option: MultiSelectOption, index: number) => {
+      const exists = selected.includes(option.value);
+      const newSelected = exists
+        ? selected.filter((v) => v !== option.value)
+        : [...selected, option.value];
 
-    if (!exists && maxSelected && newSelected.length > maxSelected) return;
-    updateSelection(newSelected);
-    setHighlightedIndex(index);
-    if (searchable) {
-      setInputValue("");
-      inputRef.current?.focus();
-    } else {
-      setIsOpen(false);
-    }
-  };
+      if (!exists && maxSelected && newSelected.length > maxSelected) {
+        return;
+      }
+
+      updateSelection(newSelected);
+      setHighlightedIndex(index);
+
+      if (searchable) {
+        setInputValue("");
+        inputRef.current?.focus();
+      } else {
+        setIsOpen(false);
+      }
+    },
+    [selected, maxSelected, searchable, updateSelection],
+  );
 
   const handleRemove = (val: string | number) => {
     const newSelected = selected.filter((v) => v !== val);
@@ -183,12 +193,23 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
                   className={`${styles.option} ${isSelected ? styles.selected : ""} ${
                     isHighlighted ? styles.highlighted : ""
                   }`}
-                  onClick={() => handleSelect(opt, index)}
                 >
                   {renderOption ? (
                     renderOption(opt, isSelected, isHighlighted)
                   ) : (
-                    <span>{opt.label}</span>
+                    <label className={styles.checkboxLabel}>
+                      <input
+                        type="checkbox"
+                        checked={isSelected}
+                        readOnly
+                        className={styles.checkbox}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleSelect(opt, index);
+                        }}
+                      />
+                      <span className={styles.labelText}>{opt.label}</span>
+                    </label>
                   )}
                 </li>
               );

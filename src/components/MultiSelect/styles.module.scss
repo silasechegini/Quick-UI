@@ -90,3 +90,24 @@
   width: 12px;
   height: 12px;
 }
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.checkbox {
+  pointer-events: none; // checkbox is controlled via <li> click
+}
+
+.labelText {
+  flex: 1;
+}
+
+.noOptions {
+  padding: 8px;
+  color: #888;
+}
