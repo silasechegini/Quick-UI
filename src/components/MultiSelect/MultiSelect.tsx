@@ -222,6 +222,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
                           checked={isSelected}
                           readOnly
                           className={styles.checkbox}
+                          aria-hidden="true"
                           onClick={(e) => e.stopPropagation()}
                         />
                         <span className={styles.labelText}>{opt.label}</span>
@@ -238,15 +239,17 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
         {selectedOptions.map((opt) => (
           <span key={opt.value} className={styles.tag}>
             {opt.label}
-            <span
+            <button
+              type="button"
               className={styles.tagRemoveBtn}
               onClick={(e) => {
                 e.stopPropagation();
                 handleRemove(opt.value);
               }}
+              aria-label={`Remove tag ${opt.label}`}
             >
               <CloseIcon aria-label="Remove tag" className={styles.closeIcon} />
-            </span>
+            </button>
           </span>
         ))}
       </div>
