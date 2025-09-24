@@ -173,6 +173,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
 
           {clearable && selected.length > 0 && (
             <button
+              aria-label="Clear all selected options"
               className={styles.clearBtn}
               onClick={(e) => {
                 e.stopPropagation();
@@ -180,7 +181,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
               }}
               type="button"
             >
-              <CloseIcon aria-label="Remove tag" className={styles.closeIcon} />
+              <CloseIcon className={styles.closeIcon} />
             </button>
           )}
         </div>
@@ -248,7 +249,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
               }}
               aria-label={`Remove tag ${opt.label}`}
             >
-              <CloseIcon aria-label="Remove tag" className={styles.closeIcon} />
+              <CloseIcon className={styles.closeIcon} />
             </button>
           </span>
         ))}
