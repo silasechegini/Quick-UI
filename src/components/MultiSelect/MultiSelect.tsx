@@ -4,6 +4,7 @@ import React, {
   useRef,
   useCallback,
   useDeferredValue,
+  useId,
 } from "react";
 import type { MultiSelectProps, MultiSelectOption } from "./MultiSelect.types";
 import { iconSvgMapping } from "@assets";
@@ -28,6 +29,9 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
   maxSelected,
   clearable = true,
 }) => {
+  const generatedId = useId();
+  const componentId = id ?? `multiselect-${generatedId}`;
+  const dropdownId = `${componentId}-dropdown`;
   const isControlled = value !== undefined;
   const [inputValue, setInputValue] = useState("");
   const [selected, setSelected] = useState<(string | number)[]>(() =>
@@ -79,7 +83,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
       opt.label.toLowerCase().includes(query),
     );
     setFilteredOptions(filtered);
-  }, [debouncedValue, options]);
+  }, [debouncedValue, options, searchable]);
 
   const updateSelection = useCallback(
     (newSelected: (string | number)[]) => {
@@ -142,11 +146,11 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
       <div
         className={`${styles.multiSelect} ${className}`}
         ref={wrapperRef}
-        id={id ?? "multiselect"}
+        id={componentId}
         role="combobox"
         aria-expanded={isOpen}
         aria-haspopup="listbox"
-        aria-controls="multiselect-dropdown"
+        aria-controls={dropdownId}
       >
         <div
           className={`${styles.inputWrapper} ${disabled ? styles.disabled : ""}`}
@@ -186,7 +190,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
             className={styles.dropdown}
             role="listbox"
             aria-multiselectable="true"
-            id="multiselect-dropdown"
+            id={dropdownId}
           >
             {isLoading ? (
               <li className={styles.loading}>Loading...</li>
