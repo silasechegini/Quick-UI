@@ -1,0 +1,157 @@
+.multiSelect {
+  position: relative;
+  width: 100%;
+}
+
+.inputWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid #ccc;
+  padding: 4px;
+  border-radius: 4px;
+  cursor: text;
+  justify-content: space-between;
+}
+
+.inputWrapper.disabled {
+  background: #f9f9f9;
+  cursor: not-allowed;
+}
+
+.tags {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.tagContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 15px;
+
+  .tag {
+    background: #ecebeb;
+    padding: 2px 15px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
+.input {
+  flex: 1;
+  border: none;
+  outline: none;
+  min-width: 100px;
+}
+
+.clearBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.tagRemoveBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+
+.dropdown {
+  position: absolute;
+  width: 100%;
+  padding: 0;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  z-index: 10;
+  max-height: 200px;
+  overflow-y: auto;
+  margin-top: 4px;
+}
+
+.option {
+  padding: 8px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+}
+
+.option:hover,
+.highlighted {
+  background: #f0f0f0;
+}
+
+.selected {
+  font-weight: bold;
+}
+
+.empty,
+.loading {
+  padding: 8px;
+  color: #888;
+}
+.error {
+  padding: 8px;
+  color: red;
+}
+
+.closeIcon {
+  width: 12px;
+  height: 12px;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  width: 100%;
+  user-select: none;
+}
+
+.checkbox {
+  display: none; // checkbox is controlled via <li> click
+}
+
+.customCheckbox {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #666;
+  border-radius: 3px;
+  position: relative;
+  background-color: white;
+  flex-shrink: 0;
+}
+
+.checkbox:checked + .customCheckbox {
+  background-color: #333; // Dark or primary color
+  border-color: #333;
+}
+
+.checkbox:checked + .customCheckbox::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 0px;
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.labelText {
+  flex: 1;
+}
+
+.noOptions {
+  padding: 8px;
+  color: #888;
+}
