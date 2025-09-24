@@ -239,7 +239,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
           <span key={opt.value} className={styles.tag}>
             {opt.label}
             <span
-              className={styles.clearBtn}
+              className={styles.tagRemoveBtn}
               onClick={(e) => {
                 e.stopPropagation();
                 handleRemove(opt.value);
