@@ -1,1 +1,1 @@
-export { default as iconSvgMapping } from "./iconSvgMapping ";
+export { default as iconSvgMapping } from "./iconSvgMapping";

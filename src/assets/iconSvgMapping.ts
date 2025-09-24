@@ -20,9 +20,9 @@ import { ReactComponent as downloadIcon } from "./icons/download.svg";
 import { ReactComponent as settingsIcon } from "./icons/settings.svg";
 import { ReactComponent as trashIcon } from "./icons/trash.svg";
 import { ReactComponent as userIcon } from "./icons/user.svg";
-// import { IconKey } from "./iconType";
+import { IconKey } from "./iconType";
 
-const iconSvgMapping: { [key: string]: FC<SVGProps<SVGSVGElement>> } = {
+const iconSvgMapping: { [key in IconKey]: FC<SVGProps<SVGSVGElement>> } = {
   search_icon: searchIcon,
   close_icon: closeIcon,
   chevron_down_icon: chevronDownIcon,

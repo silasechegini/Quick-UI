@@ -4,6 +4,7 @@ export interface MultiSelectOption {
 }
 
 export interface MultiSelectProps {
+  id?: string;
   options: MultiSelectOption[];
   value?: (string | number)[];
   defaultValue?: (string | number)[];
@@ -12,7 +13,6 @@ export interface MultiSelectProps {
   isLoading?: boolean;
   disabled?: boolean;
   searchable?: boolean;
-  debounceDelay?: number;
   renderOption?: (
     option: MultiSelectOption,
     isSelected: boolean,

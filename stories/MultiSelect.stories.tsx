@@ -38,3 +38,9 @@ export const Loading: Story = {
     isLoading: true,
   },
 };
+
+export const NotSearchable: Story = {
+  args: {
+    searchable: false,
+  },
+};

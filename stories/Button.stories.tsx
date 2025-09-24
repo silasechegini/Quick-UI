@@ -63,7 +63,7 @@ export const LeadingIcon: Story = {
   args: {
     variant: BUTTON_VARIANTS.PRIMARY,
     size: BUTTON_SIZES.LARGE,
-    children: "leading Icon",
+    children: "Leading Icon",
     icon: "🚀",
     iconPosition: ICON_POSITIONS.START,
   },

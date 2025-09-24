@@ -6,12 +6,13 @@ import React, {
   useDeferredValue,
 } from "react";
 import type { MultiSelectProps, MultiSelectOption } from "./MultiSelect.types";
-import iconSvgMapping from "@assets/iconSvgMapping ";
+import { iconSvgMapping } from "@assets";
 import styles from "./styles.module.scss";
 
 const CloseIcon = iconSvgMapping["close_icon"];
 
 const MultiSelect: React.FC<MultiSelectProps> = ({
+  id,
   options,
   value,
   defaultValue = [],
@@ -69,7 +70,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
   useEffect(() => {
     const query = debouncedValue.toLowerCase().trim();
 
-    if (query === "") {
+    if (query === "" || !searchable) {
       setFilteredOptions(options);
       return;
     }
@@ -138,26 +139,32 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
 
   return (
     <>
-      <div className={`${styles.multiSelect} ${className}`} ref={wrapperRef}>
+      <div
+        className={`${styles.multiSelect} ${className}`}
+        ref={wrapperRef}
+        id={id ?? "multiselect"}
+        role="combobox"
+        aria-expanded={isOpen}
+        aria-haspopup="listbox"
+        aria-controls="multiselect-dropdown"
+      >
         <div
           className={`${styles.inputWrapper} ${disabled ? styles.disabled : ""}`}
           onClick={() => inputRef.current?.focus()}
         >
           <div className={styles.tags}>
-            {searchable && (
-              <input
-                type="text"
-                name={name}
-                value={debouncedValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                onFocus={() => setIsOpen(true)}
-                ref={inputRef}
-                placeholder={renderInputText()}
-                disabled={disabled}
-                autoFocus={autoFocus}
-                className={styles.input}
-              />
-            )}
+            <input
+              type="text"
+              name={name}
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              onFocus={() => setIsOpen(true)}
+              ref={inputRef}
+              placeholder={renderInputText()}
+              disabled={disabled}
+              autoFocus={autoFocus}
+              className={styles.input}
+            />
           </div>
 
           {clearable && selected.length > 0 && (
@@ -175,7 +182,12 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
         </div>
 
         {isOpen && (
-          <ul className={styles.dropdown}>
+          <ul
+            className={styles.dropdown}
+            role="listbox"
+            aria-multiselectable="true"
+            id="multiselect-dropdown"
+          >
             {isLoading ? (
               <li className={styles.loading}>Loading...</li>
             ) : filteredOptions.length === 0 ? (
@@ -192,6 +204,10 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
                       isHighlighted ? styles.highlighted : ""
                     }`}
                     onClick={() => handleSelect(opt, index)}
+                    role="option"
+                    aria-selected={isSelected}
+                    tabIndex={-1}
+                    onMouseEnter={() => setHighlightedIndex(index)}
                   >
                     {renderOption ? (
                       renderOption(opt, isSelected, isHighlighted)
@@ -219,7 +235,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
           <span key={opt.value} className={styles.tag}>
             {opt.label}
             <span
-              className={styles.removeIcon}
+              className={styles.clearBtn}
               onClick={(e) => {
                 e.stopPropagation();
                 handleRemove(opt.value);
