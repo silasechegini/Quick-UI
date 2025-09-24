@@ -226,6 +226,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
                           aria-hidden="true"
                           onClick={(e) => e.stopPropagation()}
                         />
+                        <span className={styles.customCheckbox} />
                         <span className={styles.labelText}>{opt.label}</span>
                       </label>
                     )}

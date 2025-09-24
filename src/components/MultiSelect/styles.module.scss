@@ -28,16 +28,16 @@
 .tagContainer {
   display: flex;
   flex-wrap: wrap;
-  gap: 4px;
-  margin-top: 8px;
+  gap: 5px;
+  margin-top: 15px;
 
   .tag {
-    background: #e0e0e0;
-    padding: 2px 6px;
-    border-radius: 3px;
+    background: #ecebeb;
+    padding: 2px 15px;
+    border-radius: 999px;
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 10px;
   }
 }
 
@@ -113,10 +113,38 @@
   gap: 8px;
   cursor: pointer;
   width: 100%;
+  user-select: none;
 }
 
 .checkbox {
-  pointer-events: none; // checkbox is controlled via <li> click
+  display: none; // checkbox is controlled via <li> click
+}
+
+.customCheckbox {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #666;
+  border-radius: 3px;
+  position: relative;
+  background-color: white;
+  flex-shrink: 0;
+}
+
+.checkbox:checked + .customCheckbox {
+  background-color: #333; // Dark or primary color
+  border-color: #333;
+}
+
+.checkbox:checked + .customCheckbox::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 0px;
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
 }
 
 .labelText {
