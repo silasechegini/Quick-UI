@@ -1,7 +1,9 @@
+import { CSSProperties } from "react";
+
 export const getIconStyle = (
   size: number | string,
   color: string,
-): React.CSSProperties => ({
+): CSSProperties => ({
   width: size,
   height: size,
   fill: color,

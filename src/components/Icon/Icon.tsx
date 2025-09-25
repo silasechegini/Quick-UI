@@ -1,15 +1,8 @@
-import type { CSSProperties, FC } from "react";
+import type { FC } from "react";
 import clsx from "clsx";
 import { iconSvgMapping as Icons } from "@assets"; // e.g., { HomeIcon, UserIcon, ... }
 import { getIconStyle } from "./Icon.styles";
-
-export interface IconProps {
-  name: keyof typeof Icons;
-  size?: number | string;
-  color?: string;
-  style?: CSSProperties;
-  className?: string;
-}
+import type { IconProps } from "./Icon.types";
 
 const Icon: FC<IconProps> = ({
   name,
