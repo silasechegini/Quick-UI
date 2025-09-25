@@ -10,7 +10,7 @@ import type { MultiSelectProps, MultiSelectOption } from "./MultiSelect.types";
 import { iconSvgMapping } from "@assets";
 import styles from "./styles.module.scss";
 
-const CloseIcon = iconSvgMapping["close_icon"];
+const ClearIcon = iconSvgMapping["clear_icon"];
 
 const MultiSelect: React.FC<MultiSelectProps> = ({
   id,
@@ -181,7 +181,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
               }}
               type="button"
             >
-              <CloseIcon className={styles.closeIcon} />
+              <ClearIcon className={styles.clearIcon} />
             </button>
           )}
         </div>
@@ -250,7 +250,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
               }}
               aria-label={`Remove tag ${opt.label}`}
             >
-              <CloseIcon className={styles.closeIcon} />
+              <ClearIcon className={styles.clearIcon} />
             </button>
           </span>
         ))}
