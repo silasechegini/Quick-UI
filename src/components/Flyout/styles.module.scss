@@ -70,14 +70,6 @@
   z-index: 2;
 }
 
-.header {
-  border-bottom: 1px solid #eee;
-}
-
-.footer {
-  border-top: 1px solid #eee;
-}
-
 .body {
   flex: 1;
   overflow-y: auto;
@@ -108,14 +100,4 @@
 }
 .body::-webkit-scrollbar-button {
   display: none;
-}
-
-.body::-webkit-scrollbar-track-piece {
-  background-color: #f0f0f0;
-}
-.body::-webkit-scrollbar-track-piece:hover {
-  background-color: #e0e0e0;
-}
-.body::-webkit-scrollbar-thumb:vertical {
-  background-color: #ccc;
 }
