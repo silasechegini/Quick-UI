@@ -52,6 +52,8 @@
   background: none;
   border: none;
   cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 
 .tagRemoveBtn {
@@ -102,9 +104,9 @@
   color: red;
 }
 
-.closeIcon {
-  width: 12px;
-  height: 12px;
+.clearIcon {
+  width: 14px;
+  height: 14px;
 }
 
 .checkboxLabel {
