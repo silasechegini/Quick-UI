@@ -35,7 +35,7 @@ const meta: Meta<typeof Icon> = {
     },
   },
   args: {
-    name: iconNames[0],
+    name: iconNames.length > 0 ? iconNames[0] : undefined,
     size: 24,
     color: "#000000",
   },

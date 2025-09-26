@@ -14,7 +14,11 @@ const Icon: FC<IconProps> = ({
   const IconComponent = Icons[name];
 
   if (!IconComponent) {
-    console.warn(`Icon "${name}" not found.`);
+    const availableIcons = Object.keys(Icons).join(", ");
+    console.warn(
+      `Icon "${name}" not found. Available icons: [${availableIcons}]. ` +
+        `Refer to the icon documentation for more details.`,
+    );
     return null;
   }
 
