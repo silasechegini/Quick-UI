@@ -1,10 +1,28 @@
 import { FC } from "react";
 import styles from "../styles.module.scss";
 import { FlyoutHeaderProps } from "../Flyout.types";
+import { Button, BUTTON_SIZES, BUTTON_VARIANTS } from "@components/Button";
+import { iconSvgMapping } from "@assets";
 
-const FlyoutHeader: FC<FlyoutHeaderProps> = ({ children, className }) => {
+const CloseIcon = iconSvgMapping["close_icon"];
+
+const FlyoutHeader: FC<FlyoutHeaderProps> = ({
+  children,
+  className,
+  onClose,
+}) => {
   return (
-    <div className={`${styles.header} ${className || ""}`}>{children}</div>
+    <div className={`${styles.headerContainer} ${className || ""}`}>
+      <div className={styles.headerTitle}>{children}</div>
+      <div>
+        <Button
+          variant={BUTTON_VARIANTS.TERTIARY}
+          size={BUTTON_SIZES.EXTRASMALL}
+          onClick={onClose}
+          icon={<CloseIcon className={styles.clearIcon} />}
+        />
+      </div>
+    </div>
   );
 };
 export default FlyoutHeader;

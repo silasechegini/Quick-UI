@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
+import { FocusTrap } from "focus-trap-react";
 import styles from "./styles.module.scss";
 import { FlyoutProps } from "./Flyout.types";
 import FlyoutHeader from "./components/FlyoutHeader";
@@ -23,6 +24,22 @@ const Flyout = ({
   classNames = {},
 }: FlyoutProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLElement | null>(null);
+
+  // Capture the triggering element when Flyout is opened
+  useEffect(() => {
+    if (isOpen && typeof document !== "undefined") {
+      triggerRef.current = document.activeElement as HTMLElement;
+    }
+  }, [isOpen]);
+
+  // Restore focus to the trigger element on close
+  useEffect(() => {
+    if (!isOpen && triggerRef.current) {
+      triggerRef.current.focus();
+      triggerRef.current = null;
+    }
+  }, [isOpen]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -50,23 +67,35 @@ const Flyout = ({
         <div className={styles.backdrop} onClick={handleBackdropClick} />
       )}
 
-      <aside
-        ref={containerRef}
-        className={`${styles.flyout} ${isOpen ? styles.slideIn : styles.slideOut}`}
-        style={{ width, height }}
-        role={role}
-        aria-labelledby={ariaLabelledBy}
-        aria-describedby={ariaDescribedBy}
+      <FocusTrap
+        active={isOpen}
+        focusTrapOptions={{
+          initialFocus: () => containerRef.current || undefined,
+          allowOutsideClick: true,
+        }}
       >
-        <FlyoutHeader className={classNames.header}>
-          {headerChildren}
-        </FlyoutHeader>
-        <FlyoutBody className={classNames.body}>{bodyChildren}</FlyoutBody>
-        <FlyoutFooter className={classNames.footer}>
-          {footerChildren}
-        </FlyoutFooter>
-        {children}
-      </aside>
+        <aside
+          ref={containerRef}
+          className={`${styles.flyout} ${isOpen ? styles.slideIn : styles.slideOut}`}
+          style={{ width, height }}
+          role={role}
+          aria-labelledby={ariaLabelledBy}
+          aria-describedby={ariaDescribedBy}
+        >
+          <FlyoutHeader className={classNames.header} onClose={onClose}>
+            {headerChildren !== undefined && headerChildren}
+          </FlyoutHeader>
+          {bodyChildren !== undefined && (
+            <FlyoutBody className={classNames.body}>{bodyChildren}</FlyoutBody>
+          )}
+          {footerChildren !== undefined && (
+            <FlyoutFooter className={classNames.footer}>
+              {footerChildren}
+            </FlyoutFooter>
+          )}
+          {children}
+        </aside>
+      </FocusTrap>
     </div>,
     document.body,
   );

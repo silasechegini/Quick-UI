@@ -22,16 +22,17 @@ export interface FlyoutProps extends HTMLAttributes<HTMLElement> {
 }
 
 export interface FlyoutHeaderProps {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
+  onClose?: () => void;
 }
 
 export interface FlyoutBodyProps {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
 }
 
 export interface FlyoutFooterProps {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
 }

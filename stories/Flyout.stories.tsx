@@ -40,6 +40,45 @@ export const Default: Story = {
         <Flyout
           {...args}
           ariaLabelledBy="flyout-title"
+          headerChildren={
+            <h2 id="flyout-title" style={{ margin: 0 }}>
+              Panel Title
+            </h2>
+          }
+          bodyChildren={
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "100%",
+              }}
+            >
+              <p>Some normal content</p>
+            </div>
+          }
+          footerChildren={<h2 id="flyout-footer">Panel Footer</h2>}
+          isOpen={openFlyout}
+          showBackdrop={openFlyout}
+          onClose={() => setOpenFlyout(false)}
+        />
+      </>
+    );
+  },
+};
+
+export const withScrollableBody: Story = {
+  render: (args) => {
+    const [openFlyout, setOpenFlyout] = useState<boolean>(true);
+
+    return (
+      <>
+        <Button size={BUTTON_SIZES.MEDIUM} onClick={() => setOpenFlyout(true)}>
+          Open Flyout
+        </Button>
+        <Flyout
+          {...args}
+          ariaLabelledBy="flyout-title"
           headerChildren={<h2 id="flyout-title">Panel Title</h2>}
           bodyChildren={
             <>
@@ -50,13 +89,21 @@ export const Default: Story = {
             </>
           }
           footerChildren={
-            <Button
-              size={BUTTON_SIZES.SMALL}
-              variant={BUTTON_VARIANTS.TERTIARY}
-              onClick={() => setOpenFlyout(false)}
-            >
-              Close
-            </Button>
+            <div style={{ display: "flex", justifyContent: "flex-end" }}>
+              <Button
+                size={BUTTON_SIZES.MEDIUM}
+                variant={BUTTON_VARIANTS.SECONDARY}
+              >
+                Cancel
+              </Button>
+              <Button
+                size={BUTTON_SIZES.MEDIUM}
+                variant={BUTTON_VARIANTS.PRIMARY}
+                style={{ marginLeft: "8px" }}
+              >
+                Save
+              </Button>
+            </div>
           }
           isOpen={openFlyout}
           showBackdrop={openFlyout}

@@ -1,27 +1,10 @@
-import React from "react";
+import { Button, BUTTON_SIZES, BUTTON_VARIANTS } from "../Button";
+import { HeaderProps } from "./Header.types";
+import styles from "./styles.module.scss";
 
-import { Button, BUTTON_SIZES, BUTTON_VARIANTS } from "../src";
-import "./header.css";
-
-type User = {
-  name: string;
-};
-
-export interface HeaderProps {
-  user?: User;
-  onLogin?: () => void;
-  onLogout?: () => void;
-  onCreateAccount?: () => void;
-}
-
-export const Header = ({
-  user,
-  onLogin,
-  onLogout,
-  onCreateAccount,
-}: HeaderProps) => (
+const Header = ({ user, onLogin, onLogout, onCreateAccount }: HeaderProps) => (
   <header>
-    <div className="storybook-header">
+    <div className={styles.header}>
       <div>
         <svg
           width="32"
@@ -49,7 +32,7 @@ export const Header = ({
       <div>
         {user ? (
           <>
-            <span className="welcome">
+            <span className={styles.welcome}>
               Welcome, <b>{user.name}</b>!
             </span>
             <Button size={BUTTON_SIZES.SMALL} onClick={onLogout}>
@@ -74,3 +57,5 @@ export const Header = ({
     </div>
   </header>
 );
+
+export default Header;

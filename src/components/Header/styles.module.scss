@@ -1,4 +1,4 @@
-.storybook-header {
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -7,12 +7,12 @@
   font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-.storybook-header svg {
+.header svg {
   display: inline-block;
   vertical-align: top;
 }
 
-.storybook-header h1 {
+.header h1 {
   display: inline-block;
   vertical-align: top;
   margin: 6px 0 6px 10px;
@@ -21,11 +21,11 @@
   line-height: 1;
 }
 
-.storybook-header button + button {
+.header button + button {
   margin-left: 10px;
 }
 
-.storybook-header .welcome {
+.header .welcome {
   margin-right: 10px;
   color: #333;
   font-size: 14px;
