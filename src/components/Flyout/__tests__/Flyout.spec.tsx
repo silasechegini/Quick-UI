@@ -235,7 +235,8 @@ describe("Flyout", () => {
       );
 
       const backdrop = container.querySelector(".backdrop");
-      fireEvent.click(backdrop!);
+      expect(backdrop).not.toBeNull();
+      fireEvent.click(backdrop as Element);
       expect(onClose).not.toHaveBeenCalled();
     });
   });
@@ -414,7 +415,8 @@ describe("Flyout", () => {
 
       // Test backdrop click
       const backdrop = container.querySelector(".backdrop");
-      fireEvent.click(backdrop!);
+      expect(backdrop).not.toBeNull();
+      fireEvent.click(backdrop as Element);
       expect(onClose).toHaveBeenCalledTimes(1);
     });
   });

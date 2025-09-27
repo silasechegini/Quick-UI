@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
-import FlyoutFooter from "../components/FlyoutFooter";
+import { FlyoutFooter } from "../index";
 
 describe("FlyoutFooter", () => {
   it("renders children correctly", () => {
