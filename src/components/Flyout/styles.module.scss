@@ -1,0 +1,103 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: flex-end;
+  pointer-events: none;
+}
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  pointer-events: auto;
+}
+
+.flyout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #fff;
+  border-left: 1px solid #ddd;
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+  pointer-events: auto;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.clearIcon {
+  width: 14px;
+  height: 14px;
+}
+
+.slideIn {
+  transform: translateX(0);
+}
+
+.slideOut {
+  transform: translateX(100%);
+}
+
+.headerContainer {
+  padding: 1rem;
+  background-color: #fafafa;
+  display: flex;
+  min-height: 50px;
+  max-height: 70px;
+  height: 100%;
+  border-bottom: 1px solid #eee;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+
+  .headerTitle {
+    margin: 0;
+    font-size: 1.25rem;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.footer {
+  padding: 1rem;
+  background-color: #fafafa;
+  flex-shrink: 0;
+  border-top: 1px solid #eee;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+
+.body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+.body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.body::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 4px;
+}
+
+.body::-webkit-scrollbar-thumb:hover {
+  background-color: #aaa;
+}
+.body::-webkit-scrollbar-track {
+  background-color: #f0f0f0;
+  border-radius: 4px;
+}
+.body::-webkit-scrollbar-track:hover {
+  background-color: #e0e0e0;
+}
+.body::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+.body::-webkit-scrollbar-button {
+  display: none;
+}

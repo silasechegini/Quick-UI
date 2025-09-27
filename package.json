@@ -21,6 +21,7 @@
   "license": "ISC",
   "dependencies": {
     "classnames": "^2.5.1",
+    "focus-trap-react": "^11.0.4",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
   },

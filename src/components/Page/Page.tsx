@@ -1,14 +1,11 @@
-import React from "react";
+import { FC, useState } from "react";
 
-import { Header } from "./Header";
-import "./page.css";
+import { Header } from "../Header";
+import styles from "./styles.module.scss";
+import { User } from "../../types/sharedTypes";
 
-type User = {
-  name: string;
-};
-
-export const Page: React.FC = () => {
-  const [user, setUser] = React.useState<User>();
+const Page: FC = () => {
+  const [user, setUser] = useState<User>();
 
   return (
     <article>
@@ -19,7 +16,7 @@ export const Page: React.FC = () => {
         onCreateAccount={() => setUser({ name: "Jane Doe" })}
       />
 
-      <section className="storybook-page">
+      <section className={styles.page}>
         <h2>Pages in Storybook</h2>
         <p>
           We recommend building UIs with a{" "}
@@ -66,9 +63,9 @@ export const Page: React.FC = () => {
           </a>
           .
         </p>
-        <div className="tip-wrapper">
-          <span className="tip">Tip</span> Adjust the width of the canvas with
-          the{" "}
+        <div className={styles.tipWrapper}>
+          <span className={styles.tip}>Tip</span> Adjust the width of the canvas
+          with the{" "}
           <svg
             width="10"
             height="10"
@@ -89,3 +86,5 @@ export const Page: React.FC = () => {
     </article>
   );
 };
+
+export default Page;
