@@ -2,7 +2,7 @@ import { FC, useState } from "react";
 
 import { Header } from "../Header";
 import styles from "./styles.module.scss";
-import { User } from "./Pages.types";
+import { User } from "../../types/sharedTypes";
 
 const Page: FC = () => {
   const [user, setUser] = useState<User>();

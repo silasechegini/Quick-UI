@@ -1,6 +1,4 @@
-export type User = {
-  name: string;
-};
+import { User } from "../../types/sharedTypes";
 
 export interface HeaderProps {
   user?: User;
