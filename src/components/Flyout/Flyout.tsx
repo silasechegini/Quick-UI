@@ -83,12 +83,12 @@ const Flyout = ({
           aria-describedby={ariaDescribedBy}
         >
           <FlyoutHeader className={classNames.header} onClose={onClose}>
-            {headerChildren !== undefined && headerChildren}
+            {headerChildren}
           </FlyoutHeader>
-          {bodyChildren !== undefined && (
+          {bodyChildren && (
             <FlyoutBody className={classNames.body}>{bodyChildren}</FlyoutBody>
           )}
-          {footerChildren !== undefined && (
+          {footerChildren && (
             <FlyoutFooter className={classNames.footer}>
               {footerChildren}
             </FlyoutFooter>
