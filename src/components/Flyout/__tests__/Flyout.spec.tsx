@@ -220,7 +220,7 @@ describe("Flyout", () => {
       const backdrop = container.querySelector(".backdrop");
       expect(backdrop).toBeInTheDocument();
 
-      fireEvent.click(backdrop!);
+      fireEvent.click(backdrop as Element);
       expect(onClose).toHaveBeenCalledTimes(1);
     });
 
