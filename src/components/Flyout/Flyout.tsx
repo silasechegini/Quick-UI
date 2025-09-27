@@ -62,7 +62,7 @@ const Flyout = ({
   if (typeof document === "undefined") return null;
 
   return ReactDOM.createPortal(
-    <div className={`${styles.overlay} ${isOpen ? styles.open : ""}`}>
+    <div className={styles.overlay}>
       {showBackdrop && (
         <div className={styles.backdrop} onClick={handleBackdropClick} />
       )}
