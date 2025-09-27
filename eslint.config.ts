@@ -52,4 +52,33 @@ export default [
       // Add or override TypeScript-specific rules here
     },
   },
+
+  // Node.js/CommonJS files configuration
+  {
+    files: [
+      "jest.config.js",
+      "__mocks__/**/*.js",
+      "*.config.js",
+      "scripts/**/*.js",
+    ],
+    languageOptions: {
+      ecmaVersion: 2022,
+      sourceType: "commonjs",
+      globals: {
+        module: "readonly",
+        require: "readonly",
+        process: "readonly",
+        __dirname: "readonly",
+        __filename: "readonly",
+        exports: "writable",
+        global: "readonly",
+        Buffer: "readonly",
+        console: "readonly",
+      },
+    },
+    rules: {
+      "@typescript-eslint/no-require-imports": "off",
+      "no-undef": "off",
+    },
+  },
 ];
