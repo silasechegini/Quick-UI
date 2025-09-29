@@ -1,4 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
+import "@testing-library/jest-dom";
 import RangeSlider from "../RangeSlider";
 import { mockBoundingClientRect } from "../../testUtils/test_utils";
 
@@ -34,11 +35,11 @@ describe("RangeSlider (dual-thumb)", () => {
   });
 
   it("prevents low thumb from crossing high thumb", () => {
-    render(<RangeSlider defaultValue={[40, 50]} />);
+    render(<RangeSlider defaultValue={[49, 50]} />);
     const thumbs = screen.getAllByRole("slider");
 
     fireEvent.keyDown(thumbs[0], { key: "ArrowRight" }); // try to move low beyond high
-    expect(thumbs[0]).toHaveAttribute("aria-valuenow", "50");
+    expect(thumbs[0]).toHaveAttribute("aria-valuenow", "50"); // Should clamp to high value
     expect(thumbs[1]).toHaveAttribute("aria-valuenow", "50");
   });
 
