@@ -16,11 +16,12 @@ const Slider: React.FC<SingleValueSliderProps> = ({
 }) => {
   const trackRef = useRef<HTMLDivElement>(null);
 
-  const { value, updateValue } = useSlider({
+  const { value, updateValue } = useSlider<number>({
     min,
     max,
     step,
-    defaultValue: controlledValue ?? defaultValue,
+    defaultValue,
+    controlledValue,
     onChange,
   });
 
@@ -60,7 +61,7 @@ const Slider: React.FC<SingleValueSliderProps> = ({
     [disabled, handlePointerMove],
   );
 
-  const percent = valueToPercent(value as number, min, max);
+  const percent = valueToPercent(value, min, max);
 
   return (
     <div
@@ -69,8 +70,7 @@ const Slider: React.FC<SingleValueSliderProps> = ({
         className ?? ""
       }`}
       onMouseDown={handlePointerDown}
-      onTouchStart={handlePointerDown}
-    >
+      onTouchStart={handlePointerDown}>
       {/* Track */}
       <div className={styles.track} />
 
@@ -82,21 +82,21 @@ const Slider: React.FC<SingleValueSliderProps> = ({
         className={styles.thumb}
         style={{ left: `${percent}%` }}
         tabIndex={disabled ? -1 : 0}
-        role="slider"
+        role='slider'
         aria-valuemin={min}
         aria-valuemax={max}
-        aria-valuenow={value as number}
+        aria-valuenow={value}
         aria-disabled={disabled}
         onKeyDown={(e) => {
           if (disabled) return;
           if (e.key === "ArrowRight" || e.key === "ArrowUp")
-            updateValue((value as number) + step);
+            updateValue(value + step);
           if (e.key === "ArrowLeft" || e.key === "ArrowDown")
-            updateValue((value as number) - step);
+            updateValue(value - step);
           if (e.key === "Home") updateValue(min);
           if (e.key === "End") updateValue(max);
-          if (e.key === "PageUp") updateValue((value as number) + step * 10);
-          if (e.key === "PageDown") updateValue((value as number) - step * 10);
+          if (e.key === "PageUp") updateValue(value + step * 10);
+          if (e.key === "PageDown") updateValue(value - step * 10);
         }}
       />
     </div>
