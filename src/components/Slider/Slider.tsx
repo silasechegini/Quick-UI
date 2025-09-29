@@ -66,9 +66,11 @@ const Slider: React.FC<SingleValueSliderProps> = ({
   return (
     <div
       ref={trackRef}
-      className={`${styles.slider} ${disabled ? styles.disabled : ""} ${
-        className ?? ""
-      }`}
+      className={[
+        styles.slider,
+        disabled && styles.disabled,
+        className
+      ].filter(Boolean).join(' ')}
       onMouseDown={handlePointerDown}
       onTouchStart={handlePointerDown}
     >
