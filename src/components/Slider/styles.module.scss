@@ -1,12 +1,18 @@
 .slider {
   position: relative;
   width: 100%;
-  height: 6px;
+  min-width: 200px;
+  height: 24px; /* Increased to accommodate larger thumb */
   cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 
 .track {
   position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
   height: 6px;
   width: 100%;
   background: #e5e7eb; // gray-200
@@ -15,27 +21,79 @@
 
 .filled {
   position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
   height: 6px;
   background: #3b82f6; // blue-500
   border-radius: 9999px;
   pointer-events: none;
+  z-index: 1;
 }
 
 .thumb {
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 16px;
-  height: 16px;
-  background: #fff;
-  border: 2px solid #3b82f6;
+  width: 20px;
+  height: 20px;
+  background: #3b82f6; /* Filled blue background */
+  border: 3px solid #60a5fa; /* Lighter blue outer ring */
   border-radius: 50%;
   cursor: grab;
-  transition: box-shadow 0.2s;
+  z-index: 3; /* Above track and filled elements */
+  transition:
+    box-shadow 0.2s,
+    transform 0.1s;
+  /* Layered lighter blue shadows fading toward center */
+  box-shadow:
+    inset 0 0 2px rgba(96, 165, 250, 0.4),
+    /* Outer lighter blue shadow ring */ inset 0 0 4px rgba(96, 165, 250, 0.3),
+    /* Mid lighter blue shadow */ inset 0 0 6px rgba(96, 165, 250, 0.2),
+    /* Inner lighter blue shadow fading to center */ 0 2px 6px
+      rgba(0, 0, 0, 0.15),
+    /* External drop shadow */ 0 0 0 1px rgba(96, 165, 250, 0.1); /* Subtle outer definition */
+
+  &:hover:not(:disabled) {
+    transform: translate(-50%, -50%) scale(1.1);
+    box-shadow:
+      inset 0 0 2px rgba(96, 165, 250, 0.5),
+      inset 0 0 4px rgba(96, 165, 250, 0.4),
+      inset 0 0 8px rgba(96, 165, 250, 0.3),
+      0 4px 12px rgba(0, 0, 0, 0.2),
+      0 0 0 1px rgba(96, 165, 250, 0.15);
+  }
+
+  &:active {
+    cursor: grabbing;
+    transform: translate(-50%, -50%) scale(0.95);
+    box-shadow:
+      inset 0 0 2px rgba(96, 165, 250, 0.6),
+      inset 0 0 4px rgba(96, 165, 250, 0.5),
+      inset 0 0 6px rgba(96, 165, 250, 0.4),
+      0 1px 3px rgba(0, 0, 0, 0.2),
+      0 0 0 1px rgba(96, 165, 250, 0.2);
+  }
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.3);
+    box-shadow:
+      inset 0 0 2px rgba(96, 165, 250, 0.4),
+      inset 0 0 4px rgba(96, 165, 250, 0.3),
+      inset 0 0 6px rgba(96, 165, 250, 0.2),
+      0 2px 6px rgba(0, 0, 0, 0.15),
+      0 0 0 1px rgba(96, 165, 250, 0.1),
+      0 0 0 4px rgba(59, 130, 246, 0.3); /* Focus ring */
+  }
+
+  &:focus-visible {
+    box-shadow:
+      inset 0 0 2px rgba(96, 165, 250, 0.4),
+      inset 0 0 4px rgba(96, 165, 250, 0.3),
+      inset 0 0 6px rgba(96, 165, 250, 0.2),
+      0 2px 6px rgba(0, 0, 0, 0.15),
+      0 0 0 1px rgba(96, 165, 250, 0.1),
+      0 0 0 4px rgba(59, 130, 246, 0.5); /* Enhanced focus ring */
   }
 }
 
