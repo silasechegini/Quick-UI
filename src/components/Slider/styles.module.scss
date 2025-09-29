@@ -13,7 +13,7 @@
   top: 50%;
   left: 0;
   transform: translateY(-50%);
-  height: var(--space-1, 6px); /* Fallback to 6px if space-1 is not 6px */
+  height: var(--space-1, 6px); /* Fallback to 6px if space-1 is not defined */
   width: var(--width-full);
   background: var(--gray-200);
   border-radius: var(--radius-full);
