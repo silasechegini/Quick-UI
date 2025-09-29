@@ -1,5 +1,4 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
 import Slider from "../Slider";
 import { mockBoundingClientRect } from "../../testUtils/test_utils";
 
@@ -11,7 +10,7 @@ describe("Slider (SingleValueSlider)", () => {
   });
 
   it("calls onChange when value changes (uncontrolled)", () => {
-    const handleChange = vi.fn();
+    const handleChange = jest.fn();
     render(<Slider defaultValue={20} onChange={handleChange} />);
     const thumb = screen.getByRole("slider");
 
@@ -20,7 +19,7 @@ describe("Slider (SingleValueSlider)", () => {
   });
 
   it("works in controlled mode", () => {
-    const handleChange = vi.fn();
+    const handleChange = jest.fn();
     render(<Slider value={50} onChange={handleChange} />);
     const thumb = screen.getByRole("slider");
 
@@ -52,7 +51,7 @@ describe("Slider (SingleValueSlider)", () => {
   });
 
   it("ignores input when disabled", () => {
-    const handleChange = vi.fn();
+    const handleChange = jest.fn();
     render(<Slider defaultValue={40} disabled onChange={handleChange} />);
     const thumb = screen.getByRole("slider");
 
