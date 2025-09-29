@@ -1,0 +1,132 @@
+.slider {
+  position: relative;
+  width: var(--width-full);
+  min-width: var(--width-200);
+  height: var(--space-6); /* 24px */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.track {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  height: var(--space-1, 6px); /* Fallback to 6px if space-1 is not defined */
+  width: var(--width-full);
+  background: var(--gray-200);
+  border-radius: var(--radius-full);
+}
+
+.filled {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  height: var(--space-1, 6px);
+  background: var(--color-info);
+  border-radius: var(--radius-full);
+  pointer-events: none;
+  z-index: var(--z-index-10);
+}
+
+.thumb {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: var(--width-20);
+  height: var(--width-20);
+  background: var(--color-info);
+  border: var(--border-thick) solid var(--color-primary);
+  border-radius: var(--radius-full);
+  cursor: grab;
+  z-index: var(--z-index-30);
+  transition:
+    box-shadow var(--transition-fast) var(--ease-in-out),
+    transform var(--transition-fast) var(--ease-in-out);
+  /* Layered lighter blue shadows fading toward center */
+  box-shadow:
+    inset 0 0 var(--border-thin) rgba(29, 78, 216, 0.4),
+    /* Using --color-primary */ inset 0 0 var(--space-1) rgba(29, 78, 216, 0.3),
+    inset 0 0 var(--space-1, 6px) rgba(29, 78, 216, 0.2),
+    var(--shadow-sm),
+    0 0 0 var(--border-thin) rgba(29, 78, 216, 0.1);
+
+  &:hover:not(:disabled) {
+    transform: translate(-50%, -50%) scale(1.1);
+    box-shadow:
+      inset 0 0 var(--border-thin) rgba(29, 78, 216, 0.5),
+      inset 0 0 var(--space-1) rgba(29, 78, 216, 0.4),
+      inset 0 0 var(--space-2) rgba(29, 78, 216, 0.3),
+      var(--shadow-md),
+      0 0 0 var(--border-thin) rgba(29, 78, 216, 0.15);
+  }
+
+  &:active {
+    cursor: grabbing;
+    transform: translate(-50%, -50%) scale(0.95);
+    box-shadow:
+      inset 0 0 var(--border-thin) rgba(29, 78, 216, 0.6),
+      inset 0 0 var(--space-1) rgba(29, 78, 216, 0.5),
+      inset 0 0 var(--space-1, 6px) rgba(29, 78, 216, 0.4),
+      0 var(--border-thin) var(--space-1) rgba(0, 0, 0, 0.2),
+      0 0 0 var(--border-thin) rgba(29, 78, 216, 0.2);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow:
+      inset 0 0 var(--border-thin) rgba(29, 78, 216, 0.4),
+      inset 0 0 var(--space-1) rgba(29, 78, 216, 0.3),
+      inset 0 0 var(--space-1, 6px) rgba(29, 78, 216, 0.2),
+      var(--shadow-sm),
+      0 0 0 var(--border-thin) rgba(29, 78, 216, 0.1),
+      0 0 0 var(--space-1) rgba(59, 130, 246, 0.3);
+  }
+
+  &:focus-visible {
+    box-shadow:
+      inset 0 0 var(--border-thin) rgba(29, 78, 216, 0.4),
+      inset 0 0 var(--space-1) rgba(29, 78, 216, 0.3),
+      inset 0 0 var(--space-1, 6px) rgba(29, 78, 216, 0.2),
+      var(--shadow-sm),
+      0 0 0 var(--border-thin) rgba(29, 78, 216, 0.1),
+      0 0 0 var(--space-1) rgba(59, 130, 246, 0.5);
+  }
+}
+
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+
+  .thumb {
+    cursor: not-allowed;
+  }
+}
+
+.valueLabel {
+  position: absolute;
+  top: calc(-1 * var(--space-8)); /* -32px but using variables */
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-info);
+  color: var(--color-white);
+  padding: var(--space-1) var(--space-2); /* 4px 8px */
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  white-space: nowrap;
+  box-shadow: var(--shadow-sm);
+}
+
+.valueLabel::after {
+  content: "";
+  position: absolute;
+  bottom: calc(-1 * var(--space-1)); /* -4px */
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: var(--space-1);
+  border-style: solid;
+  border-color: var(--color-info) transparent transparent transparent;
+}
