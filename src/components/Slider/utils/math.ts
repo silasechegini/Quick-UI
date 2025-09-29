@@ -7,7 +7,7 @@ export const roundToStep = (
   min: number,
 ): number => {
   const remainder = (value - min) % step;
-  return remainder < step / 2 ? value - remainder : value - remainder + step;
+  return remainder < step / 2 ? value - remainder : value + (step - remainder);
 };
 
 export const valueToPercent = (
