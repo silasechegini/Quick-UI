@@ -70,7 +70,8 @@ const Slider: React.FC<SingleValueSliderProps> = ({
         className ?? ""
       }`}
       onMouseDown={handlePointerDown}
-      onTouchStart={handlePointerDown}>
+      onTouchStart={handlePointerDown}
+    >
       {/* Track */}
       <div className={styles.track} />
 
@@ -82,7 +83,7 @@ const Slider: React.FC<SingleValueSliderProps> = ({
         className={styles.thumb}
         style={{ left: `${percent}%` }}
         tabIndex={disabled ? -1 : 0}
-        role='slider'
+        role="slider"
         aria-valuemin={min}
         aria-valuemax={max}
         aria-valuenow={value}
