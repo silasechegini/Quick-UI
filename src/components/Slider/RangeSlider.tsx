@@ -3,6 +3,7 @@ import { RangeSliderProps } from "./Slider.types";
 import { useSlider } from "./hooks/useSlider";
 import { valueToPercent } from "./utils/math";
 import styles from "./styles.module.scss";
+import { useSliderSizeClasses } from "./hooks/useSliderSizeClasses";
 
 const RangeSlider: React.FC<RangeSliderProps> = ({
   min = 0,
@@ -25,6 +26,8 @@ const RangeSlider: React.FC<RangeSliderProps> = ({
     controlledValue,
     onChange,
   });
+
+  const sizeClasses = useSliderSizeClasses(styles, size);
 
   const [low, high] = value;
 
@@ -95,33 +98,6 @@ const RangeSlider: React.FC<RangeSliderProps> = ({
     },
     [disabled, min, max, low, high, updateValue],
   );
-
-  // Get size-specific CSS classes
-  const getSizeClasses = () => {
-    const sizeClassMap = {
-      small: {
-        slider: styles.sliderSmall,
-        track: styles.trackSmall,
-        filled: styles.filledSmall,
-        thumb: styles.thumbSmall,
-      },
-      medium: {
-        slider: styles.sliderMedium,
-        track: styles.trackMedium,
-        filled: styles.filledMedium,
-        thumb: styles.thumbMedium,
-      },
-      large: {
-        slider: styles.sliderLarge,
-        track: styles.trackLarge,
-        filled: styles.filledLarge,
-        thumb: styles.thumbLarge,
-      },
-    };
-    return sizeClassMap[size];
-  };
-
-  const sizeClasses = getSizeClasses();
 
   return (
     <div
