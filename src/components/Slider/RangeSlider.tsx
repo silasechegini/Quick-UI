@@ -98,11 +98,9 @@ const RangeSlider: React.FC<RangeSliderProps> = ({
   return (
     <div
       ref={trackRef}
-      className={[
-        styles.slider,
-        disabled && styles.disabled,
-        className
-      ].filter(Boolean).join(' ')}
+      className={[styles.slider, disabled && styles.disabled, className]
+        .filter(Boolean)
+        .join(" ")}
       onMouseDown={handleTrackClick}
       onTouchStart={handleTrackClick}
     >
