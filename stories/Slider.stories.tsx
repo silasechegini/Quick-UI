@@ -22,6 +22,10 @@ const meta = {
     max: { control: "number" },
     step: { control: "number" },
     disabled: { control: "boolean" },
+    size: {
+      control: "select",
+      options: ["small", "medium", "large"],
+    },
   },
 } satisfies Meta<typeof Slider>;
 export default meta;
@@ -51,5 +55,26 @@ export const Disabled: Story = {
   args: {
     defaultValue: 50,
     disabled: true,
+  },
+};
+
+export const Small: Story = {
+  args: {
+    defaultValue: 40,
+    size: "small",
+  },
+};
+
+export const Medium: Story = {
+  args: {
+    defaultValue: 40,
+    size: "medium",
+  },
+};
+
+export const Large: Story = {
+  args: {
+    defaultValue: 40,
+    size: "large",
   },
 };

@@ -3,11 +3,13 @@ import { SingleValueSliderProps } from "./Slider.types";
 import { useSlider } from "./hooks/useSlider";
 import { valueToPercent } from "./utils/math";
 import styles from "./styles.module.scss";
+import { useSliderSizeClasses } from "./hooks/useSliderSizeClasses";
 
 const Slider: React.FC<SingleValueSliderProps> = ({
   min = 0,
   max = 100,
   step = 1,
+  size = "medium",
   value: controlledValue,
   defaultValue = 0,
   onChange,
@@ -24,6 +26,8 @@ const Slider: React.FC<SingleValueSliderProps> = ({
     controlledValue,
     onChange,
   });
+
+  const sizeClasses = useSliderSizeClasses(styles, size);
 
   // Map mouse position to slider value
   const handlePointerMove = useCallback(
@@ -66,21 +70,29 @@ const Slider: React.FC<SingleValueSliderProps> = ({
   return (
     <div
       ref={trackRef}
-      className={[styles.slider, disabled && styles.disabled, className]
+      className={[
+        styles.slider,
+        sizeClasses.slider,
+        disabled && styles.disabled,
+        className,
+      ]
         .filter(Boolean)
         .join(" ")}
       onMouseDown={handlePointerDown}
       onTouchStart={handlePointerDown}
     >
       {/* Track */}
-      <div className={styles.track} />
+      <div className={`${styles.track} ${sizeClasses.track}`} />
 
       {/* Filled Track */}
-      <div className={styles.filled} style={{ width: `${percent}%` }} />
+      <div
+        className={`${styles.filled} ${sizeClasses.filled}`}
+        style={{ width: `${percent}%` }}
+      />
 
       {/* Thumb */}
       <div
-        className={styles.thumb}
+        className={`${styles.thumb} ${sizeClasses.thumb}`}
         style={{ left: `${percent}%` }}
         tabIndex={disabled ? -1 : 0}
         role="slider"

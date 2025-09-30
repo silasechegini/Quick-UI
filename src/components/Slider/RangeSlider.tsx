@@ -3,11 +3,13 @@ import { RangeSliderProps } from "./Slider.types";
 import { useSlider } from "./hooks/useSlider";
 import { valueToPercent } from "./utils/math";
 import styles from "./styles.module.scss";
+import { useSliderSizeClasses } from "./hooks/useSliderSizeClasses";
 
 const RangeSlider: React.FC<RangeSliderProps> = ({
   min = 0,
   max = 100,
   step = 1,
+  size = "medium",
   value: controlledValue,
   defaultValue = [20, 80],
   onChange,
@@ -24,6 +26,8 @@ const RangeSlider: React.FC<RangeSliderProps> = ({
     controlledValue,
     onChange,
   });
+
+  const sizeClasses = useSliderSizeClasses(styles, size);
 
   const [low, high] = value;
 
@@ -98,18 +102,23 @@ const RangeSlider: React.FC<RangeSliderProps> = ({
   return (
     <div
       ref={trackRef}
-      className={[styles.slider, disabled && styles.disabled, className]
+      className={[
+        styles.slider,
+        sizeClasses.slider,
+        disabled && styles.disabled,
+        className,
+      ]
         .filter(Boolean)
         .join(" ")}
       onMouseDown={handleTrackClick}
       onTouchStart={handleTrackClick}
     >
       {/* Track */}
-      <div className={styles.track} />
+      <div className={`${styles.track} ${sizeClasses.track}`} />
 
       {/* Filled range */}
       <div
-        className={styles.filled}
+        className={`${styles.filled} ${sizeClasses.filled}`}
         style={{
           left: `${lowPercent}%`,
           width: `${highPercent - lowPercent}%`,
@@ -118,7 +127,7 @@ const RangeSlider: React.FC<RangeSliderProps> = ({
 
       {/* Low Thumb */}
       <div
-        className={styles.thumb}
+        className={`${styles.thumb} ${sizeClasses.thumb}`}
         style={{ left: `${lowPercent}%` }}
         tabIndex={disabled ? -1 : 0}
         role="slider"
@@ -142,7 +151,7 @@ const RangeSlider: React.FC<RangeSliderProps> = ({
 
       {/* High Thumb */}
       <div
-        className={styles.thumb}
+        className={`${styles.thumb} ${sizeClasses.thumb}`}
         style={{ left: `${highPercent}%` }}
         tabIndex={disabled ? -1 : 0}
         role="slider"
