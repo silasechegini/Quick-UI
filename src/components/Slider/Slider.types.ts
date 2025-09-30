@@ -2,6 +2,7 @@ export interface BaseSliderProps {
   min?: number;
   max?: number;
   step?: number;
+  size?: "small" | "medium" | "large";
   disabled?: boolean;
   className?: string;
 }
