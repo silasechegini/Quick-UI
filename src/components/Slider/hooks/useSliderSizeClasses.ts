@@ -26,7 +26,7 @@ const useSliderSizeClasses = (
       },
     };
     return sizeClassMap[size];
-  }, [size]);
+  }, [size, styles]);
 
   return sizeClasses;
 };

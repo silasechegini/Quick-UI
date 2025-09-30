@@ -79,7 +79,7 @@ describe("useSliderSizeClasses", () => {
       const { result, rerender } = renderHook(
         ({ size }: { size: "small" | "medium" | "large" }) =>
           useSliderSizeClasses(mockStyles, size),
-        { initialProps: { size: "medium" as const } },
+        { initialProps: { size: "medium" } },
       );
 
       const firstResult = result.current;
@@ -96,7 +96,37 @@ describe("useSliderSizeClasses", () => {
       });
     });
 
-    it("should return same object reference when styles object changes but size stays same", () => {
+    it("should return different object reference when styles object changes but size stays same", () => {
+      const { result, rerender } = renderHook(
+        ({
+          styles,
+          size,
+        }: {
+          styles: Record<string, string>;
+          size: "small" | "medium" | "large";
+        }) => useSliderSizeClasses(styles, size),
+        {
+          initialProps: {
+            styles: mockStyles,
+            size: "medium" as const,
+          },
+        },
+      );
+
+      // Rerender with new styles object but same size
+      const newStyles = { ...mockStyles };
+      rerender({ styles: newStyles, size: "medium" });
+
+      // Should now return a new object since styles changed
+      expect(result.current).toEqual({
+        slider: "slider-medium-class",
+        track: "track-medium-class",
+        filled: "filled-medium-class",
+        thumb: "thumb-medium-class",
+      });
+    });
+
+    it("should return the same object reference when styles object and size stays same", () => {
       const { result, rerender } = renderHook(
         ({
           styles,
@@ -120,7 +150,7 @@ describe("useSliderSizeClasses", () => {
       rerender({ styles: newStyles, size: "medium" });
 
       // Should still be the same result since useMemo only depends on size
-      expect(result.current).toBe(firstResult);
+      expect(result.current).toStrictEqual(firstResult);
     });
   });
 
