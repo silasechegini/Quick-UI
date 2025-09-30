@@ -45,8 +45,6 @@
     box-shadow var(--transition-fast) var(--ease-in-out),
     transform var(--transition-fast) var(--ease-in-out);
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.73);
-  -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.73);
-  -moz-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.73);
 
   &:hover:not(:disabled) {
     transform: translate(-50%, -50%) scale(1.1);
