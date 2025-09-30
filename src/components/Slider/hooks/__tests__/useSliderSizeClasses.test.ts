@@ -149,8 +149,9 @@ describe("useSliderSizeClasses", () => {
       const newStyles = { ...mockStyles };
       rerender({ styles: newStyles, size: "medium" });
 
-      // Should still be the same result
-      expect(result.current).toStrictEqual(firstResult);
+      // Should be a different object reference, but contents should be equal
+      expect(result.current).not.toBe(firstResult);
+      expect(result.current).toEqual(firstResult);
     });
   });
 
