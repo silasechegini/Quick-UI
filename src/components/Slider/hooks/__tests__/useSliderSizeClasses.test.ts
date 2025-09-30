@@ -149,7 +149,7 @@ describe("useSliderSizeClasses", () => {
       const newStyles = { ...mockStyles };
       rerender({ styles: newStyles, size: "medium" });
 
-      // Should still be the same result since useMemo only depends on size
+      // Should still be the same result
       expect(result.current).toStrictEqual(firstResult);
     });
   });
