@@ -2,10 +2,22 @@
   position: relative;
   width: var(--width-full);
   min-width: var(--width-200);
-  height: var(--space-6); /* 24px */
   cursor: pointer;
   display: flex;
   align-items: center;
+}
+
+/* Size variants */
+.sliderSmall {
+  height: var(--space-4); /* 16px */
+}
+
+.sliderMedium {
+  height: var(--space-6); /* 24px */
+}
+
+.sliderLarge {
+  height: var(--space-8); /* 32px */
 }
 
 .track {
@@ -13,10 +25,22 @@
   top: 50%;
   left: 0;
   transform: translateY(-50%);
-  height: var(--space-1, 6px); /* Fallback to 6px if space-1 is not defined */
   width: var(--width-full);
   background: var(--gray-200);
   border-radius: var(--radius-full);
+}
+
+/* Track size variants */
+.trackSmall {
+  height: 4px;
+}
+
+.trackMedium {
+  height: 6px;
+}
+
+.trackLarge {
+  height: 8px;
 }
 
 .filled {
@@ -24,19 +48,29 @@
   top: 50%;
   left: 0;
   transform: translateY(-50%);
-  height: var(--space-1, 6px);
   background: var(--color-primary);
   border-radius: var(--radius-full);
   pointer-events: none;
   z-index: var(--z-index-10);
 }
 
+/* Filled size variants */
+.filledSmall {
+  height: 4px;
+}
+
+.filledMedium {
+  height: 6px;
+}
+
+.filledLarge {
+  height: 8px;
+}
+
 .thumb {
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: var(--width-20);
-  height: var(--width-20);
   background: var(--color-primary);
   border-radius: var(--radius-full);
   cursor: grab;
@@ -62,6 +96,22 @@
   &:focus-visible {
     box-shadow: 0 0 0 var(--space-1) var(--color-primary);
   }
+}
+
+/* Thumb size variants */
+.thumbSmall {
+  width: 16px;
+  height: 16px;
+}
+
+.thumbMedium {
+  width: var(--width-20);
+  height: var(--width-20);
+}
+
+.thumbLarge {
+  width: 24px;
+  height: 24px;
 }
 
 .disabled {

@@ -8,6 +8,7 @@ const RangeSlider: React.FC<RangeSliderProps> = ({
   min = 0,
   max = 100,
   step = 1,
+  size = "medium",
   value: controlledValue,
   defaultValue = [20, 80],
   onChange,
@@ -95,21 +96,53 @@ const RangeSlider: React.FC<RangeSliderProps> = ({
     [disabled, min, max, low, high, updateValue],
   );
 
+  // Get size-specific CSS classes
+  const getSizeClasses = () => {
+    const sizeClassMap = {
+      small: {
+        slider: styles.sliderSmall,
+        track: styles.trackSmall,
+        filled: styles.filledSmall,
+        thumb: styles.thumbSmall,
+      },
+      medium: {
+        slider: styles.sliderMedium,
+        track: styles.trackMedium,
+        filled: styles.filledMedium,
+        thumb: styles.thumbMedium,
+      },
+      large: {
+        slider: styles.sliderLarge,
+        track: styles.trackLarge,
+        filled: styles.filledLarge,
+        thumb: styles.thumbLarge,
+      },
+    };
+    return sizeClassMap[size];
+  };
+
+  const sizeClasses = getSizeClasses();
+
   return (
     <div
       ref={trackRef}
-      className={[styles.slider, disabled && styles.disabled, className]
+      className={[
+        styles.slider,
+        sizeClasses.slider,
+        disabled && styles.disabled,
+        className,
+      ]
         .filter(Boolean)
         .join(" ")}
       onMouseDown={handleTrackClick}
       onTouchStart={handleTrackClick}
     >
       {/* Track */}
-      <div className={styles.track} />
+      <div className={`${styles.track} ${sizeClasses.track}`} />
 
       {/* Filled range */}
       <div
-        className={styles.filled}
+        className={`${styles.filled} ${sizeClasses.filled}`}
         style={{
           left: `${lowPercent}%`,
           width: `${highPercent - lowPercent}%`,
@@ -118,7 +151,7 @@ const RangeSlider: React.FC<RangeSliderProps> = ({
 
       {/* Low Thumb */}
       <div
-        className={styles.thumb}
+        className={`${styles.thumb} ${sizeClasses.thumb}`}
         style={{ left: `${lowPercent}%` }}
         tabIndex={disabled ? -1 : 0}
         role="slider"
@@ -142,7 +175,7 @@ const RangeSlider: React.FC<RangeSliderProps> = ({
 
       {/* High Thumb */}
       <div
-        className={styles.thumb}
+        className={`${styles.thumb} ${sizeClasses.thumb}`}
         style={{ left: `${highPercent}%` }}
         tabIndex={disabled ? -1 : 0}
         role="slider"

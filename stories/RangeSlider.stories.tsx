@@ -22,6 +22,10 @@ const meta = {
     max: { control: "number" },
     step: { control: "number" },
     disabled: { control: "boolean" },
+    size: {
+      control: "select",
+      options: ["small", "medium", "large"],
+    },
   },
 } satisfies Meta<typeof RangeSlider>;
 
@@ -52,5 +56,26 @@ export const Disabled: Story = {
   args: {
     defaultValue: [40, 60],
     disabled: true,
+  },
+};
+
+export const Small: Story = {
+  args: {
+    defaultValue: [20, 80],
+    size: "small",
+  },
+};
+
+export const Medium: Story = {
+  args: {
+    defaultValue: [20, 80],
+    size: "medium",
+  },
+};
+
+export const Large: Story = {
+  args: {
+    defaultValue: [20, 80],
+    size: "large",
   },
 };
