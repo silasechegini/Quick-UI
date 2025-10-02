@@ -5,6 +5,19 @@ import react from "eslint-plugin-react";
 import jsxA11y from "eslint-plugin-jsx-a11y";
 
 export default [
+  // Ignore build artifacts and generated files
+  {
+    ignores: [
+      "dist/**",
+      "build/**",
+      "coverage/**",
+      "node_modules/**",
+      "*.min.js",
+      "storybook-static/**",
+      ".storybook/public/**",
+    ],
+  },
+
   // Base JS recommended rules
   js.configs.recommended,
 
