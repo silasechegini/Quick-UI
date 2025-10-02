@@ -6,6 +6,8 @@ const config: StorybookConfig = {
   stories: [
     "../stories/**/*.mdx",
     "../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+    "../src/documentation/**/*.mdx",
+    "../src/documentation/**/*.stories.@(js|jsx|mjs|ts|tsx)",
   ],
   addons: [
     "@chromatic-com/storybook",
@@ -20,17 +22,34 @@ const config: StorybookConfig = {
   },
 
   viteFinal: async (config) => {
+    // Ensure plugins array exists
     config.plugins = [...(config.plugins || [])];
 
-    config.plugins.unshift(
+    // Add SVGR plugin
+    config.plugins.push(
       svgr({
         svgrOptions: {
-          exportType: "named", // to use ReactComponent export
+          exportType: "named",
         },
-        include: "**/*.svg", // make sure this includes your SVGs
+        include: "**/*.svg",
       }),
     );
 
+    // Configure CSS modules
+    config.css = {
+      ...config.css,
+      modules: {
+        localsConvention: "camelCase",
+        generateScopedName: "[name]__[local]___[hash:base64:5]",
+      },
+      preprocessorOptions: {
+        scss: {
+          api: "modern-compiler",
+        },
+      },
+    };
+
+    // Set up path aliases
     config.resolve = {
       ...config.resolve,
       alias: {
@@ -41,6 +60,7 @@ const config: StorybookConfig = {
         "@": path.resolve(__dirname, "../src"),
       },
     };
+
     return config;
   },
 };

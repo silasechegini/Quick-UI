@@ -5,7 +5,7 @@ import { expect, userEvent, within } from "storybook/test";
 import { Page } from "../src/components/Page";
 
 const meta = {
-  title: "Example/Page",
+  title: "Components/Page",
   component: Page,
   parameters: {
     // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout

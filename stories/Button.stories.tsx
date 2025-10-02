@@ -11,7 +11,7 @@ import {
 } from "../src";
 
 const meta = {
-  title: "Example/Button",
+  title: "Components/Button",
   component: Button,
   parameters: {
     layout: "centered",

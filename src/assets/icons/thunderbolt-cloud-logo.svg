@@ -1,0 +1,113 @@
+<svg viewBox="0 0 220 280" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="cloudGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F8FAFC;stop-opacity:1" />
+      <stop offset="30%" style="stop-color:#E2E8F0;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#CBD5E1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#94A3B8;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="brightCloudGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FEFCE8;stop-opacity:1" />
+      <stop offset="30%" style="stop-color:#FEF3C7;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#FDE68A;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F59E0B;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="thunderboltCloudGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#EF4444;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#DC2626;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#B91C1C;stop-opacity:1" />
+    </linearGradient>
+    <filter id="cloudGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="5" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="brightGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="thunderGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Bright glowing cloud -->
+  <ellipse cx="110" cy="50" rx="80" ry="35" fill="url(#brightCloudGradient)" filter="url(#brightGlow)" opacity="0.9"/>
+  <ellipse cx="90" cy="45" rx="45" ry="25" fill="url(#brightCloudGradient)" opacity="0.8"/>
+  <ellipse cx="130" cy="45" rx="50" ry="28" fill="url(#brightCloudGradient)" opacity="0.7"/>
+  <ellipse cx="110" cy="35" rx="35" ry="20" fill="#FFFBEB" opacity="0.9"/>
+  
+  <!-- Cloud details and texture -->
+  <ellipse cx="70" cy="55" rx="25" ry="15" fill="url(#cloudGradient)" opacity="0.6"/>
+  <ellipse cx="150" cy="60" rx="30" ry="18" fill="url(#cloudGradient)" opacity="0.5"/>
+  <ellipse cx="110" cy="65" rx="60" ry="20" fill="url(#cloudGradient)" opacity="0.4"/>
+  
+  <!-- Lightning energy emanating from cloud -->
+  <path d="M80 70 Q85 75 90 85 Q95 90 85 95" stroke="#FEF08A" stroke-width="2" fill="none" opacity="0.8">
+    <animate attributeName="opacity" values="0.8;0.3;0.8" dur="1.5s" repeatCount="indefinite"/>
+  </path>
+  <path d="M140 75 Q135 80 130 90 Q125 95 135 100" stroke="#FEF08A" stroke-width="1.5" fill="none" opacity="0.6">
+    <animate attributeName="opacity" values="0.6;0.2;0.6" dur="2s" repeatCount="indefinite"/>
+  </path>
+  
+  <!-- Main thunderbolt (enhanced and positioned below cloud) -->
+  <path 
+    d="M130 90 L80 90 L50 190 L100 190 L70 260 L180 170 L120 170 L130 90 Z" 
+    fill="url(#thunderboltCloudGradient)" 
+    stroke="#7F1D1D" 
+    stroke-width="2" 
+    filter="url(#thunderGlow)"
+  />
+  
+  <!-- Inner thunderbolt highlight -->
+  <path 
+    d="M125 95 L85 95 L60 185 L105 185 L80 250 L170 175 L125 175 L125 95 Z" 
+    fill="none" 
+    stroke="#FECACA" 
+    stroke-width="1.5" 
+    opacity="0.7"
+  />
+  
+  <!-- Lightning branches -->
+  <path d="M95 140 L85 150 L90 160" stroke="#DC2626" stroke-width="1.5" fill="none" opacity="0.8"/>
+  <path d="M140 200 L150 210 L145 220" stroke="#DC2626" stroke-width="1.2" fill="none" opacity="0.7"/>
+  
+  <!-- Animated light rays from cloud -->
+  <line x1="110" y1="70" x2="110" y2="85" stroke="#FEF08A" stroke-width="3" opacity="0.6">
+    <animate attributeName="opacity" values="0.6;0.2;0.6" dur="1.2s" repeatCount="indefinite"/>
+  </line>
+  <line x1="95" y1="72" x2="95" y2="83" stroke="#FEF08A" stroke-width="2" opacity="0.5">
+    <animate attributeName="opacity" values="0.5;0.1;0.5" dur="1.8s" repeatCount="indefinite"/>
+  </line>
+  <line x1="125" y1="73" x2="125" y2="84" stroke="#FEF08A" stroke-width="2" opacity="0.4">
+    <animate attributeName="opacity" values="0.4;0.1;0.4" dur="2.2s" repeatCount="indefinite"/>
+  </line>
+  
+  <!-- Energy sparks around the scene -->
+  <circle cx="50" cy="120" r="2" fill="#F59E0B" opacity="0.8">
+    <animate attributeName="opacity" values="0.8;0.3;0.8" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="170" cy="140" r="1.5" fill="#FBBF24" opacity="0.6">
+    <animate attributeName="opacity" values="0.6;0.2;0.6" dur="1.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="40" cy="200" r="1" fill="#F59E0B" opacity="0.7">
+    <animate attributeName="opacity" values="0.7;0.3;0.7" dur="2.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="180" cy="220" r="1.2" fill="#FBBF24" opacity="0.5">
+    <animate attributeName="opacity" values="0.5;0.2;0.5" dur="1.8s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Glowing cloud highlights that pulse -->
+  <ellipse cx="110" cy="45" rx="25" ry="12" fill="#FFFBEB" opacity="0.6">
+    <animate attributeName="opacity" values="0.6;0.3;0.6" dur="3s" repeatCount="indefinite"/>
+  </ellipse>
+</svg>

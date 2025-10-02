@@ -8,7 +8,7 @@ import {
 import { useState } from "react";
 
 const meta = {
-  title: "Example/Flyout",
+  title: "Components/Flyout",
   component: Flyout,
   parameters: {
     layout: "centered",
