@@ -1,0 +1,92 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="circleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#60A5FA;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#3B82F6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1E40AF;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="thunderboltCircleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FBBF24;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#F59E0B;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#D97706;stop-opacity:1" />
+    </linearGradient>
+    <filter id="circleGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="innerGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Outer circle with gradient and glow -->
+  <circle 
+    cx="100" 
+    cy="100" 
+    r="95" 
+    fill="url(#circleGradient)" 
+    stroke="#1E3A8A" 
+    stroke-width="3" 
+    filter="url(#circleGlow)"
+  />
+  
+  <!-- Inner circle highlight -->
+  <circle 
+    cx="100" 
+    cy="100" 
+    r="85" 
+    fill="none" 
+    stroke="#93C5FD" 
+    stroke-width="1" 
+    opacity="0.5"
+  />
+  
+  <!-- Thunderbolt (scaled and centered) -->
+  <path 
+    d="M115 45 L85 45 L70 95 L95 95 L80 155 L130 85 L105 85 L115 45 Z" 
+    fill="url(#thunderboltCircleGradient)" 
+    stroke="#92400E" 
+    stroke-width="1.5" 
+    filter="url(#innerGlow)"
+  />
+  
+  <!-- Inner thunderbolt highlight -->
+  <path 
+    d="M112 48 L88 48 L75 92 L98 92 L85 150 L125 88 L108 88 L112 48 Z" 
+    fill="none" 
+    stroke="#FEF3C7" 
+    stroke-width="1" 
+    opacity="0.7"
+  />
+  
+  <!-- Animated energy rings -->
+  <circle cx="100" cy="100" r="75" fill="none" stroke="#60A5FA" stroke-width="0.5" opacity="0.3">
+    <animate attributeName="r" values="75;80;75" dur="3s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.3;0.1;0.3" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="100" cy="100" r="65" fill="none" stroke="#F59E0B" stroke-width="0.5" opacity="0.4">
+    <animate attributeName="r" values="65;70;65" dur="2s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.4;0.1;0.4" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Energy sparks around the circle -->
+  <circle cx="60" cy="70" r="1.5" fill="#FBBF24" opacity="0.8">
+    <animate attributeName="opacity" values="0.8;0.3;0.8" dur="1.8s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="140" cy="130" r="1" fill="#F59E0B" opacity="0.6">
+    <animate attributeName="opacity" values="0.6;0.2;0.6" dur="2.2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="130" cy="60" r="1.2" fill="#FBBF24" opacity="0.7">
+    <animate attributeName="opacity" values="0.7;0.3;0.7" dur="1.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="70" cy="140" r="0.8" fill="#F59E0B" opacity="0.5">
+    <animate attributeName="opacity" values="0.5;0.2;0.5" dur="2.5s" repeatCount="indefinite"/>
+  </circle>
+</svg>

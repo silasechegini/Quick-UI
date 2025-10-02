@@ -10,7 +10,7 @@ import { iconSvgMapping as Icons } from "../src/assets";
 const iconNames = Object.keys(Icons) as IconProps["name"][];
 
 const meta: Meta<typeof Icon> = {
-  title: "Example/Icon",
+  title: "Components/Icon",
   component: Icon,
   parameters: {
     layout: "centered",

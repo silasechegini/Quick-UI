@@ -19,4 +19,7 @@ export type IconKey =
   | "download_icon"
   | "settings_icon"
   | "trash_icon"
-  | "user_icon";
+  | "user_icon"
+  | "thunderbolt_logo_icon"
+  | "thunderbolt_circle_logo_icon"
+  | "thunderbolt_cloud_logo_icon";

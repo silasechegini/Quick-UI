@@ -20,6 +20,9 @@ import { ReactComponent as downloadIcon } from "./icons/download.svg";
 import { ReactComponent as settingsIcon } from "./icons/settings.svg";
 import { ReactComponent as trashIcon } from "./icons/trash.svg";
 import { ReactComponent as userIcon } from "./icons/user.svg";
+import { ReactComponent as thunderboltLogoIcon } from "./icons/thunderbolt-logo.svg";
+import { ReactComponent as thunderboltCircleLogoIcon } from "./icons/thunderbolt-circle-logo.svg";
+import { ReactComponent as thunderboltCloudLogoIcon } from "./icons/thunderbolt-cloud-logo.svg";
 import { IconKey } from "./iconType";
 
 const iconSvgMapping: { [key in IconKey]: FC<SVGProps<SVGSVGElement>> } = {
@@ -44,6 +47,9 @@ const iconSvgMapping: { [key in IconKey]: FC<SVGProps<SVGSVGElement>> } = {
   settings_icon: settingsIcon,
   trash_icon: trashIcon,
   user_icon: userIcon,
+  thunderbolt_logo_icon: thunderboltLogoIcon,
+  thunderbolt_circle_logo_icon: thunderboltCircleLogoIcon,
+  thunderbolt_cloud_logo_icon: thunderboltCloudLogoIcon,
 };
 
 export default iconSvgMapping;

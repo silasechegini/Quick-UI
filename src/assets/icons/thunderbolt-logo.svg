@@ -1,0 +1,45 @@
+<svg viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="thunderboltGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#1D4ED8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1E40AF;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Main thunderbolt shape -->
+  <path 
+    d="M120 10 L70 10 L40 120 L90 120 L60 290 L170 100 L110 100 L120 10 Z" 
+    fill="url(#thunderboltGradient)" 
+    stroke="#1E3A8A" 
+    stroke-width="2" 
+    filter="url(#glow)"
+  />
+  
+  <!-- Inner highlight for depth -->
+  <path 
+    d="M115 15 L75 15 L50 115 L95 115 L70 280 L160 105 L115 105 L115 15 Z" 
+    fill="none" 
+    stroke="#60A5FA" 
+    stroke-width="1.5" 
+    opacity="0.6"
+  />
+  
+  <!-- Energy sparks -->
+  <circle cx="45" cy="85" r="2" fill="#F59E0B" opacity="0.8">
+    <animate attributeName="opacity" values="0.8;0.3;0.8" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="155" cy="140" r="1.5" fill="#F59E0B" opacity="0.6">
+    <animate attributeName="opacity" values="0.6;0.2;0.6" dur="1.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="85" cy="180" r="1" fill="#FBBF24" opacity="0.7">
+    <animate attributeName="opacity" values="0.7;0.3;0.7" dur="2.5s" repeatCount="indefinite"/>
+  </circle>
+</svg>

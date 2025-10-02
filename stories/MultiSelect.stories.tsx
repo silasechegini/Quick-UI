@@ -3,7 +3,7 @@ import { MultiSelect, MultiSelectOption } from "../src/components/MultiSelect";
 import { fn } from "storybook/test";
 
 const meta = {
-  title: "Example/MultiSelect",
+  title: "Components/MultiSelect",
   component: MultiSelect,
   tags: ["autodocs"],
   args: {

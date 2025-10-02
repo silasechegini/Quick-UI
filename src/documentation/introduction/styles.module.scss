@@ -1,0 +1,206 @@
+.introPage {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4rem 2rem;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  position: relative;
+  overflow: hidden;
+
+  // Animated background pattern
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+      radial-gradient(
+        circle at 20% 80%,
+        rgba(120, 119, 198, 0.3) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 80% 20%,
+        rgba(255, 255, 255, 0.1) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 40% 40%,
+        rgba(59, 130, 246, 0.2) 0%,
+        transparent 50%
+      );
+    animation: backgroundShift 10s ease-in-out infinite;
+    z-index: 1;
+  }
+
+  // Ensure content stays above background
+  > * {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+.appIcon {
+  filter: drop-shadow(0 20px 40px rgba(59, 130, 246, 0.4));
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-bottom: 2rem;
+
+  &:hover {
+    transform: scale(1.08) rotate(2deg);
+    filter: drop-shadow(0 25px 50px rgba(59, 130, 246, 0.6));
+  }
+}
+
+.bodyContainer {
+  text-align: left;
+  max-width: 800px;
+  margin-top: 2rem;
+  line-height: 1.7;
+  font-size: 1.1rem;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.1);
+  padding: 3rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  animation: slideInUp 0.8s ease-out;
+
+  h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #fff 0%, #f0f9ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  h2 {
+    color: #f0f9ff;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 2rem 0 1rem 0;
+    border-left: 4px solid #60a5fa;
+    padding-left: 1rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  p {
+    color: #e2e8f0;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+
+    li {
+      color: #e2e8f0;
+      padding: 0.75rem 0;
+      padding-left: 2rem;
+      position: relative;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+
+      &::before {
+        content: "⚡";
+        position: absolute;
+        left: 0;
+        color: #fbbf24;
+        font-size: 1.2rem;
+        animation: sparkle 2s ease-in-out infinite;
+      }
+
+      &:nth-child(even)::before {
+        animation-delay: 0.5s;
+      }
+
+      &:hover {
+        color: #f0f9ff;
+        transform: translateX(5px);
+        transition: all 0.3s ease;
+      }
+    }
+  }
+}
+
+.heroLogo {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes backgroundShift {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -30px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes sparkle {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .introPage {
+    padding: 2rem 1rem;
+  }
+
+  .bodyContainer {
+    padding: 2rem;
+    font-size: 1rem;
+
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    h2 {
+      font-size: 1.3rem;
+    }
+  }
+
+  .appIcon {
+    width: 200px !important;
+    height: 200px !important;
+  }
+}

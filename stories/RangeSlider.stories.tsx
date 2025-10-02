@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { RangeSlider } from "../src/components/Slider";
 
 const meta = {
-  title: "Example/RangeSlider",
+  title: "Components/RangeSlider",
   component: RangeSlider,
   parameters: {
     layout: "centered",

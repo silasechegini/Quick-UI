@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Slider } from "../src/components/Slider";
 
 const meta = {
-  title: "Example/Slider",
+  title: "Components/Slider",
   component: Slider,
   parameters: {
     layout: "centered",
