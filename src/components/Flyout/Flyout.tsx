@@ -64,7 +64,11 @@ const Flyout = ({
   return ReactDOM.createPortal(
     <div className={styles.overlay}>
       {showBackdrop && (
-        <div className={styles.backdrop} onClick={handleBackdropClick} />
+        <div
+          className={styles.backdrop}
+          onClick={handleBackdropClick}
+          data-testid="flyout-backdrop"
+        />
       )}
 
       <FocusTrap
