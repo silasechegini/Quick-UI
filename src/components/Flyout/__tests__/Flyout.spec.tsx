@@ -1,15 +1,21 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
+import { vi } from "vitest";
 import { Flyout } from "../index";
+import {
+  FlyoutBodyProps,
+  FlyoutFooterProps,
+  FlyoutHeaderProps,
+} from "../Flyout.types";
 
 // Mock ReactDOM.createPortal to render in place for testing
-jest.mock("react-dom", () => ({
-  ...jest.requireActual("react-dom"),
+vi.mock("react-dom", async () => ({
+  ...(await vi.importActual("react-dom")),
   createPortal: (element: React.ReactElement) => element,
 }));
 
 // Mock focus-trap-react to avoid complex focus trap testing
-jest.mock("focus-trap-react", () => ({
+vi.mock("focus-trap-react", () => ({
   FocusTrap: ({
     children,
     active,
@@ -23,16 +29,46 @@ jest.mock("focus-trap-react", () => ({
   ),
 }));
 
+// Mock the Flyout subcomponents
+vi.mock("../components/FlyoutHeader", () => ({
+  default: ({ children, className, onClose }: FlyoutHeaderProps) => (
+    <div className={className} data-testid="flyout-header">
+      {children}
+      {onClose && (
+        <button onClick={onClose} data-testid="close-button">
+          ×
+        </button>
+      )}
+    </div>
+  ),
+}));
+
+vi.mock("../components/FlyoutBody", () => ({
+  default: ({ children, className }: FlyoutBodyProps) => (
+    <div className={className} data-testid="flyout-body">
+      {children}
+    </div>
+  ),
+}));
+
+vi.mock("../components/FlyoutFooter", () => ({
+  default: ({ children, className }: FlyoutFooterProps) => (
+    <div className={className} data-testid="flyout-footer">
+      {children}
+    </div>
+  ),
+}));
+
 describe("Flyout", () => {
   const defaultProps = {
     isOpen: true,
-    onClose: jest.fn(),
+    onClose: vi.fn(),
     headerChildren: "Test Header",
     bodyChildren: "Test Body Content",
   };
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   describe("Rendering", () => {
@@ -41,8 +77,8 @@ describe("Flyout", () => {
 
       const flyout = screen.getByRole("dialog");
       expect(flyout).toBeInTheDocument();
-      expect(flyout).toHaveClass("slideIn");
-      expect(flyout).not.toHaveClass("slideOut");
+      expect(flyout.className).toContain("slideIn");
+      expect(flyout.className).not.toContain("slideOut");
       expect(screen.getByText("Test Header")).toBeInTheDocument();
       expect(screen.getByText("Test Body Content")).toBeInTheDocument();
     });
@@ -52,8 +88,8 @@ describe("Flyout", () => {
 
       const flyout = screen.getByRole("dialog");
       expect(flyout).toBeInTheDocument();
-      expect(flyout).toHaveClass("slideOut");
-      expect(flyout).not.toHaveClass("slideIn");
+      expect(flyout.className).toContain("slideOut");
+      expect(flyout.className).not.toContain("slideIn");
     });
 
     it("renders with default props", () => {
@@ -97,15 +133,15 @@ describe("Flyout", () => {
       const { rerender } = render(<Flyout {...defaultProps} isOpen={true} />);
 
       let flyout = screen.getByRole("dialog");
-      expect(flyout).toHaveClass("slideIn");
-      expect(flyout).not.toHaveClass("slideOut");
+      expect(flyout.className).toContain("slideIn");
+      expect(flyout.className).not.toContain("slideOut");
 
       // Change to closed state
       rerender(<Flyout {...defaultProps} isOpen={false} />);
 
       flyout = screen.getByRole("dialog");
-      expect(flyout).toHaveClass("slideOut");
-      expect(flyout).not.toHaveClass("slideIn");
+      expect(flyout.className).toContain("slideOut");
+      expect(flyout.className).not.toContain("slideIn");
     });
   });
 
@@ -192,24 +228,22 @@ describe("Flyout", () => {
 
   describe("Backdrop Functionality", () => {
     it("renders backdrop by default", () => {
-      const { container } = render(<Flyout {...defaultProps} />);
+      render(<Flyout {...defaultProps} />);
 
-      const backdrop = container.querySelector(".backdrop");
+      const backdrop = screen.getByTestId("flyout-backdrop");
       expect(backdrop).toBeInTheDocument();
     });
 
     it("does not render backdrop when showBackdrop is false", () => {
-      const { container } = render(
-        <Flyout {...defaultProps} showBackdrop={false} />,
-      );
+      render(<Flyout {...defaultProps} showBackdrop={false} />);
 
-      const backdrop = container.querySelector(".backdrop");
+      const backdrop = screen.queryByTestId("flyout-backdrop");
       expect(backdrop).not.toBeInTheDocument();
     });
 
     it("calls onClose when backdrop is clicked and closeOnBackdropClick is true", async () => {
-      const onClose = jest.fn();
-      const { container } = render(
+      const onClose = vi.fn();
+      render(
         <Flyout
           {...defaultProps}
           onClose={onClose}
@@ -217,7 +251,7 @@ describe("Flyout", () => {
         />,
       );
 
-      const backdrop = container.querySelector(".backdrop");
+      const backdrop = screen.getByTestId("flyout-backdrop");
       expect(backdrop).toBeInTheDocument();
 
       fireEvent.click(backdrop as Element);
@@ -225,8 +259,8 @@ describe("Flyout", () => {
     });
 
     it("does not call onClose when backdrop is clicked and closeOnBackdropClick is false", async () => {
-      const onClose = jest.fn();
-      const { container } = render(
+      const onClose = vi.fn();
+      render(
         <Flyout
           {...defaultProps}
           onClose={onClose}
@@ -234,8 +268,8 @@ describe("Flyout", () => {
         />,
       );
 
-      const backdrop = container.querySelector(".backdrop");
-      expect(backdrop).not.toBeNull();
+      const backdrop = screen.getByTestId("flyout-backdrop");
+      expect(backdrop).toBeInTheDocument();
       fireEvent.click(backdrop as Element);
       expect(onClose).not.toHaveBeenCalled();
     });
@@ -243,7 +277,7 @@ describe("Flyout", () => {
 
   describe("Keyboard Interactions", () => {
     it("calls onClose when Escape key is pressed", async () => {
-      const onClose = jest.fn();
+      const onClose = vi.fn();
 
       render(<Flyout {...defaultProps} onClose={onClose} />);
 
@@ -261,7 +295,7 @@ describe("Flyout", () => {
     });
 
     it("ignores other key presses", () => {
-      const onClose = jest.fn();
+      const onClose = vi.fn();
 
       render(<Flyout {...defaultProps} onClose={onClose} />);
 
@@ -275,11 +309,11 @@ describe("Flyout", () => {
 
   describe("Focus Management", () => {
     let mockActiveElement: HTMLElement;
-    let mockFocus: jest.Mock;
+    let mockFocus: ReturnType<typeof vi.fn>;
 
     beforeEach(() => {
       // Create a mock element to represent the triggering element
-      mockFocus = jest.fn();
+      mockFocus = vi.fn();
       mockActiveElement = {
         focus: mockFocus,
         tagName: "BUTTON",
@@ -294,7 +328,7 @@ describe("Flyout", () => {
 
     afterEach(() => {
       // Clean up mocks
-      jest.restoreAllMocks();
+      vi.restoreAllMocks();
     });
 
     it("captures focus when flyout opens", () => {
@@ -317,18 +351,15 @@ describe("Flyout", () => {
       await waitFor(() => {
         // Verify the flyout has slideOut class when closed
         const flyout = screen.getByRole("dialog");
-        expect(flyout).toHaveClass("slideOut");
-        expect(flyout).not.toHaveClass("slideIn");
+        expect(flyout.className).toContain("slideOut");
+        expect(flyout.className).not.toContain("slideIn");
       });
     });
   });
 
   describe("Event Cleanup", () => {
     it("removes event listeners when component unmounts", () => {
-      const removeEventListenerSpy = jest.spyOn(
-        document,
-        "removeEventListener",
-      );
+      const removeEventListenerSpy = vi.spyOn(document, "removeEventListener");
 
       const { unmount } = render(<Flyout {...defaultProps} />);
       unmount();
@@ -342,11 +373,8 @@ describe("Flyout", () => {
     });
 
     it("updates event listeners when isOpen changes", () => {
-      const addEventListenerSpy = jest.spyOn(document, "addEventListener");
-      const removeEventListenerSpy = jest.spyOn(
-        document,
-        "removeEventListener",
-      );
+      const addEventListenerSpy = vi.spyOn(document, "addEventListener");
+      const removeEventListenerSpy = vi.spyOn(document, "removeEventListener");
 
       const { rerender } = render(<Flyout {...defaultProps} isOpen={true} />);
       expect(addEventListenerSpy).toHaveBeenCalledWith(
@@ -370,7 +398,7 @@ describe("Flyout", () => {
       render(
         <Flyout
           isOpen={true}
-          onClose={jest.fn()}
+          onClose={vi.fn()}
           headerChildren={<h2>Flyout Title</h2>}
           bodyChildren={<p>This is the body content</p>}
           footerChildren={<button>Save</button>}
@@ -388,9 +416,9 @@ describe("Flyout", () => {
     });
 
     it("handles complex interaction flow", () => {
-      const onClose = jest.fn();
+      const onClose = vi.fn();
 
-      const { container } = render(
+      render(
         <Flyout
           isOpen={true}
           onClose={onClose}
@@ -414,8 +442,8 @@ describe("Flyout", () => {
       onClose.mockClear();
 
       // Test backdrop click
-      const backdrop = container.querySelector(".backdrop");
-      expect(backdrop).not.toBeNull();
+      const backdrop = screen.getByTestId("flyout-backdrop");
+      expect(backdrop).toBeInTheDocument();
       fireEvent.click(backdrop as Element);
       expect(onClose).toHaveBeenCalledTimes(1);
     });
