@@ -1,8 +1,17 @@
 {
   "name": "quick-ui",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "A modern React component library built with TypeScript",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts --out-dir dist --clean",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
@@ -17,7 +26,19 @@
     "prepare": "husky install"
   },
   "keywords": [],
-  "author": "",
+  "author": {
+    "name": "firstName, LastName",
+    "email": "some-email@gmail.com",
+    "url": "https://example.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/silasechegini/Quick-UI.git"
+  },
+  "homepage": "https://github.com/silasechegini/Quick-UI#readme",
+  "bugs": {
+    "url": "https://github.com/silasechegini/Quick-UI/issues"
+  },
   "license": "ISC",
   "dependencies": {
     "classnames": "^2.5.1",
@@ -32,6 +53,7 @@
     "@storybook/addon-docs": "^9.1.5",
     "@storybook/addon-onboarding": "^9.1.5",
     "@storybook/addon-vitest": "^9.1.5",
+    "@storybook/blocks": "^8.6.14",
     "@storybook/react-vite": "^9.1.5",
     "@testing-library/jest-dom": "^6.8.0",
     "@testing-library/react": "^16.3.0",
