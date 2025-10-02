@@ -1,68 +1,233 @@
+/* Base page styles */
 .page {
-  margin: 0 auto;
-  padding: 48px 20px;
-  max-width: 600px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #333;
   font-size: 14px;
-  line-height: 24px;
-  font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.6;
 }
 
-.page h2 {
-  display: inline-block;
-  vertical-align: top;
-  margin: 0 0 4px;
+.pageBody {
+  flex: 1;
+  display: flex;
+  position: relative;
+}
+
+.mainContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+}
+
+/* Page variants */
+.page--default .content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.page--centered .content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.page--fullwidth .content {
+  padding: 20px;
+}
+
+.page--sidebar .content {
+  padding: 20px;
+}
+
+/* Spacing variants */
+.page--spacing-compact .content {
+  padding: 12px;
+}
+
+.page--spacing-normal .content {
+  padding: 20px;
+}
+
+.page--spacing-spacious .content {
+  padding: 32px;
+}
+
+/* Page header */
+.pageHeader {
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.pageTitle {
+  margin: 0 0 8px 0;
   font-weight: 700;
   font-size: 32px;
-  line-height: 1;
+  line-height: 1.2;
+  color: #1a1a1a;
 }
 
-.page p {
-  margin: 1em 0;
+.pageDescription {
+  margin: 0;
+  font-size: 16px;
+  color: #666;
+  line-height: 1.5;
 }
 
-.page a {
-  color: inherit;
+/* Sidebar */
+.sidebar {
+  width: 280px;
+  background-color: #f8f9fa;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  position: relative;
+  transition: width 0.3s ease;
+  overflow: hidden;
 }
 
-.page ul {
-  margin: 1em 0;
-  padding-left: 30px;
+.sidebar--right {
+  border-right: none;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  order: 2;
 }
 
-.page li {
-  margin-bottom: 8px;
+.sidebarCollapsed {
+  width: 0 !important;
+  border-width: 0;
 }
 
-.page .tip {
-  display: inline-block;
-  vertical-align: top;
-  margin-right: 10px;
-  border-radius: 1em;
-  background: #e7fdd8;
-  padding: 4px 12px;
-  color: #357a14;
-  font-weight: 700;
-  font-size: 11px;
-  line-height: 12px;
+.sidebarContent {
+  padding: 20px;
+  height: 100%;
 }
 
-.page .tip-wrapper {
-  margin-top: 40px;
-  margin-bottom: 40px;
-  font-size: 13px;
-  line-height: 20px;
+.sidebarToggle {
+  position: absolute;
+  top: 20px;
+  right: 8px;
+  z-index: 10;
+  background: white !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  width: 32px !important;
+  height: 32px !important;
+  padding: 0 !important;
 }
 
-.page .tip-wrapper svg {
-  display: inline-block;
-  vertical-align: top;
-  margin-top: 3px;
-  margin-right: 4px;
-  width: 12px;
-  height: 12px;
+.sidebar--right .sidebarToggle {
+  left: 8px;
+  right: auto;
 }
 
-.page .tip-wrapper svg path {
-  fill: #1ea7fd;
+/* Loading state */
+.loadingState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.loadingSpinner {
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+  color: #0066cc;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loadingState p {
+  margin: 0;
+  color: #666;
+  font-size: 16px;
+}
+
+/* Error state */
+.errorState {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+.errorMessage {
+  text-align: center;
+  max-width: 400px;
+}
+
+.errorIcon {
+  color: #dc3545;
+  margin-bottom: 16px;
+}
+
+.errorMessage h3 {
+  margin: 0 0 8px 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #dc3545;
+}
+
+.errorMessage p {
+  margin: 0;
+  color: #666;
+  font-size: 16px;
+}
+
+/* Footer */
+.footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  background-color: #f8f9fa;
+  text-align: center;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .page--sidebar .pageBody {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100% !important;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .sidebar--right {
+    border-left: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    order: 0;
+  }
+
+  .sidebarToggle {
+    position: relative;
+    top: auto;
+    right: auto;
+    margin-bottom: 16px;
+  }
+
+  .page--centered .content,
+  .page--default .content {
+    padding: 16px;
+  }
+
+  .pageTitle {
+    font-size: 24px;
+  }
 }

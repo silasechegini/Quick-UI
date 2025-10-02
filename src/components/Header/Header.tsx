@@ -1,61 +1,256 @@
+import React, { FC, useState } from "react";
 import { Button, BUTTON_SIZES, BUTTON_VARIANTS } from "../Button";
 import { HeaderProps } from "./Header.types";
+import { iconSvgMapping } from "../../assets";
 import styles from "./styles.module.scss";
 
-const Header = ({ user, onLogin, onLogout, onCreateAccount }: HeaderProps) => (
-  <header>
-    <div className={styles.header}>
-      <div>
-        <svg
-          width="32"
-          height="32"
-          viewBox="0 0 32 32"
-          xmlns="http://www.w3.org/2000/svg"
+const UserIcon = iconSvgMapping["user_icon"];
+
+const Header: FC<HeaderProps> = ({
+  variant = "default",
+  position = "static",
+  logo,
+  brandName,
+  onBrandClick,
+  navigationItems,
+  centerContent,
+  user,
+  onLogin,
+  onLogout,
+  onCreateAccount,
+  onProfileClick,
+  actions,
+  showAuth = true,
+  showHamburgerMenu = true,
+  hamburgerMenuItems = [],
+  className,
+  testId = "header",
+}) => {
+  const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
+
+  const headerClasses = [
+    styles.header,
+    styles[`header--${variant}`],
+    styles[`header--${position}`],
+    className,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  const handleBrandClick = () => {
+    if (onBrandClick) {
+      onBrandClick();
+    }
+  };
+
+  const renderBrand = () => {
+    if (!logo && !brandName) return null;
+
+    const brandContent = (
+      <>
+        {logo && <div className={styles.logo}>{logo}</div>}
+        {brandName && <h1 className={styles.brandName}>{brandName}</h1>}
+      </>
+    );
+
+    if (onBrandClick) {
+      return (
+        <Button
+          variant={BUTTON_VARIANTS.TERTIARY}
+          className={styles.brand}
+          onClick={handleBrandClick}
+          aria-label={`Go to ${brandName || "home"}`}
         >
-          <g fill="none" fillRule="evenodd">
-            <path
-              d="M10 0h12a10 10 0 0110 10v12a10 10 0 01-10 10H10A10 10 0 010 22V10A10 10 0 0110 0z"
-              fill="#FFF"
-            />
-            <path
-              d="M5.3 10.6l10.4 6v11.1l-10.4-6v-11zm11.4-6.2l9.7 5.5-9.7 5.6V4.4z"
-              fill="#555AB9"
-            />
-            <path
-              d="M27.2 10.6v11.2l-10.5 6V16.5l10.5-6zM15.7 4.4v11L6 10l9.7-5.5z"
-              fill="#91BAF8"
-            />
-          </g>
-        </svg>
-        <h1>Acme</h1>
+          {brandContent}
+        </Button>
+      );
+    }
+
+    return <div className={styles.brand}>{brandContent}</div>;
+  };
+
+  const renderNavigation = () => {
+    if (!navigationItems) return null;
+
+    return <nav className={styles.navigation}>{navigationItems}</nav>;
+  };
+
+  const renderAuthButtons = () => {
+    if (!showAuth || user) return null;
+
+    return (
+      <div className={styles.authButtons}>
+        <Button
+          variant={BUTTON_VARIANTS.TERTIARY}
+          size={BUTTON_SIZES.SMALL}
+          onClick={onLogin}
+        >
+          Log in
+        </Button>
+        <Button
+          variant={BUTTON_VARIANTS.PRIMARY}
+          size={BUTTON_SIZES.SMALL}
+          onClick={onCreateAccount}
+        >
+          Sign up
+        </Button>
       </div>
-      <div>
-        {user ? (
-          <>
-            <span className={styles.welcome}>
-              Welcome, <b>{user.name}</b>!
-            </span>
-            <Button size={BUTTON_SIZES.SMALL} onClick={onLogout}>
-              Log out
-            </Button>
-          </>
-        ) : (
-          <>
-            <Button size={BUTTON_SIZES.SMALL} onClick={onLogin}>
-              Log in
-            </Button>
-            <Button
-              variant={BUTTON_VARIANTS.PRIMARY}
-              size={BUTTON_SIZES.SMALL}
-              onClick={onCreateAccount}
-            >
-              Sign up
-            </Button>
-          </>
+    );
+  };
+
+  const renderUserSection = () => {
+    if (!user) return null;
+
+    return (
+      <div className={styles.userDisplay}>
+        <div className={styles.userInfo}>
+          {user.avatar ? (
+            <img
+              src={user.avatar}
+              alt={`${user.name}'s avatar`}
+              className={styles.avatar}
+            />
+          ) : (
+            <div className={styles.avatarPlaceholder}>
+              <UserIcon />
+            </div>
+          )}
+          <span className={styles.userName}>{user.name}</span>
+        </div>
+      </div>
+    );
+  };
+
+  const renderHamburgerMenu = () => {
+    if (!showHamburgerMenu && !user) return null;
+
+    // Create default menu items if none provided
+    const defaultItems = user
+      ? [
+          {
+            id: "profile",
+            label: "Profile",
+            icon: "user_icon",
+            onClick: onProfileClick,
+            disabled: false,
+          },
+          {
+            id: "settings",
+            label: "Settings",
+            icon: "settings_icon",
+            onClick: () => console.log("Settings clicked"),
+            disabled: false,
+          },
+          {
+            id: "divider",
+            label: "",
+            divider: true,
+          },
+          {
+            id: "logout",
+            label: "Log out",
+            onClick: onLogout,
+            disabled: false,
+          },
+        ]
+      : [];
+
+    const menuItems =
+      hamburgerMenuItems.length > 0 ? hamburgerMenuItems : defaultItems;
+
+    if (menuItems.length === 0) return null;
+
+    return (
+      <div className={styles.hamburgerContainer}>
+        <Button
+          variant={BUTTON_VARIANTS.TERTIARY}
+          className={styles.hamburgerTrigger}
+          onClick={() => setIsHamburgerOpen(!isHamburgerOpen)}
+          aria-expanded={isHamburgerOpen}
+          aria-haspopup="menu"
+          aria-label="Menu"
+        >
+          <div className={styles.hamburgerIcon}>
+            <span
+              className={`${styles.hamburgerLine} ${isHamburgerOpen ? styles.hamburgerLineOpen : ""}`}
+            ></span>
+            <span
+              className={`${styles.hamburgerLine} ${isHamburgerOpen ? styles.hamburgerLineOpen : ""}`}
+            ></span>
+            <span
+              className={`${styles.hamburgerLine} ${isHamburgerOpen ? styles.hamburgerLineOpen : ""}`}
+            ></span>
+          </div>
+        </Button>
+
+        {isHamburgerOpen && (
+          <div className={styles.hamburgerDropdown} role="menu">
+            {menuItems.map((item, index) => {
+              if (item.divider) {
+                return (
+                  <hr key={item.id || index} className={styles.menuDivider} />
+                );
+              }
+
+              return (
+                <Button
+                  key={item.id}
+                  variant={BUTTON_VARIANTS.TERTIARY}
+                  className={styles.hamburgerMenuItem}
+                  onClick={() => {
+                    item.onClick?.();
+                    setIsHamburgerOpen(false);
+                  }}
+                  disabled={item.disabled || false}
+                  role="menuitem"
+                >
+                  {item.icon && (
+                    <div className={styles.menuItemIcon}>
+                      {iconSvgMapping[
+                        item.icon as keyof typeof iconSvgMapping
+                      ] &&
+                        React.createElement(
+                          iconSvgMapping[
+                            item.icon as keyof typeof iconSvgMapping
+                          ],
+                          {
+                            width: 16,
+                            height: 16,
+                          },
+                        )}
+                    </div>
+                  )}
+                  {item.label}
+                </Button>
+              );
+            })}
+          </div>
         )}
       </div>
-    </div>
-  </header>
-);
+    );
+  };
+
+  return (
+    <header className={headerClasses} data-testid={testId}>
+      <div className={styles.container}>
+        <div className={styles.leftSection}>
+          {renderBrand()}
+          {renderNavigation()}
+        </div>
+
+        {centerContent && (
+          <div className={styles.centerSection}>{centerContent}</div>
+        )}
+
+        <div className={styles.rightSection}>
+          {actions && <div className={styles.actions}>{actions}</div>}
+          {renderAuthButtons()}
+          {renderUserSection()}
+          {renderHamburgerMenu()}
+        </div>
+      </div>
+    </header>
+  );
+};
 
 export default Header;
