@@ -19,6 +19,7 @@ const Header: FC<HeaderProps> = ({
   onLogout,
   onCreateAccount,
   onProfileClick,
+  onSettingsClick,
   actions,
   showAuth = true,
   showHamburgerMenu = true,
@@ -138,7 +139,7 @@ const Header: FC<HeaderProps> = ({
             id: "settings",
             label: "Settings",
             icon: "settings_icon",
-            onClick: () => console.log("Settings clicked"),
+            onClick: onSettingsClick,
             disabled: false,
           },
           {

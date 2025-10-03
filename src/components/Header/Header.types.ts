@@ -68,6 +68,11 @@ export interface HeaderProps {
    * Profile click handler (when user is logged in)
    */
   onProfileClick?: () => void;
+
+  /**
+   * Settings click handler (when user is logged in)
+   */
+  onSettingsClick?: () => void;
   /**
    * Additional actions to display on the right side
    */
