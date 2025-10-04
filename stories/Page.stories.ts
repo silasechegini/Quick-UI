@@ -1,33 +1,102 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
-
-import { expect, userEvent, within } from "storybook/test";
-
+import type { Meta, StoryObj } from "@storybook/react";
 import { Page } from "../src/components/Page";
 
-const meta = {
+const meta: Meta<typeof Page> = {
   title: "Components/Page",
   component: Page,
   parameters: {
-    // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
     layout: "fullscreen",
   },
-} satisfies Meta<typeof Page>;
+  tags: ["autodocs"],
+  argTypes: {
+    variant: {
+      control: { type: "select" },
+      options: ["default", "centered", "fullwidth", "sidebar"],
+    },
+    spacing: {
+      control: { type: "select" },
+      options: ["compact", "normal", "spacious"],
+    },
+  },
+};
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const LoggedOut: Story = {};
+export const Default: Story = {
+  args: {
+    title: "Default Page Layout",
+    description: "A standard page layout with header and centered content",
+    children: "Page content goes here",
+    header: {
+      show: true,
+      brandName: "Quick UI",
+      onLogin: () => console.log("Login clicked"),
+      onLogout: () => console.log("Logout clicked"),
+    },
+  },
+};
 
-// More on component testing: https://storybook.js.org/docs/writing-tests/interaction-testing
-export const LoggedIn: Story = {
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const loginButton = canvas.getByRole("button", { name: /Log in/i });
-    await expect(loginButton).toBeInTheDocument();
-    await userEvent.click(loginButton);
-    await expect(loginButton).not.toBeInTheDocument();
+export const Centered: Story = {
+  args: {
+    variant: "centered",
+    title: "Centered Layout",
+    description:
+      "Content is centered with a maximum width for better readability",
+    children: "This content is centered on the page",
+    header: {
+      show: true,
+      brandName: "Quick UI",
+    },
+  },
+};
 
-    const logoutButton = canvas.getByRole("button", { name: /Log out/i });
-    await expect(logoutButton).toBeInTheDocument();
+export const FullWidth: Story = {
+  args: {
+    variant: "fullwidth",
+    title: "Full Width Layout",
+    description: "Content spans the full width of the container",
+    children: "This content spans the full width",
+    header: {
+      show: true,
+      brandName: "Quick UI",
+    },
+  },
+};
+
+export const LoadingState: Story = {
+  args: {
+    title: "Loading Page",
+    description: "Demonstrates the loading state",
+    children: "Content will appear when loaded",
+    isLoading: true,
+    header: {
+      show: true,
+      brandName: "Quick UI",
+    },
+  },
+};
+
+export const ErrorState: Story = {
+  args: {
+    title: "Error Page",
+    description: "Demonstrates the error state",
+    children: "This content will not show due to error",
+    error: "Failed to load page content. Please try again later.",
+    header: {
+      show: true,
+      brandName: "Quick UI",
+    },
+  },
+};
+
+export const WithoutHeader: Story = {
+  args: {
+    title: "Page Without Header",
+    description: "Sometimes you might want a page without the header",
+    children: "This page has no header",
+    header: {
+      show: false,
+    },
   },
 };

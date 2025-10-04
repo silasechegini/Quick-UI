@@ -1,89 +1,164 @@
 import { FC, useState } from "react";
-
+import { PageProps } from "./Page.types";
 import { Header } from "../Header";
+import { Button } from "../Button";
+import Icon from "../Icon/Icon";
 import styles from "./styles.module.scss";
-import { User } from "../../types/sharedTypes";
 
-const Page: FC = () => {
-  const [user, setUser] = useState<User>();
+export const Page: FC<PageProps> = ({
+  variant = "default",
+  spacing = "normal",
+  title,
+  description,
+  children,
+  header = { show: true },
+  sidebar,
+  footer,
+  isLoading = false,
+  error,
+  className,
+  contentClassName,
+  testId = "page",
+}) => {
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(
+    sidebar?.initiallyCollapsed || false,
+  );
+
+  const pageClasses = [
+    styles.page,
+    styles[`page--${variant}`],
+    styles[`page--spacing-${spacing}`],
+    className,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  const contentClasses = [styles.content, contentClassName]
+    .filter(Boolean)
+    .join(" ");
+
+  const renderHeader = () => {
+    if (!header?.show) return null;
+
+    return <Header {...header} testId={`${testId}-header`} />;
+  };
+
+  const renderSidebar = () => {
+    if (!sidebar || variant !== "sidebar") return null;
+
+    const sidebarClasses = [
+      styles.sidebar,
+      styles[`sidebar--${sidebar.position || "left"}`],
+      isSidebarCollapsed ? styles.sidebarCollapsed : "",
+    ]
+      .filter(Boolean)
+      .join(" ");
+
+    return (
+      <aside
+        className={sidebarClasses}
+        style={{ width: isSidebarCollapsed ? "0" : sidebar.width }}
+        data-testid={`${testId}-sidebar`}
+      >
+        {sidebar.collapsible && (
+          <Button
+            variant="tertiary"
+            size="s"
+            className={styles.sidebarToggle}
+            onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
+            aria-label={
+              isSidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"
+            }
+          >
+            <Icon
+              name={
+                isSidebarCollapsed ? "chevron_right_icon" : "chevron_left_icon"
+              }
+              size={16}
+            />
+          </Button>
+        )}
+        {!isSidebarCollapsed && (
+          <div className={styles.sidebarContent}>{sidebar.content}</div>
+        )}
+      </aside>
+    );
+  };
+
+  const renderPageHeader = () => {
+    if (!title && !description) return null;
+
+    return (
+      <header
+        className={styles.pageHeader}
+        data-testid={`${testId}-page-header`}
+      >
+        {title && <h1 className={styles.pageTitle}>{title}</h1>}
+        {description && <p className={styles.pageDescription}>{description}</p>}
+      </header>
+    );
+  };
+
+  const renderContent = () => {
+    if (error) {
+      return (
+        <div className={styles.errorState} data-testid={`${testId}-error`}>
+          {typeof error === "string" ? (
+            <div className={styles.errorMessage}>
+              <Icon name="close_icon" size={24} className={styles.errorIcon} />
+              <h3>Something went wrong</h3>
+              <p>{error}</p>
+            </div>
+          ) : (
+            error
+          )}
+        </div>
+      );
+    }
+
+    if (isLoading) {
+      return (
+        <div className={styles.loadingState} data-testid={`${testId}-loading`}>
+          <Icon
+            name="spinner_icon"
+            size={24}
+            className={styles.loadingSpinner}
+          />
+          <p>Loading...</p>
+        </div>
+      );
+    }
+
+    return (
+      <main className={contentClasses} data-testid={`${testId}-content`}>
+        {renderPageHeader()}
+        {children}
+      </main>
+    );
+  };
+
+  const renderFooter = () => {
+    if (!footer) return null;
+
+    return (
+      <footer className={styles.footer} data-testid={`${testId}-footer`}>
+        {footer}
+      </footer>
+    );
+  };
 
   return (
-    <article>
-      <Header
-        user={user}
-        onLogin={() => setUser({ name: "Jane Doe" })}
-        onLogout={() => setUser(undefined)}
-        onCreateAccount={() => setUser({ name: "Jane Doe" })}
-      />
+    <div className={pageClasses} data-testid={testId}>
+      {renderHeader()}
 
-      <section className={styles.page}>
-        <h2>Pages in Storybook</h2>
-        <p>
-          We recommend building UIs with a{" "}
-          <a
-            href="https://componentdriven.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <strong>component-driven</strong>
-          </a>{" "}
-          process starting with atomic components and ending with pages.
-        </p>
-        <p>
-          Render pages with mock data. This makes it easy to build and review
-          page states without needing to navigate to them in your app. Here are
-          some handy patterns for managing page data in Storybook:
-        </p>
-        <ul>
-          <li>
-            Use a higher-level connected component. Storybook helps you compose
-            such data from the "args" of child component stories
-          </li>
-          <li>
-            Assemble data in the page component from your services. You can mock
-            these services out using Storybook.
-          </li>
-        </ul>
-        <p>
-          Get a guided tutorial on component-driven development at{" "}
-          <a
-            href="https://storybook.js.org/tutorials/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Storybook tutorials
-          </a>
-          . Read more in the{" "}
-          <a
-            href="https://storybook.js.org/docs"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            docs
-          </a>
-          .
-        </p>
-        <div className={styles.tipWrapper}>
-          <span className={styles.tip}>Tip</span> Adjust the width of the canvas
-          with the{" "}
-          <svg
-            width="10"
-            height="10"
-            viewBox="0 0 12 12"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <g fill="none" fillRule="evenodd">
-              <path
-                d="M1.5 5.2h4.8c.3 0 .5.2.5.4v5.1c-.1.2-.3.3-.4.3H1.4a.5.5 0 01-.5-.4V5.7c0-.3.2-.5.5-.5zm0-2.1h6.9c.3 0 .5.2.5.4v7a.5.5 0 01-1 0V4H1.5a.5.5 0 010-1zm0-2.1h9c.3 0 .5.2.5.4v9.1a.5.5 0 01-1 0V2H1.5a.5.5 0 010-1zm4.3 5.2H2V10h3.8V6.2z"
-                id="a"
-                fill="#999"
-              />
-            </g>
-          </svg>
-          Viewports addon in the toolbar
-        </div>
-      </section>
-    </article>
+      <div className={styles.pageBody}>
+        {renderSidebar()}
+
+        <div className={styles.mainContent}>{renderContent()}</div>
+      </div>
+
+      {renderFooter()}
+    </div>
   );
 };
 
