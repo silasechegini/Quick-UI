@@ -1,5 +1,6 @@
 import { FC, ReactNode } from "react";
 import Icon from "../../Icon/Icon";
+import { Button, BUTTON_SIZES, BUTTON_VARIANTS } from "../../Button";
 import styles from "../styles.module.scss";
 
 interface PageSidebarProps {
@@ -27,17 +28,20 @@ export const PageSidebar: FC<PageSidebarProps> = ({
       data-testid={`${testId}-sidebar`}
     >
       {isCollapsible && (
-        <button
+        <Button
+          variant={BUTTON_VARIANTS.TERTIARY}
+          size={BUTTON_SIZES.EXTRASMALL}
           className={styles.toggleSidebar}
           onClick={onToggleSidebar}
           data-testid={`${testId}-sidebar-toggle`}
-          aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
-        >
-          <Icon
-            name={isCollapsed ? "chevron_right_icon" : "chevron_left_icon"}
-            size={16}
-          />
-        </button>
+          ariaLabel={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+          icon={
+            <Icon
+              name={isCollapsed ? "chevron_right_icon" : "chevron_left_icon"}
+              size={16}
+            />
+          }
+        />
       )}
       <div className={styles.sidebarContent}>{content}</div>
     </aside>

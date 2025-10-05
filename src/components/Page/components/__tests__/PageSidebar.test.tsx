@@ -1,5 +1,31 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
+import { ButtonProps } from "../../../Button/Button.types";
+
+// Mock the Button component
+vi.mock("../../../Button", () => ({
+  Button: ({
+    children,
+    onClick,
+    variant,
+    size,
+    icon,
+    ariaLabel,
+    ...props
+  }: ButtonProps) => (
+    <button
+      onClick={onClick}
+      data-variant={variant}
+      data-size={size}
+      aria-label={ariaLabel}
+      {...props}
+    >
+      {icon}
+      {children}
+    </button>
+  ),
+}));
+
 import { PageSidebar } from "../PageSidebar";
 
 describe("PageSidebar", () => {
