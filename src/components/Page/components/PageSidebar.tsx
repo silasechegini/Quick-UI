@@ -1,4 +1,5 @@
 import { FC, ReactNode } from "react";
+import Icon from "../../Icon/Icon";
 import styles from "../styles.module.scss";
 
 interface PageSidebarProps {
@@ -32,7 +33,10 @@ export const PageSidebar: FC<PageSidebarProps> = ({
           data-testid={`${testId}-sidebar-toggle`}
           aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
         >
-          {isCollapsed ? "→" : "←"}
+          <Icon
+            name={isCollapsed ? "chevron_right_icon" : "chevron_left_icon"}
+            size={16}
+          />
         </button>
       )}
       <div className={styles.sidebarContent}>{content}</div>
