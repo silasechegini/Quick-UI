@@ -24,6 +24,19 @@ vi.mock("../../../Button", () => ({
       {children}
     </button>
   ),
+  BUTTON_VARIANTS: {
+    PRIMARY: "primary",
+    SECONDARY: "secondary",
+    TERTIARY: "tertiary",
+    PLAIN: "plain",
+  },
+  BUTTON_SIZES: {
+    EXTRALARGE: "xl",
+    LARGE: "l",
+    MEDIUM: "m",
+    SMALL: "s",
+    EXTRASMALL: "xs",
+  },
 }));
 
 import { PageSidebar } from "../PageSidebar";

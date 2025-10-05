@@ -29,7 +29,7 @@ export const PageSidebar: FC<PageSidebarProps> = ({
     >
       {isCollapsible && (
         <Button
-          variant={BUTTON_VARIANTS.TERTIARY}
+          variant={BUTTON_VARIANTS.PLAIN}
           size={BUTTON_SIZES.EXTRASMALL}
           className={styles.toggleSidebar}
           onClick={onToggleSidebar}
