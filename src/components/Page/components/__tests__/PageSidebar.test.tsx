@@ -31,11 +31,13 @@ vi.mock("../../../Button", () => ({
     PLAIN: "plain",
   },
   BUTTON_SIZES: {
-    EXTRALARGE: "xl",
+    XXLARGE: "xxl",
+    XLARGE: "xl",
     LARGE: "l",
     MEDIUM: "m",
     SMALL: "s",
     EXTRASMALL: "xs",
+    DEFAULT: "m",
   },
 }));
 
