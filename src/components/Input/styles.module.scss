@@ -1,0 +1,188 @@
+@import "../../styles/variables";
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  font-family: var(--font-sans);
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius-md);
+  transition: all 0.2s ease-in-out;
+  background-color: var(--color-white);
+  color: var(--gray-900);
+
+  &:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
+  }
+
+  &:hover:not(:focus):not(:disabled) {
+    border-color: var(--gray-400);
+  }
+
+  &:disabled {
+    background-color: var(--gray-100);
+    color: var(--gray-500);
+    cursor: not-allowed;
+    border-color: var(--gray-200);
+  }
+
+  &::placeholder {
+    color: var(--gray-400);
+  }
+}
+
+// Variants
+.primary {
+  border-color: var(--gray-300);
+
+  &:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
+  }
+}
+
+.secondary {
+  border-color: var(--gray-300);
+  background-color: var(--gray-50);
+
+  &:focus {
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 0 3px rgba(107, 114, 128, 0.1);
+    background-color: var(--color-white);
+  }
+}
+
+.error {
+  border-color: var(--color-danger);
+
+  &:focus {
+    border-color: var(--color-danger);
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+  }
+}
+
+.success {
+  border-color: var(--color-success);
+
+  &:focus {
+    border-color: var(--color-success);
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+  }
+}
+
+// Sizes
+.xs {
+  padding: 0.375rem 0.75rem;
+  font-size: var(--font-size-xs);
+  line-height: 1.25rem;
+}
+
+.s {
+  padding: 0.5rem 0.875rem;
+  font-size: var(--font-size-sm);
+  line-height: 1.375rem;
+}
+
+.m {
+  padding: 0.625rem 1rem;
+  font-size: var(--font-size-base);
+  line-height: 1.5rem;
+}
+
+.l {
+  padding: 0.75rem 1.125rem;
+  font-size: var(--font-size-lg);
+  line-height: 1.625rem;
+}
+
+.xl {
+  padding: 0.875rem 1.25rem;
+  font-size: var(--font-size-xl);
+  line-height: 1.75rem;
+}
+
+// Full width
+.fullWidth {
+  width: 100%;
+}
+
+// Icons
+.startIcon {
+  position: absolute;
+  left: 0.75rem;
+  z-index: 1;
+  color: var(--gray-400);
+  pointer-events: none;
+}
+
+.endIcon {
+  position: absolute;
+  right: 0.75rem;
+  z-index: 1;
+  color: var(--gray-400);
+  pointer-events: none;
+}
+
+.hasStartIcon {
+  padding-left: 2.5rem;
+}
+
+.hasEndIcon {
+  padding-right: 2.5rem;
+}
+
+// Loading state
+.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.loading .endIcon {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Label
+.label {
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-sm);
+  color: var(--gray-700);
+  margin-bottom: 0.375rem;
+  display: block;
+}
+
+// Helper text
+.helperText {
+  font-size: var(--font-size-xs);
+  color: var(--gray-500);
+  margin-top: 0.375rem;
+}
+
+// Error message
+.errorMessage {
+  font-size: var(--font-size-xs);
+  color: var(--color-danger);
+  margin-top: 0.375rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
