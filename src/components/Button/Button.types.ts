@@ -7,7 +7,7 @@ import { ButtonHTMLAttributes, ReactNode, ElementType } from "react";
  * It also defines the base props for the button and specific props for icon buttons.
  */
 export type ButtonVariants = "primary" | "secondary" | "tertiary" | "plain";
-type ButtonSizes = "xxl" | "xl" | "l" | "m" | "s" | "xs" | "fullWidth";
+type ButtonSizes = "xxl" | "xl" | "l" | "m" | "s" | "xs";
 type IconPosition = "start" | "end" | "default";
 type ButtonShapes = "square" | "circular" | "pill";
 
@@ -33,7 +33,6 @@ type BaseProps = {
   icon?: ReactNode;
   iconPosition?: IconPosition;
   isLoading?: boolean;
-  loadingText?: string;
   fullWidth?: boolean;
   as?: ElementType;
   className?: string;
@@ -89,16 +88,15 @@ export enum BUTTON_SIZES {
   MEDIUM = "m",
   SMALL = "s",
   EXTRASMALL = "xs",
-  DEFAULT = "fullWidth",
 }
 
 /** Enums for Button Variants */
-export const BUTTON_VARIANTS = {
-  PRIMARY: "primary" as const,
-  SECONDARY: "secondary" as const,
-  TERTIARY: "tertiary" as const,
-  PLAIN: "plain" as const,
-};
+export enum BUTTON_VARIANTS {
+  PRIMARY = "primary",
+  SECONDARY = "secondary",
+  TERTIARY = "tertiary",
+  PLAIN = "plain",
+}
 
 export enum BUTTON_SHAPES {
   SQUARE = "square",

@@ -11,6 +11,7 @@ import { ReactComponent as plusIcon } from "./icons/plus.svg";
 import { ReactComponent as minusIcon } from "./icons/minus.svg";
 import { ReactComponent as checkmarkIcon } from "./icons/checkmark.svg";
 import { ReactComponent as spinnerIcon } from "./icons/spinner.svg";
+import { ReactComponent as loadingIcon } from "./icons/loading.svg";
 import { ReactComponent as calendarIcon } from "./icons/calendar.svg";
 import { ReactComponent as clockIcon } from "./icons/clock.svg";
 import { ReactComponent as eyeIcon } from "./icons/eye.svg";
@@ -38,6 +39,7 @@ const iconSvgMapping: { [key in IconKey]: FC<SVGProps<SVGSVGElement>> } = {
   minus_icon: minusIcon,
   checkmark_icon: checkmarkIcon,
   spinner_icon: spinnerIcon,
+  loading_icon: loadingIcon,
   calendar_icon: calendarIcon,
   clock_icon: clockIcon,
   eye_icon: eyeIcon,

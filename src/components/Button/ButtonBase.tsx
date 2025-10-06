@@ -8,6 +8,7 @@ import {
   ICON_POSITIONS,
 } from "./Button.types";
 import classNames from "classnames";
+import { Icon } from "../Icon";
 
 /** ButtonBase - The foundational button component handling core functionality and styling.
  *
@@ -15,7 +16,6 @@ import classNames from "classnames";
  * @param {React.ReactNode} icon - Optional icon to display within the button.
  * @param {("start" | "end")} iconPosition - Position of the icon relative to the text (default: START).
  * @param {boolean} isLoading - Whether the button is in a loading state (default: false).
- * @param {string} loadingText - Text to display when the button is loading.
  * @param {BUTTON_SIZES} size - The size of the button (default: MEDIUM).
  * @param {BUTTON_VARIANTS} variant - The visual style of the button (default: PRIMARY).
  * @param {boolean} fullWidth - Whether the button should take full width of its container (default: false).
@@ -33,8 +33,7 @@ const ButtonBase: React.FC<ButtonProps> = ({
   icon,
   iconPosition = ICON_POSITIONS.DEFAULT,
   isLoading = false,
-  loadingText,
-  size = BUTTON_SIZES.DEFAULT,
+  size = BUTTON_SIZES.MEDIUM,
   shape = BUTTON_SHAPES.SQUARE,
   variant = BUTTON_VARIANTS.PRIMARY,
   fullWidth = false,
@@ -49,7 +48,7 @@ const ButtonBase: React.FC<ButtonProps> = ({
   const combinedClassName = classNames(
     styles.button,
     styles[variant],
-    styles[size],
+    !fullWidth && styles[size], // Only apply size if not fullWidth
     styles[shape],
     {
       [styles.fullWidth]: fullWidth,
@@ -61,15 +60,17 @@ const ButtonBase: React.FC<ButtonProps> = ({
 
   const content = (
     <>
-      {isLoading && <span className={styles.icon}>⏳</span>}
+      {isLoading && (
+        <span className={styles.icon}>
+          <Icon name="loading_icon" size={16} />
+        </span>
+      )}
       {!isLoading && icon && iconPosition === ICON_POSITIONS.START && (
         <span className={classNames(styles.icon, styles.iconStart)}>
           {icon}
         </span>
       )}
-      {children && (
-        <span>{isLoading ? loadingText || children : children}</span>
-      )}
+      {children && <span className={styles.label}>{children}</span>}
       {!isLoading && icon && iconPosition === ICON_POSITIONS.END && (
         <span className={classNames(styles.icon, styles.iconEnd)}>{icon}</span>
       )}

@@ -11,6 +11,7 @@ export type IconKey =
   | "minus_icon"
   | "checkmark_icon"
   | "spinner_icon"
+  | "loading_icon"
   | "calendar_icon"
   | "clock_icon"
   | "eye_icon"

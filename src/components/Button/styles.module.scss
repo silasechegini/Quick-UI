@@ -8,6 +8,13 @@
   transition: all 0.2s ease-in-out;
   box-shadow: 0 2px 4px darkslategray;
   border-radius: var(--radius-md);
+
+  .label {
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
 }
 
 .button:hover {
@@ -23,14 +30,30 @@
 }
 
 .fullWidth {
-  font-size: var(--font-size-xl);
-  padding: 1rem 2rem;
   width: 100%;
+  min-width: unset;
+  max-width: unset;
+  font-size: var(--font-size-base);
+  padding: 0.75rem 1.5rem;
 }
 
 .loading {
   opacity: 0.7;
   pointer-events: none;
+}
+
+.loading .icon {
+  animation: spin 1s linear infinite;
+  margin-right: 10px;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .icon {
@@ -52,9 +75,9 @@
 }
 
 .secondary {
-  background-color: var(--color-white);
+  background-color: var(--color-secondary);
   border: 1px solid var(--color-secondary);
-  color: var(--color-black);
+  color: var(--color-white);
 }
 
 .tertiary {
@@ -119,6 +142,7 @@
 .xs {
   font-size: var(--font-size-xs);
   padding: 0.3rem 0.75rem;
+  max-width: var(--width-80);
 }
 
 /* Shapes */
