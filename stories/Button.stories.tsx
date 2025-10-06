@@ -122,8 +122,7 @@ export const Loading: Story = {
     variant: BUTTON_VARIANTS.PRIMARY,
     size: BUTTON_SIZES.MEDIUM,
     isLoading: true,
-    children: "Loading...",
-    loadingText: "Please wait...",
+    children: "Please wait...",
   },
 };
 

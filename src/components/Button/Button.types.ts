@@ -91,12 +91,12 @@ export enum BUTTON_SIZES {
 }
 
 /** Enums for Button Variants */
-export const BUTTON_VARIANTS = {
-  PRIMARY: "primary" as const,
-  SECONDARY: "secondary" as const,
-  TERTIARY: "tertiary" as const,
-  PLAIN: "plain" as const,
-};
+export enum BUTTON_VARIANTS {
+  PRIMARY = "primary",
+  SECONDARY = "secondary",
+  TERTIARY = "tertiary",
+  PLAIN = "plain",
+}
 
 export enum BUTTON_SHAPES {
   SQUARE = "square",
