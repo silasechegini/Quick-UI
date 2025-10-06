@@ -103,7 +103,8 @@ export const CustomRender: Story = {
   args: {
     renderOption: (option, isActive) => (
       <div style={{ fontWeight: isActive ? "bold" : "normal" }}>
-        🍇 {option.label}
+        <Icon name="settings_icon" size={16} />
+        {option.label}
       </div>
     ),
   },
