@@ -25,9 +25,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     ref,
   ) => {
     // Generate unique ID if not provided and label exists
-    const inputId =
-      id ||
-      (label ? `input-${Math.random().toString(36).substr(2, 9)}` : undefined);
+    const inputId = id || (label ? `input-${crypto.randomUUID()}` : undefined);
 
     const containerClasses = [styles.inputContainer, containerClassName]
       .filter(Boolean)
