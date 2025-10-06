@@ -223,6 +223,74 @@ describe("Input Component", () => {
     });
   });
 
+  describe("Clear Button", () => {
+    it("shows clear button when clearable is true and input has value", () => {
+      render(<Input clearable value="test" onChange={vi.fn()} />);
+      const clearButton = screen.getByRole("button");
+      expect(clearButton).toBeInTheDocument();
+    });
+
+    it("does not show clear button when clearable is false", () => {
+      render(<Input clearable={false} value="test" onChange={vi.fn()} />);
+      expect(screen.queryByRole("button")).not.toBeInTheDocument();
+    });
+
+    it("does not show clear button when input has no value", () => {
+      render(<Input clearable value="" onChange={vi.fn()} />);
+      expect(screen.queryByRole("button")).not.toBeInTheDocument();
+    });
+
+    it("calls onClear when clear button is clicked", () => {
+      const handleClear = vi.fn();
+      render(
+        <Input
+          clearable
+          value="test"
+          onChange={vi.fn()}
+          onClear={handleClear}
+        />,
+      );
+
+      const clearButton = screen.getByRole("button");
+      fireEvent.click(clearButton);
+
+      expect(handleClear).toHaveBeenCalledTimes(1);
+    });
+
+    it("clears input value when clear button is clicked without onClear", () => {
+      const handleChange = vi.fn();
+      render(<Input clearable value="test" onChange={handleChange} />);
+
+      const clearButton = screen.getByRole("button");
+      fireEvent.click(clearButton);
+
+      expect(handleChange).toHaveBeenCalledWith(
+        expect.objectContaining({
+          target: expect.objectContaining({ value: "" }),
+        }),
+      );
+    });
+
+    it("maintains focus on input after clearing", () => {
+      const handleChange = vi.fn();
+      render(<Input clearable value="test" onChange={handleChange} />);
+
+      const input = screen.getByRole("textbox");
+      const clearButton = screen.getByRole("button");
+
+      input.focus();
+      fireEvent.click(clearButton);
+
+      expect(document.activeElement).toBe(input);
+    });
+
+    it("applies correct CSS classes when clear button is present", () => {
+      render(<Input clearable value="test" onChange={vi.fn()} />);
+      const input = screen.getByRole("textbox");
+      expect(input.className).toContain("hasClearButton");
+    });
+  });
+
   describe("Forward Ref", () => {
     it("forwards ref to input element", () => {
       const ref = vi.fn();

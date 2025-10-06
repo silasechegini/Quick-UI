@@ -132,13 +132,11 @@ export const WithCallback: Story = {
 
 export const FormValidation: Story = {
   render: () => {
-    const [email, setEmail] = useState("");
     const [isValid, setIsValid] = useState<boolean | null>(null);
     const [isValidating, setIsValidating] = useState(false);
 
     const validateEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
       const value = event.target.value;
-      setEmail(value);
 
       if (!value.trim()) {
         setIsValid(null);
@@ -187,8 +185,58 @@ export const FormValidation: Story = {
                 ? "close_icon"
                 : undefined
           }
-          value={email}
         />
+      </div>
+    );
+  },
+  parameters: {
+    layout: "padded",
+  },
+};
+
+export const WithClearButton: Story = {
+  render: () => {
+    const [searchTerm, setSearchTerm] = useState("Sample search term");
+    const [lastSearched, setLastSearched] = useState("");
+
+    const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+      console.log("Debounced search triggered:", event.target.value);
+      setLastSearched(event.target.value);
+    };
+
+    const handleClear = () => {
+      console.log("Clear button clicked!");
+      setLastSearched("");
+    };
+
+    return (
+      <div style={{ width: "350px" }}>
+        <DebouncedInput
+          label="Search with Clear Button"
+          placeholder="Type to search with debounce..."
+          startIcon="search_icon"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          onSearch={handleSearch}
+          clearable
+          onClear={handleClear}
+          debounceDelay={500}
+          helperText="Clear button appears when you have text. Search is debounced by 500ms."
+        />
+
+        {lastSearched && (
+          <div
+            style={{
+              marginTop: "1rem",
+              padding: "0.75rem",
+              backgroundColor: "#f3f4f6",
+              borderRadius: "6px",
+              border: "1px solid #e5e7eb",
+            }}
+          >
+            <strong>Last searched:</strong> "{lastSearched}"
+          </div>
+        )}
       </div>
     );
   },

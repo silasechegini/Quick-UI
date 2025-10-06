@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { fn } from "storybook/test";
+import { useState } from "react";
 import { Input } from "../src/components/Input";
 
 const meta = {
@@ -173,5 +174,105 @@ export const SearchExample: Story = {
     startIcon: "search_icon",
     endIcon: "clear_icon",
     helperText: "Search across all categories",
+  },
+};
+
+export const WithClearButton: Story = {
+  render: () => {
+    const [value, setValue] = useState("Sample text to clear");
+
+    return (
+      <div style={{ width: "300px" }}>
+        <Input
+          label="Input with Clear Button"
+          placeholder="Type something..."
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          clearable
+          onClear={() => console.log("Clear button clicked!")}
+          helperText="Clear button appears when you have text"
+        />
+      </div>
+    );
+  },
+  parameters: {
+    layout: "padded",
+  },
+};
+
+export const ClearButtonSizes: Story = {
+  render: () => {
+    const [values, setValues] = useState({
+      xs: "Extra Small",
+      s: "Small",
+      m: "Medium",
+      l: "Large",
+      xl: "Extra Large",
+    });
+
+    return (
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "1rem",
+          width: "400px",
+        }}
+      >
+        <Input
+          size="xs"
+          placeholder="Extra Small with clear"
+          value={values.xs}
+          onChange={(e) =>
+            setValues((prev) => ({ ...prev, xs: e.target.value }))
+          }
+          clearable
+          startIcon="search_icon"
+        />
+        <Input
+          size="s"
+          placeholder="Small with clear"
+          value={values.s}
+          onChange={(e) =>
+            setValues((prev) => ({ ...prev, s: e.target.value }))
+          }
+          clearable
+          startIcon="search_icon"
+        />
+        <Input
+          size="m"
+          placeholder="Medium with clear"
+          value={values.m}
+          onChange={(e) =>
+            setValues((prev) => ({ ...prev, m: e.target.value }))
+          }
+          clearable
+          startIcon="search_icon"
+        />
+        <Input
+          size="l"
+          placeholder="Large with clear"
+          value={values.l}
+          onChange={(e) =>
+            setValues((prev) => ({ ...prev, l: e.target.value }))
+          }
+          clearable
+          startIcon="search_icon"
+        />
+        <Input
+          size="xl"
+          placeholder="Extra Large with clear"
+          value={values.xl}
+          onChange={(e) =>
+            setValues((prev) => ({ ...prev, xl: e.target.value }))
+          }
+          clearable
+          startIcon="search_icon"
+        />
+      </div>
+    );
+  },
+  parameters: {
+    layout: "padded",
   },
 };

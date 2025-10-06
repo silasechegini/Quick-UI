@@ -10,6 +10,8 @@
   position: relative;
   display: flex;
   align-items: center;
+  width: 100%;
+  overflow: hidden; /* Ensure contents stay within bounds */
 }
 
 .input {
@@ -19,6 +21,8 @@
   transition: all 0.2s ease-in-out;
   background-color: var(--color-white);
   color: var(--gray-900);
+  width: 100%;
+  flex: 1; /* Allow input to take available space */
 
   &:focus {
     outline: none;
@@ -132,14 +136,112 @@
   z-index: 1;
   color: var(--gray-400);
   pointer-events: none;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding-left: 0.75rem;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background-color: var(--gray-300);
+  }
+}
+
+.clearButton {
+  position: absolute;
+  top: 50%;
+  right: 0.75rem;
+  transform: translateY(-50%);
+  z-index: 2;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--gray-400);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  margin-left: 0.75rem;
+  transition: color 0.2s ease-in-out;
+
+  &:hover {
+    color: var(--gray-600);
+  }
+
+  &:focus {
+    outline: none;
+    color: var(--color-primary);
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: -0.375rem;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background-color: var(--gray-300);
+  }
+
+  &:hover::before {
+    background-color: var(--gray-400);
+  }
 }
 
 .hasStartIcon {
   padding-left: 2.5rem;
 }
 
-.hasEndIcon {
-  padding-right: 2.5rem;
+.hasClearButton {
+  padding-right: 3.25rem;
+}
+
+// Size-specific padding adjustments for clear button
+.xs.hasClearButton {
+  padding-right: 2.75rem;
+}
+
+.s.hasClearButton {
+  padding-right: 3rem;
+}
+
+.m.hasClearButton {
+  padding-right: 3.25rem;
+}
+
+.l.hasClearButton {
+  padding-right: 3.5rem;
+}
+
+.xl.hasClearButton {
+  padding-right: 3.75rem;
+}
+
+// Error state specific styling
+.error .endIcon {
+  color: var(--color-danger);
+
+  &::before {
+    background-color: var(--color-danger);
+    opacity: 0.3;
+  }
+}
+
+// Success state specific styling
+.success .endIcon {
+  color: var(--color-success);
+
+  &::before {
+    background-color: var(--color-success);
+    opacity: 0.3;
+  }
 }
 
 // Loading state
@@ -150,6 +252,158 @@
 
 .loading .endIcon {
   animation: spin 1s linear infinite;
+
+  &::before {
+    background-color: var(--gray-400);
+    opacity: 0.5;
+  }
+}
+
+// Size-specific icon positioning
+.xs .endIcon {
+  right: 0.5rem;
+  padding-left: 0.5rem;
+
+  &::before {
+    top: 0;
+    bottom: 0;
+    height: auto;
+  }
+}
+
+.xs .clearButton {
+  right: 0.5rem;
+  width: 20px;
+  height: 20px;
+  margin-left: 0.5rem;
+
+  &::before {
+    left: -0.25rem;
+    top: 0;
+    bottom: 0;
+    height: auto;
+  }
+}
+
+.s .endIcon {
+  right: 0.625rem;
+  padding-left: 0.625rem;
+
+  &::before {
+    top: 0;
+    bottom: 0;
+    height: auto;
+  }
+}
+
+.s .clearButton {
+  right: 0.625rem;
+  width: 22px;
+  height: 22px;
+  margin-left: 0.625rem;
+
+  &::before {
+    left: -0.3125rem;
+    top: 0;
+    bottom: 0;
+    height: auto;
+  }
+}
+
+.m .endIcon {
+  right: 0.75rem;
+  padding-left: 0.75rem;
+
+  &::before {
+    top: 0;
+    bottom: 0;
+    height: auto;
+  }
+}
+
+.m .clearButton {
+  right: 0.75rem;
+  width: 24px;
+  height: 24px;
+  margin-left: 0.75rem;
+
+  &::before {
+    left: -0.375rem;
+    top: 0;
+    bottom: 0;
+    height: auto;
+  }
+}
+
+.l .endIcon {
+  right: 0.875rem;
+  padding-left: 0.875rem;
+
+  &::before {
+    top: 0;
+    bottom: 0;
+    height: auto;
+  }
+}
+
+.l .clearButton {
+  right: 0.875rem;
+  width: 26px;
+  height: 26px;
+  margin-left: 0.875rem;
+
+  &::before {
+    left: -0.4375rem;
+    top: 0;
+    bottom: 0;
+    height: auto;
+  }
+}
+
+.xl .endIcon {
+  right: 1rem;
+  padding-left: 1rem;
+
+  &::before {
+    top: 0;
+    bottom: 0;
+    height: auto;
+  }
+}
+
+.xl .clearButton {
+  right: 1rem;
+  width: 28px;
+  height: 28px;
+  margin-left: 1rem;
+
+  &::before {
+    left: -0.5rem;
+    top: 0;
+    bottom: 0;
+    height: auto;
+  }
+}
+
+// Size-specific padding adjustments
+.xs.hasEndIcon {
+  padding-right: 2.75rem;
+}
+
+.s.hasEndIcon {
+  padding-right: 3rem;
+}
+
+.m.hasEndIcon {
+  padding-right: 3.25rem;
+}
+
+.l.hasEndIcon {
+  padding-right: 3.5rem;
+}
+
+.xl.hasEndIcon {
+  padding-right: 3.75rem;
 }
 
 @keyframes spin {

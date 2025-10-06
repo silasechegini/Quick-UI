@@ -259,4 +259,138 @@ describe("DebouncedInput Component", () => {
       expect(input).toHaveValue("new value");
     });
   });
+
+  describe("Clear Button", () => {
+    it("shows clear button when clearable is true and input has value", () => {
+      render(<DebouncedInput clearable defaultValue="test" />);
+      const clearButton = screen.getByRole("button");
+      expect(clearButton).toBeInTheDocument();
+    });
+
+    it("does not show clear button when clearable is false", () => {
+      render(<DebouncedInput clearable={false} defaultValue="test" />);
+      expect(screen.queryByRole("button")).not.toBeInTheDocument();
+    });
+
+    it("does not show clear button when input has no value", () => {
+      render(<DebouncedInput clearable />);
+      expect(screen.queryByRole("button")).not.toBeInTheDocument();
+    });
+
+    it("calls onClear when clear button is clicked", () => {
+      const handleClear = vi.fn();
+      render(
+        <DebouncedInput clearable defaultValue="test" onClear={handleClear} />,
+      );
+
+      const clearButton = screen.getByRole("button");
+      fireEvent.click(clearButton);
+
+      expect(handleClear).toHaveBeenCalledTimes(1);
+    });
+
+    it("clears input value when clear button is clicked", () => {
+      const handleChange = vi.fn();
+      render(
+        <DebouncedInput
+          clearable
+          defaultValue="test"
+          onChange={handleChange}
+        />,
+      );
+
+      const input = screen.getByRole("textbox");
+      const clearButton = screen.getByRole("button");
+
+      expect(input).toHaveValue("test");
+
+      fireEvent.click(clearButton);
+
+      expect(input).toHaveValue("");
+    });
+
+    it("maintains focus on input after clearing", () => {
+      render(<DebouncedInput clearable defaultValue="test" />);
+
+      const input = screen.getByRole("textbox");
+      const clearButton = screen.getByRole("button");
+
+      input.focus();
+      fireEvent.click(clearButton);
+
+      expect(document.activeElement).toBe(input);
+    });
+
+    it("triggers debounced onChange when clear button is clicked", () => {
+      const handleChange = vi.fn();
+      render(
+        <DebouncedInput
+          clearable
+          defaultValue="test"
+          onChange={handleChange}
+          debounceDelay={300}
+        />,
+      );
+
+      const clearButton = screen.getByRole("button");
+      fireEvent.click(clearButton);
+
+      // Should trigger onChange immediately (not debounced for clear)
+      expect(handleChange).toHaveBeenCalledTimes(1);
+      expect(handleChange).toHaveBeenCalledWith(
+        expect.objectContaining({
+          target: expect.objectContaining({ value: "" }),
+        }),
+      );
+    });
+
+    it("applies correct CSS classes when clear button is present", () => {
+      render(<DebouncedInput clearable defaultValue="test" />);
+      const input = screen.getByRole("textbox");
+      expect(input.className).toContain("hasClearButton");
+    });
+  });
+
+  describe("Focus Management", () => {
+    it("preserves focus during prop changes", () => {
+      const TestComponent = () => {
+        const [variant, setVariant] = useState<"primary" | "error">("primary");
+        const [showError, setShowError] = useState(false);
+
+        return (
+          <div>
+            <DebouncedInput
+              label="Test Input"
+              variant={variant}
+              error={showError}
+              errorMessage={showError ? "Test error" : undefined}
+            />
+            <button
+              onClick={() => {
+                setVariant("error");
+                setShowError(true);
+              }}
+              data-testid="trigger-error"
+            >
+              Trigger Error
+            </button>
+          </div>
+        );
+      };
+
+      render(<TestComponent />);
+      const input = screen.getByRole("textbox");
+      const triggerButton = screen.getByTestId("trigger-error");
+
+      // Focus the input
+      input.focus();
+      expect(document.activeElement).toBe(input);
+
+      // Trigger prop changes that would normally cause focus loss
+      fireEvent.click(triggerButton);
+
+      // Focus should still be maintained
+      expect(document.activeElement).toBe(input);
+    });
+  });
 });
