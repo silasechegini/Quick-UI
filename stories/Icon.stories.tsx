@@ -4,7 +4,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import Icon from "../src/components/Icon/Icon";
 import { IconProps } from "../src/components/Icon/Icon.types";
 
-// 👇 Pull icon names dynamically (can hardcode for now if needed)
+// Pull icon names dynamically (can hardcode for now if needed)
 import { iconSvgMapping as Icons } from "../src/assets";
 
 const iconNames = Object.keys(Icons) as IconProps["name"][];
