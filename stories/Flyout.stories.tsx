@@ -30,7 +30,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: (args) => {
-    const [openFlyout, setOpenFlyout] = useState<boolean>(true);
+    const [openFlyout, setOpenFlyout] = useState<boolean>(false);
 
     return (
       <>
@@ -69,7 +69,7 @@ export const Default: Story = {
 
 export const withScrollableBody: Story = {
   render: (args) => {
-    const [openFlyout, setOpenFlyout] = useState<boolean>(true);
+    const [openFlyout, setOpenFlyout] = useState<boolean>(false);
 
     return (
       <>
