@@ -8,6 +8,7 @@ import {
   BUTTON_SIZES,
   BUTTON_VARIANTS,
   ICON_POSITIONS,
+  Icon,
 } from "../src";
 
 const meta = {
@@ -20,7 +21,7 @@ const meta = {
   args: {
     onClick: fn(),
     variant: BUTTON_VARIANTS.PRIMARY,
-    size: BUTTON_SIZES.DEFAULT,
+    size: BUTTON_SIZES.MEDIUM,
   },
 } satisfies Meta<typeof Button>;
 
@@ -59,12 +60,20 @@ export const Small: Story = {
   },
 };
 
+export const XSmall: Story = {
+  args: {
+    variant: BUTTON_VARIANTS.PRIMARY,
+    size: BUTTON_SIZES.EXTRASMALL,
+    children: "Extra Small Button",
+  },
+};
+
 export const LeadingIcon: Story = {
   args: {
     variant: BUTTON_VARIANTS.PRIMARY,
     size: BUTTON_SIZES.LARGE,
     children: "Leading Icon",
-    icon: "🚀",
+    icon: <Icon name="upload_icon" size={16} />,
     iconPosition: ICON_POSITIONS.START,
   },
 };
@@ -74,7 +83,7 @@ export const TrailingIcon: Story = {
     variant: BUTTON_VARIANTS.PRIMARY,
     size: BUTTON_SIZES.LARGE,
     children: "Trailing Icon",
-    icon: "🚀",
+    icon: <Icon name="download_icon" size={16} />,
     iconPosition: ICON_POSITIONS.END,
   },
 };
@@ -84,7 +93,8 @@ export const Circular: Story = {
     variant: BUTTON_VARIANTS.PRIMARY,
     size: BUTTON_SIZES.LARGE,
     shape: BUTTON_SHAPES.CIRCULAR,
-    children: "🚀",
+    icon: <Icon name="plus_icon" size={20} />,
+    ariaLabel: "Add item",
     styleOverride: { style: { width: "70px", height: "70px" } },
   },
 };
@@ -101,8 +111,8 @@ export const IconOnly: Story = {
   args: {
     variant: BUTTON_VARIANTS.SECONDARY,
     size: BUTTON_SIZES.SMALL,
-    icon: "⭐",
-    ariaLabel: "Star",
+    icon: <Icon name="checkmark_icon" size={16} />,
+    ariaLabel: "Confirm",
     iconPosition: ICON_POSITIONS.DEFAULT,
   },
 };
@@ -113,6 +123,7 @@ export const Loading: Story = {
     size: BUTTON_SIZES.MEDIUM,
     isLoading: true,
     children: "Loading...",
+    loadingText: "Please wait...",
   },
 };
 
@@ -130,6 +141,38 @@ export const Tertiary: Story = {
     variant: BUTTON_VARIANTS.TERTIARY,
     size: BUTTON_SIZES.MEDIUM,
     children: "Tertiary Button",
+  },
+};
+
+export const Plain: Story = {
+  args: {
+    variant: BUTTON_VARIANTS.PLAIN,
+    size: BUTTON_SIZES.SMALL,
+    icon: <Icon name="settings_icon" size={16} />,
+    ariaLabel: "Settings",
+  },
+};
+
+export const FullWidthComparison: Story = {
+  render: () => (
+    <div
+      style={{
+        width: "400px",
+        display: "flex",
+        flexDirection: "column",
+        gap: "1rem",
+      }}
+    >
+      <Button variant={BUTTON_VARIANTS.PRIMARY} size={BUTTON_SIZES.LARGE}>
+        Regular Large Button
+      </Button>
+      <Button variant={BUTTON_VARIANTS.PRIMARY} fullWidth>
+        Full Width Button (no size needed)
+      </Button>
+    </div>
+  ),
+  parameters: {
+    layout: "centered",
   },
 };
 
@@ -159,6 +202,7 @@ export const Tertiary: Story = {
  * - **Primary**: Use for the main action on a page. There should be only one primary button per screen.
  * - **Secondary**: Use for secondary actions that are important but not the main focus.
  * - **Tertiary**: Use for less prominent actions, such as "Cancel" or "Learn More".
+ * - **Plain**: Use for minimal icon-only buttons or subtle actions with no background styling.
  *
  * ### Sizes
  *
@@ -183,6 +227,8 @@ export const Tertiary: Story = {
  * ### Full Width
  *
  * - Use full-width buttons for actions that need to span the entire width of their container, such as in forms or mobile views.
+ * - When `fullWidth` is true, the button automatically gets appropriate sizing and ignores the `size` prop.
+ * - Full-width buttons have consistent padding and font size optimized for spanning containers.
  *
  * ### Customization
  *
@@ -191,8 +237,26 @@ export const Tertiary: Story = {
  * ### Example Usage
  *
  * ```tsx
+ * // Basic button
  * <Button variant="primary" size="large" onClick={handleClick}>
  *   Click Me
+ * </Button>
+ *
+ * // Button with icon
+ * <Button variant="secondary" icon={<Icon name="settings_icon" size={16} />}>
+ *   Settings
+ * </Button>
+ *
+ * // Icon-only button
+ * <Button
+ *   variant="plain"
+ *   icon={<Icon name="close_icon" size={16} />}
+ *   ariaLabel="Close dialog"
+ * />
+ *
+ * // Full-width button
+ * <Button variant="primary" fullWidth>
+ *   Submit Form
  * </Button>
  * ```
  */
