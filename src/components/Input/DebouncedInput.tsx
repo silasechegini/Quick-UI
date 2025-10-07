@@ -10,16 +10,26 @@ export interface DebouncedInputHandle {
 }
 
 const DebouncedInput = forwardRef<DebouncedInputHandle, DebouncedInputProps>(
-  ({ onChange, debounceDelay = 300, defaultValue, ...props }, ref) => {
+  (
+    {
+      onChange,
+      onClear,
+      debounceDelay = 300,
+      defaultValue,
+      error,
+      value: controlledValue,
+      ...props
+    },
+    ref,
+  ) => {
     const [inputValue, setInputValue] = useState(
-      defaultValue?.toString() || "",
+      defaultValue?.toString() || controlledValue?.toString() || "",
     );
     const inputRef = useRef<HTMLInputElement>(null);
 
     const { debounceFn, resetDebounce, clearDebounce } = useDebounce(
       (...args: unknown[]) => {
         if (onChange) {
-          // Assume the first argument is the event
           onChange(args[0] as React.ChangeEvent<HTMLInputElement>);
         }
       },
@@ -37,11 +47,20 @@ const DebouncedInput = forwardRef<DebouncedInputHandle, DebouncedInputProps>(
       debounceFn(e);
     };
 
+    const handleClearInput = () => {
+      if (onClear) {
+        onClear();
+      }
+      setInputValue("");
+    };
+
     return (
       <Input
         ref={inputRef}
         onChange={handleChange}
         value={inputValue}
+        error={error}
+        onClear={handleClearInput}
         {...props}
       />
     );

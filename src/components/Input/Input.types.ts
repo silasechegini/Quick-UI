@@ -63,6 +63,17 @@ export interface InputProps
   endIcon?: IconKey;
 
   /**
+   * Whether the input should show a clear button when it has value
+   * @default false
+   */
+  clearable?: boolean;
+
+  /**
+   * Callback when clear button is clicked
+   */
+  onClear?: () => void;
+
+  /**
    * Custom class name for the input container
    */
   containerClassName?: string;

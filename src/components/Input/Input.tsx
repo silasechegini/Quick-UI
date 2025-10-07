@@ -2,6 +2,7 @@ import { forwardRef } from "react";
 import { InputProps } from "./Input.types";
 import { Icon } from "../Icon";
 import styles from "./styles.module.scss";
+import { Button, BUTTON_SIZES, BUTTON_VARIANTS } from "..";
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
   (
@@ -16,10 +17,13 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       loading = false,
       startIcon,
       endIcon,
+      clearable = false,
+      onClear,
       containerClassName,
       className,
       disabled,
       id,
+      value,
       ...props
     },
     ref,
@@ -33,6 +37,19 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
 
     // Override variant to error if error prop is true
     const effectiveVariant = error ? "error" : variant;
+
+    // Determine if clear button should be shown
+    const shouldShowClear =
+      clearable && value && String(value).length > 0 && !loading && !disabled;
+
+    // Determine the actual end icon to show
+    const actualEndIcon = shouldShowClear ? "clear_icon" : endIcon;
+
+    const handleClearClick = () => {
+      if (onClear) {
+        onClear();
+      }
+    };
 
     return (
       <div className={containerClasses}>
@@ -58,13 +75,16 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
               styles[size],
               fullWidth && styles.fullWidth,
               startIcon && styles.hasStartIcon,
-              (endIcon || loading) && styles.hasEndIcon,
+              shouldShowClear && styles.hasClearButton,
+              actualEndIcon && !shouldShowClear && styles.hasEndIcon,
+              loading && styles.hasEndIcon,
               loading && styles.loading,
               className,
             ]
               .filter(Boolean)
               .join(" ")}
             disabled={disabled || loading}
+            value={value}
             {...props}
           />
 
@@ -72,9 +92,22 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             <div className={styles.endIcon}>
               <Icon name="loading_icon" size={16} />
             </div>
-          ) : endIcon ? (
+          ) : shouldShowClear ? (
+            <div className={styles.clearButton}>
+              <Button
+                variant={BUTTON_VARIANTS.PLAIN}
+                size={BUTTON_SIZES.EXTRASMALL}
+                icon={<Icon name="clear_icon" size={16} />}
+                onClick={handleClearClick}
+                onMouseDown={(e) => e.preventDefault()}
+                type="button"
+                tabIndex={-1}
+                aria-label="Clear input"
+              />
+            </div>
+          ) : actualEndIcon ? (
             <div className={styles.endIcon}>
-              <Icon name={endIcon} size={16} />
+              <Icon name={actualEndIcon} size={16} />
             </div>
           ) : null}
         </div>

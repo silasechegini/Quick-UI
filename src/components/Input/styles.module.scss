@@ -134,12 +134,64 @@
   pointer-events: none;
 }
 
+.clearButton {
+  position: absolute;
+  right: 0.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100% - 0.5rem);
+  width: 2.5rem;
+  border-radius: var(--radius-sm);
+
+  button {
+    width: 100% !important;
+    height: 100% !important;
+    padding: 0 !important;
+    min-width: auto !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: var(--radius-sm) !important;
+    color: var(--gray-400) !important;
+    transition: all 0.2s ease-in-out !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    &:hover {
+      background: var(--gray-100) !important;
+      color: var(--gray-600) !important;
+      box-shadow: none !important;
+      transform: none !important;
+    }
+
+    &:active {
+      background: var(--gray-200) !important;
+      box-shadow: none !important;
+      transform: none !important;
+    }
+
+    &:focus {
+      outline: 2px solid var(--color-primary) !important;
+      outline-offset: 1px !important;
+    }
+  }
+}
+
 .hasStartIcon {
   padding-left: 2.5rem;
 }
 
 .hasEndIcon {
-  padding-right: 2.5rem;
+  padding-right: 4rem;
+}
+
+.hasClearButton {
+  padding-right: 4rem;
 }
 
 // Loading state

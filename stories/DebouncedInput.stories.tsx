@@ -132,29 +132,35 @@ export const WithCallback: Story = {
   },
 };
 
-export const FormValidation: Story = {
+export const ClearableFormValidation: Story = {
   render: () => {
     const [email, setEmail] = useState("");
     const [isValid, setIsValid] = useState<boolean | null>(null);
     const [isValidating, setIsValidating] = useState(false);
 
     const validateEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
+      event.preventDefault();
       const value = event.target.value;
-      setEmail(value);
 
       if (!value.trim()) {
         setIsValid(null);
+        setIsValidating(false);
         return;
       }
 
       setIsValidating(true);
 
-      // Simulate validation API call
       setTimeout(() => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         setIsValid(emailRegex.test(value));
         setIsValidating(false);
       }, 300);
+    };
+
+    const handleClear = () => {
+      setEmail("");
+      setIsValid(null);
+      setIsValidating(false);
     };
 
     return (
@@ -164,7 +170,8 @@ export const FormValidation: Story = {
           placeholder="Enter your email..."
           type="email"
           debounceDelay={300}
-          onChange={validateEmail}
+          onChange={(e) => setEmail(e.target.value)}
+          onBlur={validateEmail}
           variant={
             isValid === false
               ? "error"
@@ -190,6 +197,8 @@ export const FormValidation: Story = {
                 : undefined
           }
           value={email}
+          clearable
+          onClear={handleClear}
         />
       </div>
     );
