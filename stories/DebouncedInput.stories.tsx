@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { fn } from "storybook/test";
 import { DebouncedInput } from "../src/components/Input";
 import { useState } from "react";
+import styles from "./input.module.scss";
 
 const meta = {
   title: "Components/DebouncedInput",
@@ -35,6 +36,7 @@ export const Default: Story = {
   args: {
     placeholder: "Type to see debounced output...",
     debounceDelay: 300,
+    className: styles.inputOverride,
   },
 };
 
