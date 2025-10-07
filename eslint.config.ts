@@ -1,4 +1,3 @@
-// eslint.config.js
 import js from "@eslint/js";
 import tseslint from "typescript-eslint";
 import react from "eslint-plugin-react";
@@ -55,11 +54,6 @@ export default [
     files: ["**/*.ts", "**/*.tsx"],
     languageOptions: {
       parser: tseslint.parser,
-      // parserOptions: {
-      //     project: ["./tsconfig.json"],
-      //     sourceType: "module",
-      //     tsconfigRootDir: __dirname,
-      // },
     },
     rules: {
       // Add or override TypeScript-specific rules here
