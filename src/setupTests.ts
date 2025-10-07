@@ -1,7 +1,6 @@
 import "@testing-library/jest-dom";
 import { beforeAll, vi } from "vitest";
 
-// Make vitest functions available globally as jest equivalents
 beforeAll(() => {
   global.jest = {
     fn: vi.fn,
