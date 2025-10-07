@@ -1,8 +1,8 @@
-import React, { FC, useState } from "react";
+import { FC, useState } from "react";
 import { Button, BUTTON_VARIANTS } from "../../Button";
-import { iconSvgMapping } from "../../../assets";
 import { HamburgerMenuItem, User } from "../Header.types";
 import styles from "../styles.module.scss";
+import { Icon, IconName } from "@components/index";
 
 interface HeaderHamburgerMenuProps {
   showHamburgerMenu?: boolean;
@@ -105,21 +105,10 @@ export const HeaderHamburgerMenu: FC<HeaderHamburgerMenuProps> = ({
                 disabled={item.disabled || false}
                 role="menuitem"
               >
-                {item.icon && (
-                  <div className={styles.menuItemIcon}>
-                    {iconSvgMapping[item.icon as keyof typeof iconSvgMapping] &&
-                      React.createElement(
-                        iconSvgMapping[
-                          item.icon as keyof typeof iconSvgMapping
-                        ],
-                        {
-                          width: 16,
-                          height: 16,
-                        },
-                      )}
-                  </div>
-                )}
-                {item.label}
+                <div className={styles.menuItemContainer}>
+                  {item.icon && <Icon name={item.icon as IconName} size={16} />}
+                  {item.label}
+                </div>
               </Button>
             );
           })}

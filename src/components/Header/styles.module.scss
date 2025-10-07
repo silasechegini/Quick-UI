@@ -200,13 +200,11 @@
   background-color: transparent !important;
 }
 
-.menuItemIcon {
+.menuItemContainer {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 16px;
-  height: 16px;
-  color: #666;
+  gap: var(--space-4);
 }
 
 .menuDivider {
