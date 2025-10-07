@@ -21,7 +21,6 @@
     "noUnusedParameters": true,
     "noEmit": false,
     "baseUrl": ".",
-    "rootDir": "./src",
     "paths": {
       "@assets/*": ["src/assets/*"],
       "@components/*": ["src/components/*"],
@@ -31,6 +30,6 @@
     },
     "typeRoots": ["./node_modules/@types", "./src/types"]
   },
-  "include": ["src/**/*", "jest.config.js"],
-  "exclude": ["node_modules", "dist", "test"]
+  "include": ["src/**/*", "stories/**/*", "jest.config.js"],
+  "exclude": ["node_modules", "dist"]
 }
