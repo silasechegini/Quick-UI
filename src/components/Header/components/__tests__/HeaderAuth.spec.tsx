@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { vi } from "vitest";
-import { HeaderAuthButtons } from "../HeaderAuthButtons";
+import { HeaderAuth } from "../HeaderAuth";
 import { ButtonProps } from "@components/Button";
 
 // Mock the Button component
@@ -32,76 +32,67 @@ vi.mock("../../styles.module.scss", () => ({
   },
 }));
 
-describe("HeaderAuthButtons", () => {
+describe("HeaderAuth", () => {
   it("returns null when showAuth is false", () => {
-    const { container } = render(<HeaderAuthButtons showAuth={false} />);
+    const { container } = render(<HeaderAuth showAuth={false} />);
     expect(container.firstChild).toBeNull();
   });
 
   it("returns null when user is present (logged in)", () => {
     const user = { name: "John Doe", email: "john@example.com" };
-    const { container } = render(<HeaderAuthButtons user={user} />);
+    const { container } = render(<HeaderAuth user={user} />);
     expect(container.firstChild).toBeNull();
   });
 
   it("returns null when showAuth is true but user is present", () => {
     const user = { name: "John Doe", email: "john@example.com" };
-    const { container } = render(
-      <HeaderAuthButtons showAuth={true} user={user} />,
-    );
+    const { container } = render(<HeaderAuth showAuth={true} user={user} />);
     expect(container.firstChild).toBeNull();
   });
 
   it("renders auth buttons when showAuth is true and no user", () => {
-    render(<HeaderAuthButtons showAuth={true} />);
+    render(<HeaderAuth showAuth={true} />);
 
-    expect(screen.getByText("Log in")).toBeInTheDocument();
-    expect(screen.getByText("Sign up")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "Menu" }));
+
+    expect(
+      screen.getByRole("menuitem", { name: /Log in/ }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("menuitem", { name: /Sign up/ }),
+    ).toBeInTheDocument();
   });
 
   it("renders auth buttons by default when no user (showAuth defaults to true)", () => {
-    render(<HeaderAuthButtons />);
+    render(<HeaderAuth />);
 
-    expect(screen.getByText("Log in")).toBeInTheDocument();
-    expect(screen.getByText("Sign up")).toBeInTheDocument();
-  });
+    fireEvent.click(screen.getByRole("button", { name: "Menu" }));
 
-  it("applies correct styling and variants to buttons", () => {
-    render(<HeaderAuthButtons />);
-
-    const loginButton = screen.getByText("Log in");
-    const signupButton = screen.getByText("Sign up");
-
-    expect(loginButton).toHaveAttribute("data-variant", "tertiary");
-    expect(loginButton).toHaveAttribute("data-size", "small");
-
-    expect(signupButton).toHaveAttribute("data-variant", "primary");
-    expect(signupButton).toHaveAttribute("data-size", "small");
-  });
-
-  it("applies correct container styling", () => {
-    render(<HeaderAuthButtons />);
-
-    const container = screen.getByText("Log in").parentElement;
-    expect(container).toHaveClass("authButtons");
+    expect(
+      screen.getByRole("menuitem", { name: /Log in/ }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("menuitem", { name: /Sign up/ }),
+    ).toBeInTheDocument();
   });
 
   it("calls onLogin when login button is clicked", () => {
     const mockOnLogin = vi.fn();
-    render(<HeaderAuthButtons onLogin={mockOnLogin} />);
+    render(<HeaderAuth onLogin={mockOnLogin} />);
 
-    const loginButton = screen.getByText("Log in");
-    fireEvent.click(loginButton);
+    fireEvent.click(screen.getByRole("button", { name: "Menu" }));
+
+    fireEvent.click(screen.getByRole("menuitem", { name: /Log in/ }));
 
     expect(mockOnLogin).toHaveBeenCalledTimes(1);
   });
 
   it("calls onCreateAccount when sign up button is clicked", () => {
     const mockOnCreateAccount = vi.fn();
-    render(<HeaderAuthButtons onCreateAccount={mockOnCreateAccount} />);
+    render(<HeaderAuth onCreateAccount={mockOnCreateAccount} />);
 
-    const signupButton = screen.getByText("Sign up");
-    fireEvent.click(signupButton);
+    fireEvent.click(screen.getByRole("button", { name: "Menu" }));
+    fireEvent.click(screen.getByRole("menuitem", { name: /Sign up/ }));
 
     expect(mockOnCreateAccount).toHaveBeenCalledTimes(1);
   });
@@ -110,40 +101,41 @@ describe("HeaderAuthButtons", () => {
     const mockOnLogin = vi.fn();
     const mockOnCreateAccount = vi.fn();
     render(
-      <HeaderAuthButtons
+      <HeaderAuth
         onLogin={mockOnLogin}
         onCreateAccount={mockOnCreateAccount}
       />,
     );
 
-    const loginButton = screen.getByText("Log in");
-    const signupButton = screen.getByText("Sign up");
+    fireEvent.click(screen.getByRole("button", { name: "Menu" }));
 
-    fireEvent.click(loginButton);
+    fireEvent.click(screen.getByRole("menuitem", { name: /Log in/ }));
     expect(mockOnLogin).toHaveBeenCalledTimes(1);
     expect(mockOnCreateAccount).toHaveBeenCalledTimes(0);
 
-    fireEvent.click(signupButton);
+    fireEvent.click(screen.getByRole("button", { name: "Menu" }));
+
+    fireEvent.click(screen.getByRole("menuitem", { name: /Sign up/ }));
     expect(mockOnLogin).toHaveBeenCalledTimes(1);
     expect(mockOnCreateAccount).toHaveBeenCalledTimes(1);
   });
 
   it("works without click handlers", () => {
-    render(<HeaderAuthButtons />);
-
-    const loginButton = screen.getByText("Log in");
-    const signupButton = screen.getByText("Sign up");
+    render(<HeaderAuth />);
 
     // Should not throw errors when clicked without handlers
     expect(() => {
-      fireEvent.click(loginButton);
-      fireEvent.click(signupButton);
+      fireEvent.click(screen.getByRole("button", { name: "Menu" }));
+      fireEvent.click(screen.getByRole("menuitem", { name: /Log in/ }));
+
+      fireEvent.click(screen.getByRole("button", { name: "Menu" }));
+      fireEvent.click(screen.getByRole("menuitem", { name: /Sign up/ }));
     }).not.toThrow();
   });
 
   it("handles user object with minimal properties", () => {
     const user = { name: "Minimal User" };
-    const { container } = render(<HeaderAuthButtons user={user} />);
+    const { container } = render(<HeaderAuth user={user} />);
     expect(container.firstChild).toBeNull();
   });
 
@@ -154,7 +146,7 @@ describe("HeaderAuthButtons", () => {
       avatar: "/avatar.jpg",
       role: "admin",
     };
-    const { container } = render(<HeaderAuthButtons user={user} />);
+    const { container } = render(<HeaderAuth user={user} />);
     expect(container.firstChild).toBeNull();
   });
 });

@@ -3,7 +3,7 @@ import { HeaderProps } from "./Header.types";
 import {
   HeaderBrand,
   HeaderNavigation,
-  HeaderAuthButtons,
+  HeaderAuth,
   HeaderUserSection,
   HeaderHamburgerMenu,
 } from "./components";
@@ -57,7 +57,7 @@ const Header: FC<HeaderProps> = ({
 
         <div className={styles.rightSection}>
           {actions && <div className={styles.actions}>{actions}</div>}
-          <HeaderAuthButtons
+          <HeaderAuth
             showAuth={showAuth}
             user={user}
             onLogin={onLogin}
