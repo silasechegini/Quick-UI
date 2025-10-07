@@ -36,7 +36,7 @@ export const Default: Story = {
   args: {
     placeholder: "Type to see debounced output...",
     debounceDelay: 300,
-    className: styles.inputOverride
+    className: styles.inputOverride,
   },
 };
 
