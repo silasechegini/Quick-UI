@@ -134,7 +134,6 @@ export const FullWidth: Story = {
   },
 };
 
-// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Tertiary: Story = {
   args: {
     variant: BUTTON_VARIANTS.TERTIARY,
@@ -176,6 +175,7 @@ export const FullWidthComparison: Story = {
 };
 
 /**
+ * // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
  * ## Button
  *
  * Buttons allow users to take actions, and make choices, with a single tap.
