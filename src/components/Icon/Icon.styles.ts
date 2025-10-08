@@ -2,9 +2,11 @@ import { CSSProperties } from "react";
 
 export const getIconStyle = (
   size: number | string,
-  color: string,
+  color?: string,
+  fill?: string,
 ): CSSProperties => ({
   width: size,
   height: size,
-  fill: color,
+  fill,
+  color,
 });

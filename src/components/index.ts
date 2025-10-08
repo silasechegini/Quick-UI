@@ -3,3 +3,8 @@ export * from "./ComboBox";
 export * from "./Input";
 export * from "./MultiSelect";
 export * from "./Icon";
+export * from "./Chip";
+export * from "./Flyout";
+export * from "./Header";
+export * from "./Page";
+export * from "./Slider";

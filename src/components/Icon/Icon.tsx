@@ -15,7 +15,7 @@ import type { IconProps } from "./Icon.types";
  * @returns {JSX.Element | null} The rendered icon component or null if the icon name is invalid.
  *
  * @example
- * <Icon name="home_icon" size={32} color="#000" />
+ * <Icon name="home_icon" size={32} color="#000" fill="#fff" />
  * <Icon name="user_icon" />
  *
  * @remarks Will log a warning if the icon name does not exist in the iconSvgMapping.
@@ -25,6 +25,7 @@ const Icon: FC<IconProps> = ({
   name,
   size = 24,
   color = "",
+  fill = "",
   style,
   className,
 }) => {
@@ -40,7 +41,7 @@ const Icon: FC<IconProps> = ({
   }
 
   const combinedStyle = {
-    ...getIconStyle(size, color),
+    ...getIconStyle(size, color, fill),
     ...style,
   };
 
