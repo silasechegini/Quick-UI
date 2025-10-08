@@ -24,7 +24,7 @@ const Chip: React.FC<ChipProps> = ({
       return [styles.statusContainer, status.class].join(" ");
     }
     if (typeof status === "string") {
-      return [styles.statusContainer, styles[status] || styles.info].join(" ");
+      return [styles.statusContainer, styles[status]].join(" ");
     }
     return undefined;
   }, [status]);
@@ -72,6 +72,7 @@ const Chip: React.FC<ChipProps> = ({
       style={style}
       aria-disabled={disabled}
       aria-label={ariaLabel}
+      tabIndex={interactive && !disabled ? 0 : -1}
     >
       {status && <span className={statusStyle}></span>}
       {leadingIcon && leadingIcon}
@@ -85,7 +86,6 @@ const Chip: React.FC<ChipProps> = ({
             onClick={onClick}
             onMouseDown={(e) => e.preventDefault()}
             type="button"
-            tabIndex={1}
             aria-label="Clear input"
             disabled={disabled}
           />
