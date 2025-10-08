@@ -14,6 +14,8 @@ const Chip: React.FC<ChipProps> = ({
   disabled,
   variant,
   interactive,
+  leadingIcon,
+  trailingIcon,
   status,
   children,
 }) => {
@@ -32,11 +34,12 @@ const Chip: React.FC<ChipProps> = ({
       [
         styles.chipContainer,
         styles.chip,
+        (leadingIcon || trailingIcon) && styles.chip_with_icon,
         styles[variant || "ghost"],
         styles[size || "medium"],
         disabled ? styles.disabled : "",
         interactive && !disabled
-          ? `${styles.chip_and_button} ${styles.interactive}`
+          ? `${styles.chip_with_button} ${styles.interactive}`
           : "",
         className,
       ].join(" "),
@@ -63,6 +66,7 @@ const Chip: React.FC<ChipProps> = ({
       aria-label={ariaLabel}
     >
       {status && <span className={statusStyle}></span>}
+      {leadingIcon && leadingIcon}
       {children || <span>{text}</span>}
       {interactive && !disabled && (
         <div className={styles.clearButton}>
@@ -79,6 +83,7 @@ const Chip: React.FC<ChipProps> = ({
           />
         </div>
       )}
+      {trailingIcon && trailingIcon}
     </div>
   );
 };

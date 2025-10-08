@@ -15,6 +15,8 @@ export interface ChipProps {
   variant?: "solid" | "outline" | "ghost";
   children?: React.ReactNode;
   interactive?: boolean;
+  leadingIcon?: React.ReactNode;
+  trailingIcon?: React.ReactNode;
 }
 
 export enum CHIP_SIZES {

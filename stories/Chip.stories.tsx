@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { fn } from "storybook/test";
-import { Chip } from "../src";
+import { Chip, Icon } from "../src";
 import {
   CHIP_SIZES,
   CHIP_STATUSES,
@@ -106,5 +106,27 @@ export const WithCustomStyle: Story = {
   args: {
     text: "Custom Style",
     style: { backgroundColor: "#e0f7fa", color: "#006064" },
+  },
+};
+
+export const WithLeadingIcon: Story = {
+  args: {
+    text: "Leading Icon",
+    leadingIcon: <Icon name="chevron_left_icon" size={16} />,
+  },
+};
+
+export const WithTrailingIcon: Story = {
+  args: {
+    text: "Trailing Icon",
+    trailingIcon: <Icon name="chevron_right_icon" size={16} />,
+  },
+};
+
+export const WithBothIcons: Story = {
+  args: {
+    text: "Both Icons",
+    leadingIcon: <Icon name="chevron_left_icon" size={16} />,
+    trailingIcon: <Icon name="chevron_right_icon" size={16} />,
   },
 };

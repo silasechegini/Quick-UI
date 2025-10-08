@@ -22,7 +22,11 @@
   transition: all 0.2s ease-in-out;
 }
 
-.chip_and_button {
+.chip_with_icon {
+  gap: 0.3rem;
+}
+
+.chip_with_button {
   justify-content: space-between;
   width: auto;
 }
