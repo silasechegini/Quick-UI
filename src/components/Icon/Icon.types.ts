@@ -5,6 +5,7 @@ export interface IconProps {
   name: keyof typeof Icons;
   size?: number | string;
   color?: string;
+  fill?: string;
   style?: CSSProperties;
   className?: string;
 }

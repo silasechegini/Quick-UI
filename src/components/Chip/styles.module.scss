@@ -1,0 +1,140 @@
+.chipContainer {
+  position: relative;
+  display: flex;
+  width: 100%;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.15rem 0.5rem;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  border-radius: var(--radius-full);
+  background-color: var(--gray-100);
+  color: var(--gray-800);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 100%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease-in-out;
+}
+
+.chip_with_icon {
+  gap: 0.3rem;
+}
+
+.chip_with_button {
+  justify-content: space-between;
+  width: auto;
+}
+
+.solid {
+  background-color: var(--gray-400);
+  color: #fff;
+}
+
+.outline {
+  background-color: transparent;
+  border: 1px solid var(--gray-300);
+}
+
+.ghost {
+  background-color: transparent;
+  color: var(--color-black);
+  box-shadow: none;
+}
+
+.small {
+  font-size: var(--font-size-xs);
+  padding: 0.125rem 0.5rem;
+}
+
+.medium {
+  font-size: var(--font-size-sm);
+  padding: 0.25rem 0.5rem;
+}
+
+.large {
+  font-size: var(--font-size-base);
+  padding: 0.375rem 0.5rem;
+}
+
+.info {
+  background-color: var(--color-info);
+  color: #fff;
+}
+
+.statusContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--width-10);
+  height: var(--width-10);
+  border-radius: var(--radius-full);
+  margin-right: var(--space-2);
+  flex-shrink: 0;
+}
+
+.success {
+  background-color: var(--color-success);
+  color: #fff;
+}
+
+.warning {
+  background-color: var(--color-warning);
+  color: #fff;
+}
+
+.disabled {
+  background-color: var(--gray-200);
+  color: var(--gray-500);
+  cursor: not-allowed;
+}
+
+.error {
+  background-color: var(--color-danger);
+  color: #fff;
+}
+
+.clearButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.25rem;
+  border-radius: var(--radius-full);
+  height: calc(100% - var(--space-1));
+
+  button {
+    padding: 0 !important;
+    min-width: auto !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: var(--gray-400) !important;
+    transition: all 0.2s ease-in-out !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    &:hover {
+      background: var(--gray-100) !important;
+      color: var(--gray-600) !important;
+      box-shadow: none !important;
+      transform: none !important;
+    }
+
+    &:active {
+      background: var(--gray-200) !important;
+      box-shadow: none !important;
+      transform: none !important;
+    }
+
+    &:focus {
+      outline: 2px solid var(--color-primary) !important;
+      outline-offset: 1px !important;
+    }
+  }
+}
