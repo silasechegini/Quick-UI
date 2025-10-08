@@ -35,7 +35,9 @@ const Chip: React.FC<ChipProps> = ({
         styles[variant || "ghost"],
         styles[size || "medium"],
         disabled ? styles.disabled : "",
-        interactive && !disabled ? styles.interactive : "",
+        interactive && !disabled
+          ? `${styles.chip_and_button} ${styles.interactive}`
+          : "",
         className,
       ].join(" "),
     [className, disabled, interactive, size, variant],
