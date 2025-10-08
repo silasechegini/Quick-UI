@@ -7,6 +7,5 @@ export const getIconStyle = (
 ): CSSProperties => ({
   width: size,
   height: size,
-  fill,
-  color,
+  ...(fill ? { fill } : color ? { color } : {}),
 });

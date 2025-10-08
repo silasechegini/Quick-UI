@@ -105,7 +105,7 @@
   justify-content: center;
   margin-left: 0.25rem;
   border-radius: var(--radius-full);
-  height: calc(100% - 4px);
+  height: calc(100% - var(--space-1));
 
   button {
     padding: 0 !important;

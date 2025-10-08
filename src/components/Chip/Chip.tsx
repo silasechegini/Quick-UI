@@ -26,7 +26,7 @@ const Chip: React.FC<ChipProps> = ({
     if (typeof status === "string") {
       return [styles.statusContainer, styles[status] || styles.info].join(" ");
     }
-    return styles.info;
+    return undefined;
   }, [status]);
 
   const chipClasses = useMemo(
@@ -43,7 +43,15 @@ const Chip: React.FC<ChipProps> = ({
           : "",
         className,
       ].join(" "),
-    [className, disabled, interactive, size, variant],
+    [
+      className,
+      disabled,
+      interactive,
+      size,
+      variant,
+      leadingIcon,
+      trailingIcon,
+    ],
   );
 
   const iconSize = useMemo(() => {
