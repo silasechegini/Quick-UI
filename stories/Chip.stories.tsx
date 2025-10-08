@@ -85,7 +85,7 @@ export const StatusError: Story = {
 export const StatusCustom: Story = {
   args: {
     text: "Custom Status",
-    status: { name: "", class: styles["custom-status"] },
+    status: { class: styles["custom-status"] },
   },
 };
 export const Disabled: Story = {

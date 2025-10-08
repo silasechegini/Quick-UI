@@ -72,7 +72,7 @@ const Chip: React.FC<ChipProps> = ({
       aria-label={ariaLabel}
       tabIndex={interactive && !disabled ? 0 : -1}
     >
-      {status && <span className={statusStyle}></span>}
+      {status && <span className={statusStyle} />}
       {leadingIcon && leadingIcon}
       {children || <span>{text}</span>}
       {interactive && !disabled && (

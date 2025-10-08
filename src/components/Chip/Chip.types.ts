@@ -1,12 +1,7 @@
 export interface ChipProps {
   text: string;
   size?: "small" | "medium" | "large";
-  status?:
-    | "info"
-    | "success"
-    | "warning"
-    | "error"
-    | { name: string; class: string };
+  status?: "info" | "success" | "warning" | "error" | { class: string };
   className?: string;
   ariaLabel?: string;
   style?: React.CSSProperties;
