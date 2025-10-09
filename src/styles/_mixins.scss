@@ -112,9 +112,10 @@ $spacing-map: (
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: normal;
-    // You may want to set a max-height based on the number of lines and line-height
+    // TODO:
+    // Might be ideal to set a max-height based on the number of lines and line-height
     // Example: max-height: calc(#{$lines} * 1.2em);
-    // If you use a custom line-height, adjust accordingly
+    // if custom line-height, adjust accordingly
     max-height: calc(#{$lines} * 1.2em);
   }
 }
