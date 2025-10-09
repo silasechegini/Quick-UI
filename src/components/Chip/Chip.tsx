@@ -2,6 +2,7 @@ import React, { useMemo } from "react";
 import { ChipProps } from "./Chip.types";
 import { Button, BUTTON_SIZES, BUTTON_VARIANTS } from "@components/Button";
 import { Icon } from "@components/Icon";
+import { buildClassNames } from "@utils/classNames";
 import styles from "./styles.module.scss";
 
 const Chip: React.FC<ChipProps> = ({
@@ -10,7 +11,7 @@ const Chip: React.FC<ChipProps> = ({
   className,
   ariaLabel,
   style,
-  onClick,
+  onRemove,
   disabled,
   variant,
   interactive,
@@ -31,16 +32,20 @@ const Chip: React.FC<ChipProps> = ({
 
   const chipClasses = useMemo(
     () =>
-      [
-        styles.chipContainer,
-        styles.chip,
-        (leadingIcon || trailingIcon) && styles.chip_with_icon,
-        styles[variant || "ghost"],
-        styles[size || "medium"],
-        disabled ? styles.disabled : "",
-        interactive && !disabled ? `${styles.chip_with_button}` : "",
+      buildClassNames(
+        [
+          styles.chipContainer,
+          styles.chip,
+          styles[variant || "ghost"],
+          styles[size || "medium"],
+        ],
+        {
+          [styles.chip_with_icon]: !!(leadingIcon || trailingIcon),
+          [styles.chip_with_button]: !!(interactive && !disabled),
+          [styles.disabled]: !!disabled,
+        },
         className,
-      ].join(" "),
+      ),
     [
       className,
       disabled,
@@ -81,10 +86,10 @@ const Chip: React.FC<ChipProps> = ({
             variant={BUTTON_VARIANTS.PLAIN}
             size={BUTTON_SIZES.EXTRASMALL}
             icon={<Icon name="clear_icon" size={iconSize} />}
-            onClick={onClick}
+            onClick={onRemove}
             onMouseDown={(e) => e.preventDefault()}
             type="button"
-            aria-label="Clear input"
+            aria-label="delete chip"
             disabled={disabled}
           />
         </div>

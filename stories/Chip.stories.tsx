@@ -17,7 +17,7 @@ const meta = {
   },
   tags: ["autodocs"],
   args: {
-    onClick: fn(),
+    onRemove: fn(),
     variant: CHIP_VARIANTS.OUTLINE,
     size: CHIP_SIZES.MEDIUM,
   },

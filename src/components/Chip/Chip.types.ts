@@ -5,7 +5,7 @@ export interface ChipProps {
   className?: string;
   ariaLabel?: string;
   style?: React.CSSProperties;
-  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onRemove?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   disabled?: boolean;
   variant?: "solid" | "outline" | "ghost";
   children?: React.ReactNode;
