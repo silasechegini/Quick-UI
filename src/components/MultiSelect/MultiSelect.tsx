@@ -9,6 +9,7 @@ import React, {
 import type { MultiSelectProps, MultiSelectOption } from "./MultiSelect.types";
 import { iconSvgMapping } from "@assets";
 import styles from "./styles.module.scss";
+import { Chip } from "@components/Chip";
 
 const ClearIcon = iconSvgMapping["clear_icon"];
 
@@ -239,20 +240,18 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
       </div>
       <div className={styles.tagContainer}>
         {selectedOptions.map((opt) => (
-          <span key={opt.value} className={styles.tag}>
-            {opt.label}
-            <button
-              type="button"
-              className={styles.tagRemoveBtn}
-              onClick={(e) => {
-                e.stopPropagation();
-                handleRemove(opt.value);
-              }}
-              aria-label={`Remove tag ${opt.label}`}
-            >
-              <ClearIcon className={styles.clearIcon} />
-            </button>
-          </span>
+          <Chip
+            key={opt.value}
+            text={opt.label}
+            interactive={true}
+            onRemove={(e) => {
+              e.stopPropagation();
+              handleRemove(opt.value);
+            }}
+            size="small"
+            variant="outline"
+            disabled={disabled}
+          />
         ))}
       </div>
     </>
