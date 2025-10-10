@@ -77,6 +77,11 @@ export interface InputProps
    * Custom class name for the input container
    */
   containerClassName?: string;
+
+  /**
+   * Configuration for the input
+   */
+  configuration?: "multi-select" | "";
 }
 
 export interface DebouncedInputProps extends Omit<InputProps, "onChange"> {

@@ -7,7 +7,7 @@ import {
   ButtonProps,
   ICON_POSITIONS,
 } from "./Button.types";
-import classNames from "classnames";
+import { combineClasses } from "../../utils";
 import { Icon } from "../Icon";
 
 /** ButtonBase - The foundational button component handling core functionality and styling.
@@ -41,19 +41,18 @@ const ButtonBase: React.FC<ButtonProps> = ({
   styleOverride,
   ariaLabel,
   as: Component = "button",
+  disabled = false,
   ...rest
 }) => {
   const isIconOnly = !children && icon;
 
-  const combinedClassName = classNames(
+  const combinedClassName = combineClasses(
     styles.button,
     styles[variant],
     !fullWidth && styles[size], // Only apply size if not fullWidth
     styles[shape],
-    {
-      [styles.fullWidth]: fullWidth,
-      [styles.loading]: isLoading,
-    },
+    fullWidth && styles.fullWidth,
+    isLoading && styles.loading,
     className,
     styleOverride?.className,
   );
@@ -66,13 +65,15 @@ const ButtonBase: React.FC<ButtonProps> = ({
         </span>
       )}
       {!isLoading && icon && iconPosition === ICON_POSITIONS.START && (
-        <span className={classNames(styles.icon, styles.iconStart)}>
+        <span className={combineClasses(styles.icon, styles.iconStart)}>
           {icon}
         </span>
       )}
       {children && <span className={styles.label}>{children}</span>}
       {!isLoading && icon && iconPosition === ICON_POSITIONS.END && (
-        <span className={classNames(styles.icon, styles.iconEnd)}>{icon}</span>
+        <span className={combineClasses(styles.icon, styles.iconEnd)}>
+          {icon}
+        </span>
       )}
       {!isLoading && isIconOnly && <span className={styles.icon}>{icon}</span>}
     </>
@@ -82,7 +83,7 @@ const ButtonBase: React.FC<ButtonProps> = ({
     <Component
       className={combinedClassName}
       style={styleOverride?.style}
-      disabled={isLoading || rest.disabled}
+      disabled={isLoading || disabled}
       aria-label={isIconOnly ? ariaLabel : undefined}
       {...rest}
     >

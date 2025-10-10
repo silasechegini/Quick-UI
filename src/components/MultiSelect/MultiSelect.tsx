@@ -1,17 +1,9 @@
-import React, {
-  useState,
-  useEffect,
-  useRef,
-  useCallback,
-  useDeferredValue,
-  useId,
-} from "react";
+import React, { useState, useEffect, useRef, useId } from "react";
 import type { MultiSelectProps, MultiSelectOption } from "./MultiSelect.types";
-import { iconSvgMapping } from "@assets";
 import styles from "./styles.module.scss";
 import { Chip } from "@components/Chip";
-
-const ClearIcon = iconSvgMapping["clear_icon"];
+import { Input } from "@components/Input";
+import { useMultiSelect } from "./hooks/useMultiSelect";
 
 const MultiSelect: React.FC<MultiSelectProps> = ({
   id,
@@ -34,30 +26,36 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
   const componentId = id ?? `multiselect-${generatedId}`;
   const dropdownId = `${componentId}-dropdown`;
   const isControlled = value !== undefined;
-  const [inputValue, setInputValue] = useState("");
-  const [selected, setSelected] = useState<(string | number)[]>(() =>
-    isControlled
-      ? value!
-      : options
-          .filter((opt) => defaultValue.includes(opt.value))
-          .map((opt) => opt.value),
-  );
-  const [isOpen, setIsOpen] = useState(false);
-  const [highlightedIndex, setHighlightedIndex] = useState(0);
-  const [filteredOptions, setFilteredOptions] =
-    useState<MultiSelectOption[]>(options);
-  const debouncedValue = useDeferredValue(inputValue);
-
+  useState<MultiSelectOption[]>(options);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    if (isControlled) setSelected(value!);
-  }, [value, isControlled]);
-
-  useEffect(() => {
-    setFilteredOptions(options);
-  }, [options]);
+  const {
+    selected,
+    filteredOptions,
+    isOpen,
+    highlightedIndex,
+    inputValue,
+    setInputValue,
+    handleSelect,
+    handleRemove,
+    handleClearAll,
+    renderInputText,
+    setIsOpen,
+    setHighlightedIndex,
+    selectedOptions,
+    computeEndIcon,
+  } = useMultiSelect({
+    options,
+    defaultValue,
+    isControlled,
+    value,
+    onChange,
+    maxSelected,
+    inputRef,
+    searchable,
+    placeholder,
+  });
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
@@ -72,76 +70,6 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
-  useEffect(() => {
-    const query = debouncedValue.toLowerCase().trim();
-
-    if (query === "" || !searchable) {
-      setFilteredOptions(options);
-      return;
-    }
-
-    const filtered = options.filter((opt) =>
-      opt.label.toLowerCase().includes(query),
-    );
-    setFilteredOptions(filtered);
-  }, [debouncedValue, options, searchable]);
-
-  const updateSelection = useCallback(
-    (newSelected: (string | number)[]) => {
-      if (!isControlled) {
-        setSelected(newSelected);
-      }
-      onChange?.(newSelected);
-    },
-    [isControlled, onChange],
-  );
-
-  const handleSelect = useCallback(
-    (option: MultiSelectOption, index: number) => {
-      const exists = selected.includes(option.value);
-      const newSelected = exists
-        ? selected.filter((v) => v !== option.value)
-        : [...selected, option.value];
-
-      if (!exists && maxSelected && newSelected.length > maxSelected) {
-        return;
-      }
-
-      updateSelection(newSelected);
-      setHighlightedIndex(index);
-
-      if (searchable) {
-        setInputValue("");
-        inputRef.current?.focus();
-      } else {
-        setIsOpen(false);
-      }
-    },
-    [selected, maxSelected, searchable, updateSelection],
-  );
-
-  const handleRemove = (val: string | number) => {
-    const newSelected = selected.filter((v) => v !== val);
-    updateSelection(newSelected);
-  };
-
-  const handleClearAll = () => {
-    updateSelection([]);
-    setIsOpen(false);
-    if (searchable) {
-      setInputValue("");
-      inputRef.current?.focus();
-    }
-  };
-
-  const selectedOptions = options.filter((opt) => selected.includes(opt.value));
-
-  const renderInputText = () => {
-    if (selectedOptions.length === 0) return placeholder;
-    if (selectedOptions.length === 1) return selectedOptions[0].label;
-    return `${selectedOptions.length} options selected`;
-  };
-
   return (
     <>
       <div
@@ -153,39 +81,22 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
         aria-haspopup="listbox"
         aria-controls={dropdownId}
       >
-        <div
-          className={`${styles.inputWrapper} ${disabled ? styles.disabled : ""}`}
-          onClick={() => inputRef.current?.focus()}
-        >
-          <div className={styles.tags}>
-            <input
-              type="text"
-              name={name}
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              onFocus={() => setIsOpen(true)}
-              ref={inputRef}
-              placeholder={renderInputText()}
-              disabled={disabled}
-              autoFocus={autoFocus}
-              className={styles.input}
-            />
-          </div>
-
-          {clearable && selected.length > 0 && (
-            <button
-              aria-label="Clear all selected options"
-              className={styles.clearBtn}
-              onClick={(e) => {
-                e.stopPropagation();
-                handleClearAll();
-              }}
-              type="button"
-            >
-              <ClearIcon className={styles.clearIcon} />
-            </button>
-          )}
-        </div>
+        <Input
+          ref={inputRef}
+          name={name}
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          onFocus={() => setIsOpen(true)}
+          placeholder={renderInputText}
+          disabled={disabled}
+          autoFocus={autoFocus}
+          clearable={clearable && selected.length > 0}
+          onClear={handleClearAll}
+          endIcon={computeEndIcon}
+          loading={isLoading}
+          className={styles.input}
+          configuration="multi-select"
+        />
 
         {isOpen && (
           <ul
