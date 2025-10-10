@@ -43,14 +43,10 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       if (props.configuration === "multi-select" && clearable) {
         return true;
       }
-      return clearable &&
-        value &&
-        String(value).length > 0 &&
-        !loading &&
-        !disabled
-        ? true
-        : false;
-    }, [clearable, value, loading, disabled]);
+      return (
+        clearable && value && String(value).length > 0 && !loading && !disabled
+      );
+    }, [clearable, value, loading, disabled, props.configuration]);
 
     // Determine the actual end icon to show
     const actualEndIcon = shouldShowClear ? "clear_icon" : endIcon;
