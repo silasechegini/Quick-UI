@@ -81,7 +81,7 @@ export interface InputProps
   /**
    * Configuration for the input
    */
-  configuration?: "multi-select" | "";
+  configuration?: "multi-select";
 }
 
 export interface DebouncedInputProps extends Omit<InputProps, "onChange"> {
