@@ -42,7 +42,9 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     const shouldShowClear = useMemo(() => {
       if (
         props.configuration === INPUT_CONFIGURATIONS.MULTI_SELECT &&
-        clearable
+        clearable &&
+        !loading &&
+        !disabled
       ) {
         return true;
       }
