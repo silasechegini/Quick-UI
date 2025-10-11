@@ -44,6 +44,7 @@ const useMultiSelect = ({
   const debouncedValue = useDeferredValue(inputValue);
 
   useEffect(() => {
+    if (!value) return;
     if (isControlled) setSelected(value!);
   }, [value, isControlled]);
 
