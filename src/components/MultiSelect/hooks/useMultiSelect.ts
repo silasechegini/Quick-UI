@@ -45,7 +45,7 @@ const useMultiSelect = ({
 
   useEffect(() => {
     if (!value) return;
-    if (isControlled) setSelected(value!);
+    if (isControlled) setSelected(value);
   }, [value, isControlled]);
 
   useEffect(() => {
