@@ -31,7 +31,7 @@ const useMultiSelect = ({
 }) => {
   const [selected, setSelected] = useState<(string | number)[]>(() =>
     isControlled
-      ? value!
+      ? (value ?? [])
       : options
           .filter((opt) => defaultValue.includes(opt.value))
           .map((opt) => opt.value),
@@ -44,7 +44,8 @@ const useMultiSelect = ({
   const debouncedValue = useDeferredValue(inputValue);
 
   useEffect(() => {
-    if (isControlled) setSelected(value!);
+    if (!value) return;
+    if (isControlled) setSelected(value);
   }, [value, isControlled]);
 
   useEffect(() => {
