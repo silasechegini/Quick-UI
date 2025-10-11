@@ -96,7 +96,7 @@ describe("useMultiSelect Hook", () => {
       const propsControlled = {
         ...defaultProps,
         isControlled: true,
-        value: ["1"],
+        value: [mockOptions[0].value],
       };
 
       const { result, rerender } = renderHook(

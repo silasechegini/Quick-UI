@@ -62,7 +62,7 @@ const ComboBox: React.FC<ComboBoxProps> = ({
     if (onSearch) {
       setFilteredOptions(options);
     } else {
-      const currentInput = inputRef.current?.value || "";
+      const currentInput = inputValue || "";
       handleFilteredOptions(currentInput);
     }
   }, [options, onSearch]);

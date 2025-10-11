@@ -96,3 +96,8 @@ export interface DebouncedInputProps extends Omit<InputProps, "onChange"> {
    */
   debounceDelay?: number;
 }
+
+export enum INPUT_CONFIGURATIONS {
+  SINGLE = "single",
+  MULTI_SELECT = "multi-select",
+}

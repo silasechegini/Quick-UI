@@ -1,5 +1,5 @@
 import { forwardRef, useMemo } from "react";
-import { InputProps } from "./Input.types";
+import { INPUT_CONFIGURATIONS, InputProps } from "./Input.types";
 import { Icon } from "../Icon";
 import styles from "./styles.module.scss";
 import { Button, BUTTON_SIZES, BUTTON_VARIANTS } from "..";
@@ -40,7 +40,10 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
 
     // Determine if clear button should be shown
     const shouldShowClear = useMemo(() => {
-      if (props.configuration === "multi-select" && clearable) {
+      if (
+        props.configuration === INPUT_CONFIGURATIONS.MULTI_SELECT &&
+        clearable
+      ) {
         return true;
       }
       return (
