@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef, useId } from "react";
-import type { MultiSelectProps, MultiSelectOption } from "./MultiSelect.types";
+import React, { useEffect, useRef, useId } from "react";
+import type { MultiSelectProps } from "./MultiSelect.types";
 import styles from "./styles.module.scss";
 import { Chip } from "@components/Chip";
 import { Input } from "@components/Input";
@@ -26,7 +26,6 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
   const componentId = id ?? `multiselect-${generatedId}`;
   const dropdownId = `${componentId}-dropdown`;
   const isControlled = value !== undefined;
-  useState<MultiSelectOption[]>(options);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
