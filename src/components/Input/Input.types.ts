@@ -77,6 +77,11 @@ export interface InputProps
    * Custom class name for the input container
    */
   containerClassName?: string;
+
+  /**
+   * Configuration for the input
+   */
+  configuration?: "multi-select";
 }
 
 export interface DebouncedInputProps extends Omit<InputProps, "onChange"> {
@@ -90,4 +95,9 @@ export interface DebouncedInputProps extends Omit<InputProps, "onChange"> {
    * @default 300
    */
   debounceDelay?: number;
+}
+
+export enum INPUT_CONFIGURATIONS {
+  SINGLE = "single",
+  MULTI_SELECT = "multi-select",
 }

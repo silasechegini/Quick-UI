@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { ComboBoxProps, ComboBoxOption } from "./ComboBox.types";
 import styles from "./styles.module.scss";
 import { PLACE_HOLDER } from "./ComboBox.utils";
+import { useDebounce } from "../../utils";
 
 const ComboBox: React.FC<ComboBoxProps> = ({
   options = [],
@@ -36,24 +37,12 @@ const ComboBox: React.FC<ComboBoxProps> = ({
   const [isOpen, setIsOpen] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
 
-  // Sync input value with controlled value
-  useEffect(() => {
-    if (isControlled) {
-      setInputValue(getLabelByValue(value));
-    }
-  }, [value, options]);
-
-  // Filter options or run search on input change
-  useEffect(() => {
+  const { debounceFn: debouncedSearch } = useDebounce((...args: unknown[]) => {
+    const searchValue = args[0] as string;
     if (onSearch) {
-      const timeout = setTimeout(() => {
-        onSearch(inputValue);
-      }, debounceDelay);
-      return () => clearTimeout(timeout);
-    } else {
-      handleFilteredOptions(inputValue);
+      onSearch(searchValue);
     }
-  }, [inputValue, options, onSearch, debounceDelay]);
+  }, debounceDelay);
 
   const handleFilteredOptions = (input: string) => {
     const filtered = options.filter((opt) =>
@@ -62,15 +51,30 @@ const ComboBox: React.FC<ComboBoxProps> = ({
     setFilteredOptions(filtered);
   };
 
+  // Sync input value with controlled value
+  useEffect(() => {
+    if (isControlled) {
+      setInputValue(getLabelByValue(value));
+    }
+  }, [value, options]);
+
+  useEffect(() => {
+    if (onSearch) {
+      setFilteredOptions(options);
+    } else {
+      const currentInput = inputValue || "";
+      handleFilteredOptions(currentInput);
+    }
+  }, [options, onSearch]);
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newVal = e.target.value;
 
-    if (!isControlled) {
-      setInputValue(newVal);
-    }
+    // Always update inputValue for immediate UI feedback, even in controlled mode
+    setInputValue(newVal);
 
     if (onSearch) {
-      onSearch(newVal);
+      debouncedSearch(newVal);
     } else {
       handleFilteredOptions(newVal);
     }
@@ -82,9 +86,8 @@ const ComboBox: React.FC<ComboBoxProps> = ({
   const handleSelect = (option: ComboBoxOption, index: number) => {
     const selectedLabel = option.label;
 
-    if (!isControlled) {
-      setInputValue(selectedLabel);
-    }
+    // Always update the input display value for immediate feedback
+    setInputValue(selectedLabel);
 
     setIsOpen(false);
     setFilteredOptions(options);
@@ -109,6 +112,40 @@ const ComboBox: React.FC<ComboBoxProps> = ({
     setHighlightedIndex(-1);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (!isOpen) return;
+
+    switch (e.key) {
+      case "ArrowDown":
+        e.preventDefault();
+        setHighlightedIndex((prev) =>
+          prev < filteredOptions.length - 1 ? prev + 1 : 0,
+        );
+        break;
+      case "ArrowUp":
+        e.preventDefault();
+        setHighlightedIndex((prev) =>
+          prev > 0 ? prev - 1 : filteredOptions.length - 1,
+        );
+        break;
+      case "Enter":
+        e.preventDefault();
+        if (
+          highlightedIndex >= 0 &&
+          highlightedIndex < filteredOptions.length
+        ) {
+          handleSelect(filteredOptions[highlightedIndex], highlightedIndex);
+        }
+        break;
+      case "Escape":
+        e.preventDefault();
+        setIsOpen(false);
+        setHighlightedIndex(-1);
+        inputRef.current?.blur();
+        break;
+    }
+  };
+
   return (
     <div
       ref={comboRef}
@@ -123,6 +160,7 @@ const ComboBox: React.FC<ComboBoxProps> = ({
         value={inputValue}
         placeholder={placeholder}
         onChange={handleInputChange}
+        onKeyDown={handleKeyDown}
         disabled={disabled}
         autoFocus={autoFocus}
         aria-autocomplete="list"
@@ -161,6 +199,7 @@ const ComboBox: React.FC<ComboBoxProps> = ({
                   index === highlightedIndex ? styles.active : ""
                 }`}
                 onMouseDown={() => handleSelect(opt, index)}
+                onMouseEnter={() => setHighlightedIndex(index)}
                 role="option"
                 aria-selected={index === highlightedIndex}
               >

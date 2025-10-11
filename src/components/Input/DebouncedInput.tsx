@@ -1,5 +1,5 @@
 import { forwardRef, useImperativeHandle, useRef, useState } from "react";
-import { useDebounce } from "./useDebounce";
+import { useDebounce } from "../../utils/useDebounce";
 import { DebouncedInputProps } from "./Input.types";
 import Input from "./Input";
 

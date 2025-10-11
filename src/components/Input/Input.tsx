@@ -1,5 +1,5 @@
-import { forwardRef } from "react";
-import { InputProps } from "./Input.types";
+import { forwardRef, useMemo } from "react";
+import { INPUT_CONFIGURATIONS, InputProps } from "./Input.types";
 import { Icon } from "../Icon";
 import styles from "./styles.module.scss";
 import { Button, BUTTON_SIZES, BUTTON_VARIANTS } from "..";
@@ -39,8 +39,19 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     const effectiveVariant = error ? "error" : variant;
 
     // Determine if clear button should be shown
-    const shouldShowClear =
-      clearable && value && String(value).length > 0 && !loading && !disabled;
+    const shouldShowClear = useMemo(() => {
+      if (
+        props.configuration === INPUT_CONFIGURATIONS.MULTI_SELECT &&
+        clearable &&
+        !loading &&
+        !disabled
+      ) {
+        return true;
+      }
+      return (
+        clearable && value && String(value).length > 0 && !loading && !disabled
+      );
+    }, [clearable, value, loading, disabled, props.configuration]);
 
     // Determine the actual end icon to show
     const actualEndIcon = shouldShowClear ? "clear_icon" : endIcon;

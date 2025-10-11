@@ -6,7 +6,6 @@
 .inputWrapper {
   display: flex;
   flex-wrap: wrap;
-  border: 1px solid #ccc;
   padding: 4px;
   border-radius: 4px;
   cursor: text;
@@ -43,9 +42,17 @@
 
 .input {
   flex: 1;
-  border: none;
-  outline: none;
   min-width: 100px;
+
+  &:active {
+    outline: none;
+    border: solid 1px white;
+  }
+
+  &:focus {
+    outline: none;
+    border: solid 1px var(--gray-300);
+  }
 }
 
 .clearBtn {
