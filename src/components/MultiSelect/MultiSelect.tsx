@@ -95,6 +95,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
           endIcon={computeEndIcon}
           loading={isLoading}
           className={styles.input}
+          containerClassName={styles.inputWrapper}
           configuration="multi-select"
         />
 

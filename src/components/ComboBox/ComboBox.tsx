@@ -18,7 +18,7 @@ const ComboBox: React.FC<ComboBoxProps> = ({
   className = "",
   autoFocus,
 }) => {
-  const isControlled = value !== undefined;
+  const isControlled = value !== undefined && value !== null;
 
   const comboRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -108,16 +108,8 @@ const ComboBox: React.FC<ComboBoxProps> = ({
 
   const handleFocus = () => {
     setIsOpen(true);
+    setFilteredOptions(options);
     setHighlightedIndex(-1);
-
-    // Respect the current filtering state
-    if (onSearch) {
-      setFilteredOptions(options);
-    } else {
-      // Re-apply current filter when focusing
-      const currentInput = inputRef.current?.value || "";
-      handleFilteredOptions(currentInput);
-    }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
