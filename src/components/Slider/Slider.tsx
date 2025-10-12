@@ -5,6 +5,22 @@ import { valueToPercent } from "./utils/math";
 import styles from "./styles.module.scss";
 import { useSliderSizeClasses } from "./hooks/useSliderSizeClasses";
 
+/**
+ * Slider component that allows users to select a single value from a range.
+ * Supports keyboard navigation, custom sizing, and controlled/uncontrolled modes.
+ *
+ * @param props - The props for the Slider component
+ * @param props.min - The minimum value of the slider range (default: 0)
+ * @param props.max - The maximum value of the slider range (default: 100)
+ * @param props.step - The step size for value increments (default: 1)
+ * @param props.size - The size variant of the slider (default: "medium")
+ * @param props.value - Controlled value for the slider
+ * @param props.defaultValue - Default value for uncontrolled mode (default: 0)
+ * @param props.onChange - Callback function called when the value changes
+ * @param props.disabled - Whether the slider is disabled (default: false)
+ * @param props.className - Additional CSS classes to apply to the slider
+ * @returns JSX.Element representing the slider component
+ */
 const Slider: React.FC<SingleValueSliderProps> = ({
   min = 0,
   max = 100,

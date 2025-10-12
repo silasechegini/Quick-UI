@@ -4,6 +4,31 @@ import { Icon } from "../Icon";
 import styles from "./styles.module.scss";
 import { Button, BUTTON_SIZES, BUTTON_VARIANTS } from "..";
 
+/**
+ * Input component that provides a flexible text input with various styling options.
+ * Supports icons, labels, error states, loading states, and clearable functionality.
+ *
+ * @param props - The props for the Input component
+ * @param props.variant - The visual style variant of the input (default: "primary")
+ * @param props.size - The size of the input (default: "m")
+ * @param props.fullWidth - Whether the input should take the full width of its container (default: false)
+ * @param props.label - Optional label text to display above the input
+ * @param props.helperText - Optional helper text to display below the input
+ * @param props.error - Whether the input is in an error state (default: false)
+ * @param props.errorMessage - Error message to display when in error state
+ * @param props.loading - Whether the input is in a loading state (default: false)
+ * @param props.startIcon - Icon to display at the start of the input
+ * @param props.endIcon - Icon to display at the end of the input
+ * @param props.clearable - Whether the input should show a clear button when it has content (default: false)
+ * @param props.onClear - Callback function called when the clear button is clicked
+ * @param props.containerClassName - Additional CSS classes to apply to the input container
+ * @param props.className - Additional CSS classes to apply to the input element
+ * @param props.disabled - Whether the input is disabled
+ * @param props.id - The ID attribute for the input element
+ * @param props.value - The controlled value of the input
+ * @param ref - Ref forwarded to the input element
+ * @returns JSX.Element representing the input component
+ */
 const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {

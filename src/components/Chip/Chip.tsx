@@ -5,6 +5,26 @@ import { Icon } from "@components/Icon";
 import { buildClassNames } from "@utils/classNames";
 import styles from "./styles.module.scss";
 
+/**
+ * Chip component that displays small pieces of information or tags.
+ * Supports various sizes, colors, icons, and interactive functionality.
+ *
+ * @param props - The props for the Chip component
+ * @param props.text - The text content to display in the chip
+ * @param props.size - The size of the chip
+ * @param props.className - Additional CSS classes to apply to the chip
+ * @param props.ariaLabel - Accessible label for the chip
+ * @param props.style - Additional CSS styles to apply to the chip
+ * @param props.onRemove - Callback function called when the remove button is clicked
+ * @param props.disabled - Whether the chip is disabled
+ * @param props.variant - The visual style variant of the chip
+ * @param props.interactive - Whether the chip should have interactive styling
+ * @param props.leadingIcon - Icon to display at the start of the chip
+ * @param props.trailingIcon - Icon to display at the end of the chip
+ * @param props.status - Status indicator configuration for the chip
+ * @param props.children - Additional content to display in the chip
+ * @returns JSX.Element representing the chip component
+ */
 const Chip: React.FC<ChipProps> = ({
   text,
   size,
