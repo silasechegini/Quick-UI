@@ -1,25 +1,25 @@
 .multiSelect {
   position: relative;
-  width: 100%;
+  width: var(--width-full);
 }
 
 .inputWrapper {
   display: flex;
   flex-wrap: wrap;
-  padding: 4px;
-  border-radius: 4px;
+  padding: var(--space-1);
+  border-radius: var(--radius-sm);
   cursor: text;
   justify-content: space-between;
 }
 
 .inputWrapper.disabled {
-  background: #f9f9f9;
+  background: var(--gray-50);
   cursor: not-allowed;
 }
 
 .tags {
   display: flex;
-  gap: 4px;
+  gap: var(--space-1);
   flex-wrap: wrap;
   align-items: center;
 }
@@ -27,31 +27,31 @@
 .tagContainer {
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
-  margin-top: 15px;
+  gap: var(--space-1);
+  margin-top: var(--space-4);
 
   .tag {
-    background: #ecebeb;
-    padding: 2px 15px;
-    border-radius: 999px;
+    background: var(--gray-200);
+    padding: var(--space-1) var(--space-4);
+    border-radius: var(--radius-full);
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: var(--space-2);
   }
 }
 
 .input {
   flex: 1;
-  min-width: 100px;
+  min-width: var(--width-100);
 
   &:active {
     outline: none;
-    border: solid 1px white;
+    border: var(--border-thin) solid var(--color-white);
   }
 
   &:focus {
     outline: none;
-    border: solid 1px var(--gray-300);
+    border: var(--border-thin) solid var(--gray-300);
   }
 }
 
@@ -74,19 +74,19 @@
 
 .dropdown {
   position: absolute;
-  width: 100%;
-  padding: 0;
-  background: white;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  z-index: 10;
-  max-height: 200px;
+  width: var(--width-full);
+  padding: var(--space-0);
+  background: var(--color-white);
+  border: var(--border-thin) solid var(--gray-300);
+  border-radius: var(--radius-sm);
+  z-index: var(--z-index-10);
+  max-height: var(--width-200);
   overflow-y: auto;
-  margin-top: 4px;
+  margin-top: var(--space-1);
 }
 
 .option {
-  padding: 8px;
+  padding: var(--space-2);
   cursor: pointer;
   display: flex;
   justify-content: space-between;
@@ -94,21 +94,21 @@
 
 .option:hover,
 .highlighted {
-  background: #f0f0f0;
+  background: var(--gray-100);
 }
 
 .selected {
-  font-weight: bold;
+  font-weight: var(--font-weight-bold);
 }
 
 .empty,
 .loading {
-  padding: 8px;
-  color: #888;
+  padding: var(--space-2);
+  color: var(--gray-500);
 }
 .error {
-  padding: 8px;
-  color: red;
+  padding: var(--space-2);
+  color: var(--color-danger);
 }
 
 .clearIcon {
@@ -119,9 +119,9 @@
 .checkboxLabel {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-2);
   cursor: pointer;
-  width: 100%;
+  width: var(--width-full);
   user-select: none;
 }
 
@@ -130,29 +130,30 @@
 }
 
 .customCheckbox {
-  width: 16px;
-  height: 16px;
-  border: 2px solid #666;
-  border-radius: 3px;
+  width: var(--space-4);
+  height: var(--space-4);
+  border: var(--border-thick) solid var(--gray-600);
+  border-radius: var(--radius-sm);
   position: relative;
-  background-color: white;
+  background-color: var(--color-white);
   flex-shrink: 0;
 }
 
 .checkbox:checked + .customCheckbox {
-  background-color: #333; // Dark or primary color
-  border-color: #333;
+  background-color: var(--gray-700); // Dark or primary color
+  border-color: var(--gray-700);
 }
 
 .checkbox:checked + .customCheckbox::after {
   content: "";
   position: absolute;
-  left: 4px;
-  top: 0px;
-  width: 4px;
-  height: 8px;
-  border: solid white;
-  border-width: 0 2px 2px 0;
+  left: var(--space-1);
+  top: var(--space-0);
+  width: var(--space-1);
+  height: var(--space-2);
+  border: solid var(--color-white);
+  border-width: var(--space-0) var(--border-thick) var(--border-thick)
+    var(--space-0);
   transform: rotate(45deg);
 }
 
@@ -161,6 +162,6 @@
 }
 
 .noOptions {
-  padding: 8px;
-  color: #888;
+  padding: var(--space-2);
+  color: var(--gray-500);
 }
