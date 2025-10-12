@@ -18,8 +18,8 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  background-color: #fff;
-  border-left: 1px solid #ddd;
+  background-color: var(--color-white);
+  border-left: var(--border-thin) solid var(--gray-300);
   box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
   pointer-events: auto;
   transform: translateX(100%);
@@ -45,11 +45,11 @@
   padding: 1rem;
   background-color: #fafafa;
   display: flex;
-  min-height: 50px;
-  max-height: 70px;
+  min-height: var(--width-40);
+  max-height: var(--width-60);
   height: 100%;
-  border-bottom: 1px solid #eee;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-bottom: var(--width-1) solid var(--gray-300);
+  box-shadow: 0 var(--width-2) var(--width-4) rgba(0, 0, 0, 0.1);
   z-index: 2;
 
   .headerTitle {
@@ -65,7 +65,7 @@
   padding: 1rem;
   background-color: #fafafa;
   flex-shrink: 0;
-  border-top: 1px solid #eee;
+  border-top: var(--width-1) solid #eee;
   box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
   z-index: 2;
 }
@@ -77,12 +77,12 @@
 }
 
 .body::-webkit-scrollbar {
-  width: 8px;
+  width: var(--width-8);
 }
 
 .body::-webkit-scrollbar-thumb {
   background-color: #ccc;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
 }
 
 .body::-webkit-scrollbar-thumb:hover {
@@ -90,7 +90,7 @@
 }
 .body::-webkit-scrollbar-track {
   background-color: #f0f0f0;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
 }
 .body::-webkit-scrollbar-track:hover {
   background-color: #e0e0e0;

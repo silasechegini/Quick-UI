@@ -32,15 +32,15 @@
 
 /* Track size variants */
 .trackSmall {
-  height: 4px;
+  height: var(--space-1);
 }
 
 .trackMedium {
-  height: 6px;
+  height: var(--space-2);
 }
 
 .trackLarge {
-  height: 8px;
+  height: var(--space-2);
 }
 
 .filled {
@@ -56,15 +56,15 @@
 
 /* Filled size variants */
 .filledSmall {
-  height: 4px;
+  height: var(--space-1);
 }
 
 .filledMedium {
-  height: 6px;
+  height: var(--space-2);
 }
 
 .filledLarge {
-  height: 8px;
+  height: var(--space-2);
 }
 
 .thumb {
@@ -100,8 +100,8 @@
 
 /* Thumb size variants */
 .thumbSmall {
-  width: 16px;
-  height: 16px;
+  width: var(--space-4);
+  height: var(--space-4);
 }
 
 .thumbMedium {
@@ -110,8 +110,8 @@
 }
 
 .thumbLarge {
-  width: 24px;
-  height: 24px;
+  width: var(--space-6);
+  height: var(--space-6);
 }
 
 .disabled {
