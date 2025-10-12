@@ -1,12 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Footer } from "../src/components/Footer";
 import { Icon } from "../src/components/Icon";
+import styles from "./Footer.module.scss";
 
 const meta: Meta<typeof Footer> = {
   title: "Components/Footer",
   component: Footer,
   parameters: {
-    layout: "fullscreen",
+    layout: "padded",
   },
   tags: ["autodocs"],
   argTypes: {
@@ -26,6 +27,9 @@ const meta: Meta<typeof Footer> = {
       control: { type: "text" },
       description: "Additional content to display in the footer",
     },
+  },
+  args: {
+    className: styles.storybookFooterContainer,
   },
 };
 
@@ -290,6 +294,7 @@ export const Complex: Story = {
         </div>
       </div>
     ),
+    className: styles.complexFooterContainer,
   },
 };
 
