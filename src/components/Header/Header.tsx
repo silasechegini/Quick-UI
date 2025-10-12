@@ -9,6 +9,27 @@ import {
 } from "./components";
 import styles from "./styles.module.scss";
 
+/**
+ * Header component that provides a flexible navigation bar with branding, navigation, and user sections.
+ * Supports multiple variants, responsive design, and hamburger menu functionality.
+ *
+ * @param props - The props for the Header component
+ * @param props.variant - The visual style variant of the header (default: "default")
+ * @param props.position - The positioning behavior of the header (default: "static")
+ * @param props.logo - Logo element or image to display in the brand section
+ * @param props.brandName - Brand name text to display next to the logo
+ * @param props.onBrandClick - Callback function called when the brand/logo is clicked
+ * @param props.navigationItems - Array of navigation items to display
+ * @param props.centerContent - Content to display in the center of the header
+ * @param props.user - User object containing user information
+ * @param props.onLogin - Callback function called when login button is clicked
+ * @param props.onLogout - Callback function called when logout is triggered
+ * @param props.onCreateAccount - Callback function called when create account button is clicked
+ * @param props.onProfileClick - Callback function called when profile is clicked
+ * @param props.onSettingsClick - Callback function called when settings is clicked
+ * @param props.actions - Additional action elements to display in the header
+ * @returns JSX.Element representing the header component
+ */
 const Header: FC<HeaderProps> = ({
   variant = "default",
   position = "static",

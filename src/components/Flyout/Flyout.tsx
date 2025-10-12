@@ -7,6 +7,27 @@ import FlyoutHeader from "./components/FlyoutHeader";
 import FlyoutBody from "./components/FlyoutBody";
 import FlyoutFooter from "./components/FlyoutFooter";
 
+/**
+ * Flyout component that displays content in a sliding panel overlay.
+ * Supports configurable positioning, backdrop, and focus management.
+ *
+ * @param props - The props for the Flyout component
+ * @param props.role - ARIA role for the flyout (default: "dialog")
+ * @param props.isOpen - Whether the flyout is currently open
+ * @param props.onClose - Callback function called when the flyout should close
+ * @param props.width - Width of the flyout panel (default: "400px")
+ * @param props.height - Height of the flyout panel (default: "100vh")
+ * @param props.children - Content to display in the flyout
+ * @param props.showBackdrop - Whether to show a backdrop overlay (default: true)
+ * @param props.closeOnBackdropClick - Whether clicking the backdrop should close the flyout (default: true)
+ * @param props.ariaLabelledBy - ID of element that labels the flyout
+ * @param props.ariaDescribedBy - ID of element that describes the flyout
+ * @param props.headerChildren - Content to display in the flyout header
+ * @param props.bodyChildren - Content to display in the flyout body
+ * @param props.footerChildren - Content to display in the flyout footer
+ * @param props.classNames - Custom CSS class names for different parts of the flyout (default: {})
+ * @returns JSX.Element representing the flyout component
+ */
 const Flyout = ({
   role = "dialog",
   isOpen,

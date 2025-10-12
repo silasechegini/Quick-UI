@@ -5,6 +5,28 @@ import { Chip } from "@components/Chip";
 import { Input } from "@components/Input";
 import { useMultiSelect } from "./hooks/useMultiSelect";
 
+/**
+ * MultiSelect component that allows users to select multiple options from a dropdown list.
+ * Features include search functionality, custom option rendering, and controlled/uncontrolled modes.
+ *
+ * @param props - The props for the MultiSelect component
+ * @param props.id - Optional ID for the multiselect element
+ * @param props.options - Array of options to display in the dropdown
+ * @param props.value - Controlled value for selected options
+ * @param props.defaultValue - Default selected options for uncontrolled mode (default: [])
+ * @param props.onChange - Callback function called when selection changes
+ * @param props.placeholder - Placeholder text to display when no options are selected (default: "Select options...")
+ * @param props.isLoading - Whether the component is in a loading state (default: false)
+ * @param props.disabled - Whether the component is disabled (default: false)
+ * @param props.searchable - Whether users can search/filter options (default: true)
+ * @param props.renderOption - Custom function to render individual options
+ * @param props.className - Additional CSS classes to apply to the component (default: "")
+ * @param props.name - Name attribute for form submission
+ * @param props.autoFocus - Whether the input should be focused on mount (default: false)
+ * @param props.maxSelected - Maximum number of options that can be selected
+ * @param props.clearable - Whether the component should show a clear all button (default: true)
+ * @returns JSX.Element representing the multiselect component
+ */
 const MultiSelect: React.FC<MultiSelectProps> = ({
   id,
   options,
