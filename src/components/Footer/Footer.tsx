@@ -16,7 +16,7 @@ const Footer: FC<FooterProps> = ({
         {rightContent && (
           <div className={styles.rightSection}>{rightContent}</div>
         )}
-        {children && children}
+        {children}
       </div>
     </footer>
   );
