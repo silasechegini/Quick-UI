@@ -5,6 +5,7 @@ export * from "./MultiSelect";
 export * from "./Icon";
 export * from "./Chip";
 export * from "./Flyout";
+export * from "./Footer";
 export * from "./Header";
 export * from "./Page";
 export * from "./Slider";
