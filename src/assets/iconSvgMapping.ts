@@ -23,6 +23,9 @@ import { ReactComponent as trashIcon } from "./icons/trash.svg";
 import { ReactComponent as userIcon } from "./icons/user.svg";
 import { ReactComponent as loginIcon } from "./icons/login.svg";
 import { ReactComponent as signupIcon } from "./icons/signup.svg";
+import { ReactComponent as dashboardIcon } from "./icons/dashboard.svg";
+import { ReactComponent as analyticsIcon } from "./icons/analytics.svg";
+import { ReactComponent as teamsIcon } from "./icons/teams.svg";
 import { ReactComponent as thunderboltLogoIcon } from "./icons/thunderbolt-logo.svg";
 import { ReactComponent as thunderboltCircleLogoIcon } from "./icons/thunderbolt-circle-logo.svg";
 import { ReactComponent as thunderboltCloudLogoIcon } from "./icons/thunderbolt-cloud-logo.svg";
@@ -53,6 +56,9 @@ const iconSvgMapping: { [key in IconKey]: FC<SVGProps<SVGSVGElement>> } = {
   user_icon: userIcon,
   login_icon: loginIcon,
   signup_icon: signupIcon,
+  dashboard_icon: dashboardIcon,
+  analytics_icon: analyticsIcon,
+  teams_icon: teamsIcon,
   thunderbolt_logo_icon: thunderboltLogoIcon,
   thunderbolt_circle_logo_icon: thunderboltCircleLogoIcon,
   thunderbolt_cloud_logo_icon: thunderboltCloudLogoIcon,

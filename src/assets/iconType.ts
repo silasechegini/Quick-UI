@@ -23,6 +23,9 @@ export type IconKey =
   | "user_icon"
   | "login_icon"
   | "signup_icon"
+  | "dashboard_icon"
+  | "analytics_icon"
+  | "teams_icon"
   | "thunderbolt_logo_icon"
   | "thunderbolt_circle_logo_icon"
   | "thunderbolt_cloud_logo_icon";
@@ -52,6 +55,9 @@ export enum ICONS {
   USER_ICON = "user_icon",
   LOGIN_ICON = "login_icon",
   SIGNUP_ICON = "signup_icon",
+  DASHBOARD_ICON = "dashboard_icon",
+  ANALYTICS_ICON = "analytics_icon",
+  TEAMS_ICON = "teams_icon",
   THUNDERBOLT_LOGO_ICON = "thunderbolt_logo_icon",
   THUNDERBOLT_CIRCLE_LOGO_ICON = "thunderbolt_circle_logo_icon",
   THUNDERBOLT_CLOUD_LOGO_ICON = "thunderbolt_cloud_logo_icon",

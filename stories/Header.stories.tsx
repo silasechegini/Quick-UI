@@ -30,19 +30,19 @@ const customMenuItems: HamburgerMenuItem[] = [
   {
     id: "dashboard",
     label: "Dashboard",
-    icon: ICONS.CALENDAR_ICON,
+    icon: ICONS.DASHBOARD_ICON,
     onClick: () => console.log("Dashboard clicked"),
   },
   {
     id: "analytics",
     label: "Analytics",
-    icon: ICONS.SEARCH_ICON,
+    icon: ICONS.ANALYTICS_ICON,
     onClick: () => console.log("Analytics clicked"),
   },
   {
     id: "team",
     label: "Team Management",
-    icon: ICONS.USER_ICON,
+    icon: ICONS.TEAMS_ICON,
     onClick: () => console.log("Team clicked"),
   },
   {
