@@ -2,6 +2,7 @@ import { FC, ReactNode } from "react";
 import Icon from "../../Icon/Icon";
 import { Button, BUTTON_SIZES, BUTTON_VARIANTS } from "../../Button";
 import styles from "../styles.module.scss";
+import { ICONS } from "@assets/iconType";
 
 interface PageSidebarProps {
   sidebarConfig?: {
@@ -37,7 +38,9 @@ export const PageSidebar: FC<PageSidebarProps> = ({
           ariaLabel={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
           icon={
             <Icon
-              name={isCollapsed ? "chevron_right_icon" : "chevron_left_icon"}
+              name={
+                isCollapsed ? ICONS.CHEVRON_RIGHT_ICON : ICONS.CHEVRON_LEFT_ICON
+              }
               size={16}
             />
           }

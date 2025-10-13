@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { expect, userEvent, within } from "storybook/test";
 import { Page } from "../src/components/Page";
 import { HamburgerMenuItem } from "../src/components/Header/Header.types";
+import { ICONS } from "@assets/iconType";
 
 const meta: Meta<typeof Page> = {
   title: "Components/Page",
@@ -30,13 +31,13 @@ const sampleMenuItems: HamburgerMenuItem[] = [
   {
     id: "dashboard",
     label: "Dashboard",
-    icon: "calendar_icon",
+    icon: ICONS.CALENDAR_ICON,
     onClick: () => console.log("Dashboard clicked"),
   },
   {
     id: "settings",
     label: "Settings",
-    icon: "settings_icon",
+    icon: ICONS.SETTINGS_ICON,
     onClick: () => console.log("Settings clicked"),
   },
   {

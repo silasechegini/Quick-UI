@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { User } from "../Header.types";
 import { HeaderHamburgerMenu } from "./HeaderHamburgerMenu";
+import { ICONS } from "@assets/iconType";
 
 interface HeaderAuthButtonsProps {
   showAuth?: boolean;
@@ -21,14 +22,14 @@ export const HeaderAuth: FC<HeaderAuthButtonsProps> = ({
     {
       id: "login",
       label: "Log in",
-      icon: "login_icon",
+      icon: ICONS.LOGIN_ICON,
       onClick: onLogin,
       disabled: false,
     },
     {
       id: "signup",
       label: "Sign up",
-      icon: "signup_icon",
+      icon: ICONS.SIGNUP_ICON,
       onClick: onCreateAccount,
       disabled: false,
     },

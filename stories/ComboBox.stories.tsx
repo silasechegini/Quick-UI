@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ComboBox, ComboBoxOption } from "../src/components/ComboBox";
 import { fn } from "storybook/test";
 import { Icon } from "@components/Icon";
+import { ICONS } from "@assets/iconType";
 
 const options: ComboBoxOption[] = [
   { label: "Apple", value: "apple" },
@@ -104,7 +105,7 @@ export const CustomRender: Story = {
   args: {
     renderOption: (option, isActive) => (
       <div style={{ fontWeight: isActive ? "bold" : "normal" }}>
-        <Icon name="settings_icon" size={16} />
+        <Icon name={ICONS.SETTINGS_ICON} size={16} />
         {option.label}
       </div>
     ),

@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Footer } from "../src/components/Footer";
 import { Icon } from "../src/components/Icon";
 import styles from "./Footer.module.scss";
+import { ICONS } from "@assets/iconType";
 
 const meta: Meta<typeof Footer> = {
   title: "Components/Footer",
@@ -74,7 +75,7 @@ export const Corporate: Story = {
   args: {
     leftContent: (
       <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-        <Icon name="thunderbolt_logo_icon" size={24} />
+        <Icon name={ICONS.THUNDERBOLT_LOGO_ICON} size={24} />
         <div>
           <div style={{ fontWeight: "600" }}>Company Name</div>
           <div style={{ fontSize: "14px", color: "#666" }}>
@@ -110,13 +111,13 @@ export const WithSocialMedia: Story = {
       <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
         <span style={{ marginRight: "8px", color: "#666" }}>Follow us:</span>
         <a href="#" aria-label="Settings" style={{ color: "#666" }}>
-          <Icon name="settings_icon" size={20} />
+          <Icon name={ICONS.SETTINGS_ICON} size={20} />
         </a>
         <a href="#" aria-label="Upload" style={{ color: "#666" }}>
-          <Icon name="upload_icon" size={20} />
+          <Icon name={ICONS.UPLOAD_ICON} size={20} />
         </a>
         <a href="#" aria-label="Download" style={{ color: "#666" }}>
-          <Icon name="download_icon" size={20} />
+          <Icon name={ICONS.DOWNLOAD_ICON} size={20} />
         </a>
       </div>
     ),
@@ -249,7 +250,7 @@ export const Complex: Story = {
     leftContent: (
       <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-          <Icon name="thunderbolt_logo_icon" size={24} />
+          <Icon name={ICONS.THUNDERBOLT_LOGO_ICON} size={24} />
           <span style={{ fontWeight: "600" }}>Quick UI</span>
         </div>
         <div
@@ -286,10 +287,10 @@ export const Complex: Story = {
         ></div>
         <div style={{ display: "flex", gap: "12px" }}>
           <a href="#" aria-label="Settings">
-            <Icon name="settings_icon" size={18} />
+            <Icon name={ICONS.SETTINGS_ICON} size={18} />
           </a>
           <a href="#" aria-label="User">
-            <Icon name="user_icon" size={18} />
+            <Icon name={ICONS.USER_ICON} size={18} />
           </a>
         </div>
       </div>
@@ -333,7 +334,7 @@ export const MobilePreview: Story = {
   args: {
     leftContent: (
       <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-        <Icon name="thunderbolt_logo_icon" size={20} />
+        <Icon name={ICONS.THUNDERBOLT_LOGO_ICON} size={20} />
         <span>Company</span>
       </div>
     ),

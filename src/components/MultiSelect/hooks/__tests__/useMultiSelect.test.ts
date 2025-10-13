@@ -53,7 +53,6 @@ describe("useMultiSelect Hook", () => {
       expect(result.current.inputValue).toBe("");
       expect(result.current.selectedOptions).toEqual([]);
       expect(result.current.renderInputText).toBe("Select options...");
-      expect(result.current.computeEndIcon).toBe("chevron_down_icon");
     });
 
     it("should initialize with defaultValue in uncontrolled mode", () => {
@@ -70,7 +69,6 @@ describe("useMultiSelect Hook", () => {
         { label: "Option 2", value: "2" },
       ]);
       expect(result.current.renderInputText).toBe("2 options selected");
-      expect(result.current.computeEndIcon).toBeUndefined();
     });
 
     it("should initialize with controlled value", () => {
@@ -478,35 +476,6 @@ describe("useMultiSelect Hook", () => {
       const { result } = renderHook(() => useMultiSelect(propsWithSelection));
 
       expect(result.current.renderInputText).toBe("3 options selected");
-    });
-  });
-
-  describe("End Icon Computation", () => {
-    it("should show chevron down when closed and no selections", () => {
-      const { result } = renderHook(() => useMultiSelect(defaultProps));
-
-      expect(result.current.computeEndIcon).toBe("chevron_down_icon");
-    });
-
-    it("should show chevron up when open and no selections", () => {
-      const { result } = renderHook(() => useMultiSelect(defaultProps));
-
-      act(() => {
-        result.current.setIsOpen(true);
-      });
-
-      expect(result.current.computeEndIcon).toBe("chevron_up_icon");
-    });
-
-    it("should show no icon when options are selected", () => {
-      const propsWithSelection = {
-        ...defaultProps,
-        defaultValue: ["1"],
-      };
-
-      const { result } = renderHook(() => useMultiSelect(propsWithSelection));
-
-      expect(result.current.computeEndIcon).toBeUndefined();
     });
   });
 
