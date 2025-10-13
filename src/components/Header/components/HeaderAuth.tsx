@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { User } from "../Header.types";
 import { HeaderHamburgerMenu } from "./HeaderHamburgerMenu";
-import { ICONS } from "../../../assets/iconType";
+import { ICONS } from "@assets/iconType";
 
 interface HeaderAuthButtonsProps {
   showAuth?: boolean;

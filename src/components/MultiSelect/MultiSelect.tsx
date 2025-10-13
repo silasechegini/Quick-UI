@@ -6,7 +6,7 @@ import { Input } from "@components/Input";
 import { useMultiSelect } from "./hooks/useMultiSelect";
 import { CHIP_SIZES, CHIP_VARIANTS } from "@components/Chip/Chip.types";
 import { INPUT_CONFIGURATIONS } from "@components/Input/Input.types";
-import { ICONS } from "../../assets/iconType";
+import { ICONS } from "@assets/iconType";
 
 /**
  * MultiSelect component that allows users to select multiple options from a dropdown list.

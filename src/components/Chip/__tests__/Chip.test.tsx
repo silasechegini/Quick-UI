@@ -4,7 +4,7 @@ import Chip from "../Chip";
 import { CHIP_SIZES, CHIP_VARIANTS, CHIP_STATUSES } from "../Chip.types";
 import styles from "../styles.module.scss";
 import { ButtonProps } from "@components/Button";
-import { ICONS } from "../../../assets/iconType";
+import { ICONS } from "@assets/iconType";
 
 // Mock the Icon component since it's imported
 vi.mock("@components/Icon", () => ({

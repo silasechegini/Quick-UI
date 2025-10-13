@@ -10,7 +10,7 @@ import {
   ICON_POSITIONS,
   Icon,
 } from "../src";
-import { ICONS } from "../src/assets/iconType";
+import { ICONS } from "@assets/iconType";
 
 const meta = {
   title: "Components/Button",

@@ -2,7 +2,7 @@ import { FC, ReactNode } from "react";
 import Icon from "../../Icon/Icon";
 import { Button, BUTTON_SIZES, BUTTON_VARIANTS } from "../../Button";
 import styles from "../styles.module.scss";
-import { ICONS } from "../../../assets/iconType";
+import { ICONS } from "@assets/iconType";
 
 interface PageSidebarProps {
   sidebarConfig?: {

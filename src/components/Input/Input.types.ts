@@ -1,5 +1,5 @@
 import { InputHTMLAttributes } from "react";
-import { IconKey } from "../../assets/iconType";
+import { IconKey } from "@assets/iconType";
 
 export type InputVariant = "primary" | "secondary" | "error" | "success";
 

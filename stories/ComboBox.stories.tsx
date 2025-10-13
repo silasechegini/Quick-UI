@@ -4,7 +4,7 @@ import { useState } from "react";
 import { ComboBox, ComboBoxOption } from "../src/components/ComboBox";
 import { fn } from "storybook/test";
 import { Icon } from "@components/Icon";
-import { ICONS } from "../src/assets/iconType";
+import { ICONS } from "@assets/iconType";
 
 const options: ComboBoxOption[] = [
   { label: "Apple", value: "apple" },

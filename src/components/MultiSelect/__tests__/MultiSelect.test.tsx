@@ -4,7 +4,7 @@ import MultiSelect from "../MultiSelect";
 import { MultiSelectOption } from "../MultiSelect.types";
 import styles from "../styles.module.scss";
 import { ChipProps } from "@components/Chip";
-import { ICONS } from "../../../assets/iconType";
+import { ICONS } from "@assets/iconType";
 
 // Mock the Chip component
 vi.mock("@components/Chip", () => ({

@@ -8,7 +8,7 @@ import {
   CHIP_VARIANTS,
 } from "@components/Chip/Chip.types";
 import styles from "./chip.module.scss";
-import { ICONS } from "../src/assets/iconType";
+import { ICONS } from "@assets/iconType";
 
 const meta = {
   title: "Components/Chip",

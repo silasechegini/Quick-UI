@@ -9,7 +9,7 @@ import {
 } from "./Button.types";
 import { combineClasses } from "../../utils";
 import { Icon } from "../Icon";
-import { ICONS } from "../../assets/iconType";
+import { ICONS } from "@assets/iconType";
 
 /** ButtonBase - The foundational button component handling core functionality and styling.
  *

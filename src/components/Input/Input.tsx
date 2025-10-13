@@ -1,7 +1,7 @@
 import { forwardRef, useMemo } from "react";
 import { INPUT_CONFIGURATIONS, InputProps } from "./Input.types";
 import { Icon } from "../Icon";
-import { ICONS } from "../../assets/iconType";
+import { ICONS } from "@assets/iconType";
 import styles from "./styles.module.scss";
 import { Button, BUTTON_SIZES, BUTTON_VARIANTS } from "..";
 
