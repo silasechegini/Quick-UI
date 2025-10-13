@@ -1,8 +1,12 @@
 import React from "react";
 import { iconSvgMapping } from "@assets";
 import styles from "./styles.module.scss";
+import { ICONS } from "@assets/iconType";
 
-const ThunderboltCircle = iconSvgMapping["thunderbolt_circle_logo_icon"];
+const ThunderboltCircle =
+  iconSvgMapping[
+    ICONS.THUNDERBOLT_CIRCLE_LOGO_ICON as keyof typeof iconSvgMapping
+  ];
 
 const IntroPage: React.FC = () => (
   <>

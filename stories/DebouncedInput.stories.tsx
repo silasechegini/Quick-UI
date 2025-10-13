@@ -3,6 +3,7 @@ import { fn } from "storybook/test";
 import { DebouncedInput } from "../src/components/Input";
 import { useState } from "react";
 import styles from "./input.module.scss";
+import { ICONS } from "@assets/iconType";
 
 const meta = {
   title: "Components/DebouncedInput",
@@ -44,7 +45,7 @@ export const SearchWithDebounce: Story = {
   args: {
     label: "Search with Debounce",
     placeholder: "Search for products...",
-    startIcon: "search_icon",
+    startIcon: ICONS.SEARCH_ICON,
     debounceDelay: 500,
     helperText: "Search will trigger 500ms after you stop typing",
   },
@@ -100,7 +101,7 @@ export const WithCallback: Story = {
         <DebouncedInput
           label="Live Search Demo"
           placeholder="Type to search..."
-          startIcon="search_icon"
+          startIcon={ICONS.SEARCH_ICON}
           debounceDelay={300}
           onChange={handleSearch}
           loading={isSearching}
@@ -191,9 +192,9 @@ export const ClearableFormValidation: Story = {
           loading={isValidating}
           endIcon={
             isValid === true
-              ? "checkmark_icon"
+              ? ICONS.CHECKMARK_ICON
               : isValid === false
-                ? "close_icon"
+                ? ICONS.CLOSE_ICON
                 : undefined
           }
           value={email}

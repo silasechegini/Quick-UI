@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { fn } from "storybook/test";
 import { Input } from "../src/components/Input";
+import { ICONS } from "@assets/iconType";
 
 const meta = {
   title: "Components/Input",
@@ -20,11 +21,11 @@ const meta = {
     },
     startIcon: {
       control: { type: "select" },
-      options: ["", "search_icon", "user_icon", "calendar_icon"],
+      options: ["", ICONS.SEARCH_ICON, ICONS.USER_ICON, ICONS.CALENDAR_ICON],
     },
     endIcon: {
       control: { type: "select" },
-      options: ["", "search_icon", "clear_icon", "eye_icon"],
+      options: ["", ICONS.SEARCH_ICON, ICONS.CLEAR_ICON, ICONS.EYE_ICON],
     },
   },
   args: {
@@ -81,7 +82,7 @@ export const WithStartIcon: Story = {
   args: {
     label: "Search",
     placeholder: "Search for anything...",
-    startIcon: "search_icon",
+    startIcon: ICONS.SEARCH_ICON,
   },
 };
 
@@ -90,7 +91,7 @@ export const WithEndIcon: Story = {
     label: "Password",
     placeholder: "Enter your password...",
     type: "password",
-    endIcon: "eye_icon",
+    endIcon: ICONS.EYE_ICON,
   },
 };
 
@@ -170,8 +171,8 @@ export const SearchExample: Story = {
   args: {
     label: "Search Products",
     placeholder: "Search for products...",
-    startIcon: "search_icon",
-    endIcon: "clear_icon",
+    startIcon: ICONS.SEARCH_ICON,
+    endIcon: ICONS.CLEAR_ICON,
     helperText: "Search across all categories",
   },
 };

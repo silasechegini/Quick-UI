@@ -2,8 +2,9 @@ import { FC } from "react";
 import { iconSvgMapping } from "../../../assets";
 import { User } from "../Header.types";
 import styles from "../styles.module.scss";
+import { ICONS } from "@assets/iconType";
 
-const UserIcon = iconSvgMapping["user_icon"];
+const UserIcon = iconSvgMapping[ICONS.USER_ICON];
 
 interface HeaderUserSectionProps {
   user?: User;

@@ -3,6 +3,7 @@ import { Button, BUTTON_VARIANTS } from "../../Button";
 import { HamburgerMenuItem, User } from "../Header.types";
 import styles from "../styles.module.scss";
 import { Icon, IconName } from "@components/index";
+import { ICONS } from "@assets/iconType";
 
 interface HeaderHamburgerMenuProps {
   showHamburgerMenu?: boolean;
@@ -31,14 +32,14 @@ export const HeaderHamburgerMenu: FC<HeaderHamburgerMenuProps> = ({
         {
           id: "profile",
           label: "Profile",
-          icon: "user_icon",
+          icon: ICONS.USER_ICON,
           onClick: onProfileClick,
           disabled: false,
         },
         {
           id: "settings",
           label: "Settings",
-          icon: "settings_icon",
+          icon: ICONS.SETTINGS_ICON,
           onClick: onSettingsClick,
           disabled: false,
         },

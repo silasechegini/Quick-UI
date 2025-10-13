@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Header } from "../src/components/Header";
 import { HamburgerMenuItem } from "../src/components/Header/Header.types";
+import { ICONS } from "@assets/iconType";
 
 const meta: Meta<typeof Header> = {
   title: "components/Header",
@@ -29,19 +30,19 @@ const customMenuItems: HamburgerMenuItem[] = [
   {
     id: "dashboard",
     label: "Dashboard",
-    icon: "calendar_icon",
+    icon: ICONS.CALENDAR_ICON,
     onClick: () => console.log("Dashboard clicked"),
   },
   {
     id: "analytics",
     label: "Analytics",
-    icon: "search_icon",
+    icon: ICONS.SEARCH_ICON,
     onClick: () => console.log("Analytics clicked"),
   },
   {
     id: "team",
     label: "Team Management",
-    icon: "user_icon",
+    icon: ICONS.USER_ICON,
     onClick: () => console.log("Team clicked"),
   },
   {
@@ -52,7 +53,7 @@ const customMenuItems: HamburgerMenuItem[] = [
   {
     id: "settings",
     label: "Settings",
-    icon: "settings_icon",
+    icon: ICONS.SETTINGS_ICON,
     onClick: () => console.log("Settings clicked"),
   },
   {
@@ -76,25 +77,25 @@ const adminMenuItems: HamburgerMenuItem[] = [
   {
     id: "users",
     label: "User Management",
-    icon: "user_icon",
+    icon: ICONS.USER_ICON,
     onClick: () => console.log("Users clicked"),
   },
   {
     id: "system",
     label: "System Settings",
-    icon: "settings_icon",
+    icon: ICONS.SETTINGS_ICON,
     onClick: () => console.log("System clicked"),
   },
   {
     id: "monitoring",
     label: "Monitoring",
-    icon: "eye_icon",
+    icon: ICONS.EYE_ICON,
     onClick: () => console.log("Monitoring clicked"),
   },
   {
     id: "disabled-feature",
     label: "Disabled Feature",
-    icon: "close_icon",
+    icon: ICONS.CLOSE_ICON,
     onClick: () => console.log("This should not fire"),
     disabled: true,
   },
