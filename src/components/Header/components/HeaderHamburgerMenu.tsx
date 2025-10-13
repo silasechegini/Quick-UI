@@ -105,6 +105,8 @@ export const HeaderHamburgerMenu: FC<HeaderHamburgerMenuProps> = ({
                 }}
                 disabled={item.disabled || false}
                 role="menuitem"
+                tabIndex={0}
+                fullWidth
               >
                 <div className={styles.menuItemContainer}>
                   {item.icon && <Icon name={item.icon as IconName} size={16} />}
