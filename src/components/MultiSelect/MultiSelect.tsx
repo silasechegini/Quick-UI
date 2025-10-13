@@ -4,6 +4,8 @@ import styles from "./styles.module.scss";
 import { Chip } from "@components/Chip";
 import { Input } from "@components/Input";
 import { useMultiSelect } from "./hooks/useMultiSelect";
+import { CHIP_SIZES, CHIP_VARIANTS } from "@components/Chip/Chip.types";
+import { INPUT_CONFIGURATIONS } from "@components/Input/Input.types";
 
 /**
  * MultiSelect component that allows users to select multiple options from a dropdown list.
@@ -25,6 +27,8 @@ import { useMultiSelect } from "./hooks/useMultiSelect";
  * @param props.autoFocus - Whether the input should be focused on mount (default: false)
  * @param props.maxSelected - Maximum number of options that can be selected
  * @param props.clearable - Whether the component should show a clear all button (default: true)
+ * @param props.loadingText - Text to display when the component is in a loading state (default: "Loading...")
+ * @param props.noOptionsText - Text to display when there are no options available (default: "No options available")
  * @returns JSX.Element representing the multiselect component
  */
 const MultiSelect: React.FC<MultiSelectProps> = ({
@@ -42,6 +46,8 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
   name,
   autoFocus = false,
   maxSelected,
+  loadingText = "Loading...",
+  noOptionsText = "No options available",
   clearable = true,
 }) => {
   const generatedId = useId();
@@ -116,7 +122,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
           loading={isLoading}
           className={styles.input}
           containerClassName={styles.inputWrapper}
-          configuration="multi-select"
+          configuration={INPUT_CONFIGURATIONS.MULTI_SELECT}
         />
 
         {isOpen && (
@@ -127,9 +133,9 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
             id={dropdownId}
           >
             {isLoading ? (
-              <li className={styles.loading}>Loading...</li>
+              <li className={styles.loading}>{loadingText}</li>
             ) : filteredOptions.length === 0 ? (
-              <li className={styles.empty}>No options</li>
+              <li className={styles.empty}>{noOptionsText}</li>
             ) : (
               filteredOptions.map((opt, index) => {
                 const isSelected = selected.includes(opt.value);
@@ -180,8 +186,8 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
               e.stopPropagation();
               handleRemove(opt.value);
             }}
-            size="small"
-            variant="outline"
+            size={CHIP_SIZES.SMALL}
+            variant={CHIP_VARIANTS.OUTLINE}
             disabled={disabled}
           />
         ))}

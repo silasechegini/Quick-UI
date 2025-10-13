@@ -6,7 +6,6 @@ import {
   useState,
 } from "react";
 import { MultiSelectOption } from "../MultiSelect.types";
-import { IconKey } from "@assets/iconType";
 
 const useMultiSelect = ({
   options,
