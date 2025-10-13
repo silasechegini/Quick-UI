@@ -6,7 +6,6 @@ import {
   useState,
 } from "react";
 import { MultiSelectOption } from "../MultiSelect.types";
-import { IconKey } from "@assets/iconType";
 
 const useMultiSelect = ({
   options,
@@ -125,11 +124,6 @@ const useMultiSelect = ({
     return `${selectedOptions.length} options selected`;
   }, [selectedOptions, placeholder]);
 
-  const computeEndIcon: IconKey | undefined = useMemo(() => {
-    if (selectedOptions.length > 0) return undefined;
-    return isOpen ? "chevron_up_icon" : "chevron_down_icon";
-  }, [selectedOptions, isOpen]);
-
   return {
     selected,
     filteredOptions,
@@ -144,7 +138,6 @@ const useMultiSelect = ({
     setIsOpen,
     setHighlightedIndex,
     selectedOptions,
-    computeEndIcon,
   };
 };
 

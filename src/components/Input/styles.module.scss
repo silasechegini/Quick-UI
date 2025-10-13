@@ -126,30 +126,36 @@
   pointer-events: none;
 }
 
-.endIcon {
+.endIconContainer {
   position: absolute;
-  right: 0.75rem;
+  right: var(--space-3);
+  top: 50%;
+  transform: translateY(-50%);
   z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: calc(100% - var(--space-2));
+  pointer-events: none;
+}
+
+.endIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--gray-400);
   pointer-events: none;
 }
 
 .clearButton {
-  position: absolute;
-  right: 0.25rem;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: calc(100% - 0.5rem);
-  width: 2.5rem;
-  border-radius: var(--radius-sm);
+  pointer-events: auto;
 
   button {
-    width: 100% !important;
-    height: 100% !important;
+    width: var(--space-6) !important;
+    height: var(--space-6) !important;
     padding: 0 !important;
     min-width: auto !important;
     background: transparent !important;
@@ -157,10 +163,11 @@
     box-shadow: none !important;
     border-radius: var(--radius-sm) !important;
     color: var(--gray-400) !important;
-    transition: all 0.2s ease-in-out !important;
+    transition: all var(--transition-fast) var(--ease-in-out) !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
+    pointer-events: auto !important;
 
     &:hover {
       background: var(--gray-100) !important;
@@ -180,6 +187,14 @@
       outline-offset: 1px !important;
     }
   }
+}
+
+.clearButtonDivider {
+  height: 80%;
+  width: var(--border-thin);
+  background-color: var(--gray-300);
+  flex-shrink: 0;
+  align-self: center;
 }
 
 .hasStartIcon {

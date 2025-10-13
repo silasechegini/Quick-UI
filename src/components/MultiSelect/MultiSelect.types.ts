@@ -7,6 +7,8 @@ export interface MultiSelectProps {
   id?: string;
   options: MultiSelectOption[];
   value?: (string | number)[];
+  loadingText?: string;
+  noOptionsText?: string;
   defaultValue?: (string | number)[];
   onChange?: (selected: (string | number)[]) => void;
   placeholder?: string;
