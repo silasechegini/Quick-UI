@@ -65,7 +65,6 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
     setIsOpen,
     setHighlightedIndex,
     selectedOptions,
-    computeEndIcon,
   } = useMultiSelect({
     options,
     defaultValue,
@@ -113,7 +112,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
           autoFocus={autoFocus}
           clearable={clearable && selected.length > 0}
           onClear={handleClearAll}
-          endIcon={computeEndIcon}
+          endIcon={isOpen ? "chevron_up_icon" : "chevron_down_icon"}
           loading={isLoading}
           className={styles.input}
           containerClassName={styles.inputWrapper}
