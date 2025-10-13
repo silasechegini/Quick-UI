@@ -3,10 +3,7 @@ import { iconSvgMapping } from "@assets";
 import styles from "./styles.module.scss";
 import { ICONS } from "@assets/iconType";
 
-const ThunderboltCircle =
-  iconSvgMapping[
-    ICONS.THUNDERBOLT_CIRCLE_LOGO_ICON as keyof typeof iconSvgMapping
-  ];
+const ThunderboltCircle = iconSvgMapping[ICONS.THUNDERBOLT_CIRCLE_LOGO_ICON];
 
 const IntroPage: React.FC = () => (
   <>
