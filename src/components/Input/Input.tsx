@@ -1,6 +1,7 @@
 import { forwardRef, useMemo } from "react";
 import { INPUT_CONFIGURATIONS, InputProps } from "./Input.types";
 import { Icon } from "../Icon";
+import { ICONS } from "../../assets/iconType";
 import styles from "./styles.module.scss";
 import { Button, BUTTON_SIZES, BUTTON_VARIANTS } from "..";
 
@@ -126,7 +127,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
                 <Button
                   variant={BUTTON_VARIANTS.PLAIN}
                   size={BUTTON_SIZES.EXTRASMALL}
-                  icon={<Icon name="clear_icon" size={16} />}
+                  icon={<Icon name={ICONS.CLEAR_ICON} size={16} />}
                   onClick={handleClearClick}
                   onMouseDown={(e) => e.preventDefault()}
                   type="button"
@@ -140,7 +141,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             )}
             {loading ? (
               <div className={styles.endIcon}>
-                <Icon name="loading_icon" size={16} />
+                <Icon name={ICONS.LOADING_ICON} size={16} />
               </div>
             ) : endIcon ? (
               <div className={styles.endIcon}>
@@ -152,7 +153,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
 
         {errorMessage && error && (
           <div className={styles.errorMessage}>
-            <Icon name="close_icon" size={12} />
+            <Icon name={ICONS.CLOSE_ICON} size={12} />
             {errorMessage}
           </div>
         )}

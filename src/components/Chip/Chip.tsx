@@ -4,6 +4,7 @@ import { Button, BUTTON_SIZES, BUTTON_VARIANTS } from "@components/Button";
 import { Icon } from "@components/Icon";
 import { buildClassNames } from "@utils/classNames";
 import styles from "./styles.module.scss";
+import { ICONS } from "@assets/iconType";
 
 /**
  * Chip component that displays small pieces of information or tags.
@@ -105,7 +106,7 @@ const Chip: React.FC<ChipProps> = ({
           <Button
             variant={BUTTON_VARIANTS.PLAIN}
             size={BUTTON_SIZES.EXTRASMALL}
-            icon={<Icon name="clear_icon" size={iconSize} />}
+            icon={<Icon name={ICONS.CLEAR_ICON} size={iconSize} />}
             onClick={onRemove}
             onMouseDown={(e) => e.preventDefault()}
             type="button"

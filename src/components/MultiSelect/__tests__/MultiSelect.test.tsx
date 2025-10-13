@@ -4,6 +4,7 @@ import MultiSelect from "../MultiSelect";
 import { MultiSelectOption } from "../MultiSelect.types";
 import styles from "../styles.module.scss";
 import { ChipProps } from "@components/Chip";
+import { ICONS } from "../../../assets/iconType";
 
 // Mock the Chip component
 vi.mock("@components/Chip", () => ({
@@ -31,7 +32,7 @@ vi.mock("@components/Chip", () => ({
 // Mock icon
 vi.mock("@assets", () => ({
   iconSvgMapping: {
-    clear_icon: ({ className }: { className: string }) => (
+    [ICONS.CLEAR_ICON]: ({ className }: { className: string }) => (
       <div data-testid="clear-icon" className={className}>
         Clear
       </div>

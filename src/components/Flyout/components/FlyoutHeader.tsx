@@ -3,8 +3,9 @@ import styles from "../styles.module.scss";
 import { FlyoutHeaderProps } from "../Flyout.types";
 import { Button, BUTTON_SIZES, BUTTON_VARIANTS } from "@components/Button";
 import { iconSvgMapping } from "@assets";
+import { ICONS } from "@assets/iconType";
 
-const CloseIcon = iconSvgMapping["close_icon"];
+const CloseIcon = iconSvgMapping[ICONS.CLOSE_ICON];
 
 const FlyoutHeader: FC<FlyoutHeaderProps> = ({
   children,

@@ -10,6 +10,7 @@ import {
   ICON_POSITIONS,
   Icon,
 } from "../src";
+import { ICONS } from "../src/assets/iconType";
 
 const meta = {
   title: "Components/Button",
@@ -73,7 +74,7 @@ export const LeadingIcon: Story = {
     variant: BUTTON_VARIANTS.PRIMARY,
     size: BUTTON_SIZES.LARGE,
     children: "Leading Icon",
-    icon: <Icon name="upload_icon" size={16} />,
+    icon: <Icon name={ICONS.UPLOAD_ICON} size={16} />,
     iconPosition: ICON_POSITIONS.START,
   },
 };
@@ -83,7 +84,7 @@ export const TrailingIcon: Story = {
     variant: BUTTON_VARIANTS.PRIMARY,
     size: BUTTON_SIZES.LARGE,
     children: "Trailing Icon",
-    icon: <Icon name="download_icon" size={16} />,
+    icon: <Icon name={ICONS.DOWNLOAD_ICON} size={16} />,
     iconPosition: ICON_POSITIONS.END,
   },
 };
@@ -93,7 +94,7 @@ export const Circular: Story = {
     variant: BUTTON_VARIANTS.PRIMARY,
     size: BUTTON_SIZES.LARGE,
     shape: BUTTON_SHAPES.CIRCULAR,
-    icon: <Icon name="plus_icon" size={20} />,
+    icon: <Icon name={ICONS.PLUS_ICON} size={20} />,
     ariaLabel: "Add item",
     styleOverride: { style: { width: "70px", height: "70px" } },
   },
@@ -111,7 +112,7 @@ export const IconOnly: Story = {
   args: {
     variant: BUTTON_VARIANTS.SECONDARY,
     size: BUTTON_SIZES.SMALL,
-    icon: <Icon name="checkmark_icon" size={16} />,
+    icon: <Icon name={ICONS.CHECKMARK_ICON} size={16} />,
     ariaLabel: "Confirm",
     iconPosition: ICON_POSITIONS.DEFAULT,
   },
@@ -146,7 +147,7 @@ export const Plain: Story = {
   args: {
     variant: BUTTON_VARIANTS.PLAIN,
     size: BUTTON_SIZES.SMALL,
-    icon: <Icon name="settings_icon" size={16} />,
+    icon: <Icon name={ICONS.SETTINGS_ICON} size={16} />,
     ariaLabel: "Settings",
   },
 };
@@ -242,14 +243,14 @@ export const FullWidthComparison: Story = {
  * </Button>
  *
  * // Button with icon
- * <Button variant="secondary" icon={<Icon name="settings_icon" size={16} />}>
+ * <Button variant="secondary" icon={<Icon name={ICONS.SETTINGS_ICON} size={16} />}>
  *   Settings
  * </Button>
  *
  * // Icon-only button
  * <Button
  *   variant="plain"
- *   icon={<Icon name="close_icon" size={16} />}
+ *   icon={<Icon name={ICONS.CLOSE_ICON} size={16} />}
  *   ariaLabel="Close dialog"
  * />
  *

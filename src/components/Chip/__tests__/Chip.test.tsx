@@ -4,6 +4,7 @@ import Chip from "../Chip";
 import { CHIP_SIZES, CHIP_VARIANTS, CHIP_STATUSES } from "../Chip.types";
 import styles from "../styles.module.scss";
 import { ButtonProps } from "@components/Button";
+import { ICONS } from "../../../assets/iconType";
 
 // Mock the Icon component since it's imported
 vi.mock("@components/Icon", () => ({
@@ -220,7 +221,9 @@ describe("Chip Component", () => {
     it("should render remove button when interactive is true", () => {
       render(<Chip {...defaultProps} interactive={true} />);
       expect(screen.getByTestId("chip-remove-button")).toBeInTheDocument();
-      expect(screen.getByTestId("icon-clear_icon")).toBeInTheDocument();
+      expect(
+        screen.getByTestId(`icon-${ICONS.CLEAR_ICON}`),
+      ).toBeInTheDocument();
     });
 
     it("should not render remove button when interactive is false", () => {

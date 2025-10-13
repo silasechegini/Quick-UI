@@ -9,6 +9,7 @@ import {
 } from "./Button.types";
 import { combineClasses } from "../../utils";
 import { Icon } from "../Icon";
+import { ICONS } from "../../assets/iconType";
 
 /** ButtonBase - The foundational button component handling core functionality and styling.
  *
@@ -61,7 +62,7 @@ const ButtonBase: React.FC<ButtonProps> = ({
     <>
       {isLoading && (
         <span className={styles.icon}>
-          <Icon name="loading_icon" size={16} />
+          <Icon name={ICONS.LOADING_ICON} size={16} />
         </span>
       )}
       {!isLoading && icon && iconPosition === ICON_POSITIONS.START && (

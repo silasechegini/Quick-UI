@@ -8,6 +8,7 @@ import {
   CHIP_VARIANTS,
 } from "@components/Chip/Chip.types";
 import styles from "./chip.module.scss";
+import { ICONS } from "../src/assets/iconType";
 
 const meta = {
   title: "Components/Chip",
@@ -112,21 +113,21 @@ export const WithCustomStyle: Story = {
 export const WithLeadingIcon: Story = {
   args: {
     text: "Leading Icon",
-    leadingIcon: <Icon name="chevron_left_icon" size={16} />,
+    leadingIcon: <Icon name={ICONS.CHEVRON_LEFT_ICON} size={16} />,
   },
 };
 
 export const WithTrailingIcon: Story = {
   args: {
     text: "Trailing Icon",
-    trailingIcon: <Icon name="chevron_right_icon" size={16} />,
+    trailingIcon: <Icon name={ICONS.CHEVRON_RIGHT_ICON} size={16} />,
   },
 };
 
 export const WithBothIcons: Story = {
   args: {
     text: "Both Icons",
-    leadingIcon: <Icon name="chevron_left_icon" size={16} />,
-    trailingIcon: <Icon name="chevron_right_icon" size={16} />,
+    leadingIcon: <Icon name={ICONS.CHEVRON_LEFT_ICON} size={16} />,
+    trailingIcon: <Icon name={ICONS.CHEVRON_RIGHT_ICON} size={16} />,
   },
 };

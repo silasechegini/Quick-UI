@@ -6,6 +6,7 @@ import { Input } from "@components/Input";
 import { useMultiSelect } from "./hooks/useMultiSelect";
 import { CHIP_SIZES, CHIP_VARIANTS } from "@components/Chip/Chip.types";
 import { INPUT_CONFIGURATIONS } from "@components/Input/Input.types";
+import { ICONS } from "../../assets/iconType";
 
 /**
  * MultiSelect component that allows users to select multiple options from a dropdown list.
@@ -118,7 +119,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
           autoFocus={autoFocus}
           clearable={clearable && selected.length > 0}
           onClear={handleClearAll}
-          endIcon={isOpen ? "chevron_up_icon" : "chevron_down_icon"}
+          endIcon={isOpen ? ICONS.CHEVRON_UP_ICON : ICONS.CHEVRON_DOWN_ICON}
           loading={isLoading}
           className={styles.input}
           containerClassName={styles.inputWrapper}
