@@ -12,7 +12,7 @@
   user-select: none;
 }
 
-.radioLabel--disabled {
+.radioLabel__disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
@@ -84,7 +84,7 @@
   gap: 0.75rem;
 }
 
-.radioGroupContainer--horizontal {
+.radioGroupContainer__horizontal {
   flex-direction: row;
   flex-wrap: wrap;
   gap: 1rem;

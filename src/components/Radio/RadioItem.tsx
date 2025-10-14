@@ -42,7 +42,7 @@ const RadioItem = forwardRef<HTMLInputElement, RadioItemProps>(
     const labelStyles = combineClasses(
       styles.radioLabel,
       labelClassName,
-      disabled ? styles.radioLabelDisabled : "",
+      disabled ? styles.radioLabel__disabled : "",
     );
 
     return (
