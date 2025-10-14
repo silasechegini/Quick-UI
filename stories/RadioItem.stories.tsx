@@ -150,7 +150,7 @@ export const LongLabel: Story = {
 // Interactive group example
 export const InteractiveGroup: Story = {
   render: () => {
-    const [selectedValue, setSelectedValue] = useState<string>("option2");
+    const [selectedValue, setSelectedValue] = useState<string>("react");
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setSelectedValue(event.target.value);

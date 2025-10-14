@@ -21,7 +21,7 @@ const RadioItem = forwardRef<HTMLInputElement, RadioItemProps>(
     },
     ref,
   ) => {
-    const id = `${name}-${value}`;
+    const id = crypto.randomUUID();
 
     const inputStyles = combineClasses(
       styles.radioInput,
