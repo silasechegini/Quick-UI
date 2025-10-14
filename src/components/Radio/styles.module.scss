@@ -90,6 +90,12 @@
   gap: 1rem;
 }
 
+.radioGroupContainer__disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 .radioGroupError {
   color: #d13438;
   font-size: 0.875rem;

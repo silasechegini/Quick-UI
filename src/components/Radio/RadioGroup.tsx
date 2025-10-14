@@ -63,7 +63,6 @@ const RadioGroup: FC<RadioGroupProps> = ({
           disabled={disabled || item.disabled}
           description={item.description}
           onChange={handleRadioChange}
-          error={error && index === radioItems.length - 1 ? error : undefined} // Show error on last item
         />
       ))}
 
