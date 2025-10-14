@@ -9,3 +9,4 @@ export * from "./Footer";
 export * from "./Header";
 export * from "./Page";
 export * from "./Slider";
+export * from "./Radio";
