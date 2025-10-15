@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 import { CardProps } from "./Card.types";
 import { combineClasses } from "../../utils";
 import styles from "./styles.module.scss";
