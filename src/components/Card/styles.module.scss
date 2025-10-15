@@ -1,0 +1,53 @@
+// Card base styles
+.card {
+  background: #fff;
+  border-radius: 8px;
+  transition:
+    box-shadow 0.2s,
+    border-color 0.2s;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+}
+
+// Elevation levels
+.elevation0 {
+  box-shadow: none;
+}
+
+.elevation1 {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.elevation2 {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.elevation3 {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.16);
+}
+
+.elevation4 {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+// Card variants
+.bordered {
+  border: 1px solid #e5e7eb;
+}
+
+.hoverable:hover {
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
+}
+
+// Card sections
+.header,
+.footer {
+  padding: 16px;
+  background: #fafbfc;
+  font-weight: 500;
+}
+
+.body {
+  padding: 16px;
+}
