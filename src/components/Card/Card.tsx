@@ -1,24 +1,7 @@
 import { forwardRef } from "react";
 import { CardProps } from "./Card.types";
-import { combineClasses } from "../../utils";
+import { combineClasses, getElevationClass } from "../../utils";
 import styles from "./styles.module.scss";
-
-const getElevationClass = (elevation: number = 1): string => {
-  switch (elevation) {
-    case 0:
-      return styles.elevation0;
-    case 1:
-      return styles.elevation1;
-    case 2:
-      return styles.elevation2;
-    case 3:
-      return styles.elevation3;
-    case 4:
-      return styles.elevation4;
-    default:
-      return styles.elevation1;
-  }
-};
 
 export const Card = forwardRef<HTMLDivElement, CardProps>(
   (
@@ -37,7 +20,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
   ) => {
     const cardClasses = combineClasses(
       styles.card,
-      getElevationClass(elevation),
+      getElevationClass(elevation, styles),
       bordered ? styles.bordered : "",
       hoverable ? styles.hoverable : "",
       className,
