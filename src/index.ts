@@ -10,3 +10,6 @@ export * from "./components/Page";
 export * from "./components/Slider";
 export * from "./components/Radio";
 export * from "./components/Card";
+export * from "./components/Toggle";
+export * from "./components/Footer";
+export * from "./utils";
