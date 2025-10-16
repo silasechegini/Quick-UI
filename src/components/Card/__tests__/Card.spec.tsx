@@ -212,18 +212,6 @@ describe("Card Component", () => {
         "custom",
       );
     });
-
-    // it("handles undefined className gracefully", () => {
-
-    //   render(<Card>Test content</Card>);
-    //   expect(combineClasses).toHaveBeenCalledWith(
-    //     "card",
-    //     "elevation1",
-    //     undefined,
-    //     undefined,
-    //     "",
-    //   );
-    // });
   });
 
   describe("Accessibility", () => {
