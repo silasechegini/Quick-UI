@@ -11,3 +11,4 @@ export * from "./Page";
 export * from "./Slider";
 export * from "./Radio";
 export * from "./Card";
+export * from "./Toggle";
