@@ -36,6 +36,7 @@ export const Toggle = forwardRef<HTMLInputElement, ToggleProps>(
       className,
       labelClassName,
       inputClassName,
+      sliderClassName,
       onChange,
       id,
       ...rest
@@ -77,6 +78,7 @@ export const Toggle = forwardRef<HTMLInputElement, ToggleProps>(
       checkedValue ? styles.checked : styles.unchecked,
       error && styles.error,
       disabled && styles.disabled,
+      sliderClassName,
     );
 
     const labelClasses = combineClasses(
