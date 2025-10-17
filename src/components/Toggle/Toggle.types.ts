@@ -52,6 +52,11 @@ export type ToggleProps = {
   className?: string;
 
   /**
+   * Custom className for the slider element
+   */
+  sliderClassName?: string;
+
+  /**
    * Custom className for the label
    */
   labelClassName?: string;
