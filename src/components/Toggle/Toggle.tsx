@@ -2,6 +2,8 @@ import React, { forwardRef, useState, useId } from "react";
 import { ToggleProps } from "./Toggle.types";
 import { combineClasses } from "../../utils";
 import styles from "./styles.module.scss";
+import { Icon } from "@components/Icon";
+import { ICONS } from "@assets/iconType";
 
 /**
  * Toggle component that provides an on/off switch interface.
@@ -134,6 +136,11 @@ export const Toggle = forwardRef<HTMLInputElement, ToggleProps>(
             className={styles.toggleError}
             role="alert"
           >
+            <Icon
+              name={ICONS.EXCLAMATION_ICON}
+              className={styles.errorIcon}
+              size={16}
+            />
             {errorMessage}
           </div>
         )}
