@@ -1,0 +1,97 @@
+.gradientToggle {
+  --gradient-start: #667eea;
+  --gradient-end: #764ba2;
+
+  input:checked + & {
+    background: linear-gradient(
+      135deg,
+      var(--gradient-start),
+      var(--gradient-end)
+    ) !important;
+
+    &:hover:not(.disabled) {
+      filter: brightness(1.1);
+    }
+  }
+}
+
+.neonToggle {
+  --neon-color: #00ff8879;
+  --neon-glow: rgba(0, 255, 136, 0.5);
+
+  input:checked + & {
+    background-color: var(--neon-color) !important;
+
+    &:hover:not(.disabled) {
+      box-shadow:
+        0 0 10px var(--neon-glow),
+        0 0 10px var(--neon-glow) !important;
+    }
+  }
+}
+
+.retroToggle {
+  --retro-pink: #ff6b9d;
+
+  input:not(:checked) + & {
+    background-color: #2d3748 !important;
+  }
+
+  input:checked + & {
+    background-color: var(--retro-pink) !important;
+
+    &:hover:not(.disabled) {
+      filter: brightness(1.1) !important;
+    }
+  }
+}
+
+.minimalToggle {
+  input:not(:checked) + & {
+    background-color: var(--gray-200) !important;
+  }
+
+  input:checked + & {
+    background-color: #1a202c !important;
+
+    &:hover:not(.disabled) {
+      background-color: #2d3748 !important;
+    }
+  }
+}
+
+.customSuccess {
+  --color-custom-success: #10b981;
+  --color-custom-success-hover: #059669;
+
+  input:checked + & {
+    background-color: var(--color-custom-success) !important;
+    &:hover:not(.disabled) {
+      background-color: var(--color-custom-success-hover) !important;
+    }
+  }
+}
+
+.customWarning {
+  --color-custom-warning: #f59e0b;
+  --color-custom-warning-hover: #d97706;
+
+  input:checked + & {
+    background-color: var(--color-custom-warning) !important;
+    &:hover:not(.disabled) {
+      background-color: var(--color-custom-warning-hover) !important;
+    }
+  }
+}
+
+.customPurple {
+  --color-custom-purple: #8b5cf6;
+  --color-custom-purple-hover: #7c3aed;
+
+  input:checked + & {
+    background-color: var(--color-custom-purple) !important;
+    &:hover:not(.disabled) {
+      background-color: var(--color-custom-purple-hover) !important;
+    }
+  }
+}
