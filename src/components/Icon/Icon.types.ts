@@ -1,8 +1,8 @@
 import type { CSSProperties, SVGProps, FC } from "react";
-import type { IconKey } from "@assets/iconType";
+import type { IconKey, ICONS } from "@assets/iconType";
 
 export type BaseIconProps = {
-  name: IconKey;
+  name: IconKey | ICONS;
   size?: number | string;
   color?: string;
   fill?: string;
