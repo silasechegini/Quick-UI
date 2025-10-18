@@ -156,3 +156,16 @@
     color: var(--gray-400);
   }
 }
+
+.errorIcon {
+  color: var(--color-error);
+  flex-shrink: 0;
+
+  circle {
+    stroke: var(--color-error);
+  }
+
+  path {
+    fill: var(--color-error);
+  }
+}

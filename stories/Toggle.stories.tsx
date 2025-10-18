@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { fn } from "storybook/test";
 import { Toggle } from "../src/components/Toggle";
 import { useState } from "react";
+import styles from "./Toggle.module.scss";
 
 const meta = {
   title: "Components/Toggle",
@@ -320,6 +321,196 @@ export const AccessibilityFeatures: Story = {
       description: {
         story:
           "Toggle component includes comprehensive accessibility features including keyboard navigation, ARIA attributes, and screen reader support.",
+      },
+    },
+  },
+};
+
+export const CustomStyling: Story = {
+  render: () => (
+    <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
+      <div>
+        <h3
+          style={{
+            margin: "0 0 1rem 0",
+            fontSize: "1.125rem",
+            fontWeight: "600",
+          }}
+        >
+          Custom Colors
+        </h3>
+        <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+          <Toggle
+            label="Success Toggle"
+            description="Custom green/success color theme"
+            sliderClassName={styles.customSuccess}
+            defaultChecked={true}
+          />
+
+          <Toggle
+            label="Warning Toggle"
+            description="Custom orange/warning color theme"
+            sliderClassName={styles.customWarning}
+            defaultChecked={true}
+          />
+
+          <Toggle
+            label="Purple Toggle"
+            description="Custom purple color theme"
+            sliderClassName={styles.customPurple}
+            defaultChecked={true}
+          />
+        </div>
+      </div>
+
+      <div>
+        <h3
+          style={{
+            margin: "0 0 1rem 0",
+            fontSize: "1.125rem",
+            fontWeight: "600",
+          }}
+        >
+          Different Sizes with Custom Colors
+        </h3>
+        <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+          <Toggle
+            size="small"
+            label="Small Success"
+            sliderClassName={styles.customSuccess}
+            defaultChecked={true}
+          />
+
+          <Toggle
+            size="medium"
+            label="Medium Warning"
+            sliderClassName={styles.customWarning}
+            defaultChecked={true}
+          />
+
+          <Toggle
+            size="large"
+            label="Large Purple"
+            sliderClassName={styles.customPurple}
+            defaultChecked={true}
+          />
+        </div>
+      </div>
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Use the `sliderClassName` prop to apply custom styling to the toggle slider. This example shows different color themes applied to the toggle background when checked.",
+      },
+    },
+  },
+};
+
+export const AdvancedCustomStyling: Story = {
+  render: () => (
+    <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
+      <div>
+        <h3
+          style={{
+            margin: "0 0 1rem 0",
+            fontSize: "1.125rem",
+            fontWeight: "600",
+          }}
+        >
+          Creative Styling Examples
+        </h3>
+        <div
+          style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}
+        >
+          <Toggle
+            label="Gradient Toggle"
+            description="Beautiful gradient background when active"
+            sliderClassName={styles.gradientToggle}
+            defaultChecked={true}
+          />
+
+          <Toggle
+            label="Neon Glow Toggle"
+            description="Glowing neon effect with box-shadow"
+            sliderClassName={styles.neonToggle}
+            defaultChecked={true}
+          />
+
+          <Toggle
+            label="Retro Style Toggle"
+            description="Retro theme with custom borders and colors"
+            sliderClassName={styles.retroToggle}
+            defaultChecked={false}
+          />
+
+          <Toggle
+            label="Minimal Toggle"
+            description="Clean minimal design with subtle borders"
+            sliderClassName={styles.minimalToggle}
+            defaultChecked={false}
+          />
+        </div>
+      </div>
+
+      <div
+        style={{
+          padding: "1rem",
+          backgroundColor: "#f8fafc",
+          borderRadius: "8px",
+          marginTop: "1rem",
+        }}
+      >
+        <h4
+          style={{
+            margin: "0 0 0.5rem 0",
+            fontSize: "0.975rem",
+            fontWeight: "600",
+          }}
+        >
+          💡 Pro Tip:
+        </h4>
+        <p
+          style={{
+            margin: "0",
+            fontSize: "0.875rem",
+            color: "#64748b",
+            lineHeight: "1.5",
+          }}
+        >
+          Use{" "}
+          <code
+            style={{
+              backgroundColor: "#e2e8f0",
+              padding: "2px 4px",
+              borderRadius: "3px",
+            }}
+          >
+            sliderClassName
+          </code>{" "}
+          to override default styling. For best results, prefer using more
+          specific selectors or theming hooks{" "}
+          <code
+            style={{
+              backgroundColor: "#e2e8f0",
+              padding: "2px 4px",
+              borderRadius: "3px",
+            }}
+          >
+            (such as CSS variables exposed by the component)
+          </code>{" "}
+          to ensure your custom styles take precedence over the component's
+          default styles.
+        </p>
+      </div>
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Advanced examples showing creative ways to customize toggle appearance using `sliderClassName`. Includes gradients, glowing effects, borders, and minimal designs.",
       },
     },
   },

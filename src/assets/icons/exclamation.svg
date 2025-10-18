@@ -1,0 +1,7 @@
+<!-- filepath: c:\Users\silas\Documents\Study\Quick-UI\src\assets\icons\exclamation.svg -->
+<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <!-- Circle outline -->
+  <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2" />
+  <!-- Exclamation mark -->
+  <path d="M11 7h2v6h-2V7zm0 8h2v2h-2v-2z" fill="currentColor" />
+</svg>
