@@ -64,9 +64,13 @@
       var(--gradient-end)
     ) !important;
 
-    &:hover:not(.disabled) {
+    &:hover {
       filter: brightness(1.1);
     }
+  }
+
+  input:disabled:hover + & {
+    box-shadow: none !important;
   }
 }
 
@@ -77,9 +81,12 @@
   input:checked + & {
     background-color: var(--neon-color) !important;
 
-    &:hover:not(.disabled) {
+    &:hover {
       box-shadow: 0 0 10px var(--neon-glow) !important;
     }
+  }
+  input:disabled:hover + & {
+    box-shadow: none !important;
   }
 }
 
@@ -93,9 +100,13 @@
   input:checked + & {
     background-color: var(--retro-pink) !important;
 
-    &:hover:not(.disabled) {
+    &:hover {
       filter: brightness(1.1) !important;
     }
+  }
+
+  input:disabled:hover + & {
+    box-shadow: none !important;
   }
 }
 
@@ -107,9 +118,13 @@
   input:checked + & {
     background-color: #1a202c !important;
 
-    &:hover:not(.disabled) {
+    &:hover {
       background-color: #2d3748 !important;
     }
+  }
+
+  input:disabled:hover + & {
+    box-shadow: none !important;
   }
 }
 
@@ -119,9 +134,13 @@
 
   input:checked + & {
     background-color: var(--color-custom-success) !important;
-    &:hover:not(.disabled) {
+    &:hover {
       background-color: var(--color-custom-success-hover) !important;
     }
+  }
+
+  input:disabled:hover + & {
+    box-shadow: none !important;
   }
 }
 
@@ -131,9 +150,13 @@
 
   input:checked + & {
     background-color: var(--color-custom-warning) !important;
-    &:hover:not(.disabled) {
+    &:hover {
       background-color: var(--color-custom-warning-hover) !important;
     }
+  }
+
+  input:disabled:hover + & {
+    box-shadow: none !important;
   }
 }
 
@@ -143,8 +166,12 @@
 
   input:checked + & {
     background-color: var(--color-custom-purple) !important;
-    &:hover:not(.disabled) {
+    &:hover {
       background-color: var(--color-custom-purple-hover) !important;
     }
+  }
+
+  input:disabled:hover + & {
+    box-shadow: none !important;
   }
 }

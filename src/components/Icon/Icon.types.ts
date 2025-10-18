@@ -1,8 +1,8 @@
-import type { CSSProperties } from "react";
-import { iconSvgMapping as Icons } from "@assets"; // adjust path if icons live elsewhere
+import type { CSSProperties, SVGProps, FC } from "react";
+import type { IconKey } from "@assets/iconType";
 
 export type BaseIconProps = {
-  name: keyof typeof Icons;
+  name: IconKey;
   size?: number | string;
   color?: string;
   fill?: string;
@@ -10,8 +10,6 @@ export type BaseIconProps = {
   className?: string;
 };
 
-export type IconProps = BaseIconProps & React.SVGProps<SVGSVGElement>;
-export type IconName = keyof typeof Icons;
-export type IconComponent = React.FC<IconProps>;
-export { Icons };
+export type IconProps = BaseIconProps & SVGProps<SVGSVGElement>;
+export type IconComponent = FC<IconProps>;
 // Example usage: <Icon name="close_icon" size={24} color="#000" />

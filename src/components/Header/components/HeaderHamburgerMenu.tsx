@@ -2,8 +2,8 @@ import { FC, useState } from "react";
 import { Button, BUTTON_VARIANTS } from "../../Button";
 import { HamburgerMenuItem, User } from "../Header.types";
 import styles from "../styles.module.scss";
-import { Icon, IconName } from "@components/index";
-import { ICONS } from "@assets/iconType";
+import { Icon } from "@components/index";
+import { IconKey, ICONS } from "@assets/iconType";
 
 interface HeaderHamburgerMenuProps {
   showHamburgerMenu?: boolean;
@@ -109,7 +109,7 @@ export const HeaderHamburgerMenu: FC<HeaderHamburgerMenuProps> = ({
                 fullWidth
               >
                 <div className={styles.menuItemContainer}>
-                  {item.icon && <Icon name={item.icon as IconName} size={16} />}
+                  {item.icon && <Icon name={item.icon as IconKey} size={16} />}
                   {item.label}
                 </div>
               </Button>
