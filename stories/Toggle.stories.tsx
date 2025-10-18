@@ -489,7 +489,8 @@ export const AdvancedCustomStyling: Story = {
           >
             sliderClassName
           </code>{" "}
-          to override default styling. For best results, use{" "}
+          to override default styling. For best results, prefer using more
+          specific selectors or theming hooks{" "}
           <code
             style={{
               backgroundColor: "#e2e8f0",
@@ -497,7 +498,7 @@ export const AdvancedCustomStyling: Story = {
               borderRadius: "3px",
             }}
           >
-            !important
+            (such as CSS variables exposed by the component)
           </code>{" "}
           to ensure your custom styles take precedence over the component's
           default styles.
