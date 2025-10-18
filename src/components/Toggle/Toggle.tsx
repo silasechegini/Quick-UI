@@ -139,6 +139,8 @@ export const Toggle = forwardRef<HTMLInputElement, ToggleProps>(
             <Icon
               name={ICONS.EXCLAMATION_ICON}
               className={styles.errorIcon}
+              aria-hidden="true"
+              focusable={false}
               size={16}
             />
             {errorMessage}

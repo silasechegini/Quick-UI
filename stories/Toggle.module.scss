@@ -1,3 +1,58 @@
+/*
+  IMPORTANT: DOM structure requirement
+  -------------------------------
+  The rules in this file rely on the slider element being the immediate sibling
+  of the native input element (i.e. use the "input + .slider" structure).
+  When copying these patterns into your markup, make sure the input and the
+  slider are adjacent siblings so selectors like "input:checked + .slider"
+  continue to work.
+
+  Purpose
+  -------
+  Provides presentational styles for a custom slider/toggle that is visually
+  driven by the state of a native input element. The input maintains semantics,
+  focusability and keyboard support while the adjacent ".slider" element
+  renders the UI.
+
+  Expected markup (example)
+  -------------------------
+  <!-- keep the input in the DOM and paired with the slider -->
+  <input type="checkbox" id="feature-toggle" />
+  <span class="slider" aria-hidden="true"></span>
+
+  Key notes for consumers
+  -----------------------
+  - Do not remove the native input from the DOM. The CSS uses sibling
+    selectors (input + .slider) and input state selectors (e.g. :checked,
+    :disabled, :focus) to style the slider.
+  - If you visually hide the input, ensure it remains accessible to screen
+    readers and keyboard users (use visually-hidden utilities that preserve
+    focusability rather than display:none).
+  - Use a <label for="..."> or wrap the input to allow click-to-toggle behavior.
+  - For accessibility, mirror state with ARIA if necessary (e.g. role="switch"
+    and aria-checked), but prefer native input semantics whenever possible.
+
+  Customization
+  -------------
+  - Override sizing, colors and transitions via variables or mixins provided
+    in your theme (e.g. $slider-width, $slider-height, $slider-bg, etc.).
+  - Provide modifier classes (e.g. .slider--small, .slider--disabled) if your
+    design requires multiple variants; ensure corresponding input states are
+    supported.
+
+  Selector reminders
+  ------------------
+  - Checked state:      input:checked + .slider
+  - Disabled state:     input:disabled + .slider
+  - Focus-visible:      input:focus-visible + .slider
+  - Transition/animation logic should be applied to the .slider element so
+    the native input remains the interaction target.
+
+  Testing
+  -------
+  - Verify keyboard interaction (Tab, Space/Enter) toggles the control.
+  - Test with screen readers to confirm the input exposes correct state.
+*/
 .gradientToggle {
   --gradient-start: #667eea;
   --gradient-end: #764ba2;
@@ -23,9 +78,7 @@
     background-color: var(--neon-color) !important;
 
     &:hover:not(.disabled) {
-      box-shadow:
-        0 0 10px var(--neon-glow),
-        0 0 10px var(--neon-glow) !important;
+      box-shadow: 0 0 10px var(--neon-glow) !important;
     }
   }
 }
