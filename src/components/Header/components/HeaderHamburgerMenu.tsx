@@ -3,7 +3,8 @@ import { Button, BUTTON_VARIANTS } from "../../Button";
 import { HamburgerMenuItem, User } from "../Header.types";
 import styles from "../styles.module.scss";
 import { Icon } from "@components/index";
-import { IconKey, ICONS } from "@assets/iconType";
+import { ICONS } from "@assets/iconType";
+import type { IconKey } from "@assets/iconType";
 
 interface HeaderHamburgerMenuProps {
   showHamburgerMenu?: boolean;
@@ -26,7 +27,6 @@ export const HeaderHamburgerMenu: FC<HeaderHamburgerMenuProps> = ({
 
   if (!showHamburgerMenu && !user) return null;
 
-  // Create default menu items if none provided
   const defaultItems = user
     ? [
         {
