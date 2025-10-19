@@ -109,7 +109,12 @@ export const HeaderHamburgerMenu: FC<HeaderHamburgerMenuProps> = ({
                 fullWidth
               >
                 <div className={styles.menuItemContainer}>
-                  {item.icon && <Icon name={item.icon as IconKey} size={16} />}
+                  {item.icon &&
+                    (typeof item.icon === "string" ? (
+                      <Icon name={item.icon as IconKey} size={16} />
+                    ) : (
+                      item.icon
+                    ))}
                   {item.label}
                 </div>
               </Button>
