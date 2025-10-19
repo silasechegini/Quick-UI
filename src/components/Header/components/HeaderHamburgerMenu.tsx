@@ -1,10 +1,14 @@
-import { FC, useState } from "react";
+import { FC, useState, ReactNode } from "react";
 import { Button, BUTTON_VARIANTS } from "../../Button";
 import { HamburgerMenuItem, User } from "../Header.types";
 import styles from "../styles.module.scss";
 import { Icon } from "@components/index";
 import { ICONS } from "@assets/iconType";
 import type { IconKey } from "@assets/iconType";
+
+const isIconKey = (icon: IconKey | ReactNode): icon is IconKey => {
+  return typeof icon === "string";
+};
 
 interface HeaderHamburgerMenuProps {
   showHamburgerMenu?: boolean;
@@ -110,8 +114,8 @@ export const HeaderHamburgerMenu: FC<HeaderHamburgerMenuProps> = ({
               >
                 <div className={styles.menuItemContainer}>
                   {item.icon &&
-                    (typeof item.icon === "string" ? (
-                      <Icon name={item.icon as IconKey} size={16} />
+                    (isIconKey(item.icon) ? (
+                      <Icon name={item.icon} size={16} />
                     ) : (
                       item.icon
                     ))}

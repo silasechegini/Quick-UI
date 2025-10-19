@@ -1,4 +1,4 @@
-import { IconKey } from "@assets/iconType";
+import type { IconKey, ICONS } from "@assets/iconType";
 import { ReactNode } from "react";
 
 export interface User {
@@ -11,7 +11,7 @@ export interface User {
 export interface HamburgerMenuItem {
   id: string;
   label: string;
-  icon?: IconKey | ReactNode;
+  icon?: IconKey | ICONS | ReactNode;
   onClick?: () => void;
   disabled?: boolean;
   divider?: boolean; // Add a divider after this item
