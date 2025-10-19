@@ -5,10 +5,15 @@ import styles from "../styles.module.scss";
 import { Icon } from "@components/index";
 import { ICONS } from "@assets/iconType";
 import type { IconKey } from "@assets/iconType";
+import { iconSvgMapping } from "@assets/iconSvgMapping";
 
-const isIconKey = (icon: IconKey | ReactNode): icon is IconKey => {
+const isIconKey = (
+  icon: IconKey | ICONS | ReactNode
+): icon is IconKey | ICONS => {
+  // Check if icon is a valid key in iconSvgMapping or a value in ICONS
   return (
-    typeof icon === "string" || Object.values(ICONS).includes(icon as ICONS)
+    (typeof icon === "string" && icon in iconSvgMapping) ||
+    Object.values(ICONS).includes(icon as ICONS)
   );
 };
 
