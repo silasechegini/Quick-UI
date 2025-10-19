@@ -7,7 +7,9 @@ import { ICONS } from "@assets/iconType";
 import type { IconKey } from "@assets/iconType";
 
 const isIconKey = (icon: IconKey | ReactNode): icon is IconKey => {
-  return typeof icon === "string";
+  return (
+    typeof icon === "string" || Object.values(ICONS).includes(icon as ICONS)
+  );
 };
 
 interface HeaderHamburgerMenuProps {
