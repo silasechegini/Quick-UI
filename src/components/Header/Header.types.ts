@@ -1,4 +1,4 @@
-import { IconKey } from "@assets/iconType";
+import type { IconKey } from "@assets/iconType";
 import { ReactNode } from "react";
 
 export interface User {
