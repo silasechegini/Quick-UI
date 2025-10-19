@@ -1,9 +1,21 @@
-import { FC, useState } from "react";
+import { FC, useState, ReactNode } from "react";
 import { Button, BUTTON_VARIANTS } from "../../Button";
 import { HamburgerMenuItem, User } from "../Header.types";
 import styles from "../styles.module.scss";
-import { Icon, IconName } from "@components/index";
+import { Icon } from "@components/index";
 import { ICONS } from "@assets/iconType";
+import type { IconKey } from "@assets/iconType";
+import { iconSvgMapping } from "@assets/iconSvgMapping";
+
+const isIconKey = (
+  icon: IconKey | ICONS | ReactNode
+): icon is IconKey | ICONS => {
+  // Check if icon is a valid key in iconSvgMapping or a value in ICONS
+  return (
+    (typeof icon === "string" && icon in iconSvgMapping) ||
+    Object.values(ICONS).includes(icon as ICONS)
+  );
+};
 
 interface HeaderHamburgerMenuProps {
   showHamburgerMenu?: boolean;
@@ -26,7 +38,6 @@ export const HeaderHamburgerMenu: FC<HeaderHamburgerMenuProps> = ({
 
   if (!showHamburgerMenu && !user) return null;
 
-  // Create default menu items if none provided
   const defaultItems = user
     ? [
         {
@@ -109,7 +120,12 @@ export const HeaderHamburgerMenu: FC<HeaderHamburgerMenuProps> = ({
                 fullWidth
               >
                 <div className={styles.menuItemContainer}>
-                  {item.icon && <Icon name={item.icon as IconName} size={16} />}
+                  {item.icon &&
+                    (isIconKey(item.icon) ? (
+                      <Icon name={item.icon} size={16} />
+                    ) : (
+                      item.icon
+                    ))}
                   {item.label}
                 </div>
               </Button>

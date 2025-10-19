@@ -1,0 +1,177 @@
+/*
+  IMPORTANT: DOM structure requirement
+  -------------------------------
+  The rules in this file rely on the slider element being the immediate sibling
+  of the native input element (i.e. use the "input + .slider" structure).
+  When copying these patterns into your markup, make sure the input and the
+  slider are adjacent siblings so selectors like "input:checked + .slider"
+  continue to work.
+
+  Purpose
+  -------
+  Provides presentational styles for a custom slider/toggle that is visually
+  driven by the state of a native input element. The input maintains semantics,
+  focusability and keyboard support while the adjacent ".slider" element
+  renders the UI.
+
+  Expected markup (example)
+  -------------------------
+  <!-- keep the input in the DOM and paired with the slider -->
+  <input type="checkbox" id="feature-toggle" />
+  <span class="slider" aria-hidden="true"></span>
+
+  Key notes for consumers
+  -----------------------
+  - Do not remove the native input from the DOM. The CSS uses sibling
+    selectors (input + .slider) and input state selectors (e.g. :checked,
+    :disabled, :focus) to style the slider.
+  - If you visually hide the input, ensure it remains accessible to screen
+    readers and keyboard users (use visually-hidden utilities that preserve
+    focusability rather than display:none).
+  - Use a <label for="..."> or wrap the input to allow click-to-toggle behavior.
+  - For accessibility, mirror state with ARIA if necessary (e.g. role="switch"
+    and aria-checked), but prefer native input semantics whenever possible.
+
+  Customization
+  -------------
+  - Override sizing, colors and transitions via variables or mixins provided
+    in your theme (e.g. $slider-width, $slider-height, $slider-bg, etc.).
+  - Provide modifier classes (e.g. .slider--small, .slider--disabled) if your
+    design requires multiple variants; ensure corresponding input states are
+    supported.
+
+  Selector reminders
+  ------------------
+  - Checked state:      input:checked + .slider
+  - Disabled state:     input:disabled + .slider
+  - Focus-visible:      input:focus-visible + .slider
+  - Transition/animation logic should be applied to the .slider element so
+    the native input remains the interaction target.
+
+  Testing
+  -------
+  - Verify keyboard interaction (Tab, Space/Enter) toggles the control.
+  - Test with screen readers to confirm the input exposes correct state.
+*/
+.gradientToggle {
+  --gradient-start: #667eea;
+  --gradient-end: #764ba2;
+
+  input:checked + & {
+    background: linear-gradient(
+      135deg,
+      var(--gradient-start),
+      var(--gradient-end)
+    ) !important;
+
+    &:hover {
+      filter: brightness(1.1);
+    }
+  }
+
+  input:disabled + &:hover {
+    box-shadow: none !important;
+  }
+}
+
+.neonToggle {
+  --neon-color: #00ff8879;
+  --neon-glow: rgba(0, 255, 136, 0.5);
+
+  input:checked + & {
+    background-color: var(--neon-color) !important;
+
+    &:hover {
+      box-shadow: 0 0 10px var(--neon-glow) !important;
+    }
+  }
+  input:disabled + &:hover {
+    box-shadow: none !important;
+  }
+}
+
+.retroToggle {
+  --retro-pink: #ff6b9d;
+
+  input:not(:checked) + & {
+    background-color: #2d3748 !important;
+  }
+
+  input:checked + & {
+    background-color: var(--retro-pink) !important;
+
+    &:hover {
+      filter: brightness(1.1) !important;
+    }
+  }
+
+  input:disabled + &:hover {
+    box-shadow: none !important;
+  }
+}
+
+.minimalToggle {
+  input:not(:checked) + & {
+    background-color: var(--gray-200) !important;
+  }
+
+  input:checked + & {
+    background-color: #1a202c !important;
+
+    &:hover {
+      background-color: #2d3748 !important;
+    }
+  }
+
+  input:disabled + &:hover {
+    box-shadow: none !important;
+  }
+}
+
+.customSuccess {
+  --color-custom-success: #10b981;
+  --color-custom-success-hover: #059669;
+
+  input:checked + & {
+    background-color: var(--color-custom-success) !important;
+    &:hover {
+      background-color: var(--color-custom-success-hover) !important;
+    }
+  }
+
+  input:disabled + &:hover {
+    box-shadow: none !important;
+  }
+}
+
+.customWarning {
+  --color-custom-warning: #f59e0b;
+  --color-custom-warning-hover: #d97706;
+
+  input:checked + & {
+    background-color: var(--color-custom-warning) !important;
+    &:hover {
+      background-color: var(--color-custom-warning-hover) !important;
+    }
+  }
+
+  input:disabled + &:hover {
+    box-shadow: none !important;
+  }
+}
+
+.customPurple {
+  --color-custom-purple: #8b5cf6;
+  --color-custom-purple-hover: #7c3aed;
+
+  input:checked + & {
+    background-color: var(--color-custom-purple) !important;
+    &:hover {
+      background-color: var(--color-custom-purple-hover) !important;
+    }
+  }
+
+  input:disabled + &:hover {
+    box-shadow: none !important;
+  }
+}
