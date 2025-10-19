@@ -4,10 +4,6 @@ import type { IconKey, ICONS } from "@assets/iconType";
 export type BaseIconProps = {
   name: IconKey | ICONS;
   size?: number | string;
-  color?: string;
-  fill?: string;
-  style?: CSSProperties;
-  className?: string;
 };
 
 export type IconProps = BaseIconProps & SVGProps<SVGSVGElement>;
