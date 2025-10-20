@@ -1,0 +1,200 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.switchContainer {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  cursor: pointer;
+  user-select: none;
+
+  &.labelLeft {
+    flex-direction: row-reverse;
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+.switchInput {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.switchWrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--radius-full);
+  transition: background-color var(--transition-fast);
+  cursor: pointer;
+  flex-shrink: 0;
+
+  &:focus-within {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+  }
+
+  // Size variants
+  &.small {
+    width: 2.75rem;
+    height: 0.875rem;
+    padding: 0;
+  }
+
+  &.medium {
+    width: 3.25rem;
+    height: 1rem;
+    padding: 0;
+  }
+
+  &.large {
+    width: 4rem;
+    height: 1.25rem;
+    padding: 0;
+  }
+
+  &.unchecked {
+    background-color: var(--gray-400);
+    &.primary {
+      background-color: #dbeafe;
+    }
+
+    &.secondary {
+      background-color: #e5e7eb;
+    }
+
+    &.success {
+      background-color: #d1fae5;
+    }
+
+    &.danger {
+      background-color: #fef2f2;
+    }
+
+    &:hover:not(.disabled) {
+      opacity: 0.85;
+    }
+  }
+
+  &.checked {
+    &.primary {
+      background-color: #60a5fa;
+    }
+
+    &.secondary {
+      background-color: #9ca3af;
+    }
+
+    &.success {
+      background-color: #34d399;
+    }
+
+    &.danger {
+      background-color: #f87171;
+    }
+
+    &:hover:not(.disabled) {
+      opacity: 0.9;
+    }
+  }
+}
+
+.switchThumb {
+  position: absolute;
+  display: block;
+  background-color: var(--color-white);
+  border-radius: var(--radius-full);
+  transition:
+    transform var(--transition-fast),
+    background-color var(--transition-fast);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.04),
+    0 2px 4px 0 rgba(0, 0, 0, 0.18),
+    0 1px 2px 0 rgba(0, 0, 0, 0.12);
+  top: 50%;
+  transform: translateY(-50%);
+
+  .small & {
+    width: 1.25rem;
+    height: 1.25rem;
+    left: 0;
+  }
+
+  .medium & {
+    width: 1.5rem;
+    height: 1.5rem;
+    left: 0;
+  }
+
+  .large & {
+    width: 1.75rem;
+    height: 1.75rem;
+    left: 0;
+  }
+
+  .checked.primary & {
+    background-color: var(--color-primary);
+  }
+
+  .checked.secondary & {
+    background-color: var(--color-secondary);
+  }
+
+  .checked.success & {
+    background-color: var(--color-success);
+  }
+
+  .checked.danger & {
+    background-color: var(--color-danger);
+  }
+
+  .checked.small & {
+    transform: translate(calc(2.75rem - 1.25rem), -50%);
+  }
+
+  .checked.medium & {
+    transform: translate(calc(3.25rem - 1.5rem), -50%);
+  }
+
+  .checked.large & {
+    transform: translate(calc(4rem - 1.75rem), -50%);
+  }
+}
+
+.thumbIcon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  pointer-events: none;
+
+  svg,
+  path {
+    color: inherit;
+  }
+}
+
+.switchLabel {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--gray-900);
+  line-height: 1.4;
+
+  &.disabled {
+    color: var(--gray-500);
+  }
+}

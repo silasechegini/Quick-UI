@@ -12,3 +12,4 @@ export * from "./Slider";
 export * from "./Radio";
 export * from "./Card";
 export * from "./Toggle";
+export * from "./Switch";
