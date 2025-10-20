@@ -147,19 +147,23 @@
 
   // Checked state - darker shade of track background
   .checked.primary & {
-    background-color: #2563eb; // Slightly darker blue (15% darker)
+    background-color: var(--color-primary); // Slightly darker blue (15% darker)
   }
 
   .checked.secondary & {
-    background-color: #4b5563; // Slightly darker gray (15% darker)
+    background-color: var(
+      --color-secondary
+    ); // Slightly darker gray (15% darker)
   }
 
   .checked.success & {
-    background-color: #059669; // Slightly darker green (15% darker)
+    background-color: var(
+      --color-success
+    ); // Slightly darker green (15% darker)
   }
 
   .checked.danger & {
-    background-color: #dc2626; // Slightly darker red (15% darker)
+    background-color: var(--color-danger); // Slightly darker red (15% darker)
   }
 
   // Checked position - thumb moves to the right

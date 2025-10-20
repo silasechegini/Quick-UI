@@ -12,4 +12,5 @@ export * from "./components/Radio";
 export * from "./components/Card";
 export * from "./components/Toggle";
 export * from "./components/Footer";
+export * from "./components/Switch";
 export * from "./utils";
