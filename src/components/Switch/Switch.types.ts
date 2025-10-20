@@ -1,8 +1,31 @@
 import { ReactNode } from "react";
 import { IconKey } from "@assets/iconType";
 
-export type SwitchSize = "small" | "medium" | "large";
-export type SwitchVariant = "primary" | "secondary" | "success" | "danger";
+export enum SWITCH_LABEL_POSITIONS {
+  LEFT = "left",
+  RIGHT = "right",
+}
+
+export enum SWITCH_SIZES {
+  SMALL = "small",
+  MEDIUM = "medium",
+  LARGE = "large",
+}
+
+export enum SWITCH_VARIANTS {
+  PRIMARY = "primary",
+  SECONDARY = "secondary",
+  SUCCESS = "success",
+  DANGER = "danger",
+}
+
+export type SwitchSize = (typeof SWITCH_SIZES)[keyof typeof SWITCH_SIZES];
+
+export type SwitchVariant =
+  (typeof SWITCH_VARIANTS)[keyof typeof SWITCH_VARIANTS];
+
+export type SwitchLabelPosition =
+  (typeof SWITCH_LABEL_POSITIONS)[keyof typeof SWITCH_LABEL_POSITIONS];
 
 export interface SwitchProps {
   /**
@@ -38,7 +61,7 @@ export interface SwitchProps {
   /**
    * Position of the label relative to the switch
    */
-  labelPosition?: "left" | "right";
+  labelPosition?: SwitchLabelPosition;
 
   /**
    * Additional CSS class for the container
@@ -59,6 +82,12 @@ export interface SwitchProps {
    * Icon to display in the thumb when checked
    */
   checkedIcon?: IconKey | ReactNode;
+
+  /**
+   * CSS color for the checked icon (e.g., "#fff", "rgb(255,255,255)", "var(--color)").
+   * Applied to the built-in Icon when checked; has no effect for custom ReactNode icons.
+   */
+  checkedIconColor?: string;
 
   /**
    * Icon to display in the thumb when unchecked

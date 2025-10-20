@@ -117,7 +117,11 @@ export const Toggle = forwardRef<HTMLInputElement, ToggleProps>(
             {...rest}
           />
 
-          <div className={sliderClasses}>
+          <div
+            className={sliderClasses}
+            data-testid="toggle-slider"
+            data-size={size}
+          >
             <div className={styles.toggleThumb} />
           </div>
 
