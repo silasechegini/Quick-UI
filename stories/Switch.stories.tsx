@@ -182,6 +182,7 @@ export const WithIcons: Story = {
         label="Eye Icon"
         checkedIcon={ICONS.EYE_ICON}
         uncheckedIcon={ICONS.EYE_OFF_ICON}
+        checkedIconColor="white"
         defaultChecked={false}
       />
       <Switch

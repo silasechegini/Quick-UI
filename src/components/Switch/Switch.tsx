@@ -40,6 +40,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
       labelClassName,
       switchClassName,
       checkedIcon,
+      checkedIconColor,
       uncheckedIcon,
       iconSize,
       onChange,
@@ -132,6 +133,11 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
                   name={currentIcon}
                   size={actualIconSize}
                   className={styles.thumbIcon}
+                  fill={
+                    checkedValue && checkedIconColor
+                      ? checkedIconColor
+                      : undefined
+                  }
                   aria-hidden="true"
                 />
               ) : (

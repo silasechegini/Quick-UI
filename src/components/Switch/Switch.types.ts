@@ -61,6 +61,11 @@ export interface SwitchProps {
   checkedIcon?: IconKey | ReactNode;
 
   /**
+   * Color of the checked icon
+   */
+  checkedIconColor?: string;
+
+  /**
    * Icon to display in the thumb when unchecked
    */
   uncheckedIcon?: IconKey | ReactNode;
