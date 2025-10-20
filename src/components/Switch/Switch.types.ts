@@ -84,7 +84,8 @@ export interface SwitchProps {
   checkedIcon?: IconKey | ReactNode;
 
   /**
-   * Color of the checked icon
+   * CSS color for the checked icon (e.g., "#fff", "rgb(255,255,255)", "var(--color)").
+   * Applied to the built-in Icon when checked; has no effect for custom ReactNode icons.
    */
   checkedIconColor?: string;
 
