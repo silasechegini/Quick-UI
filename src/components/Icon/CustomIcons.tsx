@@ -1,6 +1,6 @@
-export const ChevronIcon: React.FC<{ className?: string }> = ({
-  className,
-}) => (
+import { FC } from "react";
+
+export const ChevronIcon: FC<{ className?: string }> = ({ className }) => (
   <svg
     className={className}
     width="20"
