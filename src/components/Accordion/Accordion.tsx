@@ -51,7 +51,7 @@ export const Accordion: React.FC<AccordionProps> = ({
   defaultExpanded = [],
   onChange,
   expandIcon,
-  iconPosition = ACCORDION_ICON_POSITIONS.START,
+  iconPosition = ACCORDION_ICON_POSITIONS.END,
   disabled = false,
   showDividers = true,
   elevateExpanded = false,
