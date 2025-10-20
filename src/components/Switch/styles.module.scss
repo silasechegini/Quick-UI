@@ -46,40 +46,39 @@
 
   // Size variants
   &.small {
-    width: 2.75rem; // 44px - longer track
-    height: 0.875rem; // 14px - slimmer track
+    width: 2.75rem;
+    height: 0.875rem;
     padding: 0;
   }
 
   &.medium {
-    width: 3.25rem; // 52px - longer track
-    height: 1rem; // 16px - slimmer track
+    width: 3.25rem;
+    height: 1rem;
     padding: 0;
   }
 
   &.large {
-    width: 4rem; // 64px - longer track
-    height: 1.25rem; // 20px - slimmer track
+    width: 4rem;
+    height: 1.25rem;
     padding: 0;
   }
 
-  // Color variants - Unchecked state
   &.unchecked {
     background-color: var(--gray-400);
     &.primary {
-      background-color: #dbeafe; // Lighter blue-gray
+      background-color: #dbeafe;
     }
 
     &.secondary {
-      background-color: #e5e7eb; // Lighter gray
+      background-color: #e5e7eb;
     }
 
     &.success {
-      background-color: #d1fae5; // Light green (kept the same, already light)
+      background-color: #d1fae5;
     }
 
     &.danger {
-      background-color: #fef2f2; // Lighter red
+      background-color: #fef2f2;
     }
 
     &:hover:not(.disabled) {
@@ -87,22 +86,21 @@
     }
   }
 
-  // Color variants - Checked state
   &.checked {
     &.primary {
-      background-color: #60a5fa; // Lighter blue (30% lighter)
+      background-color: #60a5fa;
     }
 
     &.secondary {
-      background-color: #9ca3af; // Lighter gray (30% lighter)
+      background-color: #9ca3af;
     }
 
     &.success {
-      background-color: #34d399; // Lighter green (30% lighter)
+      background-color: #34d399;
     }
 
     &.danger {
-      background-color: #f87171; // Lighter red (30% lighter)
+      background-color: #f87171;
     }
 
     &:hover:not(.disabled) {
@@ -126,57 +124,50 @@
   top: 50%;
   transform: translateY(-50%);
 
-  // Thumb is proportionally larger than the track
   .small & {
-    width: 1.25rem; // 20px - smaller relative to track
-    height: 1.25rem; // 20px
+    width: 1.25rem;
+    height: 1.25rem;
     left: 0;
   }
 
   .medium & {
-    width: 1.5rem; // 24px - smaller relative to track
-    height: 1.5rem; // 24px
+    width: 1.5rem;
+    height: 1.5rem;
     left: 0;
   }
 
   .large & {
-    width: 1.75rem; // 28px - smaller relative to track
-    height: 1.75rem; // 28px
+    width: 1.75rem;
+    height: 1.75rem;
     left: 0;
   }
 
-  // Checked state - darker shade of track background
   .checked.primary & {
-    background-color: var(--color-primary); // Slightly darker blue (15% darker)
+    background-color: var(--color-primary);
   }
 
   .checked.secondary & {
-    background-color: var(
-      --color-secondary
-    ); // Slightly darker gray (15% darker)
+    background-color: var(--color-secondary);
   }
 
   .checked.success & {
-    background-color: var(
-      --color-success
-    ); // Slightly darker green (15% darker)
+    background-color: var(--color-success);
   }
 
   .checked.danger & {
-    background-color: var(--color-danger); // Slightly darker red (15% darker)
+    background-color: var(--color-danger);
   }
 
-  // Checked position - thumb moves to the right
   .checked.small & {
-    transform: translate(calc(2.75rem - 1.25rem), -50%); // Move to end of track
+    transform: translate(calc(2.75rem - 1.25rem), -50%);
   }
 
   .checked.medium & {
-    transform: translate(calc(3.25rem - 1.5rem), -50%); // Move to end of track
+    transform: translate(calc(3.25rem - 1.5rem), -50%);
   }
 
   .checked.large & {
-    transform: translate(calc(4rem - 1.75rem), -50%); // Move to end of track
+    transform: translate(calc(4rem - 1.75rem), -50%);
   }
 }
 
@@ -191,7 +182,6 @@
   color: inherit;
   pointer-events: none;
 
-  // Ensure icon inherits thumb color
   svg,
   path {
     color: inherit;
