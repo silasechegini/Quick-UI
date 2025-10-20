@@ -1,0 +1,206 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.switchContainer {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  cursor: pointer;
+  user-select: none;
+
+  &.labelLeft {
+    flex-direction: row-reverse;
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+.switchInput {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.switchWrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--radius-full);
+  transition: background-color var(--transition-fast);
+  cursor: pointer;
+  flex-shrink: 0;
+
+  &:focus-within {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+  }
+
+  // Size variants
+  &.small {
+    width: 2.75rem; // 44px - longer track
+    height: 0.875rem; // 14px - slimmer track
+    padding: 0;
+  }
+
+  &.medium {
+    width: 3.25rem; // 52px - longer track
+    height: 1rem; // 16px - slimmer track
+    padding: 0;
+  }
+
+  &.large {
+    width: 4rem; // 64px - longer track
+    height: 1.25rem; // 20px - slimmer track
+    padding: 0;
+  }
+
+  // Color variants - Unchecked state
+  &.unchecked {
+    background-color: var(--gray-400);
+    &.primary {
+      background-color: #dbeafe; // Lighter blue-gray
+    }
+
+    &.secondary {
+      background-color: #e5e7eb; // Lighter gray
+    }
+
+    &.success {
+      background-color: #d1fae5; // Light green (kept the same, already light)
+    }
+
+    &.danger {
+      background-color: #fef2f2; // Lighter red
+    }
+
+    &:hover:not(.disabled) {
+      opacity: 0.85;
+    }
+  }
+
+  // Color variants - Checked state
+  &.checked {
+    &.primary {
+      background-color: #60a5fa; // Lighter blue (30% lighter)
+    }
+
+    &.secondary {
+      background-color: #9ca3af; // Lighter gray (30% lighter)
+    }
+
+    &.success {
+      background-color: #34d399; // Lighter green (30% lighter)
+    }
+
+    &.danger {
+      background-color: #f87171; // Lighter red (30% lighter)
+    }
+
+    &:hover:not(.disabled) {
+      opacity: 0.9;
+    }
+  }
+}
+
+.switchThumb {
+  position: absolute;
+  display: block;
+  background-color: var(--color-white);
+  border-radius: var(--radius-full);
+  transition:
+    transform var(--transition-fast),
+    background-color var(--transition-fast);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.04),
+    0 2px 4px 0 rgba(0, 0, 0, 0.18),
+    0 1px 2px 0 rgba(0, 0, 0, 0.12);
+  top: 50%;
+  transform: translateY(-50%);
+
+  // Thumb is proportionally larger than the track
+  .small & {
+    width: 1.25rem; // 20px - smaller relative to track
+    height: 1.25rem; // 20px
+    left: 0;
+  }
+
+  .medium & {
+    width: 1.5rem; // 24px - smaller relative to track
+    height: 1.5rem; // 24px
+    left: 0;
+  }
+
+  .large & {
+    width: 1.75rem; // 28px - smaller relative to track
+    height: 1.75rem; // 28px
+    left: 0;
+  }
+
+  // Checked state - darker shade of track background
+  .checked.primary & {
+    background-color: #2563eb; // Slightly darker blue (15% darker)
+  }
+
+  .checked.secondary & {
+    background-color: #4b5563; // Slightly darker gray (15% darker)
+  }
+
+  .checked.success & {
+    background-color: #059669; // Slightly darker green (15% darker)
+  }
+
+  .checked.danger & {
+    background-color: #dc2626; // Slightly darker red (15% darker)
+  }
+
+  // Checked position - thumb moves to the right
+  .checked.small & {
+    transform: translate(calc(2.75rem - 1.25rem), -50%); // Move to end of track
+  }
+
+  .checked.medium & {
+    transform: translate(calc(3.25rem - 1.5rem), -50%); // Move to end of track
+  }
+
+  .checked.large & {
+    transform: translate(calc(4rem - 1.75rem), -50%); // Move to end of track
+  }
+}
+
+.thumbIcon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  pointer-events: none;
+
+  // Ensure icon inherits thumb color
+  svg,
+  path {
+    color: inherit;
+  }
+}
+
+.switchLabel {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--gray-900);
+  line-height: 1.4;
+
+  &.disabled {
+    color: var(--gray-500);
+  }
+}
