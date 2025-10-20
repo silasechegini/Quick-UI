@@ -149,9 +149,6 @@ describe("Toggle Component", () => {
       const input = screen.getByRole("checkbox");
       await user.click(input);
 
-      // Note: HTML checkbox with disabled attribute will still trigger onChange in jsdom
-      // but the actual behavior in browsers is that it won't trigger
-      // We can verify the input has the disabled attribute
       expect(input).toBeDisabled();
       expect(handleChange).not.toHaveBeenCalled();
     });
