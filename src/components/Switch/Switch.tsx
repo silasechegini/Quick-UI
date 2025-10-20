@@ -10,6 +10,13 @@ import styles from "./styles.module.scss";
 import { Icon } from "@components/Icon";
 import { IconKey } from "@assets/iconType";
 
+// Icon size mapping for different switch sizes
+const ICON_SIZE_MAP = {
+  [SWITCH_SIZES.SMALL]: 12,
+  [SWITCH_SIZES.MEDIUM]: 14,
+  [SWITCH_SIZES.LARGE]: 16,
+} as const;
+
 /**
  * Switch component that provides a modern toggle interface.
  * Supports multiple sizes, colors, controlled/uncontrolled modes, and accessibility features.
@@ -108,12 +115,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
     const currentIcon = checkedValue ? checkedIcon : uncheckedIcon;
 
     // Calculate icon size based on switch size if not provided
-    const sizeMap = {
-      [SWITCH_SIZES.SMALL]: 12,
-      [SWITCH_SIZES.MEDIUM]: 14,
-      [SWITCH_SIZES.LARGE]: 16,
-    };
-    const defaultIconSize = sizeMap[size];
+    const defaultIconSize = ICON_SIZE_MAP[size];
     const actualIconSize = iconSize || defaultIconSize;
 
     const switchContent = (

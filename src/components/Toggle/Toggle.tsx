@@ -99,16 +99,11 @@ export const Toggle = forwardRef<HTMLInputElement, ToggleProps>(
 
     return (
       <div className={containerClasses}>
-        <label
-          className={wrapperClasses}
-          htmlFor={toggleId}
-          data-testid="toggle-label"
-        >
+        <label className={wrapperClasses} htmlFor={toggleId}>
           <input
             ref={ref}
             type="checkbox"
             id={toggleId}
-            data-testid="toggle-input"
             className={inputClasses}
             checked={checkedValue}
             disabled={disabled}
