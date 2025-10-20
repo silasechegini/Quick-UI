@@ -108,8 +108,12 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
     const currentIcon = checkedValue ? checkedIcon : uncheckedIcon;
 
     // Calculate icon size based on switch size if not provided
-    const defaultIconSize =
-      size === SWITCH_SIZES.SMALL ? 12 : size === SWITCH_SIZES.MEDIUM ? 14 : 16;
+    const sizeMap = {
+      [SWITCH_SIZES.SMALL]: 12,
+      [SWITCH_SIZES.MEDIUM]: 14,
+      [SWITCH_SIZES.LARGE]: 16,
+    };
+    const defaultIconSize = sizeMap[size];
     const actualIconSize = iconSize || defaultIconSize;
 
     const switchContent = (
