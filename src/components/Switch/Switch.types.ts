@@ -3,6 +3,7 @@ import { IconKey } from "@assets/iconType";
 
 export type SwitchSize = "small" | "medium" | "large";
 export type SwitchVariant = "primary" | "secondary" | "success" | "danger";
+export type SwitchLabelPosition = "left" | "right";
 
 export interface SwitchProps {
   /**
@@ -38,7 +39,7 @@ export interface SwitchProps {
   /**
    * Position of the label relative to the switch
    */
-  labelPosition?: "left" | "right";
+  labelPosition?: SwitchLabelPosition;
 
   /**
    * Additional CSS class for the container
@@ -112,4 +113,22 @@ export interface SwitchProps {
    * ARIA described by for accessibility
    */
   "aria-describedby"?: string;
+}
+
+export enum SWITCH_LABEL_POSITIONS {
+  LEFT = "left",
+  RIGHT = "right",
+}
+
+export enum SWITCH_SIZES {
+  SMALL = "small",
+  MEDIUM = "medium",
+  LARGE = "large",
+}
+
+export enum SWITCH_VARIANTS {
+  PRIMARY = "primary",
+  SECONDARY = "secondary",
+  SUCCESS = "success",
+  DANGER = "danger",
 }

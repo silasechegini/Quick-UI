@@ -1,6 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Switch } from "../src/components/Switch";
 import { ICONS } from "../src/assets/iconType";
+import {
+  SWITCH_LABEL_POSITIONS,
+  SWITCH_SIZES,
+  SWITCH_VARIANTS,
+} from "@components/Switch/Switch.types";
 
 const meta: Meta<typeof Switch> = {
   title: "Components/Switch",
@@ -69,7 +74,7 @@ export const WithLabel: Story = {
 export const WithLabelLeft: Story = {
   args: {
     label: "Dark mode",
-    labelPosition: "left",
+    labelPosition: SWITCH_LABEL_POSITIONS.LEFT,
     defaultChecked: true,
   },
 };
@@ -91,9 +96,9 @@ export const DisabledChecked: Story = {
 export const Sizes: Story = {
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-      <Switch size="small" label="Small" defaultChecked />
-      <Switch size="medium" label="Medium" defaultChecked />
-      <Switch size="large" label="Large" defaultChecked />
+      <Switch size={SWITCH_SIZES.SMALL} label="Small" defaultChecked />
+      <Switch size={SWITCH_SIZES.MEDIUM} label="Medium" defaultChecked />
+      <Switch size={SWITCH_SIZES.LARGE} label="Large" defaultChecked />
     </div>
   ),
 };
@@ -101,10 +106,22 @@ export const Sizes: Story = {
 export const Variants: Story = {
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-      <Switch variant="primary" label="Primary" defaultChecked />
-      <Switch variant="secondary" label="Secondary" defaultChecked />
-      <Switch variant="success" label="Success" defaultChecked />
-      <Switch variant="danger" label="Danger" defaultChecked />
+      <Switch
+        variant={SWITCH_VARIANTS.PRIMARY}
+        label="Primary"
+        defaultChecked
+      />
+      <Switch
+        variant={SWITCH_VARIANTS.SECONDARY}
+        label="Secondary"
+        defaultChecked
+      />
+      <Switch
+        variant={SWITCH_VARIANTS.SUCCESS}
+        label="Success"
+        defaultChecked
+      />
+      <Switch variant={SWITCH_VARIANTS.DANGER} label="Danger" defaultChecked />
     </div>
   ),
 };
@@ -112,10 +129,26 @@ export const Variants: Story = {
 export const AllVariantsUnchecked: Story = {
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-      <Switch variant="primary" label="Primary" defaultChecked={false} />
-      <Switch variant="secondary" label="Secondary" defaultChecked={false} />
-      <Switch variant="success" label="Success" defaultChecked={false} />
-      <Switch variant="danger" label="Danger" defaultChecked={false} />
+      <Switch
+        variant={SWITCH_VARIANTS.PRIMARY}
+        label="Primary"
+        defaultChecked={false}
+      />
+      <Switch
+        variant={SWITCH_VARIANTS.SECONDARY}
+        label="Secondary"
+        defaultChecked={false}
+      />
+      <Switch
+        variant={SWITCH_VARIANTS.SUCCESS}
+        label="Success"
+        defaultChecked={false}
+      />
+      <Switch
+        variant={SWITCH_VARIANTS.DANGER}
+        label="Danger"
+        defaultChecked={false}
+      />
     </div>
   ),
 };
@@ -142,28 +175,76 @@ export const AllSizesAndVariants: Story = {
       <div>
         <h3 style={{ marginBottom: "1rem" }}>Small</h3>
         <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
-          <Switch size="small" variant="primary" defaultChecked />
-          <Switch size="small" variant="secondary" defaultChecked />
-          <Switch size="small" variant="success" defaultChecked />
-          <Switch size="small" variant="danger" defaultChecked />
+          <Switch
+            size={SWITCH_SIZES.SMALL}
+            variant={SWITCH_VARIANTS.PRIMARY}
+            defaultChecked
+          />
+          <Switch
+            size={SWITCH_SIZES.SMALL}
+            variant={SWITCH_VARIANTS.SECONDARY}
+            defaultChecked
+          />
+          <Switch
+            size={SWITCH_SIZES.SMALL}
+            variant={SWITCH_VARIANTS.SUCCESS}
+            defaultChecked
+          />
+          <Switch
+            size={SWITCH_SIZES.SMALL}
+            variant={SWITCH_VARIANTS.DANGER}
+            defaultChecked
+          />
         </div>
       </div>
       <div>
         <h3 style={{ marginBottom: "1rem" }}>Medium</h3>
         <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
-          <Switch size="medium" variant="primary" defaultChecked />
-          <Switch size="medium" variant="secondary" defaultChecked />
-          <Switch size="medium" variant="success" defaultChecked />
-          <Switch size="medium" variant="danger" defaultChecked />
+          <Switch
+            size={SWITCH_SIZES.MEDIUM}
+            variant={SWITCH_VARIANTS.PRIMARY}
+            defaultChecked
+          />
+          <Switch
+            size={SWITCH_SIZES.MEDIUM}
+            variant={SWITCH_VARIANTS.SECONDARY}
+            defaultChecked
+          />
+          <Switch
+            size={SWITCH_SIZES.MEDIUM}
+            variant={SWITCH_VARIANTS.SUCCESS}
+            defaultChecked
+          />
+          <Switch
+            size={SWITCH_SIZES.MEDIUM}
+            variant={SWITCH_VARIANTS.DANGER}
+            defaultChecked
+          />
         </div>
       </div>
       <div>
         <h3 style={{ marginBottom: "1rem" }}>Large</h3>
         <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
-          <Switch size="large" variant="primary" defaultChecked />
-          <Switch size="large" variant="secondary" defaultChecked />
-          <Switch size="large" variant="success" defaultChecked />
-          <Switch size="large" variant="danger" defaultChecked />
+          <Switch
+            size={SWITCH_SIZES.LARGE}
+            variant={SWITCH_VARIANTS.PRIMARY}
+            defaultChecked
+          />
+          <Switch
+            size={SWITCH_SIZES.LARGE}
+            variant={SWITCH_VARIANTS.SECONDARY}
+            defaultChecked
+          />
+          <Switch
+            size={SWITCH_SIZES.LARGE}
+            variant={SWITCH_VARIANTS.SUCCESS}
+            defaultChecked
+          />
+          <Switch
+            size={SWITCH_SIZES.LARGE}
+            variant={SWITCH_VARIANTS.DANGER}
+            defaultChecked
+          />
         </div>
       </div>
     </div>
@@ -199,19 +280,19 @@ export const IconSizes: Story = {
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
       <Switch
-        size="small"
+        size={SWITCH_SIZES.SMALL}
         label="Small with Icon"
         checkedIcon={ICONS.CHECKMARK_ICON}
         defaultChecked
       />
       <Switch
-        size="medium"
+        size={SWITCH_SIZES.MEDIUM}
         label="Medium with Icon"
         checkedIcon={ICONS.CHECKMARK_ICON}
         defaultChecked
       />
       <Switch
-        size="large"
+        size={SWITCH_SIZES.LARGE}
         label="Large with Icon"
         checkedIcon={ICONS.CHECKMARK_ICON}
         defaultChecked
@@ -224,25 +305,25 @@ export const IconVariants: Story = {
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
       <Switch
-        variant="primary"
+        variant={SWITCH_VARIANTS.PRIMARY}
         label="Primary with Icon"
         checkedIcon={ICONS.CHECKMARK_ICON}
         defaultChecked
       />
       <Switch
-        variant="secondary"
+        variant={SWITCH_VARIANTS.SECONDARY}
         label="Secondary with Icon"
         checkedIcon={ICONS.CHECKMARK_ICON}
         defaultChecked
       />
       <Switch
-        variant="success"
+        variant={SWITCH_VARIANTS.SUCCESS}
         label="Success with Icon"
         checkedIcon={ICONS.CHECKMARK_ICON}
         defaultChecked
       />
       <Switch
-        variant="danger"
+        variant={SWITCH_VARIANTS.DANGER}
         label="Danger with Icon"
         checkedIcon={ICONS.CLOSE_ICON}
         defaultChecked

@@ -1,5 +1,10 @@
 import React, { forwardRef, useState, useId } from "react";
-import { SwitchProps } from "./Switch.types";
+import {
+  SWITCH_LABEL_POSITIONS,
+  SWITCH_SIZES,
+  SWITCH_VARIANTS,
+  SwitchProps,
+} from "./Switch.types";
 import { combineClasses } from "../../utils";
 import styles from "./styles.module.scss";
 import { Icon } from "@components/Icon";
@@ -29,13 +34,13 @@ import { IconKey } from "@assets/iconType";
 export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
   (
     {
-      size = "medium",
-      variant = "primary",
+      size = SWITCH_SIZES.MEDIUM,
+      variant = SWITCH_VARIANTS.PRIMARY,
       checked,
       defaultChecked = false,
       disabled = false,
       label,
-      labelPosition = "right",
+      labelPosition = SWITCH_LABEL_POSITIONS.RIGHT,
       className,
       labelClassName,
       switchClassName,
@@ -74,7 +79,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
 
     const containerClasses = combineClasses(
       styles.switchContainer,
-      labelPosition === "left" && styles.labelLeft,
+      labelPosition === SWITCH_LABEL_POSITIONS.LEFT && styles.labelLeft,
       disabled && styles.disabled,
       className,
     );
@@ -103,7 +108,8 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
     const currentIcon = checkedValue ? checkedIcon : uncheckedIcon;
 
     // Calculate icon size based on switch size if not provided
-    const defaultIconSize = size === "small" ? 12 : size === "medium" ? 14 : 16;
+    const defaultIconSize =
+      size === SWITCH_SIZES.SMALL ? 12 : size === SWITCH_SIZES.MEDIUM ? 14 : 16;
     const actualIconSize = iconSize || defaultIconSize;
 
     const switchContent = (
@@ -150,11 +156,11 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
 
     return (
       <label className={containerClasses} htmlFor={switchId}>
-        {label && labelPosition === "left" && (
+        {label && labelPosition === SWITCH_LABEL_POSITIONS.LEFT && (
           <span className={labelClasses}>{label}</span>
         )}
         {switchContent}
-        {label && labelPosition === "right" && (
+        {label && labelPosition === SWITCH_LABEL_POSITIONS.RIGHT && (
           <span className={labelClasses}>{label}</span>
         )}
       </label>
