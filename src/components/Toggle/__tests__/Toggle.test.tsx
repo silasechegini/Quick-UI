@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { vi } from "vitest";
 import { Toggle } from "../Toggle";
+import { userEvent } from "@testing-library/user-event";
 
 describe("Toggle Component", () => {
   describe("Basic Rendering", () => {
@@ -65,23 +66,25 @@ describe("Toggle Component", () => {
       expect(input).not.toBeChecked();
     });
 
-    it("should call onChange when clicked", () => {
+    it("should call onChange when clicked", async () => {
       const handleChange = vi.fn();
+      const user = userEvent.setup();
       render(<Toggle checked={false} onChange={handleChange} />);
 
       const input = screen.getByRole("checkbox");
-      fireEvent.click(input);
+      await user.click(input);
 
       expect(handleChange).toHaveBeenCalledTimes(1);
       expect(handleChange).toHaveBeenCalledWith(true, expect.any(Object));
     });
 
-    it("should not update internal state when controlled", () => {
+    it("should not update internal state when controlled", async () => {
       const handleChange = vi.fn();
+      const user = userEvent.setup();
       render(<Toggle checked={false} onChange={handleChange} />);
 
       const input = screen.getByRole("checkbox");
-      fireEvent.click(input);
+      await user.click(input);
 
       // Component should remain unchecked as it's controlled
       expect(input).not.toBeChecked();
@@ -138,17 +141,19 @@ describe("Toggle Component", () => {
       expect(input).toBeDisabled();
     });
 
-    it("should not respond to clicks when disabled", () => {
+    it("should not respond to clicks when disabled", async () => {
       const handleChange = vi.fn();
+      const user = userEvent.setup();
       render(<Toggle disabled={true} onChange={handleChange} />);
 
       const input = screen.getByRole("checkbox");
-      fireEvent.click(input);
+      await user.click(input);
 
       // Note: HTML checkbox with disabled attribute will still trigger onChange in jsdom
       // but the actual behavior in browsers is that it won't trigger
       // We can verify the input has the disabled attribute
       expect(input).toBeDisabled();
+      expect(handleChange).not.toHaveBeenCalled();
     });
     it("should apply disabled class to container", () => {
       const { container } = render(<Toggle disabled={true} />);
@@ -295,15 +300,16 @@ describe("Toggle Component", () => {
   });
 
   describe("Edge Cases", () => {
-    it("should handle rapid clicks", () => {
+    it("should handle rapid clicks", async () => {
       const handleChange = vi.fn();
+      const user = userEvent.setup();
       render(<Toggle defaultChecked={false} onChange={handleChange} />);
 
       const input = screen.getByRole("checkbox");
 
-      fireEvent.click(input);
-      fireEvent.click(input);
-      fireEvent.click(input);
+      await user.click(input);
+      await user.click(input);
+      await user.click(input);
 
       expect(handleChange).toHaveBeenCalledTimes(3);
     });
