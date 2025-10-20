@@ -12,4 +12,11 @@ beforeAll(() => {
     restoreAllMocks: vi.restoreAllMocks,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } as any;
+
+  // Mock ResizeObserver
+  global.ResizeObserver = class ResizeObserver {
+    observe() {}
+    unobserve() {}
+    disconnect() {}
+  };
 });
