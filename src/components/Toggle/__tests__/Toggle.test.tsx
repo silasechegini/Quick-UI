@@ -1,7 +1,8 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { vi } from "vitest";
 import { Toggle } from "../Toggle";
-import { userEvent } from "@testing-library/user-event";
+import userEvent from "@testing-library/user-event";
+import { createRef } from "react";
 
 describe("Toggle Component", () => {
   describe("Basic Rendering", () => {
@@ -231,8 +232,11 @@ describe("Toggle Component", () => {
 
     it("should associate label with input using htmlFor", () => {
       render(<Toggle label="Test Label" id="test-toggle" />);
-      const input = screen.getByRole("checkbox");
+      const input = screen.getByLabelText("Test Label");
       expect(input).toHaveAttribute("id", "test-toggle");
+      const label = screen.getByText("Test Label").closest("label");
+      expect(label).not.toBeNull();
+      expect(label).toHaveAttribute("for", "test-toggle");
     });
 
     it("should set aria-describedby when description is provided", () => {
@@ -291,7 +295,7 @@ describe("Toggle Component", () => {
 
   describe("Ref Forwarding", () => {
     it("should forward ref to input element", () => {
-      const ref = { current: null };
+      const ref = createRef<HTMLInputElement>();
       render(<Toggle ref={ref} />);
 
       expect(ref.current).toBeInstanceOf(HTMLInputElement);
