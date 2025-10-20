@@ -108,29 +108,31 @@ describe("Toggle Component", () => {
       expect(input).toBeChecked();
     });
 
-    it("should toggle state when clicked", () => {
+    it("should toggle state when clicked", async () => {
+      const user = userEvent.setup();
       render(<Toggle defaultChecked={false} />);
       const input = screen.getByRole("checkbox");
 
       expect(input).not.toBeChecked();
 
-      fireEvent.click(input);
+      await user.click(input);
       expect(input).toBeChecked();
 
-      fireEvent.click(input);
+      await user.click(input);
       expect(input).not.toBeChecked();
     });
 
-    it("should call onChange with new state", () => {
+    it("should call onChange with new state", async () => {
       const handleChange = vi.fn();
+      const user = userEvent.setup();
       render(<Toggle defaultChecked={false} onChange={handleChange} />);
 
       const input = screen.getByRole("checkbox");
-      fireEvent.click(input);
+      await user.click(input);
 
       expect(handleChange).toHaveBeenCalledWith(true, expect.any(Object));
 
-      fireEvent.click(input);
+      await user.click(input);
       expect(handleChange).toHaveBeenCalledWith(false, expect.any(Object));
     });
   });
