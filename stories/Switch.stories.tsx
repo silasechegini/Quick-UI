@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Switch } from "../src/components/Switch";
-import { ICONS } from "../src/assets/iconType";
+import { Switch } from "@components/Switch";
+import { ICONS } from "@assets/iconType";
 import {
   SWITCH_LABEL_POSITIONS,
   SWITCH_SIZES,
   SWITCH_VARIANTS,
-} from "@components/Switch/Switch.types";
+} from "@components/Switch";
 
 const meta: Meta<typeof Switch> = {
   title: "Components/Switch",
