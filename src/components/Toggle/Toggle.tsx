@@ -99,11 +99,16 @@ export const Toggle = forwardRef<HTMLInputElement, ToggleProps>(
 
     return (
       <div className={containerClasses}>
-        <label className={wrapperClasses} htmlFor={toggleId}>
+        <label
+          className={wrapperClasses}
+          htmlFor={toggleId}
+          data-testid="toggle-label"
+        >
           <input
             ref={ref}
             type="checkbox"
             id={toggleId}
+            data-testid="toggle-input"
             className={inputClasses}
             checked={checkedValue}
             disabled={disabled}
@@ -117,7 +122,11 @@ export const Toggle = forwardRef<HTMLInputElement, ToggleProps>(
             {...rest}
           />
 
-          <div className={sliderClasses}>
+          <div
+            className={sliderClasses}
+            data-testid="toggle-slider"
+            data-size={size}
+          >
             <div className={styles.toggleThumb} />
           </div>
 

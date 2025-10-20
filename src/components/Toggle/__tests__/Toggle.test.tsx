@@ -31,15 +31,19 @@ describe("Toggle Component", () => {
     });
 
     it("should apply size variants correctly", () => {
-      const { getByTestId: getByTestIdSmall } = render(<Toggle size="small" />);
-      const smallSlider = getByTestIdSmall("toggle-slider");
+      const { getByTestId, unmount } = render(<Toggle size="small" />);
+      const smallSlider = getByTestId("toggle-slider");
       expect(smallSlider).toBeTruthy();
       expect(smallSlider).toHaveAttribute("data-size", "small");
+      unmount();
 
-      const { getByTestId: getByTestIdMedium } = render(<Toggle size="medium" />);
+      const { getByTestId: getByTestIdMedium, unmount: unmountMedium } = render(
+        <Toggle size="medium" />,
+      );
       const mediumSlider = getByTestIdMedium("toggle-slider");
       expect(mediumSlider).toBeTruthy();
       expect(mediumSlider).toHaveAttribute("data-size", "medium");
+      unmountMedium();
 
       const { getByTestId: getByTestIdLarge } = render(<Toggle size="large" />);
       const largeSlider = getByTestIdLarge("toggle-slider");
