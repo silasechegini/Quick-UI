@@ -31,26 +31,20 @@ describe("Toggle Component", () => {
     });
 
     it("should apply size variants correctly", () => {
-      const { container: smallContainer } = render(<Toggle size="small" />);
-      const smallSlider = smallContainer.querySelector(
-        "div[class*='toggleSlider']",
-      );
+      const { getByTestId: getByTestIdSmall } = render(<Toggle size="small" />);
+      const smallSlider = getByTestIdSmall("toggle-slider");
       expect(smallSlider).toBeTruthy();
-      expect(smallSlider?.className).toMatch(/small/);
+      expect(smallSlider).toHaveAttribute("data-size", "small");
 
-      const { container: mediumContainer } = render(<Toggle size="medium" />);
-      const mediumSlider = mediumContainer.querySelector(
-        "div[class*='toggleSlider']",
-      );
+      const { getByTestId: getByTestIdMedium } = render(<Toggle size="medium" />);
+      const mediumSlider = getByTestIdMedium("toggle-slider");
       expect(mediumSlider).toBeTruthy();
-      expect(mediumSlider?.className).toMatch(/medium/);
+      expect(mediumSlider).toHaveAttribute("data-size", "medium");
 
-      const { container: largeContainer } = render(<Toggle size="large" />);
-      const largeSlider = largeContainer.querySelector(
-        "div[class*='toggleSlider']",
-      );
+      const { getByTestId: getByTestIdLarge } = render(<Toggle size="large" />);
+      const largeSlider = getByTestIdLarge("toggle-slider");
       expect(largeSlider).toBeTruthy();
-      expect(largeSlider?.className).toMatch(/large/);
+      expect(largeSlider).toHaveAttribute("data-size", "large");
     });
   });
 
