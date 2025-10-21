@@ -1,0 +1,518 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+// ========================================
+// ACCORDION CONTAINER
+// ========================================
+
+.accordion {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &.withDividers {
+    .accordionItem:not(:last-child) {
+      border-bottom: var(--border-thin) solid var(--gray-200);
+    }
+  }
+
+  &.disabled {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+}
+
+// ========================================
+// ACCORDION ITEM
+// ========================================
+
+.accordionItem {
+  position: relative;
+  transition: all var(--transition-base) var(--ease-in-out);
+  background: var(--color-white);
+
+  &:first-child {
+    border-top-left-radius: var(--radius-lg);
+    border-top-right-radius: var(--radius-lg);
+
+    .trigger {
+      border-top-left-radius: var(--radius-lg);
+      border-top-right-radius: var(--radius-lg);
+    }
+  }
+
+  &:last-child {
+    border-bottom-left-radius: var(--radius-lg);
+    border-bottom-right-radius: var(--radius-lg);
+
+    &:not(.expanded) .trigger {
+      border-bottom-left-radius: var(--radius-lg);
+      border-bottom-right-radius: var(--radius-lg);
+    }
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+
+    .trigger {
+      cursor: not-allowed;
+    }
+  }
+
+  &.loading {
+    .trigger {
+      cursor: wait;
+    }
+  }
+
+  &.elevated {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+    z-index: 10;
+  }
+
+  &.transitioning {
+    .content {
+      overflow: hidden;
+    }
+  }
+}
+
+// ========================================
+// TRIGGER BUTTON
+// ========================================
+
+.trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  text-align: left;
+  transition: all var(--transition-fast) var(--ease-in-out);
+  position: relative;
+  z-index: 1;
+
+  // Override Button component styles when used as trigger
+  display: flex !important;
+  justify-content: flex-start !important;
+  box-shadow: none !important;
+  transform: none !important;
+  font-weight: var(--font-weight-normal) !important;
+  min-height: unset !important;
+  min-width: unset !important;
+
+  // Override Button's label span styles to ensure proper layout
+  :global {
+    span {
+      white-space: normal !important;
+      overflow: visible !important;
+      text-overflow: unset !important;
+      display: flex !important;
+      width: 100%;
+      align-items: center;
+      gap: inherit;
+    }
+  }
+
+  &:hover:not(:disabled) {
+    background: var(--gray-50);
+    opacity: 1 !important;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+
+  &:active:not(:disabled) {
+    opacity: 1 !important;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: -2px;
+    z-index: 2;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  &.iconStart {
+    flex-direction: row;
+  }
+
+  &.iconEnd {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+}
+
+.triggerContent {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.titleWrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.title {
+  font-weight: var(--font-weight-semibold);
+  color: var(--gray-900);
+  line-height: var(--line-height-snug);
+}
+
+.subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--gray-600);
+  line-height: var(--line-height-snug);
+}
+
+.itemIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-700);
+  flex-shrink: 0;
+}
+
+.expandIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-base) var(--ease-in-out);
+  color: var(--gray-600);
+  flex-shrink: 0;
+
+  .expanded & {
+    transform: rotate(180deg);
+  }
+}
+
+.loadingIcon {
+  animation: spin 1s linear infinite;
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+// ========================================
+// CONTENT AREA
+// ========================================
+
+.content {
+  overflow: hidden;
+  transition: height var(--transition-base) var(--ease-in-out);
+  height: 0;
+}
+
+.contentExpanded {
+  overflow: visible;
+}
+
+.contentInner {
+  color: var(--gray-700);
+  line-height: var(--line-height-relaxed);
+}
+
+// ========================================
+// SIZE VARIANTS
+// ========================================
+
+.size-sm {
+  .trigger {
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--font-size-sm);
+  }
+
+  .contentInner {
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--font-size-sm);
+  }
+
+  .expandIcon,
+  .itemIcon {
+    width: 16px;
+    height: 16px;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
+
+.size-md {
+  .trigger {
+    padding: var(--space-4) var(--space-5);
+    font-size: var(--font-size-base);
+  }
+
+  .contentInner {
+    padding: var(--space-4) var(--space-5);
+    font-size: var(--font-size-base);
+  }
+
+  .expandIcon,
+  .itemIcon {
+    width: 20px;
+    height: 20px;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+.size-lg {
+  .trigger {
+    padding: var(--space-5) var(--space-6);
+    font-size: var(--font-size-lg);
+  }
+
+  .contentInner {
+    padding: var(--space-5) var(--space-6);
+    font-size: var(--font-size-lg);
+  }
+
+  .expandIcon,
+  .itemIcon {
+    width: 24px;
+    height: 24px;
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
+
+// ========================================
+// VISUAL VARIANTS
+// ========================================
+
+// DEFAULT VARIANT
+.variant-default {
+  .accordionItem {
+    border: var(--border-thin) solid var(--gray-200);
+
+    &:not(:first-child) {
+      margin-top: calc(-1 * var(--border-thin));
+    }
+
+    &.expanded {
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 1px var(--color-primary);
+      z-index: 5;
+    }
+
+    .trigger:hover:not(:disabled) {
+      background: var(--gray-50);
+    }
+  }
+}
+
+// OUTLINED VARIANT
+.variant-outlined {
+  .accordionItem {
+    border: 2px solid var(--gray-300);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-2);
+
+    &.expanded {
+      border-color: var(--color-primary);
+      box-shadow: 0 4px 12px rgba(29, 78, 216, 0.15);
+    }
+
+    .trigger:hover:not(:disabled) {
+      background: linear-gradient(
+        135deg,
+        rgba(29, 78, 216, 0.03) 0%,
+        rgba(29, 78, 216, 0.08) 100%
+      );
+    }
+  }
+}
+
+// FILLED VARIANT
+.variant-filled {
+  .accordionItem {
+    background: var(--gray-100);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-2);
+    border: var(--border-thin) solid transparent;
+
+    &.expanded {
+      background: var(--color-white);
+      border-color: var(--gray-200);
+      box-shadow: var(--shadow-md);
+    }
+
+    .trigger {
+      background: transparent;
+
+      &:hover:not(:disabled) {
+        background: var(--gray-200);
+      }
+    }
+
+    &.expanded .trigger {
+      background: var(--color-white);
+
+      &:hover:not(:disabled) {
+        background: var(--gray-50);
+      }
+    }
+  }
+}
+
+// GLASS VARIANT (Glassmorphism effect)
+.variant-glass {
+  .accordionItem {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border: var(--border-thin) solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-2);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+
+    &.expanded {
+      background: rgba(255, 255, 255, 0.9);
+      border-color: rgba(29, 78, 216, 0.3);
+      box-shadow:
+        0 8px 16px rgba(29, 78, 216, 0.1),
+        inset 0 0 0 1px rgba(29, 78, 216, 0.1);
+    }
+
+    .trigger:hover:not(:disabled) {
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    &.expanded .trigger:hover:not(:disabled) {
+      background: rgba(29, 78, 216, 0.05);
+    }
+  }
+}
+
+// GRADIENT VARIANT (Modern gradient effect)
+.variant-gradient {
+  .accordionItem {
+    background: linear-gradient(
+      135deg,
+      rgba(249, 250, 251, 1) 0%,
+      rgba(243, 244, 246, 1) 100%
+    );
+    border: var(--border-thin) solid var(--gray-200);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-2);
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(
+        90deg,
+        var(--color-primary) 0%,
+        var(--color-accent) 100%
+      );
+      opacity: 0;
+      transition: opacity var(--transition-base) var(--ease-in-out);
+    }
+
+    &.expanded {
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(249, 250, 251, 1) 100%
+      );
+      border-color: var(--color-primary);
+      box-shadow: 0 8px 24px rgba(29, 78, 216, 0.15);
+
+      &::before {
+        opacity: 1;
+      }
+    }
+
+    .trigger {
+      position: relative;
+      z-index: 1;
+
+      &:hover:not(:disabled) {
+        background: rgba(29, 78, 216, 0.05);
+      }
+    }
+
+    &.expanded .trigger:hover:not(:disabled) {
+      background: linear-gradient(
+        135deg,
+        rgba(29, 78, 216, 0.05) 0%,
+        rgba(16, 185, 129, 0.05) 100%
+      );
+    }
+  }
+}
+
+// ========================================
+// EMPTY STATE
+// ========================================
+
+.emptyState {
+  @include flex-center;
+  padding: var(--space-12);
+  color: var(--gray-500);
+  font-size: var(--font-size-base);
+  text-align: center;
+  border: 2px dashed var(--gray-300);
+  border-radius: var(--radius-lg);
+  background: var(--gray-50);
+}
+
+// ========================================
+// ACCESSIBILITY & STATES
+// ========================================
+
+@media (prefers-reduced-motion: reduce) {
+  .accordionItem,
+  .trigger,
+  .content,
+  .expandIcon {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .accordionItem {
+    border-width: 2px;
+
+    &.expanded {
+      border-width: 3px;
+    }
+  }
+
+  .trigger:focus-visible {
+    outline-width: 3px;
+  }
+}
