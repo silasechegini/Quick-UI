@@ -7,6 +7,35 @@ import { iconSvgMapping as Icons } from "../src/assets";
 
 const iconNames = Object.keys(Icons) as IconProps["name"][];
 
+// Reusable helper component for icon display with label
+const IconWithLabel = ({
+  iconName,
+  size = 32,
+  label,
+  ...iconProps
+}: {
+  iconName: IconProps["name"];
+  size?: string | number;
+  label: string;
+} & Partial<IconProps>) => {
+  const iconSize = typeof size === "string" ? parseInt(size, 10) : size;
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: "0.5rem",
+      }}
+    >
+      <Icon name={iconName} size={iconSize} {...iconProps} />
+      <p style={{ fontSize: "0.875rem", color: "#666", textAlign: "center" }}>
+        {label}
+      </p>
+    </div>
+  );
+};
+
 const meta: Meta<typeof Icon> = {
   title: "Assets/Icon",
   component: Icon,
@@ -78,17 +107,11 @@ export const MailClosed: Story = {
     size: 32,
   },
   render: (args) => (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: "0.5rem",
-      }}
-    >
-      <Icon {...args} />
-      <p style={{ fontSize: "0.875rem", color: "#666" }}>Mail (Closed)</p>
-    </div>
+    <IconWithLabel
+      iconName={args.name!}
+      size={args.size}
+      label="Mail (Closed)"
+    />
   ),
 };
 
@@ -98,17 +121,7 @@ export const MailOpen: Story = {
     size: 32,
   },
   render: (args) => (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: "0.5rem",
-      }}
-    >
-      <Icon {...args} />
-      <p style={{ fontSize: "0.875rem", color: "#666" }}>Mail (Open)</p>
-    </div>
+    <IconWithLabel iconName={args.name!} size={args.size} label="Mail (Open)" />
   ),
 };
 
@@ -122,17 +135,11 @@ export const NotificationBell: Story = {
     size: 32,
   },
   render: (args) => (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: "0.5rem",
-      }}
-    >
-      <Icon {...args} />
-      <p style={{ fontSize: "0.875rem", color: "#666" }}>Notification Bell</p>
-    </div>
+    <IconWithLabel
+      iconName={args.name!}
+      size={args.size}
+      label="Notification Bell"
+    />
   ),
 };
 
@@ -142,17 +149,11 @@ export const ShoppingCart: Story = {
     size: 32,
   },
   render: (args) => (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: "0.5rem",
-      }}
-    >
-      <Icon {...args} />
-      <p style={{ fontSize: "0.875rem", color: "#666" }}>Shopping Cart</p>
-    </div>
+    <IconWithLabel
+      iconName={args.name!}
+      size={args.size}
+      label="Shopping Cart"
+    />
   ),
 };
 
@@ -171,58 +172,18 @@ export const AllNewIcons: Story = {
         maxWidth: "600px",
       }}
     >
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: "0.5rem",
-        }}
-      >
-        <Icon name={ICONS.MAIL_ICON} size={32} />
-        <p style={{ fontSize: "0.875rem", color: "#666", textAlign: "center" }}>
-          Mail
-        </p>
-      </div>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: "0.5rem",
-        }}
-      >
-        <Icon name={ICONS.MAIL_OPEN_ICON} size={32} />
-        <p style={{ fontSize: "0.875rem", color: "#666", textAlign: "center" }}>
-          Mail Open
-        </p>
-      </div>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: "0.5rem",
-        }}
-      >
-        <Icon name={ICONS.BELL_ICON} size={32} />
-        <p style={{ fontSize: "0.875rem", color: "#666", textAlign: "center" }}>
-          Bell
-        </p>
-      </div>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: "0.5rem",
-        }}
-      >
-        <Icon name={ICONS.SHOPPING_CART_ICON} size={32} />
-        <p style={{ fontSize: "0.875rem", color: "#666", textAlign: "center" }}>
-          Shopping Cart
-        </p>
-      </div>
+      <IconWithLabel iconName={ICONS.MAIL_ICON} size={32} label="Mail" />
+      <IconWithLabel
+        iconName={ICONS.MAIL_OPEN_ICON}
+        size={32}
+        label="Mail Open"
+      />
+      <IconWithLabel iconName={ICONS.BELL_ICON} size={32} label="Bell" />
+      <IconWithLabel
+        iconName={ICONS.SHOPPING_CART_ICON}
+        size={32}
+        label="Shopping Cart"
+      />
     </div>
   ),
 };
