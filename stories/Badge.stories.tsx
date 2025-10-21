@@ -385,7 +385,7 @@ export const ShowZero: Story = {
 export const EmailInbox: Story = {
   render: () => (
     <Badge count={12} variant="primary" max={99}>
-      <Icon name={ICONS.DASHBOARD_ICON} size={32} />
+      <Icon name={ICONS.MAIL_ICON} size={32} />
     </Badge>
   ),
 };
@@ -393,7 +393,7 @@ export const EmailInbox: Story = {
 export const ShoppingCart: Story = {
   render: () => (
     <Badge count={3} variant="error" pulse>
-      <Icon name={ICONS.DOWNLOAD_ICON} size={32} />
+      <Icon name={ICONS.SHOPPING_CART_ICON} size={32} />
     </Badge>
   ),
 };
@@ -401,7 +401,7 @@ export const ShoppingCart: Story = {
 export const NotificationBell: Story = {
   render: () => (
     <Badge count={99} variant="error" pulse max={99}>
-      <Icon name={ICONS.ANALYTICS_ICON} size={32} />
+      <Icon name={ICONS.BELL_ICON} size={32} />
     </Badge>
   ),
 };

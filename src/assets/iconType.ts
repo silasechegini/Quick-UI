@@ -1,5 +1,6 @@
 export type IconKey =
   | "analytics_icon"
+  | "bell_icon"
   | "calendar_icon"
   | "checkmark_icon"
   | "chevron_down_icon"
@@ -17,10 +18,13 @@ export type IconKey =
   | "exclamation_icon"
   | "loading_icon"
   | "login_icon"
+  | "mail_icon"
+  | "mail_open_icon"
   | "minus_icon"
   | "plus_icon"
   | "search_icon"
   | "settings_icon"
+  | "shopping_cart_icon"
   | "signup_icon"
   | "spinner_icon"
   | "teams_icon"
@@ -33,6 +37,7 @@ export type IconKey =
 
 export enum ICONS {
   ANALYTICS_ICON = "analytics_icon",
+  BELL_ICON = "bell_icon",
   CALENDAR_ICON = "calendar_icon",
   CHECKMARK_ICON = "checkmark_icon",
   CHEVRON_DOWN_ICON = "chevron_down_icon",
@@ -50,10 +55,13 @@ export enum ICONS {
   EXCLAMATION_ICON = "exclamation_icon",
   LOADING_ICON = "loading_icon",
   LOGIN_ICON = "login_icon",
+  MAIL_ICON = "mail_icon",
+  MAIL_OPEN_ICON = "mail_open_icon",
   MINUS_ICON = "minus_icon",
   PLUS_ICON = "plus_icon",
   SEARCH_ICON = "search_icon",
   SETTINGS_ICON = "settings_icon",
+  SHOPPING_CART_ICON = "shopping_cart_icon",
   SIGNUP_ICON = "signup_icon",
   SPINNER_ICON = "spinner_icon",
   TEAMS_ICON = "teams_icon",
