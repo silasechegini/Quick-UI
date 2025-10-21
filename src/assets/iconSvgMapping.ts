@@ -30,10 +30,15 @@ import { ReactComponent as thunderboltLogoIcon } from "./icons/thunderbolt-logo.
 import { ReactComponent as thunderboltCircleLogoIcon } from "./icons/thunderbolt-circle-logo.svg";
 import { ReactComponent as thunderboltCloudLogoIcon } from "./icons/thunderbolt-cloud-logo.svg";
 import { ReactComponent as exclamationIcon } from "./icons/exclamation.svg";
+import { ReactComponent as bellIcon } from "./icons/bell.svg";
+import { ReactComponent as mailIcon } from "./icons/mail.svg";
+import { ReactComponent as mailOpenIcon } from "./icons/mail_open.svg";
+import { ReactComponent as shoppingCartIcon } from "./icons/shopping_cart.svg";
 import { IconKey } from "./iconType";
 
 const iconSvgMapping: { [key in IconKey]: FC<SVGProps<SVGSVGElement>> } = {
   analytics_icon: analyticsIcon,
+  bell_icon: bellIcon,
   calendar_icon: calendarIcon,
   checkmark_icon: checkmarkIcon,
   chevron_down_icon: chevronDownIcon,
@@ -51,10 +56,13 @@ const iconSvgMapping: { [key in IconKey]: FC<SVGProps<SVGSVGElement>> } = {
   eye_off_icon: eyeOffIcon,
   loading_icon: loadingIcon,
   login_icon: loginIcon,
+  mail_icon: mailIcon,
+  mail_open_icon: mailOpenIcon,
   minus_icon: minusIcon,
   plus_icon: plusIcon,
   search_icon: searchIcon,
   settings_icon: settingsIcon,
+  shopping_cart_icon: shoppingCartIcon,
   signup_icon: signupIcon,
   spinner_icon: spinnerIcon,
   teams_icon: teamsIcon,
