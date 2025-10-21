@@ -1,5 +1,8 @@
 import React, { useRef, useEffect, useState, useCallback } from "react";
-import { AccordionItemProps } from "./Accordion.types";
+import {
+  ACCORDION_ICON_POSITIONS,
+  AccordionItemProps,
+} from "./Accordion.types";
 import { combineClasses } from "../../utils";
 import styles from "./styles.module.scss";
 import { Icon } from "@components/Icon";
@@ -65,6 +68,9 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({
         // Content changed while in auto mode, we don't need to update
         return;
       }
+      // Content changed while in fixed mode, we need to update
+      const contentHeight = contentRef.current?.scrollHeight || 0;
+      setHeight(contentHeight);
     });
 
     resizeObserver.observe(contentRef.current);
@@ -129,8 +135,8 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({
 
   const triggerClasses = combineClasses(
     styles.trigger,
-    iconPosition === "start" && styles.iconStart,
-    iconPosition === "end" && styles.iconEnd,
+    iconPosition === ACCORDION_ICON_POSITIONS.START && styles.iconStart,
+    iconPosition === ACCORDION_ICON_POSITIONS.END && styles.iconEnd,
   );
 
   const contentClasses = combineClasses(
@@ -155,7 +161,7 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({
 
   const renderTriggerContent = () => (
     <>
-      {iconPosition === "start" && renderIcon()}
+      {iconPosition === ACCORDION_ICON_POSITIONS.START && renderIcon()}
 
       <div className={styles.triggerContent}>
         {item.icon && <span className={styles.itemIcon}>{item.icon}</span>}
@@ -167,7 +173,7 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({
         </div>
       </div>
 
-      {iconPosition === "end" && renderIcon()}
+      {iconPosition === ACCORDION_ICON_POSITIONS.END && renderIcon()}
     </>
   );
 
