@@ -5,25 +5,46 @@ import { HTMLAttributes, ReactNode } from "react";
  * Badges are small status descriptors or notification indicators
  */
 
-export type BadgeVariant =
-  | "primary"
-  | "secondary"
-  | "success"
-  | "error"
-  | "warning"
-  | "info"
-  | "neutral";
+/**
+ * Enums for Badge Component
+ */
+export enum BADGE_VARIANTS {
+  PRIMARY = "primary",
+  SECONDARY = "secondary",
+  SUCCESS = "success",
+  ERROR = "error",
+  WARNING = "warning",
+  INFO = "info",
+  NEUTRAL = "neutral",
+}
 
-export type BadgeSize = "sm" | "md" | "lg";
+export enum BADGE_SIZES {
+  SMALL = "sm",
+  MEDIUM = "md",
+  LARGE = "lg",
+}
+
+export enum BADGE_POSITIONS {
+  TOP_RIGHT = "top-right",
+  TOP_LEFT = "top-left",
+  BOTTOM_RIGHT = "bottom-right",
+  BOTTOM_LEFT = "bottom-left",
+  INLINE = "inline",
+}
+
+export enum BADGE_TYPES {
+  STANDARD = "standard",
+  DOT = "dot",
+}
+
+export type BadgeVariant = (typeof BADGE_VARIANTS)[keyof typeof BADGE_VARIANTS];
+
+export type BadgeSize = (typeof BADGE_SIZES)[keyof typeof BADGE_SIZES];
 
 export type BadgePosition =
-  | "top-right"
-  | "top-left"
-  | "bottom-right"
-  | "bottom-left"
-  | "inline";
+  (typeof BADGE_POSITIONS)[keyof typeof BADGE_POSITIONS];
 
-export type BadgeType = "standard" | "dot";
+export type BadgeType = (typeof BADGE_TYPES)[keyof typeof BADGE_TYPES];
 
 /**
  * BadgeProps - Props for the Badge component
@@ -56,35 +77,3 @@ export type BadgeProps = Omit<HTMLAttributes<HTMLSpanElement>, "content"> & {
   className?: string;
   badgeClassName?: string;
 };
-
-/**
- * Enums for Badge Component
- */
-export enum BADGE_VARIANTS {
-  PRIMARY = "primary",
-  SECONDARY = "secondary",
-  SUCCESS = "success",
-  ERROR = "error",
-  WARNING = "warning",
-  INFO = "info",
-  NEUTRAL = "neutral",
-}
-
-export enum BADGE_SIZES {
-  SMALL = "sm",
-  MEDIUM = "md",
-  LARGE = "lg",
-}
-
-export enum BADGE_POSITIONS {
-  TOP_RIGHT = "top-right",
-  TOP_LEFT = "top-left",
-  BOTTOM_RIGHT = "bottom-right",
-  BOTTOM_LEFT = "bottom-left",
-  INLINE = "inline",
-}
-
-export enum BADGE_TYPES {
-  STANDARD = "standard",
-  DOT = "dot",
-}
