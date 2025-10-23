@@ -7,7 +7,7 @@
   border: none;
   transition: all 0.2s ease-in-out;
   box-shadow: 0 2px 4px darkslategray;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
 
   .label {
     display: inline-block;
@@ -147,7 +147,7 @@
 
 /* Shapes */
 .square {
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
 }
 
 .circular {

@@ -119,6 +119,10 @@
     overflow-y: auto;
   }
 
+  &.bodyNoFooter {
+    margin-bottom: 1.5rem;
+  }
+
   // Custom scrollbar
   &::-webkit-scrollbar {
     width: 8px;
