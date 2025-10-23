@@ -265,10 +265,10 @@
 
   .modal {
     transform: none !important;
-  }
 
-  &.modalVisible {
-    transform: none !important;
+    &.modalVisible {
+      transform: none !important;
+    }
   }
 }
 
