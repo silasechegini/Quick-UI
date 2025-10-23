@@ -220,7 +220,7 @@ export const Modal: React.FC<ModalProps> = ({
                   type="button"
                   className={styles.closeButton}
                   onClick={onClose}
-                  aria-label="Close modal"
+                  ariaLabel="Close modal"
                   variant={BUTTON_VARIANTS.PLAIN}
                   size={BUTTON_SIZES.EXTRASMALL}
                   icon={<Icon name={ICONS.CLOSE_ICON} size={20} />}
