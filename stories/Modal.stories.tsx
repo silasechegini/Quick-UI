@@ -5,7 +5,7 @@ import {
   MODAL_VARIANTS,
   ModalProps,
 } from "../src/components/Modal";
-import { Button } from "../src/components/Button";
+import { Button, BUTTON_VARIANTS } from "../src/components/Button";
 import { useState } from "react";
 import "../src/styles/index.scss";
 
@@ -88,7 +88,7 @@ export const Default: Story = {
     children: "This is the modal content. You can put any content here.",
     footer: (
       <div style={{ display: "flex", gap: "10px" }}>
-        <Button variant="secondary">Cancel</Button>
+        <Button variant={BUTTON_VARIANTS.SECONDARY}>Cancel</Button>
         <Button>Confirm</Button>
       </div>
     ),
@@ -235,8 +235,8 @@ export const ConfirmationDialog: Story = {
     ),
     footer: (
       <div style={{ display: "flex", gap: "10px" }}>
-        <Button variant="secondary">Cancel</Button>
-        <Button variant="primary">Delete</Button>
+        <Button variant={BUTTON_VARIANTS.SECONDARY}>Cancel</Button>
+        <Button variant={BUTTON_VARIANTS.PRIMARY}>Delete</Button>
       </div>
     ),
   },
@@ -312,8 +312,8 @@ export const FormExample: Story = {
     ),
     footer: (
       <div style={{ display: "flex", gap: "10px" }}>
-        <Button variant="secondary">Cancel</Button>
-        <Button variant="primary">Create User</Button>
+        <Button variant={BUTTON_VARIANTS.SECONDARY}>Cancel</Button>
+        <Button variant={BUTTON_VARIANTS.PRIMARY}>Create User</Button>
       </div>
     ),
   },
@@ -377,7 +377,7 @@ export const Playground: Story = {
       "Use the controls panel to experiment with different modal configurations!",
     footer: (
       <div style={{ display: "flex", gap: "10px" }}>
-        <Button variant="secondary">Cancel</Button>
+        <Button variant={BUTTON_VARIANTS.SECONDARY}>Cancel</Button>
         <Button>Confirm</Button>
       </div>
     ),
