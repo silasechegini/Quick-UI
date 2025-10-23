@@ -8,6 +8,7 @@ describe("Modal Component", () => {
   const defaultProps = {
     isOpen: true,
     onClose: vi.fn(),
+    ariaLabel: "Test modal",
     children: <div>Modal content</div>,
   };
 
@@ -156,10 +157,13 @@ describe("Modal Component", () => {
   });
 
   describe("Variants", () => {
-    it("should apply default variant class", () => {
+    it("should apply default variant (no additional class)", () => {
       render(<Modal {...defaultProps} variant={MODAL_VARIANTS.DEFAULT} />);
       const modal = screen.getByRole("dialog");
-      expect(modal).toHaveClass(styles["variant-default"]);
+      // Default variant doesn't add an additional variant class
+      expect(modal).not.toHaveClass(styles["variant-centered"]);
+      expect(modal).not.toHaveClass(styles["variant-slide-up"]);
+      expect(modal).not.toHaveClass(styles["variant-slide-right"]);
     });
 
     it("should apply centered variant class", () => {
@@ -255,7 +259,11 @@ describe("Modal Component", () => {
     });
 
     it("should use title as aria-label when title is string", () => {
-      render(<Modal {...defaultProps} title="Test Modal" />);
+      render(
+        <Modal isOpen={true} onClose={vi.fn()} title="Test Modal">
+          Content
+        </Modal>,
+      );
       expect(screen.getByRole("dialog")).toHaveAttribute(
         "aria-label",
         "Test Modal",
@@ -263,11 +271,60 @@ describe("Modal Component", () => {
     });
 
     it("should use custom ariaLabel", () => {
-      render(<Modal {...defaultProps} ariaLabel="Custom label" />);
+      render(
+        <Modal {...defaultProps} title="Test Modal" ariaLabel="Custom label" />,
+      );
       expect(screen.getByRole("dialog")).toHaveAttribute(
         "aria-label",
         "Custom label",
       );
+    });
+
+    it("should use ariaLabel when title is ReactNode", () => {
+      render(
+        <Modal
+          isOpen={true}
+          onClose={vi.fn()}
+          title={<span>React Node Title</span>}
+          ariaLabel="Accessible title"
+        >
+          Content
+        </Modal>,
+      );
+      expect(screen.getByRole("dialog")).toHaveAttribute(
+        "aria-label",
+        "Accessible title",
+      );
+    });
+
+    it("should warn in development when ariaLabel is missing with non-string title", () => {
+      const consoleWarnSpy = vi
+        .spyOn(console, "warn")
+        .mockImplementation(() => {});
+      const originalEnv = process.env.NODE_ENV;
+      process.env.NODE_ENV = "development";
+
+      // Bypass TypeScript by casting to any to test runtime behavior
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const InvalidModal = Modal as any;
+      render(
+        <InvalidModal
+          isOpen={true}
+          onClose={vi.fn()}
+          title={<span>Title</span>}
+        >
+          Content
+        </InvalidModal>,
+      );
+
+      expect(consoleWarnSpy).toHaveBeenCalledWith(
+        expect.stringContaining(
+          "Modal: ariaLabel is required when title is not a string",
+        ),
+      );
+
+      consoleWarnSpy.mockRestore();
+      process.env.NODE_ENV = originalEnv;
     });
 
     it("should have aria-describedby when provided", () => {

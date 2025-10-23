@@ -128,20 +128,27 @@ export const Modal: React.FC<ModalProps> = ({
 
   // Animation handling
   useEffect(() => {
+    let animationTimer: NodeJS.Timeout | undefined;
+    let closeTimer: NodeJS.Timeout | undefined;
+
     if (isOpen) {
       setShouldRender(true);
       // Trigger animation after render
-      setTimeout(() => setIsAnimating(true), 10);
+      animationTimer = setTimeout(() => setIsAnimating(true), 10);
       onAfterOpen?.();
     } else {
       setIsAnimating(false);
       // Remove from DOM after animation
-      const timer = setTimeout(() => {
+      closeTimer = setTimeout(() => {
         setShouldRender(false);
         onAfterClose?.();
       }, 300); // Match animation duration
-      return () => clearTimeout(timer);
     }
+
+    return () => {
+      if (animationTimer) clearTimeout(animationTimer);
+      if (closeTimer) clearTimeout(closeTimer);
+    };
   }, [isOpen, onAfterOpen, onAfterClose]);
 
   // Don't render if not open and animation finished
@@ -158,7 +165,7 @@ export const Modal: React.FC<ModalProps> = ({
   const modalClasses = combineClasses(
     styles.modal,
     styles[`size-${size}`],
-    styles[`variant-${variant}`],
+    variant !== MODAL_VARIANTS.DEFAULT && styles[`variant-${variant}`],
     isAnimating && styles.modalVisible,
     className,
   );
@@ -172,6 +179,20 @@ export const Modal: React.FC<ModalProps> = ({
   );
   const footerClasses = combineClasses(styles.footer, footerClassName);
 
+  // Determine the aria-label value
+  const getAriaLabel = (): string => {
+    if (ariaLabel) return ariaLabel;
+    if (typeof title === "string") return title;
+
+    // This should never happen with proper TypeScript usage, but provide a warning in development
+    if (process.env.NODE_ENV !== "production") {
+      console.warn(
+        "Modal: ariaLabel is required when title is not a string. Please provide an ariaLabel prop for accessibility.",
+      );
+    }
+    return "Dialog"; // Fallback for runtime safety
+  };
+
   const modalContent = (
     <div
       className={overlayClasses}
@@ -184,7 +205,7 @@ export const Modal: React.FC<ModalProps> = ({
         className={modalClasses}
         role="dialog"
         aria-modal="true"
-        aria-label={ariaLabel || (typeof title === "string" ? title : "Modal")}
+        aria-label={getAriaLabel()}
         aria-describedby={ariaDescribedBy}
         tabIndex={-1}
       >
