@@ -9,6 +9,7 @@ export * from "./Footer";
 export * from "./Header";
 export * from "./Icon";
 export * from "./Input";
+export * from "./Modal";
 export * from "./MultiSelect";
 export * from "./Page";
 export * from "./Radio";
