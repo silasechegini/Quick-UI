@@ -5,6 +5,7 @@ import { combineClasses } from "../../utils";
 import { Icon } from "../Icon";
 import { ICONS } from "../../assets/iconType";
 import styles from "./styles.module.scss";
+import { Button, BUTTON_SIZES, BUTTON_VARIANTS } from "@/components/Button";
 
 /**
  * Modal - A dialog component that overlays the page
@@ -215,14 +216,15 @@ export const Modal: React.FC<ModalProps> = ({
             <div className={headerClasses}>
               {title && <h2 className={styles.title}>{title}</h2>}
               {showCloseButton && (
-                <button
+                <Button
                   type="button"
                   className={styles.closeButton}
                   onClick={onClose}
-                  aria-label="Close modal"
-                >
-                  <Icon name={ICONS.CLOSE_ICON} size={20} />
-                </button>
+                  ariaLabel="Close modal"
+                  variant={BUTTON_VARIANTS.PLAIN}
+                  size={BUTTON_SIZES.EXTRASMALL}
+                  icon={<Icon name={ICONS.CLOSE_ICON} size={20} />}
+                />
               )}
             </div>
           )}

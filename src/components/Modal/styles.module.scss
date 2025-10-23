@@ -86,6 +86,8 @@
   align-items: center;
   justify-content: center;
   border-radius: var(--border-radius, 6px);
+  width: 40px;
+  height: 40px;
   transition:
     background-color 0.2s ease,
     color 0.2s ease;
