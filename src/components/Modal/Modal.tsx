@@ -176,6 +176,7 @@ export const Modal: React.FC<ModalProps> = ({
   const bodyClasses = combineClasses(
     styles.body,
     scrollable && styles.scrollable,
+    !footer && styles.bodyNoFooter,
     bodyClassName,
   );
   const footerClasses = combineClasses(styles.footer, footerClassName);

@@ -5,6 +5,7 @@ import {
   MODAL_VARIANTS,
   ModalProps,
 } from "../src/components/Modal";
+import { Button, BUTTON_VARIANTS } from "../src/components/Button";
 import { useState } from "react";
 import "../src/styles/index.scss";
 
@@ -74,19 +75,7 @@ const ModalWrapper = (props: ModalProps) => {
 
   return (
     <div>
-      <button
-        onClick={() => setIsOpen(true)}
-        style={{
-          padding: "10px 20px",
-          backgroundColor: "#007bff",
-          color: "white",
-          border: "none",
-          borderRadius: "4px",
-          cursor: "pointer",
-        }}
-      >
-        Open Modal
-      </button>
+      <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
       <Modal {...props} isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </div>
   );
@@ -99,30 +88,8 @@ export const Default: Story = {
     children: "This is the modal content. You can put any content here.",
     footer: (
       <div style={{ display: "flex", gap: "10px" }}>
-        <button
-          style={{
-            padding: "8px 16px",
-            backgroundColor: "#6c757d",
-            color: "white",
-            border: "none",
-            borderRadius: "4px",
-            cursor: "pointer",
-          }}
-        >
-          Cancel
-        </button>
-        <button
-          style={{
-            padding: "8px 16px",
-            backgroundColor: "#007bff",
-            color: "white",
-            border: "none",
-            borderRadius: "4px",
-            cursor: "pointer",
-          }}
-        >
-          Confirm
-        </button>
+        <Button variant={BUTTON_VARIANTS.SECONDARY}>Cancel</Button>
+        <Button>Confirm</Button>
       </div>
     ),
   },
@@ -268,30 +235,8 @@ export const ConfirmationDialog: Story = {
     ),
     footer: (
       <div style={{ display: "flex", gap: "10px" }}>
-        <button
-          style={{
-            padding: "8px 16px",
-            backgroundColor: "#6c757d",
-            color: "white",
-            border: "none",
-            borderRadius: "4px",
-            cursor: "pointer",
-          }}
-        >
-          Cancel
-        </button>
-        <button
-          style={{
-            padding: "8px 16px",
-            backgroundColor: "#dc3545",
-            color: "white",
-            border: "none",
-            borderRadius: "4px",
-            cursor: "pointer",
-          }}
-        >
-          Delete
-        </button>
+        <Button variant={BUTTON_VARIANTS.SECONDARY}>Cancel</Button>
+        <Button variant={BUTTON_VARIANTS.PRIMARY}>Delete</Button>
       </div>
     ),
   },
@@ -367,30 +312,8 @@ export const FormExample: Story = {
     ),
     footer: (
       <div style={{ display: "flex", gap: "10px" }}>
-        <button
-          style={{
-            padding: "8px 16px",
-            backgroundColor: "#6c757d",
-            color: "white",
-            border: "none",
-            borderRadius: "4px",
-            cursor: "pointer",
-          }}
-        >
-          Cancel
-        </button>
-        <button
-          style={{
-            padding: "8px 16px",
-            backgroundColor: "#28a745",
-            color: "white",
-            border: "none",
-            borderRadius: "4px",
-            cursor: "pointer",
-          }}
-        >
-          Create User
-        </button>
+        <Button variant={BUTTON_VARIANTS.SECONDARY}>Cancel</Button>
+        <Button variant={BUTTON_VARIANTS.PRIMARY}>Create User</Button>
       </div>
     ),
   },
@@ -407,18 +330,7 @@ export const WithoutHeader: Story = {
     ),
     footer: (
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <button
-          style={{
-            padding: "8px 16px",
-            backgroundColor: "#007bff",
-            color: "white",
-            border: "none",
-            borderRadius: "4px",
-            cursor: "pointer",
-          }}
-        >
-          Close
-        </button>
+        <Button>Close</Button>
       </div>
     ),
   },
@@ -465,30 +377,8 @@ export const Playground: Story = {
       "Use the controls panel to experiment with different modal configurations!",
     footer: (
       <div style={{ display: "flex", gap: "10px" }}>
-        <button
-          style={{
-            padding: "8px 16px",
-            backgroundColor: "#6c757d",
-            color: "white",
-            border: "none",
-            borderRadius: "4px",
-            cursor: "pointer",
-          }}
-        >
-          Cancel
-        </button>
-        <button
-          style={{
-            padding: "8px 16px",
-            backgroundColor: "#007bff",
-            color: "white",
-            border: "none",
-            borderRadius: "4px",
-            cursor: "pointer",
-          }}
-        >
-          Confirm
-        </button>
+        <Button variant={BUTTON_VARIANTS.SECONDARY}>Cancel</Button>
+        <Button>Confirm</Button>
       </div>
     ),
     size: MODAL_SIZES.MEDIUM,
