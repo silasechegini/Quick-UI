@@ -1,0 +1,285 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+// Overlay
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  backdrop-filter: blur(2px);
+
+  &.overlayVisible {
+    opacity: 1;
+  }
+}
+
+// Modal container
+.modal {
+  background-color: var(--color-background, #ffffff);
+  border-radius: var(--border-radius-lg, 12px);
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transform: scale(0.9);
+  opacity: 0;
+  transition:
+    transform 0.3s ease-in-out,
+    opacity 0.3s ease-in-out;
+  outline: none;
+
+  &.modalVisible {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  // Prevent clicks from closing modal
+  &:focus {
+    outline: none;
+  }
+}
+
+// Content wrapper
+.content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-height: inherit;
+}
+
+// Header
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--color-border, #e5e7eb);
+  flex-shrink: 0;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text-primary, #1f2937);
+  line-height: 1.5;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  color: var(--color-text-secondary, #6b7280);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius, 6px);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+
+  &:hover {
+    background-color: var(--color-background-hover, #f3f4f6);
+    color: var(--color-text-primary, #1f2937);
+  }
+
+  &:focus {
+    outline: 2px solid var(--color-primary, #3b82f6);
+    outline-offset: 2px;
+  }
+
+  &:active {
+    background-color: var(--color-background-active, #e5e7eb);
+  }
+}
+
+// Body
+.body {
+  padding: 1.5rem;
+  flex: 1;
+  overflow-y: auto;
+  color: var(--color-text-secondary, #6b7280);
+  line-height: 1.6;
+
+  &.scrollable {
+    overflow-y: auto;
+  }
+
+  // Custom scrollbar
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--color-background, #f9fafb);
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-border, #d1d5db);
+    border-radius: 4px;
+
+    &:hover {
+      background: var(--color-border-hover, #9ca3af);
+    }
+  }
+}
+
+// Footer
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  border-top: 1px solid var(--color-border, #e5e7eb);
+  flex-shrink: 0;
+}
+
+// ========================================
+// SIZES
+// ========================================
+
+.size-sm {
+  width: 90%;
+  max-width: 400px;
+}
+
+.size-md {
+  width: 90%;
+  max-width: 600px;
+}
+
+.size-lg {
+  width: 90%;
+  max-width: 800px;
+}
+
+.size-xl {
+  width: 90%;
+  max-width: 1200px;
+}
+
+.size-full {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 0;
+}
+
+// ========================================
+// VARIANTS (ANIMATIONS)
+// ========================================
+
+// Default (fade + scale from center) - uses base modal styles
+
+// Centered (just fade, no scale)
+.variant-centered {
+  transform: none;
+
+  &.modalVisible {
+    transform: none;
+  }
+}
+
+// Slide up from bottom
+.variant-slide-up {
+  transform: translateY(100%);
+  opacity: 1;
+
+  &.modalVisible {
+    transform: translateY(0);
+  }
+}
+
+// Slide in from right
+.variant-slide-right {
+  transform: translateX(100%);
+  opacity: 1;
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  max-height: 100vh;
+  border-radius: 0;
+
+  &.modalVisible {
+    transform: translateX(0);
+  }
+}
+
+// ========================================
+// RESPONSIVE DESIGN
+// ========================================
+
+@media (max-width: 768px) {
+  .modal {
+    width: 95% !important;
+    max-width: none;
+    margin: 1rem;
+
+    &.size-full {
+      width: 100% !important;
+      height: 100%;
+      margin: 0;
+    }
+
+    &.variant-slide-right {
+      width: 100% !important;
+    }
+  }
+
+  .header,
+  .body,
+  .footer {
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 1.125rem;
+  }
+}
+
+// ========================================
+// ACCESSIBILITY
+// ========================================
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay,
+  .modal {
+    transition: none;
+  }
+
+  .modal {
+    transform: none !important;
+  }
+
+  &.modalVisible {
+    transform: none !important;
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .modal {
+    border: 2px solid currentColor;
+  }
+
+  .header,
+  .footer {
+    border-width: 2px;
+  }
+}
