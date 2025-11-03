@@ -151,4 +151,4 @@ This project is licensed under the ISC License - see the package.json file for d
 
 ## Support
 
-For questions or issues, please open an issue on GitHub.
+For questions or issues, please open an issue on GitHub (Information coming soon).
