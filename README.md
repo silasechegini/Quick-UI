@@ -4,14 +4,14 @@ A modern React component library built with TypeScript, featuring reusable UI co
 
 ## Features
 
-- 🚀 Reusable React components with TypeScript
-- 📚 Interactive documentation with Storybook
-- ✅ Comprehensive testing with Vitest
-- 🎨 SCSS modules for styling
-- 🔧 Modern build tooling with tsup
-- 📦 Tree-shakeable ESM and CJS builds
-- ♿ Accessibility testing with @storybook/addon-a11y
-- 🔍 Linting with ESLint and formatting with Prettier
+- 🚀 Reusable React components with TypeScript.
+- 📚 Interactive documentation with Storybook.
+- ✅ Comprehensive testing with Vitest.
+- 🎨 SCSS modules for styling.
+- 🔧 Modern build tooling with tsup.
+- 📦 Tree-shakeable ESM and CJS builds.
+- ♿ Accessibility testing with @storybook/addon-a11y.
+- 🔍 Linting with ESLint and formatting with Prettier.
 
 ## Prerequisites
 
