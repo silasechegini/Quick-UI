@@ -45,26 +45,26 @@ This will start the Storybook development server at `http://localhost:6006` wher
 
 ### Development
 
-- `npm run storybook` - Start Storybook development server
-- `npm run build-storybook` - Build Storybook for production
+- `npm run storybook` - Start Storybook development server.
+- `npm run build-storybook` - Build Storybook for production.
 
 ### Building
 
-- `npm run build` - Build the component library for production
-- Output will be generated in the `dist/` directory with both ESM and CJS formats
+- `npm run build` - Build the component library for production.
+- Output will be generated in the `dist/` directory with both ESM and CJS formats.
 
 ### Testing
 
-- `npm test` - Run all tests once
-- `npm run test:watch` - Run tests in watch mode
-- `npm run test:coverage` - Run tests with coverage report
+- `npm test` - Run all tests once.
+- `npm run test:watch` - Run tests in watch mode.
+- `npm run test:coverage` - Run tests with coverage report.
 
 ### Code Quality
 
-- `npm run lint` - Run ESLint to check for code issues
-- `npm run lint:fix` - Run ESLint and automatically fix issues
-- `npm run format` - Format code with Prettier
-- `npm run format:check` - Check if code is properly formatted
+- `npm run lint` - Run ESLint to check for code issues.
+- `npm run lint:fix` - Run ESLint and automatically fix issues.
+- `npm run format` - Format code with Prettier.
+- `npm run format:check` - Check if code is properly formatted.
 
 ## Project Structure
 
