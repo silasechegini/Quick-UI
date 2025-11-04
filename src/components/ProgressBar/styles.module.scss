@@ -1,0 +1,186 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.progressBar {
+  position: relative;
+  background-color: var(--progress-bg, #e9ecef);
+  border-radius: var(--progress-border-radius, 0.25rem);
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  // Size variants
+  &.size-small {
+    height: 0.5rem;
+    font-size: 0.75rem;
+
+    .text {
+      line-height: 0.5rem;
+      min-height: 0.5rem;
+    }
+  }
+
+  &.size-medium {
+    height: 1rem;
+    font-size: 0.875rem;
+
+    .text {
+      line-height: 1rem;
+      min-height: 1rem;
+    }
+  }
+
+  &.size-large {
+    height: 1.5rem;
+    font-size: 1rem;
+
+    .text {
+      line-height: 1.5rem;
+      min-height: 1.5rem;
+    }
+  }
+
+  // Shape variants
+  &.shape-rounded {
+    border-radius: 1rem;
+  }
+
+  &.shape-square {
+    border-radius: 0;
+  }
+
+  // Variant colors
+  &.variant-default .fill {
+    background-color: var(--progress-default, #007bff);
+  }
+
+  &.variant-success .fill {
+    background-color: var(--progress-success, #28a745);
+  }
+
+  &.variant-warning .fill {
+    background-color: var(--progress-warning, #ffc107);
+  }
+
+  &.variant-error .fill {
+    background-color: var(--progress-error, #dc3545);
+  }
+
+  &.variant-info .fill {
+    background-color: var(--progress-info, #17a2b8);
+  }
+
+  // Striped pattern
+  &.striped .fill {
+    background-image: linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.15) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(255, 255, 255, 0.15) 50%,
+      rgba(255, 255, 255, 0.15) 75%,
+      transparent 75%,
+      transparent
+    );
+    background-size: 1rem 1rem;
+  }
+
+  // Animated stripes
+  &.animated .fill {
+    animation: progress-bar-stripes 1s linear infinite;
+  }
+
+  // Indeterminate state
+  &.indeterminate {
+    .fill {
+      width: 100% !important;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        var(--progress-default, #007bff) 50%,
+        transparent 100%
+      );
+      animation: progress-indeterminate 1.5s ease-in-out infinite;
+    }
+  }
+}
+
+.fill {
+  height: 100%;
+  background-color: var(--progress-default, #007bff);
+  transition: width 0.3s ease;
+  position: relative;
+  min-width: 0;
+}
+
+.text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: var(--progress-text-color, #fff);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+  white-space: nowrap;
+  font-size: inherit;
+
+  // Ensure text is visible on light backgrounds
+  .variant-warning & {
+    color: var(--progress-text-color-dark, #212529);
+    text-shadow: none;
+  }
+}
+
+// Keyframe animations
+@keyframes progress-bar-stripes {
+  0% {
+    background-position: 1rem 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+@keyframes progress-indeterminate {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .progressBar {
+    border: 1px solid;
+
+    .fill {
+      border: 1px solid;
+    }
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .fill {
+    transition: none;
+  }
+
+  .animated .fill,
+  .indeterminate .fill {
+    animation: none;
+  }
+}
+
+// Focus styles for keyboard navigation
+.progressBar:focus-visible {
+  outline: 2px solid var(--focus-color, #007bff);
+  outline-offset: 2px;
+}
