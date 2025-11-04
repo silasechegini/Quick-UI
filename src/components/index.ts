@@ -12,6 +12,7 @@ export * from "./Input";
 export * from "./Modal";
 export * from "./MultiSelect";
 export * from "./Page";
+export * from "./ProgressBar";
 export * from "./Radio";
 export * from "./Slider";
 export * from "./Switch";
