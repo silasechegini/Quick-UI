@@ -53,7 +53,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
   ...rest
 }) => {
   // Clamp value between 0 and max
-  const clampedValue = Math.min(Math.max(0, value), max);
+  const clampedValue = value !== undefined ? Math.min(Math.max(0, value), max) : 0;
   const percentage = indeterminate ? 0 : (clampedValue / max) * 100;
 
   // Generate accessible label
