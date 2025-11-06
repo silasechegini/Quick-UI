@@ -8,7 +8,7 @@ import {
 } from "../src/components/ProgressBar";
 import { useState, useEffect } from "react";
 import "../src/styles/index.scss";
-import { Button } from "@components/Button";
+import { Button } from "../src/components/Button";
 
 const meta: Meta<typeof ProgressBar> = {
   title: "Components/ProgressBar",
