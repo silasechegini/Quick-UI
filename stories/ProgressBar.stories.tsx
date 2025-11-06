@@ -8,6 +8,7 @@ import {
 } from "../src/components/ProgressBar";
 import { useState, useEffect } from "react";
 import "../src/styles/index.scss";
+import { Button } from "../src/components/Button";
 
 const meta: Meta<typeof ProgressBar> = {
   title: "Components/ProgressBar",
@@ -342,20 +343,13 @@ export const FileUploadExample: Story = {
       <div style={{ width: "400px", padding: "20px" }}>
         <h4>File Upload Simulation</h4>
         <div style={{ marginBottom: "1rem" }}>
-          <button
+          <Button
             onClick={startUpload}
             disabled={isUploading}
-            style={{
-              padding: "8px 16px",
-              backgroundColor: isUploading ? "#6c757d" : "#007bff",
-              color: "white",
-              border: "none",
-              borderRadius: "4px",
-              cursor: isUploading ? "not-allowed" : "pointer",
-            }}
+            variant={isUploading ? "secondary" : "primary"}
           >
             {isUploading ? "Uploading..." : "Start Upload"}
-          </button>
+          </Button>
         </div>
 
         {isUploading && (

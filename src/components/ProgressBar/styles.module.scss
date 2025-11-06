@@ -3,8 +3,8 @@
 
 .progressBar {
   position: relative;
-  background-color: var(--progress-bg, #e9ecef);
-  border-radius: var(--progress-border-radius, 0.25rem);
+  background-color: var(--gray-200);
+  border-radius: var(--radius-sm);
   overflow: hidden;
   width: 100%;
   display: flex;
@@ -13,7 +13,7 @@
   // Size variants
   &.size-small {
     height: 0.5rem;
-    font-size: 0.75rem;
+    font-size: var(--font-size-xs);
 
     .text {
       line-height: 0.5rem;
@@ -23,7 +23,7 @@
 
   &.size-medium {
     height: 1rem;
-    font-size: 0.875rem;
+    font-size: var(--font-size-sm);
 
     .text {
       line-height: 1rem;
@@ -33,7 +33,7 @@
 
   &.size-large {
     height: 1.5rem;
-    font-size: 1rem;
+    font-size: var(--font-size-base);
 
     .text {
       line-height: 1.5rem;
@@ -43,32 +43,32 @@
 
   // Shape variants
   &.shape-rounded {
-    border-radius: 1rem;
+    border-radius: var(--radius-full);
   }
 
   &.shape-square {
-    border-radius: 0;
+    border-radius: var(--radius-none);
   }
 
   // Variant colors
   &.variant-default .fill {
-    background-color: var(--progress-default, #007bff);
+    background-color: var(--color-primary);
   }
 
   &.variant-success .fill {
-    background-color: var(--progress-success, #28a745);
+    background-color: var(--color-success);
   }
 
   &.variant-warning .fill {
-    background-color: var(--progress-warning, #ffc107);
+    background-color: var(--color-warning);
   }
 
   &.variant-error .fill {
-    background-color: var(--progress-error, #dc3545);
+    background-color: var(--color-error);
   }
 
   &.variant-info .fill {
-    background-color: var(--progress-info, #17a2b8);
+    background-color: var(--color-info);
   }
 
   // Striped pattern
@@ -98,7 +98,7 @@
       background: linear-gradient(
         90deg,
         transparent 0%,
-        var(--progress-default, #007bff) 50%,
+        var(--color-primary) 50%,
         transparent 100%
       );
       animation: progress-indeterminate 1.5s ease-in-out infinite;
@@ -117,8 +117,8 @@
 
 .fill {
   height: 100%;
-  background-color: var(--progress-default, #007bff);
-  transition: width 0.3s ease;
+  background-color: var(--color-primary);
+  transition: width var(--transition-base) ease;
   position: relative;
   min-width: 0;
 }
@@ -132,8 +132,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 600;
-  color: var(--progress-text-color, #fff);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-white);
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   z-index: 1;
   white-space: nowrap;
@@ -141,7 +141,7 @@
 
   // Ensure text is visible on light backgrounds
   .variant-warning & {
-    color: var(--progress-text-color-dark, #212529);
+    color: var(--gray-900);
     text-shadow: none;
   }
 }
@@ -190,6 +190,6 @@
 
 // Focus styles for keyboard navigation
 .progressBar:focus-visible {
-  outline: 2px solid var(--focus-color, #007bff);
+  outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
