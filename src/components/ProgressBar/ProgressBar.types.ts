@@ -6,14 +6,36 @@ import { HTMLAttributes, ReactNode } from "react";
  * It includes props for different variants, sizes, and display options.
  */
 
+/**
+ * Enums for ProgressBar Component
+ * These enums define the possible values for variants, sizes, and shapes.
+ */
+
+export enum PROGRESS_BAR_VARIANTS {
+  DEFAULT = "default",
+  SUCCESS = "success",
+  WARNING = "warning",
+  ERROR = "error",
+  INFO = "info",
+}
+
+export enum PROGRESS_BAR_SIZES {
+  SMALL = "small",
+  MEDIUM = "medium",
+  LARGE = "large",
+}
+
+export enum PROGRESS_BAR_SHAPES {
+  ROUNDED = "rounded",
+  SQUARE = "square",
+}
+
 export type ProgressBarVariants =
-  | "default"
-  | "success"
-  | "warning"
-  | "error"
-  | "info";
-export type ProgressBarSizes = "small" | "medium" | "large";
-export type ProgressBarShapes = "rounded" | "square";
+  (typeof PROGRESS_BAR_VARIANTS)[keyof typeof PROGRESS_BAR_VARIANTS];
+export type ProgressBarSizes =
+  (typeof PROGRESS_BAR_SIZES)[keyof typeof PROGRESS_BAR_SIZES];
+export type ProgressBarShapes =
+  (typeof PROGRESS_BAR_SHAPES)[keyof typeof PROGRESS_BAR_SHAPES];
 
 /**
  * ProgressBarProps - Props for the ProgressBar component
@@ -53,27 +75,3 @@ export type ProgressBarProps = Omit<
   color?: string;
   backgroundColor?: string;
 };
-
-/**
- * Enums for ProgressBar Component
- * These enums define the possible values for variants, sizes, and shapes.
- */
-
-export enum PROGRESS_BAR_VARIANTS {
-  DEFAULT = "default",
-  SUCCESS = "success",
-  WARNING = "warning",
-  ERROR = "error",
-  INFO = "info",
-}
-
-export enum PROGRESS_BAR_SIZES {
-  SMALL = "small",
-  MEDIUM = "medium",
-  LARGE = "large",
-}
-
-export enum PROGRESS_BAR_SHAPES {
-  ROUNDED = "rounded",
-  SQUARE = "square",
-}
