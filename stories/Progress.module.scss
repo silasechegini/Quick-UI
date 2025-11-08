@@ -88,33 +88,24 @@
     var(--color-success, #10b981) 50%,
     transparent 80%
   );
-  --indeterminate-animation: fast-slide;
+  --indeterminate-animation-name: fast-slide;
   --indeterminate-duration: 1s;
   --indeterminate-timing: linear;
 }
 
 /* Glow effect indeterminate */
 .glowIndeterminate {
-  overflow: visible;
   --indeterminate-background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(29, 78, 216, 0.8) 40%,
-    rgba(29, 78, 216, 1) 50%,
-    rgba(29, 78, 216, 0.8) 60%,
+    var(--color-success) 40%,
+    var(--color-success) 50%,
+    var(--color-success) 60%,
     transparent 100%
   );
-  --indeterminate-animation: glow-slide;
-  --indeterminate-duration: 2s;
+  --indeterminate-animation-name: glow-slide;
+  --indeterminate-duration: 1s;
   --indeterminate-timing: ease-in-out;
-}
-
-/* Add box-shadow for glow effect - this needs to be applied to the fill element */
-.glowIndeterminate .fill {
-  box-shadow:
-    0 0 10px rgba(29, 78, 216, 0.5),
-    0 0 20px rgba(29, 78, 216, 0.3),
-    0 0 30px rgba(29, 78, 216, 0.1);
 }
 
 @keyframes fast-slide {

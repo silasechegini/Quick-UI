@@ -6,10 +6,6 @@
   --indeterminate-duration: 1.5s;
   --indeterminate-timing: ease-in-out;
   --indeterminate-iteration: infinite;
-
-  --indeterminate-full-animation: var(--indeterminate-animation-name)
-    var(--indeterminate-duration) var(--indeterminate-timing)
-    var(--indeterminate-iteration);
 }
 
 .progressBar {
@@ -115,7 +111,9 @@
           transparent 100%
         )
       );
-      animation: var(--indeterminate-full-animation);
+      animation: var(--indeterminate-animation-name)
+        var(--indeterminate-duration) var(--indeterminate-timing)
+        var(--indeterminate-iteration);
     }
   }
 }
