@@ -1,0 +1,137 @@
+/**
+ * Custom styles for ProgressBar component in stories
+ * These styles demonstrate how to override the default indeterminate state
+ * Using CSS custom properties for clean, maintainable overrides
+ */
+
+/* Custom indeterminate state override using CSS custom properties */
+.customIndeterminate {
+  --indeterminate-background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #ff6b6b 25%,
+    #4ecdc4 50%,
+    #45b7d1 75%,
+    transparent 100%
+  );
+  --indeterminate-animation: custom-indeterminate;
+  --indeterminate-duration: 2s;
+  --indeterminate-timing: ease-in-out;
+}
+
+/* Pulse effect modifier */
+.pulseIndeterminate {
+  --indeterminate-background: linear-gradient(
+    90deg,
+    rgba(255, 107, 107, 0.3) 0%,
+    rgba(255, 107, 107, 1) 50%,
+    rgba(255, 107, 107, 0.3) 100%
+  );
+  --indeterminate-animation: custom-pulse;
+  --indeterminate-duration: 1.5s;
+  --indeterminate-timing: ease-in-out;
+}
+
+/* Wave effect modifier */
+.waveIndeterminate {
+  --indeterminate-background: repeating-linear-gradient(
+    90deg,
+    transparent 0px,
+    rgba(78, 205, 196, 0.8) 10px,
+    rgba(69, 183, 209, 0.8) 20px,
+    transparent 30px
+  );
+  --indeterminate-animation: custom-wave;
+  --indeterminate-duration: 3s;
+  --indeterminate-timing: linear;
+}
+
+/* Custom keyframe animations */
+@keyframes custom-indeterminate {
+  0% {
+    transform: translateX(-100%) scale(0.8);
+  }
+  50% {
+    transform: translateX(0) scale(1);
+  }
+  100% {
+    transform: translateX(100%) scale(0.8);
+  }
+}
+
+@keyframes custom-pulse {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scaleX(0.95);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes custom-wave {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 0%;
+  }
+}
+
+/* High-performance indeterminate with reduced animation */
+.performanceIndeterminate {
+  --indeterminate-background: linear-gradient(
+    90deg,
+    transparent 20%,
+    var(--color-success, #10b981) 50%,
+    transparent 80%
+  );
+  --indeterminate-animation: fast-slide;
+  --indeterminate-duration: 1s;
+  --indeterminate-timing: linear;
+}
+
+/* Glow effect indeterminate */
+.glowIndeterminate {
+  overflow: visible;
+  --indeterminate-background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(29, 78, 216, 0.8) 40%,
+    rgba(29, 78, 216, 1) 50%,
+    rgba(29, 78, 216, 0.8) 60%,
+    transparent 100%
+  );
+  --indeterminate-animation: glow-slide;
+  --indeterminate-duration: 2s;
+  --indeterminate-timing: ease-in-out;
+}
+
+/* Add box-shadow for glow effect - this needs to be applied to the fill element */
+.glowIndeterminate .fill {
+  box-shadow:
+    0 0 10px rgba(29, 78, 216, 0.5),
+    0 0 20px rgba(29, 78, 216, 0.3),
+    0 0 30px rgba(29, 78, 216, 0.1);
+}
+
+@keyframes fast-slide {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes glow-slide {
+  0%,
+  100% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(0);
+  }
+}
