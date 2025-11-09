@@ -8,6 +8,7 @@ import {
 } from "../src/components/ProgressBar";
 import { useState, useEffect } from "react";
 import "../src/styles/index.scss";
+import styles from "./Progress.module.scss";
 import { Button } from "../src/components/Button";
 
 const meta: Meta<typeof ProgressBar> = {
@@ -241,6 +242,74 @@ export const Indeterminate: Story = {
     indeterminate: true,
     label: "Loading...",
   },
+};
+
+export const CustomIndeterminateStyles: Story = {
+  render: () => (
+    <div
+      style={{
+        width: "400px",
+        padding: "20px",
+        display: "flex",
+        flexDirection: "column",
+        gap: "1.5rem",
+      }}
+    >
+      <div>
+        <h4>Default Indeterminate</h4>
+        <ProgressBar value={0} indeterminate />
+      </div>
+
+      <div>
+        <h4>Custom Rainbow Gradient</h4>
+        <ProgressBar
+          value={0}
+          indeterminate
+          className={styles.customIndeterminate}
+        />
+      </div>
+
+      <div>
+        <h4>Pulse Effect</h4>
+        <ProgressBar
+          value={0}
+          indeterminate
+          className={styles.pulseIndeterminate}
+          variant={PROGRESS_BAR_VARIANTS.ERROR}
+        />
+      </div>
+
+      <div>
+        <h4>Wave Effect</h4>
+        <ProgressBar
+          value={0}
+          indeterminate
+          className={styles.waveIndeterminate}
+          variant={PROGRESS_BAR_VARIANTS.INFO}
+        />
+      </div>
+
+      <div>
+        <h4>High Performance</h4>
+        <ProgressBar
+          value={0}
+          indeterminate
+          className={styles.performanceIndeterminate}
+          variant={PROGRESS_BAR_VARIANTS.SUCCESS}
+        />
+      </div>
+
+      <div>
+        <h4>Glow Effect</h4>
+        <ProgressBar
+          value={0}
+          indeterminate
+          className={styles.glowIndeterminate}
+          size={PROGRESS_BAR_SIZES.LARGE}
+        />
+      </div>
+    </div>
+  ),
 };
 
 export const CustomColors: Story = {

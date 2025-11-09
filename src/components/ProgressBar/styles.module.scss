@@ -1,6 +1,13 @@
 @import "../../styles/variables";
 @import "../../styles/mixins";
 
+:root {
+  --indeterminate-animation-name: progress-indeterminate;
+  --indeterminate-duration: 1.5s;
+  --indeterminate-timing: ease-in-out;
+  --indeterminate-iteration: infinite;
+}
+
 .progressBar {
   position: relative;
   background-color: var(--gray-200);
@@ -95,13 +102,18 @@
   &.indeterminate {
     .fill {
       width: 100% !important;
-      background: linear-gradient(
-        90deg,
-        transparent 0%,
-        var(--color-primary) 50%,
-        transparent 100%
+      background: var(
+        --indeterminate-background,
+        linear-gradient(
+          90deg,
+          transparent 0%,
+          var(--color-primary) 50%,
+          transparent 100%
+        )
       );
-      animation: progress-indeterminate 1.5s ease-in-out infinite;
+      animation: var(--indeterminate-animation-name)
+        var(--indeterminate-duration) var(--indeterminate-timing)
+        var(--indeterminate-iteration);
     }
   }
 }
