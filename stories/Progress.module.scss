@@ -14,7 +14,7 @@
     #45b7d1 75%,
     transparent 100%
   );
-  --indeterminate-animation: custom-indeterminate;
+  --indeterminate-animation-name: custom-indeterminate;
   --indeterminate-duration: 2s;
   --indeterminate-timing: ease-in-out;
 }
@@ -27,7 +27,7 @@
     rgba(255, 107, 107, 1) 50%,
     rgba(255, 107, 107, 0.3) 100%
   );
-  --indeterminate-animation: custom-pulse;
+  --indeterminate-animation-name: custom-pulse;
   --indeterminate-duration: 1.5s;
   --indeterminate-timing: ease-in-out;
 }
@@ -41,7 +41,7 @@
     rgba(69, 183, 209, 0.8) 20px,
     transparent 30px
   );
-  --indeterminate-animation: custom-wave;
+  --indeterminate-animation-name: custom-wave;
   --indeterminate-duration: 3s;
   --indeterminate-timing: linear;
 }
