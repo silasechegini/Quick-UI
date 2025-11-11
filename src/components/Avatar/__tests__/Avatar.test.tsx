@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import Avatar from "../Avatar";
 import { AVATAR_SIZES, AVATAR_SHAPES, AVATAR_VARIANTS } from "../Avatar.types";
 
