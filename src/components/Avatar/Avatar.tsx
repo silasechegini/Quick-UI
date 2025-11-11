@@ -1,7 +1,9 @@
-import { FC, useState, useCallback } from "react";
+import { FC, useState, useCallback, useEffect } from "react";
 import { combineClasses } from "../../utils/classNames";
 import { AvatarProps } from "./Avatar.types";
 import styles from "./styles.module.scss";
+import generateInitials from "@utils/generateInitials";
+import getBackgroundColor from "@utils/backgroundColor";
 
 /**
  * Avatar Component
@@ -57,58 +59,15 @@ const Avatar: FC<AvatarProps> = (props) => {
     className,
     style,
     ariaLabel,
-    ...restProps
   } = props;
 
   const [imageError, setImageError] = useState(false);
 
-  /**
-   * Handle image loading errors
-   */
-  const handleImageError = useCallback(() => {
-    setImageError(true);
-    if ("onImageError" in props && props.onImageError) {
-      props.onImageError();
+  useEffect(() => {
+    if ("src" in props) {
+      setImageError(false);
     }
-  }, [props]);
-
-  /**
-   * Generate initials from a full name
-   * @param name - Full name to extract initials from
-   * @returns First two initials
-   */
-  const generateInitials = (name: string): string => {
-    return name
-      .split(" ")
-      .map((word) => word.charAt(0))
-      .join("")
-      .substring(0, 2)
-      .toUpperCase();
-  };
-
-  /**
-   * Get a consistent background color for initials based on the text
-   * @param text - Text to generate color from
-   * @returns Hex color string
-   */
-  const getInitialsBackgroundColor = (text: string): string => {
-    const colors = [
-      "var(--color-danger)",
-      "var(--color-orange)",
-      "var(--color-warning)",
-      "var(--color-success)",
-      "var(--color-cyan)",
-      "var(--color-info)",
-      "var(--color-violet)",
-      "var(--color-pink)",
-    ];
-
-    const hash = text.split("").reduce((acc, char) => {
-      return char.charCodeAt(0) + ((acc << 5) - acc);
-    }, 0);
-
-    return colors[Math.abs(hash) % colors.length];
-  };
+  }, [props.variant === "image" ? props.src : null]);
 
   // Build CSS classes
   const avatarClasses = combineClasses(
@@ -123,11 +82,15 @@ const Avatar: FC<AvatarProps> = (props) => {
   const renderAvatarContent = () => {
     // Default to placeholder if no variant specified
     if (!props.variant || props.variant === "placeholder") {
+      const { backgroundColor, ...placeholderRestProps } =
+        props.variant === "placeholder"
+          ? props
+          : { ...props, backgroundColor: undefined };
       const placeholderStyle = {
         ...style,
         ...(props.variant === "placeholder" &&
           props.backgroundColor && {
-            background: `linear-gradient(135deg, ${props.backgroundColor}, ${props.backgroundColor}dd)`,
+            background: `linear-gradient(135deg, ${backgroundColor}, ${backgroundColor}dd)`,
           }),
       };
 
@@ -137,19 +100,19 @@ const Avatar: FC<AvatarProps> = (props) => {
           style={placeholderStyle}
           role="img"
           aria-label={ariaLabel || alt || "Avatar placeholder"}
-          {...restProps}
+          {...placeholderRestProps}
         />
       );
     }
 
     // Image avatar
     if (props.variant === "image") {
-      const { src, fallback, ...imageRestProps } = props;
+      const { src, fallback, onImageError, ...imageRestProps } = props;
 
       if (imageError && fallback) {
         // Show fallback initials
         const fallbackStyle = {
-          backgroundColor: getInitialsBackgroundColor(fallback),
+          backgroundColor: getBackgroundColor(fallback),
           color: "var(--color-white)",
           ...style,
         };
@@ -169,6 +132,16 @@ const Avatar: FC<AvatarProps> = (props) => {
           </div>
         );
       }
+
+      /**
+       * Handle image loading errors
+       */
+      const handleImageError = useCallback(() => {
+        setImageError(true);
+        if (onImageError) {
+          onImageError();
+        }
+      }, [onImageError]);
 
       return (
         <div
@@ -194,8 +167,7 @@ const Avatar: FC<AvatarProps> = (props) => {
         props;
 
       const initialsStyle = {
-        backgroundColor:
-          backgroundColor || getInitialsBackgroundColor(initials),
+        backgroundColor: backgroundColor || getBackgroundColor(initials),
         color: textColor || "var(--color-white)",
         ...style,
       };
