@@ -1,7 +1,7 @@
 /**
  * Get a consistent background color for initials based on the text
  * @param text - Text to generate color from
- * @returns Hex color string
+ * @returns CSS variable string for color
  */
 const getBackgroundColor = (text: string): string => {
   const colors = [
