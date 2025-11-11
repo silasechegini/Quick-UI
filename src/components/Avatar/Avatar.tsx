@@ -63,11 +63,12 @@ const Avatar: FC<AvatarProps> = (props) => {
 
   const [imageError, setImageError] = useState(false);
 
+  const src = props.variant === "image" ? props.src : undefined;
   useEffect(() => {
-    if ("src" in props) {
+    if (src) {
       setImageError(false);
     }
-  }, [props.variant === "image" ? props.src : null]);
+  }, [src]);
 
   // Build CSS classes
   const avatarClasses = combineClasses(
@@ -82,13 +83,12 @@ const Avatar: FC<AvatarProps> = (props) => {
   const renderAvatarContent = () => {
     // Default to placeholder if no variant specified
     if (!props.variant || props.variant === "placeholder") {
-      const { backgroundColor, ...placeholderRestProps } =
-        props.variant === "placeholder"
-          ? props
-          : { ...props, backgroundColor: undefined };
+      const backgroundColor =
+        props.variant === "placeholder" ? props.backgroundColor : undefined;
+      const { variant, ...placeholderRestProps } = props;
       const placeholderStyle = {
         ...style,
-        ...(props.variant === "placeholder" &&
+        ...(variant === "placeholder" &&
           props.backgroundColor && {
             background: `linear-gradient(135deg, ${backgroundColor}, ${backgroundColor}dd)`,
           }),
