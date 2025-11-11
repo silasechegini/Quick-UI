@@ -287,7 +287,7 @@ describe("Avatar Component", () => {
 
     it("should use alt text for aria-label when provided", () => {
       render(<Avatar alt="Profile picture" />);
-      const avatar = screen.getByLabelText("Avatar placeholder");
+      const avatar = screen.getByLabelText("Profile picture");
       expect(avatar).toBeInTheDocument();
     });
 
