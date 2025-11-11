@@ -136,12 +136,17 @@ const Avatar: FC<AvatarProps> = (props) => {
       /**
        * Handle image loading errors
        */
+      // Use a ref to hold the latest onImageError callback
+      const onImageErrorRef = useRef(onImageError);
+      useEffect(() => {
+        onImageErrorRef.current = onImageError;
+      }, [onImageError]);
       const handleImageError = useCallback(() => {
         setImageError(true);
-        if (onImageError) {
-          onImageError();
+        if (onImageErrorRef.current) {
+          onImageErrorRef.current();
         }
-      }, [onImageError]);
+      }, []);
 
       return (
         <div
