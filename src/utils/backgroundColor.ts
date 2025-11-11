@@ -16,7 +16,7 @@ const getBackgroundColor = (text: string): string => {
   ];
 
   const hash = text.split("").reduce((acc, char) => {
-    return char.charCodeAt(0) + ((acc << 5) - acc);
+    return (char.charCodeAt(0) + ((acc << 5) - acc)) | 0;
   }, 0);
 
   return colors[Math.abs(hash) % colors.length];
