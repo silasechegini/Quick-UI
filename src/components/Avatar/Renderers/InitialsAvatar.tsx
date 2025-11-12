@@ -4,8 +4,6 @@ import { getBackgroundColor } from "../../../utils";
 
 type InitialsAvatarRendererProps = InitialsAvatarProps & {
   avatarClasses: string;
-  style?: React.CSSProperties;
-  ariaLabel?: string;
 };
 
 const InitialsAvatar: FC<InitialsAvatarRendererProps> = ({
@@ -16,7 +14,7 @@ const InitialsAvatar: FC<InitialsAvatarRendererProps> = ({
   backgroundColor,
   textColor,
   ...props
-}: InitialsAvatarRendererProps) => {
+}) => {
   const initialsStyle = {
     backgroundColor: backgroundColor || getBackgroundColor(initials),
     color: textColor || "var(--color-white)",

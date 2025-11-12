@@ -1,20 +1,17 @@
 import { FC } from "react";
-import { AvatarProps } from "../Avatar.types";
+import { PlaceholderAvatarProps } from "../Avatar.types";
 
-type PlaceholderProps = AvatarProps & {
+type PlaceholderRendererProps = PlaceholderAvatarProps & {
   avatarClasses: string;
-  style?: React.CSSProperties;
-  ariaLabel?: string;
-  alt?: string;
 };
 
-const PlaceholderAvatar: FC<PlaceholderProps> = ({
+const PlaceholderAvatar: FC<PlaceholderRendererProps> = ({
   avatarClasses,
   style,
   ariaLabel,
   alt,
   ...props
-}: PlaceholderProps) => {
+}) => {
   // Default to placeholder if no variant specified
 
   const backgroundColor =

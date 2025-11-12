@@ -4,8 +4,6 @@ import styles from "../styles.module.scss";
 
 type IconAvatarRendererProps = IconAvatarProps & {
   avatarClasses: string;
-  style?: React.CSSProperties;
-  ariaLabel?: string;
 };
 
 const IconAvatar: FC<IconAvatarRendererProps> = ({
@@ -16,7 +14,7 @@ const IconAvatar: FC<IconAvatarRendererProps> = ({
   backgroundColor,
   iconColor,
   ...props
-}: IconAvatarRendererProps) => {
+}) => {
   const iconStyle = {
     backgroundColor: backgroundColor || "var(--gray-200)",
     color: iconColor || "var(--gray-600)",

@@ -9,8 +9,6 @@ import styles from "../styles.module.scss";
 
 type ImageAvatarRendererProps = ImageAvatarProps & {
   avatarClasses: string;
-  style?: React.CSSProperties;
-  ariaLabel?: string;
   imageError: boolean;
   setImageError: (value: SetStateAction<boolean>) => void;
 };
@@ -23,7 +21,7 @@ const ImageAvatar: FC<ImageAvatarRendererProps> = ({
   alt,
   setImageError,
   ...props
-}: ImageAvatarRendererProps) => {
+}) => {
   // Image avatar
 
   const { src, fallback, onImageError, ...imageRestProps } = props;

@@ -5,6 +5,10 @@ import {
   AVATAR_SIZES,
   AVATAR_VARIANTS,
   AvatarProps,
+  IconAvatarProps,
+  ImageAvatarProps,
+  InitialsAvatarProps,
+  PlaceholderAvatarProps,
 } from "./Avatar.types";
 import IconAvatar from "./Renderers/IconAvatar";
 import InitialsAvatar from "./Renderers/InitialsAvatar";
@@ -62,7 +66,6 @@ const Avatar: FC<AvatarProps> = (props) => {
   const {
     size = AVATAR_SIZES.MEDIUM,
     shape = AVATAR_SHAPES.CIRCLE,
-    variant = AVATAR_VARIANTS.PLACEHOLDER,
     alt,
     className,
     style,
@@ -70,8 +73,9 @@ const Avatar: FC<AvatarProps> = (props) => {
   } = props;
 
   const [imageError, setImageError] = useState(false);
+  const variant = props.variant ?? AVATAR_VARIANTS.PLACEHOLDER;
 
-  const src = props.variant === "image" ? props.src : undefined;
+  const src = variant === "image" ? (props as ImageAvatarProps).src : undefined;
   useEffect(() => {
     if (src) {
       setImageError(false);
@@ -83,25 +87,25 @@ const Avatar: FC<AvatarProps> = (props) => {
     styles.avatar,
     styles[`size-${size}`],
     styles[`shape-${shape}`],
-    variant && styles[`variant-${props.variant}`],
+    variant && styles[`variant-${variant}`],
     className,
   );
 
   // Default to placeholder if no variant specified
-  if (!props.variant || props.variant === "placeholder") {
+  if (!variant || variant === "placeholder") {
     return (
       <PlaceholderAvatar
         avatarClasses={avatarClasses}
         style={style}
         ariaLabel={ariaLabel}
         alt={alt}
-        {...props}
+        {...(props as PlaceholderAvatarProps)}
       />
     );
   }
 
   // Image avatar
-  if (props.variant === "image") {
+  if (variant === "image") {
     return (
       <ImageAvatar
         avatarClasses={avatarClasses}
@@ -110,32 +114,32 @@ const Avatar: FC<AvatarProps> = (props) => {
         alt={alt}
         imageError={imageError}
         setImageError={setImageError}
-        {...props}
+        {...(props as ImageAvatarProps)}
       />
     );
   }
 
   // Initials avatar
-  if (props.variant === "initials") {
+  if (variant === "initials") {
     return (
       <InitialsAvatar
         avatarClasses={avatarClasses}
         style={style}
         ariaLabel={ariaLabel}
         alt={alt}
-        {...props}
+        {...(props as InitialsAvatarProps)}
       />
     );
   }
 
   // Icon avatar
-  if (props.variant === "icon") {
+  if (variant === "icon") {
     return (
       <IconAvatar
         avatarClasses={avatarClasses}
         style={style}
         ariaLabel={ariaLabel}
-        {...props}
+        {...(props as IconAvatarProps)}
       />
     );
   }
