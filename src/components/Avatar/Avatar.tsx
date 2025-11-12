@@ -83,47 +83,55 @@ const Avatar: FC<AvatarProps> = (props) => {
 
   // Default to placeholder if no variant specified
   if (!props.variant || props.variant === "placeholder") {
-    <PlaceholderAvatar
-      avatarClasses={avatarClasses}
-      style={style}
-      ariaLabel={ariaLabel}
-      alt={alt}
-      {...props}
-    />;
+    return (
+      <PlaceholderAvatar
+        avatarClasses={avatarClasses}
+        style={style}
+        ariaLabel={ariaLabel}
+        alt={alt}
+        {...props}
+      />
+    );
   }
 
   // Image avatar
   if (props.variant === "image") {
-    <ImageAvatar
-      avatarClasses={avatarClasses}
-      style={style}
-      ariaLabel={ariaLabel}
-      alt={alt}
-      imageError={imageError}
-      setImageError={setImageError}
-      {...props}
-    />;
+    return (
+      <ImageAvatar
+        avatarClasses={avatarClasses}
+        style={style}
+        ariaLabel={ariaLabel}
+        alt={alt}
+        imageError={imageError}
+        setImageError={setImageError}
+        {...props}
+      />
+    );
   }
 
   // Initials avatar
   if (props.variant === "initials") {
-    <InitialsAvatar
-      avatarClasses={avatarClasses}
-      style={style}
-      ariaLabel={ariaLabel}
-      alt={alt}
-      {...props}
-    />;
+    return (
+      <InitialsAvatar
+        avatarClasses={avatarClasses}
+        style={style}
+        ariaLabel={ariaLabel}
+        alt={alt}
+        {...props}
+      />
+    );
   }
 
   // Icon avatar
   if (props.variant === "icon") {
-    <IconAvatar
-      avatarClasses={avatarClasses}
-      style={style}
-      ariaLabel={ariaLabel}
-      {...props}
-    />;
+    return (
+      <IconAvatar
+        avatarClasses={avatarClasses}
+        style={style}
+        ariaLabel={ariaLabel}
+        {...props}
+      />
+    );
   }
 
   return null;

@@ -2,13 +2,13 @@ import { FC } from "react";
 import { IconAvatarProps } from "../Avatar.types";
 import styles from "../styles.module.scss";
 
-type IconAvatarPropsType = IconAvatarProps & {
+type IconAvatarRendererProps = IconAvatarProps & {
   avatarClasses: string;
   style?: React.CSSProperties;
   ariaLabel?: string;
 };
 
-const IconAvatar: FC<IconAvatarPropsType> = ({
+const IconAvatar: FC<IconAvatarRendererProps> = ({
   avatarClasses,
   style,
   ariaLabel,
@@ -16,7 +16,7 @@ const IconAvatar: FC<IconAvatarPropsType> = ({
   backgroundColor,
   iconColor,
   ...props
-}: IconAvatarPropsType) => {
+}: IconAvatarRendererProps) => {
   const iconStyle = {
     backgroundColor: backgroundColor || "var(--gray-200)",
     color: iconColor || "var(--gray-600)",
