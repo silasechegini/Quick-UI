@@ -6,9 +6,35 @@ import { HTMLAttributes, ReactNode } from "react";
  * It includes props for different avatar variants, sizes, and display modes.
  */
 
-export type AvatarSizes = "xs" | "sm" | "md" | "lg" | "xl" | "xxl";
-export type AvatarShapes = "circle" | "square" | "rounded";
-export type AvatarVariants = "image" | "initials" | "icon" | "placeholder";
+/**
+ * Enums for Avatar Component
+ */
+export enum AVATAR_SIZES {
+  EXTRA_SMALL = "xs",
+  SMALL = "sm",
+  MEDIUM = "md",
+  LARGE = "lg",
+  EXTRA_LARGE = "xl",
+  DOUBLE_EXTRA_LARGE = "xxl",
+}
+
+export enum AVATAR_SHAPES {
+  CIRCLE = "circle",
+  SQUARE = "square",
+  ROUNDED = "rounded",
+}
+
+export enum AVATAR_VARIANTS {
+  IMAGE = "image",
+  INITIALS = "initials",
+  ICON = "icon",
+  PLACEHOLDER = "placeholder",
+}
+
+export type AvatarSizes = (typeof AVATAR_SIZES)[keyof typeof AVATAR_SIZES];
+export type AvatarShapes = (typeof AVATAR_SHAPES)[keyof typeof AVATAR_SHAPES];
+export type AvatarVariants =
+  (typeof AVATAR_VARIANTS)[keyof typeof AVATAR_VARIANTS];
 
 /**
  * BaseAvatarProps - Common properties for all avatar types
@@ -88,28 +114,3 @@ export type AvatarProps =
   | InitialsAvatarProps
   | IconAvatarProps
   | PlaceholderAvatarProps;
-
-/**
- * Enums for Avatar Component
- */
-export enum AVATAR_SIZES {
-  EXTRA_SMALL = "xs",
-  SMALL = "sm",
-  MEDIUM = "md",
-  LARGE = "lg",
-  EXTRA_LARGE = "xl",
-  DOUBLE_EXTRA_LARGE = "xxl",
-}
-
-export enum AVATAR_SHAPES {
-  CIRCLE = "circle",
-  SQUARE = "square",
-  ROUNDED = "rounded",
-}
-
-export enum AVATAR_VARIANTS {
-  IMAGE = "image",
-  INITIALS = "initials",
-  ICON = "icon",
-  PLACEHOLDER = "placeholder",
-}
