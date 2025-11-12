@@ -2,6 +2,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import Avatar from "../Avatar";
 import { AVATAR_SIZES, AVATAR_SHAPES, AVATAR_VARIANTS } from "../Avatar.types";
+import styles from "../styles.module.scss";
 
 // Mock console.error to avoid noise in tests
 const originalConsoleError = console.error;
@@ -19,7 +20,11 @@ describe("Avatar Component", () => {
       render(<Avatar />);
       const avatar = screen.getByRole("img");
       expect(avatar).toBeInTheDocument();
-      expect(avatar).toHaveClass("avatar", "size-md", "shape-circle");
+      expect(avatar).toHaveClass(
+        styles.avatar,
+        styles["size-md"],
+        styles["shape-circle"],
+      );
     });
 
     it("should render with custom className", () => {
@@ -44,39 +49,39 @@ describe("Avatar Component", () => {
 
   describe("Sizes", () => {
     it("should apply extra small size class", () => {
-      render(<Avatar size="xs" />);
+      render(<Avatar size={AVATAR_SIZES.EXTRA_SMALL} />);
       const avatar = screen.getByRole("img");
-      expect(avatar).toHaveClass("size-xs");
+      expect(avatar).toHaveClass(styles["size-xs"]);
     });
 
     it("should apply small size class", () => {
-      render(<Avatar size="sm" />);
+      render(<Avatar size={AVATAR_SIZES.SMALL} />);
       const avatar = screen.getByRole("img");
-      expect(avatar).toHaveClass("size-sm");
+      expect(avatar).toHaveClass(styles["size-sm"]);
     });
 
     it("should apply medium size class by default", () => {
       render(<Avatar />);
       const avatar = screen.getByRole("img");
-      expect(avatar).toHaveClass("size-md");
+      expect(avatar).toHaveClass(styles["size-md"]);
     });
 
     it("should apply large size class", () => {
-      render(<Avatar size="lg" />);
+      render(<Avatar size={AVATAR_SIZES.LARGE} />);
       const avatar = screen.getByRole("img");
-      expect(avatar).toHaveClass("size-lg");
+      expect(avatar).toHaveClass(styles["size-lg"]);
     });
 
     it("should apply extra large size class", () => {
-      render(<Avatar size="xl" />);
+      render(<Avatar size={AVATAR_SIZES.EXTRA_LARGE} />);
       const avatar = screen.getByRole("img");
-      expect(avatar).toHaveClass("size-xl");
+      expect(avatar).toHaveClass(styles["size-xl"]);
     });
 
     it("should apply double extra large size class", () => {
-      render(<Avatar size="xxl" />);
+      render(<Avatar size={AVATAR_SIZES.DOUBLE_EXTRA_LARGE} />);
       const avatar = screen.getByRole("img");
-      expect(avatar).toHaveClass("size-xxl");
+      expect(avatar).toHaveClass(styles["size-xxl"]);
     });
   });
 
@@ -84,19 +89,19 @@ describe("Avatar Component", () => {
     it("should apply circle shape class by default", () => {
       render(<Avatar />);
       const avatar = screen.getByRole("img");
-      expect(avatar).toHaveClass("shape-circle");
+      expect(avatar).toHaveClass(styles["shape-circle"]);
     });
 
     it("should apply square shape class", () => {
-      render(<Avatar shape="square" />);
+      render(<Avatar shape={AVATAR_SHAPES.SQUARE} />);
       const avatar = screen.getByRole("img");
-      expect(avatar).toHaveClass("shape-square");
+      expect(avatar).toHaveClass(styles["shape-square"]);
     });
 
     it("should apply rounded shape class", () => {
-      render(<Avatar shape="rounded" />);
+      render(<Avatar shape={AVATAR_SHAPES.ROUNDED} />);
       const avatar = screen.getByRole("img");
-      expect(avatar).toHaveClass("shape-rounded");
+      expect(avatar).toHaveClass(styles["shape-rounded"]);
     });
   });
 
@@ -106,11 +111,13 @@ describe("Avatar Component", () => {
         <Avatar variant="image" src="/test-image.jpg" alt="Test avatar" />,
       );
 
-      const avatar = screen.getByRole("img", { name: "User avatar" });
+      // Check for the avatar container with aria-label
+      const avatar = screen.getByLabelText("Test avatar");
       expect(avatar).toBeInTheDocument();
-      expect(avatar).toHaveClass("variant-image");
+      expect(avatar).toHaveClass(styles["variant-image"]);
 
-      const image = screen.getByRole("img", { name: "Test avatar" });
+      // Check for the img element with the src
+      const image = screen.getByAltText("Test avatar");
       expect(image).toHaveAttribute("src", "/test-image.jpg");
     });
 
@@ -124,7 +131,8 @@ describe("Avatar Component", () => {
         />,
       );
 
-      const image = screen.getByRole("img", { name: "Test avatar" });
+      // Find the actual img element by alt text
+      const image = screen.getByAltText("Test avatar");
       fireEvent.error(image);
 
       // After error, should show initials fallback
@@ -142,7 +150,8 @@ describe("Avatar Component", () => {
         />,
       );
 
-      const image = screen.getByRole("img", { name: "Test avatar" });
+      // Find the actual img element by alt text
+      const image = screen.getByAltText("Test avatar");
       fireEvent.error(image);
 
       expect(onImageError).toHaveBeenCalledTimes(1);
@@ -155,7 +164,7 @@ describe("Avatar Component", () => {
 
       const avatar = screen.getByRole("img");
       expect(avatar).toBeInTheDocument();
-      expect(avatar).toHaveClass("variant-initials");
+      expect(avatar).toHaveClass(styles["variant-initials"]);
       expect(screen.getByText("AB")).toBeInTheDocument();
     });
 
@@ -209,7 +218,7 @@ describe("Avatar Component", () => {
 
       const avatar = screen.getByRole("img");
       expect(avatar).toBeInTheDocument();
-      expect(avatar).toHaveClass("variant-icon");
+      expect(avatar).toHaveClass(styles["variant-icon"]);
       expect(screen.getByTestId("test-icon")).toBeInTheDocument();
     });
 
@@ -262,19 +271,19 @@ describe("Avatar Component", () => {
     it("should work with AVATAR_SIZES enum", () => {
       render(<Avatar size={AVATAR_SIZES.LARGE} />);
       const avatar = screen.getByRole("img");
-      expect(avatar).toHaveClass("size-lg");
+      expect(avatar).toHaveClass(styles["size-lg"]);
     });
 
     it("should work with AVATAR_SHAPES enum", () => {
       render(<Avatar shape={AVATAR_SHAPES.SQUARE} />);
       const avatar = screen.getByRole("img");
-      expect(avatar).toHaveClass("shape-square");
+      expect(avatar).toHaveClass(styles["shape-square"]);
     });
 
     it("should work with AVATAR_VARIANTS enum", () => {
       render(<Avatar variant={AVATAR_VARIANTS.INITIALS} initials="TE" />);
       const avatar = screen.getByRole("img");
-      expect(avatar).toHaveClass("variant-initials");
+      expect(avatar).toHaveClass(styles["variant-initials"]);
     });
   });
 

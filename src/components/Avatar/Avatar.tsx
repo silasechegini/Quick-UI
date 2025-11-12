@@ -5,15 +5,10 @@ import {
   AVATAR_SIZES,
   AVATAR_VARIANTS,
   AvatarProps,
-  IconAvatarProps,
+  AvatarVariants,
   ImageAvatarProps,
-  InitialsAvatarProps,
-  PlaceholderAvatarProps,
 } from "./Avatar.types";
-import IconAvatar from "./Renderers/IconAvatar";
-import InitialsAvatar from "./Renderers/InitialsAvatar";
-import ImageAvatar from "./Renderers/ImageAvatar";
-import PlaceholderAvatar from "./Renderers/PlaceholderAvatar";
+import { createAvatarRenderer } from "./Renderers/RendererFactory";
 import styles from "./styles.module.scss";
 
 /**
@@ -66,14 +61,12 @@ const Avatar: FC<AvatarProps> = (props) => {
   const {
     size = AVATAR_SIZES.MEDIUM,
     shape = AVATAR_SHAPES.CIRCLE,
-    alt,
     className,
-    style,
-    ariaLabel,
   } = props;
 
   const [imageError, setImageError] = useState(false);
-  const variant = props.variant ?? AVATAR_VARIANTS.PLACEHOLDER;
+  const variant = (props.variant ??
+    AVATAR_VARIANTS.PLACEHOLDER) as AvatarVariants;
 
   const src = variant === "image" ? (props as ImageAvatarProps).src : undefined;
   useEffect(() => {
@@ -91,59 +84,14 @@ const Avatar: FC<AvatarProps> = (props) => {
     className,
   );
 
-  // Default to placeholder if no variant specified
-  if (!variant || variant === "placeholder") {
-    return (
-      <PlaceholderAvatar
-        avatarClasses={avatarClasses}
-        style={style}
-        ariaLabel={ariaLabel}
-        alt={alt}
-        {...(props as PlaceholderAvatarProps)}
-      />
-    );
-  }
-
-  // Image avatar
-  if (variant === "image") {
-    return (
-      <ImageAvatar
-        avatarClasses={avatarClasses}
-        style={style}
-        ariaLabel={ariaLabel}
-        alt={alt}
-        imageError={imageError}
-        setImageError={setImageError}
-        {...(props as ImageAvatarProps)}
-      />
-    );
-  }
-
-  // Initials avatar
-  if (variant === "initials") {
-    return (
-      <InitialsAvatar
-        avatarClasses={avatarClasses}
-        style={style}
-        ariaLabel={ariaLabel}
-        {...(props as InitialsAvatarProps)}
-      />
-    );
-  }
-
-  // Icon avatar
-  if (variant === "icon") {
-    return (
-      <IconAvatar
-        avatarClasses={avatarClasses}
-        style={style}
-        ariaLabel={ariaLabel}
-        {...(props as IconAvatarProps)}
-      />
-    );
-  }
-
-  return null;
+  // Use the factory to create the appropriate renderer
+  return createAvatarRenderer(
+    variant,
+    props,
+    avatarClasses,
+    imageError,
+    setImageError,
+  );
 };
 
 export default Avatar;
