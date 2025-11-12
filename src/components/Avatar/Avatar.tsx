@@ -126,7 +126,6 @@ const Avatar: FC<AvatarProps> = (props) => {
         avatarClasses={avatarClasses}
         style={style}
         ariaLabel={ariaLabel}
-        alt={alt}
         {...(props as InitialsAvatarProps)}
       />
     );
