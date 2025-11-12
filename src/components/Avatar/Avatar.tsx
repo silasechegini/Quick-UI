@@ -1,6 +1,11 @@
 import { FC, useState, useEffect } from "react";
 import { combineClasses } from "../../utils/classNames";
-import { AvatarProps } from "./Avatar.types";
+import {
+  AVATAR_SHAPES,
+  AVATAR_SIZES,
+  AVATAR_VARIANTS,
+  AvatarProps,
+} from "./Avatar.types";
 import IconAvatar from "./Renderers/IconAvatar";
 import InitialsAvatar from "./Renderers/InitialsAvatar";
 import ImageAvatar from "./Renderers/ImageAvatar";
@@ -55,8 +60,9 @@ import styles from "./styles.module.scss";
  */
 const Avatar: FC<AvatarProps> = (props) => {
   const {
-    size = "md",
-    shape = "circle",
+    size = AVATAR_SIZES.MEDIUM,
+    shape = AVATAR_SHAPES.CIRCLE,
+    variant = AVATAR_VARIANTS.PLACEHOLDER,
     alt,
     className,
     style,
@@ -77,7 +83,7 @@ const Avatar: FC<AvatarProps> = (props) => {
     styles.avatar,
     styles[`size-${size}`],
     styles[`shape-${shape}`],
-    props.variant && styles[`variant-${props.variant}`],
+    variant && styles[`variant-${props.variant}`],
     className,
   );
 
