@@ -1,9 +1,20 @@
-import { FC, useState, useCallback, useEffect } from "react";
+import { FC, useState, useEffect } from "react";
 import { combineClasses } from "../../utils/classNames";
-import { AvatarProps } from "./Avatar.types";
+import {
+  AVATAR_SHAPES,
+  AVATAR_SIZES,
+  AVATAR_VARIANTS,
+  AvatarProps,
+  IconAvatarProps,
+  ImageAvatarProps,
+  InitialsAvatarProps,
+  PlaceholderAvatarProps,
+} from "./Avatar.types";
+import IconAvatar from "./Renderers/IconAvatar";
+import InitialsAvatar from "./Renderers/InitialsAvatar";
+import ImageAvatar from "./Renderers/ImageAvatar";
+import PlaceholderAvatar from "./Renderers/PlaceholderAvatar";
 import styles from "./styles.module.scss";
-import generateInitials from "@utils/generateInitials";
-import getBackgroundColor from "@utils/backgroundColor";
 
 /**
  * Avatar Component
@@ -53,8 +64,8 @@ import getBackgroundColor from "@utils/backgroundColor";
  */
 const Avatar: FC<AvatarProps> = (props) => {
   const {
-    size = "md",
-    shape = "circle",
+    size = AVATAR_SIZES.MEDIUM,
+    shape = AVATAR_SHAPES.CIRCLE,
     alt,
     className,
     style,
@@ -62,8 +73,9 @@ const Avatar: FC<AvatarProps> = (props) => {
   } = props;
 
   const [imageError, setImageError] = useState(false);
+  const variant = props.variant ?? AVATAR_VARIANTS.PLACEHOLDER;
 
-  const src = props.variant === "image" ? props.src : undefined;
+  const src = variant === "image" ? (props as ImageAvatarProps).src : undefined;
   useEffect(() => {
     if (src) {
       setImageError(false);
@@ -75,148 +87,63 @@ const Avatar: FC<AvatarProps> = (props) => {
     styles.avatar,
     styles[`size-${size}`],
     styles[`shape-${shape}`],
-    props.variant && styles[`variant-${props.variant}`],
+    variant && styles[`variant-${variant}`],
     className,
   );
 
-  // Handle different avatar variants
-  const renderAvatarContent = () => {
-    // Default to placeholder if no variant specified
-    if (!props.variant || props.variant === "placeholder") {
-      const backgroundColor =
-        props.variant === "placeholder" ? props.backgroundColor : undefined;
-      const { variant, ...placeholderRestProps } = props;
-      const placeholderStyle = {
-        ...style,
-        ...(variant === "placeholder" &&
-          props.backgroundColor && {
-            background: `linear-gradient(135deg, ${backgroundColor}, ${backgroundColor}dd)`,
-          }),
-      };
+  // Default to placeholder if no variant specified
+  if (!variant || variant === "placeholder") {
+    return (
+      <PlaceholderAvatar
+        avatarClasses={avatarClasses}
+        style={style}
+        ariaLabel={ariaLabel}
+        alt={alt}
+        {...(props as PlaceholderAvatarProps)}
+      />
+    );
+  }
 
-      return (
-        <div
-          className={avatarClasses}
-          style={placeholderStyle}
-          role="img"
-          aria-label={ariaLabel || alt || "Avatar placeholder"}
-          {...placeholderRestProps}
-        />
-      );
-    }
+  // Image avatar
+  if (variant === "image") {
+    return (
+      <ImageAvatar
+        avatarClasses={avatarClasses}
+        style={style}
+        ariaLabel={ariaLabel}
+        alt={alt}
+        imageError={imageError}
+        setImageError={setImageError}
+        {...(props as ImageAvatarProps)}
+      />
+    );
+  }
 
-    // Image avatar
-    if (props.variant === "image") {
-      const { src, fallback, onImageError, ...imageRestProps } = props;
+  // Initials avatar
+  if (variant === "initials") {
+    return (
+      <InitialsAvatar
+        avatarClasses={avatarClasses}
+        style={style}
+        ariaLabel={ariaLabel}
+        {...(props as InitialsAvatarProps)}
+      />
+    );
+  }
 
-      if (imageError && fallback) {
-        // Show fallback initials
-        const fallbackStyle = {
-          backgroundColor: getBackgroundColor(fallback),
-          color: "var(--color-white)",
-          ...style,
-        };
+  // Icon avatar
+  if (variant === "icon") {
+    return (
+      <IconAvatar
+        avatarClasses={avatarClasses}
+        style={style}
+        ariaLabel={ariaLabel}
+        {...(props as IconAvatarProps)}
+      />
+    );
+  }
 
-        return (
-          <div
-            className={combineClasses(
-              avatarClasses,
-              styles["variant-initials"],
-            )}
-            style={fallbackStyle}
-            role="img"
-            aria-label={ariaLabel || alt || `Avatar for ${fallback}`}
-            {...imageRestProps}
-          >
-            {generateInitials(fallback)}
-          </div>
-        );
-      }
-
-      /**
-       * Handle image loading errors
-       */
-      // Use a ref to hold the latest onImageError callback
-      const onImageErrorRef = useRef(onImageError);
-      useEffect(() => {
-        onImageErrorRef.current = onImageError;
-      }, [onImageError]);
-      const handleImageError = useCallback(() => {
-        setImageError(true);
-        if (onImageErrorRef.current) {
-          onImageErrorRef.current();
-        }
-      }, []);
-
-      return (
-        <div
-          className={avatarClasses}
-          style={style}
-          role="img"
-          aria-label={ariaLabel || alt || "User avatar"}
-          {...imageRestProps}
-        >
-          <img
-            className={styles.image}
-            src={src}
-            alt={alt || "Avatar"}
-            onError={handleImageError}
-          />
-        </div>
-      );
-    }
-
-    // Initials avatar
-    if (props.variant === "initials") {
-      const { initials, backgroundColor, textColor, ...initialsRestProps } =
-        props;
-
-      const initialsStyle = {
-        backgroundColor: backgroundColor || getBackgroundColor(initials),
-        color: textColor || "var(--color-white)",
-        ...style,
-      };
-
-      return (
-        <div
-          className={avatarClasses}
-          style={initialsStyle}
-          role="img"
-          aria-label={ariaLabel || `Avatar with initials ${initials}`}
-          {...initialsRestProps}
-        >
-          {initials.substring(0, 2).toUpperCase()}
-        </div>
-      );
-    }
-
-    // Icon avatar
-    if (props.variant === "icon") {
-      const { icon, backgroundColor, iconColor, ...iconRestProps } = props;
-
-      const iconStyle = {
-        backgroundColor: backgroundColor || "var(--gray-200)",
-        color: iconColor || "var(--gray-600)",
-        ...style,
-      };
-
-      return (
-        <div
-          className={avatarClasses}
-          style={iconStyle}
-          role="img"
-          aria-label={ariaLabel || "Icon avatar"}
-          {...iconRestProps}
-        >
-          <span className={styles.icon}>{icon}</span>
-        </div>
-      );
-    }
-
-    return null;
-  };
-
-  return renderAvatarContent();
+  return null;
 };
 
 export default Avatar;
