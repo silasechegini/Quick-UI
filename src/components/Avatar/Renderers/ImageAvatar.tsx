@@ -42,7 +42,7 @@ const ImageAvatar: FC<ImageAvatarRendererProps> = ({
     if (onImageErrorRef.current) {
       onImageErrorRef.current();
     }
-  }, []);
+  }, [setImageError]);
 
   if (imageError && fallback) {
     // Show fallback initials

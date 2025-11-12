@@ -23,7 +23,7 @@ const PlaceholderAvatar: FC<PlaceholderProps> = ({
   const placeholderStyle = {
     ...style,
     ...(variant === "placeholder" &&
-      props.backgroundColor && {
+      backgroundColor && {
         background: `linear-gradient(135deg, ${backgroundColor}, ${backgroundColor}dd)`,
       }),
   };
