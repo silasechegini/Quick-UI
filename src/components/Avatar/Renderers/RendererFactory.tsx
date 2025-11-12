@@ -29,7 +29,7 @@ export const createAvatarRenderer = (
         <ImageAvatar
           {...(props as ImageAvatarProps)}
           avatarClasses={avatarClasses}
-          imageError={imageError!}
+          imageError={imageError ?? false}
           setImageError={setImageError!}
         />
       );

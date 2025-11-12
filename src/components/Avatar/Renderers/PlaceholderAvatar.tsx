@@ -14,15 +14,12 @@ const PlaceholderAvatar: FC<PlaceholderRendererProps> = ({
 }) => {
   // Default to placeholder if no variant specified
 
-  const backgroundColor =
-    props.variant === "placeholder" ? props.backgroundColor : undefined;
-  const { variant, ...placeholderRestProps } = props;
+  const { backgroundColor, ...placeholderRestProps } = props;
   const placeholderStyle = {
     ...style,
-    ...(variant === "placeholder" &&
-      backgroundColor && {
-        background: `linear-gradient(135deg, ${backgroundColor}, ${backgroundColor}dd)`,
-      }),
+    ...(backgroundColor && {
+      background: `linear-gradient(135deg, ${backgroundColor}, ${backgroundColor}dd)`,
+    }),
   };
 
   return (

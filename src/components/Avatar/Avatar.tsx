@@ -68,7 +68,10 @@ const Avatar: FC<AvatarProps> = (props) => {
   const variant = (props.variant ??
     AVATAR_VARIANTS.PLACEHOLDER) as AvatarVariants;
 
-  const src = variant === "image" ? (props as ImageAvatarProps).src : undefined;
+  const src =
+    variant === AVATAR_VARIANTS.IMAGE
+      ? (props as ImageAvatarProps).src
+      : undefined;
   useEffect(() => {
     if (src) {
       setImageError(false);

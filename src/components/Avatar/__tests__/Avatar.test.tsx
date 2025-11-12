@@ -108,7 +108,11 @@ describe("Avatar Component", () => {
   describe("Image Variant", () => {
     it("should render image avatar", () => {
       render(
-        <Avatar variant="image" src="/test-image.jpg" alt="Test avatar" />,
+        <Avatar
+          variant={AVATAR_VARIANTS.IMAGE}
+          src="/test-image.jpg"
+          alt="Test avatar"
+        />,
       );
 
       // Check for the avatar container with aria-label
@@ -124,7 +128,7 @@ describe("Avatar Component", () => {
     it("should handle image error with fallback initials", () => {
       render(
         <Avatar
-          variant="image"
+          variant={AVATAR_VARIANTS.IMAGE}
           src="/invalid-image.jpg"
           fallback="John Doe"
           alt="Test avatar"
@@ -143,7 +147,7 @@ describe("Avatar Component", () => {
       const onImageError = vi.fn();
       render(
         <Avatar
-          variant="image"
+          variant={AVATAR_VARIANTS.IMAGE}
           src="/invalid-image.jpg"
           onImageError={onImageError}
           alt="Test avatar"
@@ -160,7 +164,7 @@ describe("Avatar Component", () => {
 
   describe("Initials Variant", () => {
     it("should render initials avatar", () => {
-      render(<Avatar variant="initials" initials="AB" />);
+      render(<Avatar variant={AVATAR_VARIANTS.INITIALS} initials="AB" />);
 
       const avatar = screen.getByRole("img");
       expect(avatar).toBeInTheDocument();
@@ -169,13 +173,13 @@ describe("Avatar Component", () => {
     });
 
     it("should truncate initials to 2 characters", () => {
-      render(<Avatar variant="initials" initials="ABCD" />);
+      render(<Avatar variant={AVATAR_VARIANTS.INITIALS} initials="ABCD" />);
 
       expect(screen.getByText("AB")).toBeInTheDocument();
     });
 
     it("should convert initials to uppercase", () => {
-      render(<Avatar variant="initials" initials="ab" />);
+      render(<Avatar variant={AVATAR_VARIANTS.INITIALS} initials="ab" />);
 
       expect(screen.getByText("AB")).toBeInTheDocument();
     });
@@ -183,7 +187,7 @@ describe("Avatar Component", () => {
     it("should apply custom background and text colors", () => {
       render(
         <Avatar
-          variant="initials"
+          variant={AVATAR_VARIANTS.INITIALS}
           initials="AB"
           backgroundColor="#FF0000"
           textColor="#FFFFFF"
@@ -196,12 +200,14 @@ describe("Avatar Component", () => {
     });
 
     it("should generate consistent colors for same initials", () => {
-      const { rerender } = render(<Avatar variant="initials" initials="XY" />);
+      const { rerender } = render(
+        <Avatar variant={AVATAR_VARIANTS.INITIALS} initials="XY" />,
+      );
 
       const firstAvatar = screen.getByRole("img");
       const firstStyle = window.getComputedStyle(firstAvatar);
 
-      rerender(<Avatar variant="initials" initials="XY" />);
+      rerender(<Avatar variant={AVATAR_VARIANTS.INITIALS} initials="XY" />);
 
       const secondAvatar = screen.getByRole("img");
       const secondStyle = window.getComputedStyle(secondAvatar);
@@ -214,7 +220,7 @@ describe("Avatar Component", () => {
     it("should render icon avatar", () => {
       const TestIcon = () => <span data-testid="test-icon">👤</span>;
 
-      render(<Avatar variant="icon" icon={<TestIcon />} />);
+      render(<Avatar variant={AVATAR_VARIANTS.ICON} icon={<TestIcon />} />);
 
       const avatar = screen.getByRole("img");
       expect(avatar).toBeInTheDocument();
@@ -227,7 +233,7 @@ describe("Avatar Component", () => {
 
       render(
         <Avatar
-          variant="icon"
+          variant={AVATAR_VARIANTS.ICON}
           icon={<TestIcon />}
           backgroundColor="#00FF00"
           iconColor="#000000"
@@ -250,7 +256,7 @@ describe("Avatar Component", () => {
     });
 
     it("should render explicit placeholder variant", () => {
-      render(<Avatar variant="placeholder" />);
+      render(<Avatar variant={AVATAR_VARIANTS.PLACEHOLDER} />);
 
       const avatar = screen.getByRole("img");
       expect(avatar).toBeInTheDocument();
@@ -258,7 +264,12 @@ describe("Avatar Component", () => {
     });
 
     it("should apply custom background color to placeholder", () => {
-      render(<Avatar variant="placeholder" backgroundColor="#FF00FF" />);
+      render(
+        <Avatar
+          variant={AVATAR_VARIANTS.PLACEHOLDER}
+          backgroundColor="#FF00FF"
+        />,
+      );
 
       const avatar = screen.getByRole("img");
       expect(avatar).toHaveStyle(
