@@ -29,31 +29,38 @@ import styles from "./styles.module.scss";
  * - Responsive design with consistent sizing
  *
  * @example
- * ```tsx
+ * ```
+ * // Placeholder avatar
+ * <PlaceholderAvatar
+ *   avatarClasses="avatar-large avatar-circle"
+ *   backgroundColor="#E5E7EB"
+ *   ariaLabel="Empty avatar placeholder"
+ * />
+ *
  * // Image avatar with fallback
  * <Avatar
- *   variant="image"
+ *   variant={AVATAR_VARIANTS.IMAGE}
  *   src="/user.jpg"
  *   alt="User Avatar"
  *   fallback="JD"
- *   size="lg"
+ *   size={AVATAR_SIZES.LARGE}
  * />
  *
  * // Initials avatar
  * <Avatar
- *   variant="initials"
+ *   variant={AVATAR_VARIANTS.INITIALS}
  *   initials="AB"
- *   size="md"
+ *   size={AVATAR_SIZES.MEDIUM}
  *   backgroundColor="#4F46E5"
  *   textColor="#FFFFFF"
  * />
  *
  * // Icon avatar
  * <Avatar
- *   variant="icon"
+ *   variant={AVATAR_VARIANTS.ICON}
  *   icon={<UserIcon />}
- *   size="sm"
- *   shape="rounded"
+ *   size={AVATAR_SIZES.SMALL}
+ *   shape={AVATAR_SHAPES.ROUNDED}
  * />
  * ```
  */
@@ -72,6 +79,7 @@ const Avatar: FC<AvatarProps> = (props) => {
     variant === AVATAR_VARIANTS.IMAGE
       ? (props as ImageAvatarProps).src
       : undefined;
+
   useEffect(() => {
     if (src) {
       setImageError(false);
