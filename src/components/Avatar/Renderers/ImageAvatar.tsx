@@ -7,12 +7,44 @@ import {
 } from "../../../utils";
 import styles from "../styles.module.scss";
 
+/**
+ * Props for the ImageAvatar renderer component
+ * @interface ImageAvatarRendererProps
+ * @extends {ImageAvatarProps}
+ */
 type ImageAvatarRendererProps = ImageAvatarProps & {
+  /** Combined CSS classes for the avatar container */
   avatarClasses: string;
+  /** Whether an image loading error has occurred */
   imageError: boolean;
+  /** State setter function to set the image error state */
   setImageError: (value: SetStateAction<boolean>) => void;
 };
 
+/**
+ * ImageAvatar renderer component that displays an image-based avatar with fallback support.
+ *
+ * This component handles image loading, error states, and provides automatic fallback
+ * to initials-based avatar when the image fails to load. It includes proper accessibility
+ * attributes and responsive styling.
+ *
+ * @component
+ *
+ * @param {ImageAvatarRendererProps} props - The props for the ImageAvatar component
+ * @param {string} props.src - The URL of the image to display
+ * @param {string} [props.alt] - Alternative text for the image
+ * @param {string} [props.fallback] - Name to generate initials from if image fails
+ * @param {string} props.avatarClasses - CSS classes for styling the avatar
+ * @param {boolean} props.imageError - Whether an image error has occurred
+ * @param {Function} props.setImageError - Function to update image error state
+ * @param {Function} [props.onImageError] - Callback fired when image fails to load
+ * @param {string} [props.ariaLabel] - Custom ARIA label for accessibility
+ * @param {React.CSSProperties} [props.style] - Custom inline styles
+ *
+ * @returns {JSX.Element} The rendered ImageAvatar component
+ *
+ * @since 1.0.0
+ */
 const ImageAvatar: FC<ImageAvatarRendererProps> = ({
   avatarClasses,
   style,
@@ -22,19 +54,31 @@ const ImageAvatar: FC<ImageAvatarRendererProps> = ({
   setImageError,
   ...props
 }) => {
-  // Image avatar
-
   const { src, fallback, onImageError, ...imageRestProps } = props;
 
   /**
-   * Handle image loading errors
+   * Handle image loading errors by setting error state and calling optional callback.
+   * Uses a ref to ensure the callback is always the latest version to avoid stale closures.
+   *
+   * @private
    */
   // Use a ref to hold the latest onImageError callback
   const onImageErrorRef = useRef(onImageError);
+
+  /**
+   * Update the ref whenever the callback changes to avoid stale closures
+   */
   useEffect(() => {
     onImageErrorRef.current = onImageError;
   }, [onImageError]);
 
+  /**
+   * Handles image loading errors by updating the error state and invoking
+   * the optional error callback if provided.
+   *
+   * @callback handleImageError
+   * @returns {void}
+   */
   const handleImageError = useCallback(() => {
     setImageError(true);
     if (onImageErrorRef.current) {
