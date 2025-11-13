@@ -56,18 +56,8 @@ const ImageAvatar: FC<ImageAvatarRendererProps> = ({
 }) => {
   const { src, fallback, onImageError, ...imageRestProps } = props;
 
-  /**
-   * Handle image loading errors by setting error state and calling optional callback.
-   * Uses a ref to ensure the callback is always the latest version to avoid stale closures.
-   *
-   * @private
-   */
-  // Use a ref to hold the latest onImageError callback
   const onImageErrorRef = useRef(onImageError);
 
-  /**
-   * Update the ref whenever the callback changes to avoid stale closures
-   */
   useEffect(() => {
     onImageErrorRef.current = onImageError;
   }, [onImageError]);
