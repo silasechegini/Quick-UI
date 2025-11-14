@@ -300,7 +300,9 @@ function ContactForm() {
 
 ````
 
-## Development Workflow
+---
+
+## 🛠️ **Development Workflow**
 
 1. **Component Development**: Create components in `src/components/`
 2. **Documentation**: Add Storybook stories in the component directory
@@ -308,21 +310,23 @@ function ContactForm() {
 4. **Styling**: Use SCSS modules for component-specific styles
 5. **Export**: Add component exports to `src/index.ts`
 
-## Component Guidelines
+## 📋 **Component Guidelines**
 
-- Each component should have its own directory with:
-  - `ComponentName.tsx` - Main component file
-  - `ComponentName.types.ts` - TypeScript interfaces
-  - `styles.module.scss` - Component styles
-  - `index.ts` - Component exports
-  - `ComponentName.stories.tsx` - Storybook stories
+Each component should have its own directory with:
+- `ComponentName.tsx` - Main component file
+- `ComponentName.types.ts` - TypeScript interfaces
+- `styles.module.scss` - Component styles
+- `index.ts` - Component exports
+- `ComponentName.stories.tsx` - Storybook stories
 
-## Browser Support
+## 🌐 **Browser Support**
 
 - Chrome (latest)
 - Firefox (latest)
 - Safari (latest)
 - Edge (latest)
+
+---
 
 ## 🔥 **Performance Benchmarks**
 
@@ -333,7 +337,7 @@ function ContactForm() {
 | **Tree Shaking** | 100% 🌳 | 80% | 90% |
 | **Runtime Performance** | 60fps 🏃‍♂️ | 45fps | 55fps |
 
-*Benchmarks run on identical test applications. [View detailed methodology →]()*
+*Benchmarks run on identical test applications.*
 
 ---
 
@@ -369,7 +373,9 @@ git clone https://github.com/silasechegini/Quick-UI.git
 cd Quick-UI
 npm install
 npm run storybook  # Start development environment
-````
+```
+
+[📋 **Read Contributing Guide**](./CONTRIBUTING.md) • [🏷️ **Good First Issues**](https://github.com/silasechegini/Quick-UI/labels/good%20first%20issue)`
 
 [📋 **Read Contributing Guide**](./CONTRIBUTING.md) • [🏷️ **Good First Issues**](https://github.com/silasechegini/Quick-UI/labels/good%20first%20issue)
 
@@ -440,3 +446,4 @@ If Quick-UI helped you build something awesome, **star this repo** and **share i
 _Built with ❤️ by developers, for developers_
 
 </div>
+````
