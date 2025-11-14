@@ -339,19 +339,24 @@ _Benchmarks run on identical test applications. [View detailed methodology →](
 
 ## 🎓 **Learning Resources**
 
-### **📖 Guides & Tutorials**
+### **📖 Getting Started**
 
 - [🚀 **Quick Start Guide**](#-quick-start) — Get up and running in 5 minutes
-- [🎨 **Theming Guide**](./docs/theming.md) — Customize colors, fonts, and spacing
-- [♿ **Accessibility Guide**](./docs/accessibility.md) — Build inclusive experiences
-- [📱 **Mobile-First Development**](./docs/mobile-first.md) — Responsive design patterns
+- [📸 **Components Gallery**](#-components-gallery) — Browse all available components
+- [💡 **Real-World Examples**](#-real-world-examples) — Copy-paste ready code samples
 
-### **🔧 Advanced Topics**
+### **🔧 Development Resources**
 
-- [🏗️ **Custom Component Development**](./docs/custom-components.md)
-- [⚡ **Performance Optimization**](./docs/performance.md)
-- [🧪 **Testing Strategies**](./docs/testing.md)
-- [🚀 **Production Deployment**](./docs/deployment.md)
+- [📚 **Storybook Documentation**](https://storybook.js.org/) — Interactive component playground
+- [⚛️ **React Documentation**](https://react.dev/) — Learn React fundamentals
+- [📘 **TypeScript Handbook**](https://www.typescriptlang.org/docs/) — Master TypeScript
+- [♿ **Web Accessibility Guide**](https://web.dev/accessibility/) — Build inclusive experiences
+
+### **🛠️ Build Tools & Testing**
+
+- [⚡ **Vite Documentation**](https://vitejs.dev/) — Lightning fast build tool
+- [🧪 **Vitest Guide**](https://vitest.dev/) — Unit testing framework
+- [🎨 **SCSS Documentation**](https://sass-lang.com/documentation/) — Styling with Sass
 
 ---
 
