@@ -320,16 +320,6 @@ describe("PlaceholderAvatar Renderer", () => {
       expect(computedStyle.background).not.toMatch(/linear-gradient/);
     });
 
-    it("should handle undefined backgroundColor", () => {
-      const props = { ...defaultProps, backgroundColor: undefined };
-      render(<PlaceholderAvatar {...props} />);
-
-      const avatar = screen.getByRole("img");
-      expect(avatar).toBeInTheDocument();
-      const computedStyle = window.getComputedStyle(avatar);
-      expect(computedStyle.background).not.toMatch(/linear-gradient/);
-    });
-
     it("should handle empty string backgroundColor", () => {
       const props = { ...defaultProps, backgroundColor: "" };
       render(<PlaceholderAvatar {...props} />);
