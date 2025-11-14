@@ -129,13 +129,13 @@ describe("PlaceholderAvatar Renderer", () => {
       );
     });
 
-    it("should handle named colors", () => {
-      const props = { ...defaultProps, backgroundColor: "red" };
+    it("should handle hex color codes for gradient", () => {
+      const props = { ...defaultProps, backgroundColor: "#FF0000" };
       render(<PlaceholderAvatar {...props} />);
 
       const avatar = screen.getByRole("img");
       expect(avatar).toHaveStyle(
-        "background: linear-gradient(135deg, red, reddd)",
+        "background: linear-gradient(135deg, #FF0000, #FF0000dd)",
       );
     });
   });
