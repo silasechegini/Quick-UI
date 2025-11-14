@@ -79,12 +79,17 @@ export const createAvatarRenderer = (
 ): React.ReactElement => {
   switch (variant) {
     case AVATAR_VARIANTS.IMAGE:
+      if (!setImageError) {
+        throw new Error(
+          "setImageError function is required for image avatar variant",
+        );
+      }
       return (
         <ImageAvatar
           {...(props as ImageAvatarProps)}
           avatarClasses={avatarClasses}
           imageError={imageError ?? false}
-          setImageError={setImageError!}
+          setImageError={setImageError}
         />
       );
 
