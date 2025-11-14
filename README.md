@@ -1,5 +1,11 @@
 # Quick-UI
 
+[![npm version](https://badge.fury.io/js/quick-ui-react.svg)](https://www.npmjs.com/package/quick-ui-react)
+[![npm downloads](https://img.shields.io/npm/dm/quick-ui-react.svg)](https://www.npmjs.com/package/quick-ui-react)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB)](https://reactjs.org/)
+
 A modern React component library built with TypeScript, featuring reusable UI components, comprehensive documentation, and modern development tooling.
 
 ## Features
@@ -88,23 +94,44 @@ Quick-UI/
 └── __mocks__/              # Test mocks
 ```
 
+## Installation
+
+Install the package via npm:
+
+```bash
+npm install quick-ui-react
+```
+
+Or with yarn:
+
+```bash
+yarn add quick-ui-react
+```
+
 ## Using Components
 
-After building the library, you can import components like this:
+After installing the library, you can import components like this:
 
 ```tsx
-import { Button, ComboBox, MultiSelect } from "quick-ui";
+import { Button, ComboBox, MultiSelect, Avatar, Card } from "quick-ui-react";
 
 function MyApp() {
   return (
     <div>
       <Button variant="primary">Click me</Button>
-      <ComboBox
-        options={[
-          { label: "Option 1", value: "1" },
-          { label: "Option 2", value: "2" },
-        ]}
+      <Avatar
+        src="https://example.com/avatar.jpg"
+        fallbackText="JD"
+        size="large"
       />
+      <Card title="Example Card">
+        <ComboBox
+          options={[
+            { label: "Option 1", value: "1" },
+            { label: "Option 2", value: "2" },
+          ]}
+        />
+      </Card>
     </div>
   );
 }
@@ -147,8 +174,12 @@ function MyApp() {
 
 ## License
 
-This project is licensed under the ISC License - see the package.json file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Support
 
-For questions or issues, please open an issue on GitHub (Information coming soon).
+- 📦 **NPM Package**: [quick-ui-react](https://www.npmjs.com/package/quick-ui-react)
+- 🐛 **Issues**: [GitHub Issues](https://github.com/silasechegini/Quick-UI/issues)
+- 📚 **Documentation**: View components in Storybook (`npm run storybook`)
+
+For questions or issues, please open an issue on GitHub.
