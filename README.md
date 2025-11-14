@@ -298,7 +298,7 @@ function ContactForm() {
 
 > **🎯 Each example works out-of-the-box with zero configuration!**
 
-````
+---
 
 ### Development Workflow
 
@@ -326,26 +326,28 @@ function ContactForm() {
 
 ## 🔥 **Performance Benchmarks**
 
-| Metric | Quick-UI | Material-UI | Chakra UI |
-|--------|----------|-------------|-----------|
-| **First Load** | 0.8s ⚡ | 2.1s | 1.4s |
-| **Bundle Size** | 103KB 📦 | 348KB | 199KB |
-| **Tree Shaking** | 100% 🌳 | 80% | 90% |
-| **Runtime Performance** | 60fps 🏃‍♂️ | 45fps | 55fps |
+| Metric                  | Quick-UI | Material-UI | Chakra UI |
+| ----------------------- | -------- | ----------- | --------- |
+| **First Load**          | 0.8s ⚡  | 2.1s        | 1.4s      |
+| **Bundle Size**         | 103KB 📦 | 348KB       | 199KB     |
+| **Tree Shaking**        | 100% 🌳  | 80%         | 90%       |
+| **Runtime Performance** | 60fps 🏃‍♂️ | 45fps       | 55fps     |
 
-*Benchmarks run on identical test applications. [View detailed methodology →]()*
+_Benchmarks run on identical test applications. [View detailed methodology →]()_
 
 ---
 
 ## 🎓 **Learning Resources**
 
 ### **📖 Guides & Tutorials**
+
 - [🚀 **Quick Start Guide**](#-quick-start) — Get up and running in 5 minutes
 - [🎨 **Theming Guide**](./docs/theming.md) — Customize colors, fonts, and spacing
 - [♿ **Accessibility Guide**](./docs/accessibility.md) — Build inclusive experiences
 - [📱 **Mobile-First Development**](./docs/mobile-first.md) — Responsive design patterns
 
 ### **🔧 Advanced Topics**
+
 - [🏗️ **Custom Component Development**](./docs/custom-components.md)
 - [⚡ **Performance Optimization**](./docs/performance.md)
 - [🧪 **Testing Strategies**](./docs/testing.md)
@@ -358,18 +360,20 @@ function ContactForm() {
 We ❤️ contributions! Quick-UI is built by the community, for the community.
 
 ### **🎯 Ways to Contribute**
+
 - 🐛 **Report Bugs** — Help us squash issues
 - 💡 **Suggest Features** — Shape the future of Quick-UI
 - 📝 **Improve Docs** — Help others learn faster
 - 🔧 **Submit Code** — Build features with us
 
 ### **🚀 Quick Contribution Setup**
+
 ```bash
 git clone https://github.com/silasechegini/Quick-UI.git
 cd Quick-UI
 npm install
 npm run storybook  # Start development environment
-````
+```
 
 [📋 **Read Contributing Guide**](./CONTRIBUTING.md) • [🏷️ **Good First Issues**](https://github.com/silasechegini/Quick-UI/labels/good%20first%20issue)
 
