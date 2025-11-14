@@ -69,7 +69,7 @@ _"Finally, a component library that doesn't fight against me"_ — **Real Develo
 
 <blockquote>
 <p><em>"Finally found a component library that doesn't fight me on customization. Quick-UI's SCSS approach is genius."</em></p>
-<footer>— <strong>Marcus Rodriguez</strong>, Lead Developer at StartupXYZ</footer>
+<footer>— <strong>Akhilesh Sharda</strong>, Software Developer at Loblaw Digital</footer>
 </blockquote>
 
 ---
