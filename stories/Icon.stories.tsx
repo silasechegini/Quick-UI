@@ -81,19 +81,24 @@ export const Default: Story = {
 };
 
 export const AllIcons: Story = {
-  render: (args) => (
+  render: () => (
     <div style={{ display: "flex", flexWrap: "wrap", gap: 16 }}>
       {iconNames.map((name) => (
         <div
           key={name as string}
           style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))",
+            gap: "2rem",
+            padding: "2rem",
+            maxWidth: "600px",
           }}
         >
-          <Icon {...args} name={name} />
-          <small style={{ fontSize: 10, marginTop: 4 }}>{name as string}</small>
+          <IconWithLabel
+            iconName={name}
+            size={32}
+            label={name.replace(/_/g, " ") as string}
+          />
         </div>
       ))}
     </div>
@@ -102,93 +107,6 @@ export const AllIcons: Story = {
     size: 32,
     color: "#1e90ff",
   },
-};
-
-export const MailClosed: Story = {
-  args: {
-    name: ICONS.MAIL_ICON,
-    size: 32,
-  },
-  render: (args) => (
-    <IconWithLabel
-      iconName={args.name!}
-      size={args.size}
-      label="Mail (Closed)"
-    />
-  ),
-};
-
-export const MailOpen: Story = {
-  args: {
-    name: ICONS.MAIL_OPEN_ICON,
-    size: 32,
-  },
-  render: (args) => (
-    <IconWithLabel iconName={args.name!} size={args.size} label="Mail (Open)" />
-  ),
-};
-
-// ========================================
-// NOTIFICATION & SHOPPING ICONS
-// ========================================
-
-export const NotificationBell: Story = {
-  args: {
-    name: ICONS.BELL_ICON,
-    size: 32,
-  },
-  render: (args) => (
-    <IconWithLabel
-      iconName={args.name!}
-      size={args.size}
-      label="Notification Bell"
-    />
-  ),
-};
-
-export const ShoppingCart: Story = {
-  args: {
-    name: ICONS.SHOPPING_CART_ICON,
-    size: 32,
-  },
-  render: (args) => (
-    <IconWithLabel
-      iconName={args.name!}
-      size={args.size}
-      label="Shopping Cart"
-    />
-  ),
-};
-
-// ========================================
-// ALL NEW ICONS SHOWCASE
-// ========================================
-
-export const AllNewIcons: Story = {
-  render: () => (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))",
-        gap: "2rem",
-        padding: "2rem",
-        maxWidth: "600px",
-      }}
-    >
-      <IconWithLabel iconName={ICONS.MAIL_ICON} size={32} label="Mail" />
-      <IconWithLabel
-        iconName={ICONS.MAIL_OPEN_ICON}
-        size={32}
-        label="Mail Open"
-      />
-      <IconWithLabel iconName={ICONS.BELL_ICON} size={32} label="Bell" />
-      <IconWithLabel
-        iconName={ICONS.SHOPPING_CART_ICON}
-        size={32}
-        label="Shopping Cart"
-      />
-    </div>
-  ),
 };
 
 // ========================================
