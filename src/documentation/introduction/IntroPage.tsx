@@ -1,6 +1,11 @@
 import React from "react";
 import { Icon } from "../../components/Icon";
-import { Button } from "../../components/Button";
+import {
+  Button,
+  BUTTON_SIZES,
+  BUTTON_VARIANTS,
+  ICON_POSITIONS,
+} from "../../components/Button";
 import { Card } from "../../components/Card";
 import styles from "./styles.module.scss";
 import { ICONS } from "@assets/iconType";
@@ -35,12 +40,20 @@ const IntroPage: React.FC = () => (
         </div>
 
         <div className={styles.ctaSection}>
-          <Button variant="primary" size="l" className={styles.ctaButton}>
-            <Icon name={ICONS.DOWNLOAD_ICON} size={20} />
+          <Button
+            variant={BUTTON_VARIANTS.PRIMARY}
+            size={BUTTON_SIZES.LARGE}
+            icon={<Icon name={ICONS.DOWNLOAD_ICON} size={20} />}
+            iconPosition={ICON_POSITIONS.START}
+          >
             Get Started
           </Button>
-          <Button variant="secondary" size="l" className={styles.ctaButton}>
-            <Icon name={ICONS.SEARCH_ICON} size={20} />
+          <Button
+            variant={BUTTON_VARIANTS.SECONDARY}
+            size={BUTTON_SIZES.LARGE}
+            icon={<Icon name={ICONS.SEARCH_ICON} size={20} />}
+            iconPosition={ICON_POSITIONS.START}
+          >
             Browse Components
           </Button>
         </div>
@@ -120,12 +133,20 @@ import 'quick-ui-react/styles';`}
           </div>
 
           <div className={styles.linksSection}>
-            <Button variant="primary" className={styles.linkButton}>
-              <Icon name={ICONS.SEARCH_ICON} size={16} />
+            <Button
+              variant={BUTTON_VARIANTS.PRIMARY}
+              icon={<Icon name={ICONS.SEARCH_ICON} size={16} />}
+              iconPosition={ICON_POSITIONS.START}
+              size={BUTTON_SIZES.LARGE}
+            >
               Explore Components
             </Button>
-            <Button variant="tertiary" className={styles.linkButton}>
-              <Icon name={ICONS.MAIL_ICON} size={16} />
+            <Button
+              variant={BUTTON_VARIANTS.SECONDARY}
+              icon={<Icon name={ICONS.MAIL_ICON} size={16} />}
+              iconPosition={ICON_POSITIONS.START}
+              size={BUTTON_SIZES.LARGE}
+            >
               GitHub Repository
             </Button>
           </div>

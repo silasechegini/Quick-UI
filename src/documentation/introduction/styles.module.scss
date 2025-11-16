@@ -122,18 +122,6 @@
   animation: slideInUp 1s ease-out 0.4s both;
 }
 
-.ctaButton {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: all 0.3s ease;
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-  }
-}
-
 // Features Section
 .featuresSection {
   width: 100%;
@@ -246,7 +234,7 @@
   h3 {
     font-size: 1.25rem;
     font-weight: 600;
-    color: #60a5fa;
+    color: #93c5fd;
     margin: 1.5rem 0 0.75rem 0;
   }
 }
@@ -290,17 +278,6 @@
   justify-content: center;
   margin-top: 2rem;
   flex-wrap: wrap;
-}
-
-.linkButton {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: all 0.3s ease;
-
-  &:hover {
-    transform: translateY(-2px);
-  }
 }
 
 // Animations
@@ -375,12 +352,6 @@
   .ctaSection {
     flex-direction: column;
     align-items: center;
-  }
-
-  .ctaButton {
-    width: 100%;
-    max-width: 280px;
-    justify-content: center;
   }
 
   .featuresSection {
