@@ -5,7 +5,10 @@ import { ICONS } from "../src/assets/iconType";
 
 import { iconSvgMapping as Icons } from "../src/assets";
 
-const iconNames = Object.keys(Icons) as IconProps["name"][];
+// Filter out private Thunderbolt icons for public Storybook
+const iconNames = Object.keys(Icons).filter(
+  (iconName) => !iconName.includes("thunderbolt"),
+) as IconProps["name"][];
 
 // Reusable helper component for icon display with label
 const IconWithLabel = ({
