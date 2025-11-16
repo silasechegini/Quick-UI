@@ -9,6 +9,8 @@ interface PageSidebarProps {
     content: ReactNode;
     isCollapsible?: boolean;
     isCollapsed?: boolean;
+    position?: "left" | "right";
+    width?: string;
   };
   testId?: string;
   onToggleSidebar?: () => void;
@@ -21,32 +23,54 @@ export const PageSidebar: FC<PageSidebarProps> = ({
 }) => {
   if (!sidebarConfig) return null;
 
-  const { content, isCollapsible, isCollapsed } = sidebarConfig;
+  const {
+    content,
+    isCollapsible,
+    isCollapsed,
+    position = "left",
+    width = "300px",
+  } = sidebarConfig;
+
+  const sidebarClasses = [
+    styles.sidebar,
+    isCollapsed ? styles.sidebarCollapsed : "",
+    position === "right" ? styles.sidebarRight : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  const toggleIconName =
+    position === "right"
+      ? isCollapsed
+        ? ICONS.CHEVRON_LEFT_ICON
+        : ICONS.CHEVRON_RIGHT_ICON
+      : isCollapsed
+        ? ICONS.CHEVRON_RIGHT_ICON
+        : ICONS.CHEVRON_LEFT_ICON;
 
   return (
     <aside
-      className={`${styles.sidebar} ${isCollapsed ? styles.collapsed : ""}`}
+      className={sidebarClasses}
+      style={{ width: isCollapsed ? "48px" : width }}
       data-testid={`${testId}-sidebar`}
     >
       {isCollapsible && (
         <Button
           variant={BUTTON_VARIANTS.PLAIN}
           size={BUTTON_SIZES.EXTRASMALL}
-          className={styles.toggleSidebar}
+          className={`${styles.toggleSidebar} ${position === "right" ? styles.toggleSidebarRight : ""} ${isCollapsed ? styles.toggleSidebarCollapsed : ""}`}
           onClick={onToggleSidebar}
           data-testid={`${testId}-sidebar-toggle`}
           ariaLabel={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
-          icon={
-            <Icon
-              name={
-                isCollapsed ? ICONS.CHEVRON_RIGHT_ICON : ICONS.CHEVRON_LEFT_ICON
-              }
-              size={16}
-            />
-          }
+          icon={<Icon name={toggleIconName} size={16} />}
         />
       )}
-      <div className={styles.sidebarContent}>{content}</div>
+      <div
+        className={styles.sidebarContent}
+        style={{ display: isCollapsed ? "none" : "block" }}
+      >
+        {content}
+      </div>
     </aside>
   );
 };

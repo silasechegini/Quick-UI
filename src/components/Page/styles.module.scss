@@ -84,31 +84,44 @@
 
 /* Sidebar */
 .sidebar {
-  width: var(--width-300);
   background-color: var(--gray-50);
   border-right: var(--border-thin) solid rgba(0, 0, 0, 0.1);
   position: relative;
   transition: width var(--transition-base) var(--ease-in-out);
   overflow: hidden;
+  flex-shrink: 0;
 }
 
-.sidebar--right {
+.sidebarRight {
   border-right: none;
   border-left: var(--border-thin) solid rgba(0, 0, 0, 0.1);
-  order: 2;
 }
 
 .sidebarCollapsed {
-  width: var(--space-0) !important;
-  border-width: var(--space-0);
+  /* Collapsed sidebar shows narrow panel instead of hiding completely */
+  background-color: var(--gray-100);
+  border-right: var(--border-thin) solid rgba(0, 0, 0, 0.1);
+}
+
+.sidebarRight.sidebarCollapsed {
+  border-left: var(--border-thin) solid rgba(0, 0, 0, 0.1);
+  border-right: none;
 }
 
 .sidebarContent {
   padding: var(--space-5);
   height: var(--height-full);
+  min-width: 200px; /* Prevent content from squishing when sidebar animates */
 }
 
-.sidebarToggle {
+/* For right positioned sidebar, add extra left padding to make room for the toggle button */
+.sidebarRight .sidebarContent {
+  padding-left: calc(
+    var(--space-8) + var(--space-4)
+  ); /* Button width + extra spacing */
+}
+
+.toggleSidebar {
   position: absolute;
   top: var(--space-5);
   right: var(--space-2);
@@ -119,12 +132,21 @@
   width: var(--space-8) !important;
   height: var(--space-8) !important;
   padding: var(--space-0) !important;
+  border-radius: var(--radius-sm) !important;
 }
 
-.sidebar--right .sidebarToggle {
+.toggleSidebarRight {
   left: var(--space-2);
   right: auto;
 }
+
+.toggleSidebarCollapsed {
+  left: 50% !important;
+  right: auto !important;
+  transform: translateX(-50%) !important;
+}
+
+/* Container class for right sidebar layout - flexbox order handled by DOM structure */
 
 /* Loading state */
 .loadingState {
@@ -209,15 +231,16 @@
     border-bottom: var(--border-thin) solid rgba(0, 0, 0, 0.1);
   }
 
-  .sidebar--right {
+  .sidebarRight {
     border-left: none;
     border-bottom: var(--border-thin) solid rgba(0, 0, 0, 0.1);
-    order: var(--space-0);
   }
 
-  .sidebarToggle {
+  .toggleSidebar,
+  .toggleSidebarRight {
     position: relative;
     top: auto;
+    left: auto;
     right: auto;
     margin-bottom: var(--space-4);
   }

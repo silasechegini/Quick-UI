@@ -62,6 +62,8 @@ export const Page: FC<PageProps> = ({
           content: sidebar.content,
           isCollapsible: sidebar.collapsible,
           isCollapsed: isSidebarCollapsed,
+          position: sidebar.position || "left",
+          width: sidebar.width || "300px",
         }
       : undefined;
 
@@ -69,16 +71,26 @@ export const Page: FC<PageProps> = ({
     setIsSidebarCollapsed(!isSidebarCollapsed);
   };
 
+  // Update header config to disable hamburger menu when using sidebar
+  const headerConfig =
+    header && variant === "sidebar" && sidebar?.collapsible
+      ? { ...header, showHamburgerMenu: false }
+      : header;
+
   return (
     <div className={pageClasses} data-testid={testId}>
-      <PageHeaderWrapper header={header} testId={testId} />
+      <PageHeaderWrapper header={headerConfig} testId={testId} />
 
-      <div className={styles.pageBody}>
-        <PageSidebar
-          sidebarConfig={sidebarConfig}
-          testId={testId}
-          onToggleSidebar={handleToggleSidebar}
-        />
+      <div
+        className={`${styles.pageBody} ${sidebar?.position === "right" ? styles.rightSidebar : ""}`}
+      >
+        {sidebar?.position !== "right" && (
+          <PageSidebar
+            sidebarConfig={sidebarConfig}
+            testId={testId}
+            onToggleSidebar={handleToggleSidebar}
+          />
+        )}
 
         <div className={styles.mainContent}>
           <PageMainContent loading={isLoading} error={error} testId={testId}>
@@ -90,6 +102,14 @@ export const Page: FC<PageProps> = ({
             {children}
           </PageMainContent>
         </div>
+
+        {sidebar?.position === "right" && (
+          <PageSidebar
+            sidebarConfig={sidebarConfig}
+            testId={testId}
+            onToggleSidebar={handleToggleSidebar}
+          />
+        )}
       </div>
 
       <PageFooter footer={footer} testId={testId} />

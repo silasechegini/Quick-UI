@@ -12,7 +12,11 @@ const ReadMePage: React.FC = () => (
   >
     <div style={{ textAlign: "center", marginBottom: "2rem" }}>
       <h1
-        style={{ color: "#2563eb", fontSize: "2.5rem", margin: "0 0 0.5rem 0" }}
+        style={{
+          color: "#2563eb",
+          fontSize: "2.5rem",
+          margin: "0 0 0.5rem 0",
+        }}
       >
         ⚡ Quick-UI React
       </h1>
