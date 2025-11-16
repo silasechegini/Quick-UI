@@ -75,7 +75,7 @@ export const Corporate: Story = {
   args: {
     leftContent: (
       <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-        <Icon name={ICONS.THUNDERBOLT_LOGO_ICON} size={24} />
+        <Icon name={ICONS.DASHBOARD_ICON} size={40} />
         <div>
           <div style={{ fontWeight: "600" }}>Company Name</div>
           <div style={{ fontSize: "14px", color: "#666" }}>
@@ -250,7 +250,7 @@ export const Complex: Story = {
     leftContent: (
       <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-          <Icon name={ICONS.THUNDERBOLT_LOGO_ICON} size={24} />
+          <Icon name={ICONS.DASHBOARD_ICON} size={24} />
           <span style={{ fontWeight: "600" }}>Quick UI</span>
         </div>
         <div
@@ -334,7 +334,7 @@ export const MobilePreview: Story = {
   args: {
     leftContent: (
       <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-        <Icon name={ICONS.THUNDERBOLT_LOGO_ICON} size={20} />
+        <Icon name={ICONS.DASHBOARD_ICON} size={20} />
         <span>Company</span>
       </div>
     ),
