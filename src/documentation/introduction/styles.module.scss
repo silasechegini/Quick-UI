@@ -76,11 +76,26 @@
   background: rgba(96, 165, 250, 0.1);
   border-radius: 12px;
   transition: all 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
 
   &:hover {
     transform: translateY(-5px) scale(1.1);
     background: rgba(96, 165, 250, 0.2);
     color: #93c5fd;
+    box-shadow: 0 8px 25px rgba(96, 165, 250, 0.3);
+  }
+
+  &:focus {
+    background: rgba(96, 165, 250, 0.2);
+    box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.5);
+  }
+
+  &:active {
+    transform: translateY(-2px) scale(1.05);
   }
 
   &:nth-child(1) {

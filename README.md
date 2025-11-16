@@ -92,72 +92,54 @@ _"Finally, a component library that doesn't fight against me"_ — **Real Develo
 
 ## Getting Started
 
-### 1. Clone the repository
+### 1. Install Quick-UI
 
 ```bash
-git clone <repository-url>
-cd Quick-UI
+npm install quick-ui-react
 ```
 
-### 2. Install dependencies
+### 2. Import and Use Components
 
-```bash
-npm install
+```tsx
+import { Button, Card, Avatar } from "quick-ui-react";
+
+function App() {
+  return (
+    <Card title="Welcome!">
+      <Avatar fallbackText="JS" />
+      <Button variant="primary">Get Started</Button>
+    </Card>
+  );
+}
 ```
 
-### 3. Start development with Storybook
+### 3. Explore Components
 
-```bash
-npm run storybook
+Visit our [live Storybook documentation](https://quick-ui-live-demo.netlify.app) to explore all available components and see interactive examples.
+
+## TypeScript Support
+
+Quick-UI is built with TypeScript and provides excellent IntelliSense support:
+
+```tsx
+import { Button, ButtonProps } from "quick-ui-react";
+
+// Full type safety and autocompletion
+const MyButton: React.FC<ButtonProps> = ({ variant = "primary", ...props }) => {
+  return <Button variant={variant} {...props} />;
+};
 ```
 
-This will start the Storybook development server at `http://localhost:6006` where you can view and interact with all components.
+## Styling & Customization
 
-## Available Scripts
+Quick-UI uses CSS modules for styling, making customization straightforward:
 
-### Development
+```tsx
+// Override component styles
+import { Button } from "quick-ui-react";
+import styles from "./CustomButton.module.scss";
 
-- `npm run storybook` - Start Storybook development server.
-- `npm run build-storybook` - Build Storybook for production.
-
-### Building
-
-- `npm run build` - Build the component library for production.
-- Output will be generated in the `dist/` directory with both ESM and CJS formats.
-
-### Testing
-
-- `npm test` - Run all tests once.
-- `npm run test:watch` - Run tests in watch mode.
-- `npm run test:coverage` - Run tests with coverage report.
-
-### Code Quality
-
-- `npm run lint` - Run ESLint to check for code issues.
-- `npm run lint:fix` - Run ESLint and automatically fix issues.
-- `npm run format` - Format code with Prettier.
-- `npm run format:check` - Check if code is properly formatted.
-
-## Project Structure
-
-```
-Quick-UI/
-├── src/
-│   ├── components/           # Reusable UI components
-│   │   ├── Button/
-│   │   ├── ComboBox/
-│   │   ├── MultiSelect/
-│   │   └── ...
-│   ├── documentation/        # Documentation pages
-│   │   ├── introduction/
-│   │   └── read-me/
-│   ├── assets/              # Icons and static assets
-│   ├── styles/              # Global styles and SCSS variables
-│   └── index.ts             # Main library exports
-├── stories/                 # Storybook stories
-├── .storybook/             # Storybook configuration
-├── dist/                   # Built library output
-└── __mocks__/              # Test mocks
+<Button className={styles.customButton}>My Custom Button</Button>;
 ```
 
 ## 🚀 **Quick Start**
@@ -300,29 +282,14 @@ function ContactForm() {
 
 ---
 
-### Development Workflow
-
-1. **Component Development**: Create components in `src/components/`
-2. **Documentation**: Add Storybook stories in the component directory
-3. **Testing**: Write tests alongside components using Vitest
-4. **Styling**: Use SCSS modules for component-specific styles
-5. **Export**: Add component exports to `src/index.ts`
-
-## Component Guidelines
-
-- Each component should have its own directory with:
-  - `ComponentName.tsx` - Main component file
-  - `ComponentName.types.ts` - TypeScript interfaces
-  - `styles.module.scss` - Component styles
-  - `index.ts` - Component exports
-  - `ComponentName.stories.tsx` - Storybook stories
-
 ## Browser Support
 
 - Chrome (latest)
 - Firefox (latest)
 - Safari (latest)
 - Edge (latest)
+- Mobile Safari (iOS 12+)
+- Chrome Mobile (Android 8+)
 
 ## 🔥 **Performance Benchmarks**
 
@@ -360,25 +327,60 @@ _Benchmarks run on identical test applications. [View detailed methodology →](
 
 ---
 
-## 🤝 **Contributing**
+## 🛠️ **Development & Contributing**
+
+### **For Contributors**
+
+Want to help improve Quick-UI? Here's how to get started:
+
+#### **Development Setup**
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/silasechegini/Quick-UI.git
+cd Quick-UI
+
+# 2. Install dependencies
+npm install
+
+# 3. Start development server
+npm run storybook
+```
+
+#### **Available Scripts**
+
+| Script               | Description                  |
+| -------------------- | ---------------------------- |
+| `npm run storybook`  | Start development server     |
+| `npm run build`      | Build library for production |
+| `npm run test`       | Run all tests                |
+| `npm run test:watch` | Run tests in watch mode      |
+| `npm run lint`       | Check code quality           |
+| `npm run format`     | Format code with Prettier    |
+
+#### **Project Structure**
+
+```
+Quick-UI/
+├── src/
+│   ├── components/      # React components
+│   ├── assets/         # Icons and static files
+│   ├── styles/         # Global SCSS styles
+│   └── index.ts        # Main exports
+├── stories/            # Storybook stories
+└── dist/              # Built library output
+```
+
+### **🤝 Contributing Guidelines**
 
 We ❤️ contributions! Quick-UI is built by the community, for the community.
 
-### **🎯 Ways to Contribute**
+#### **🎯 Ways to Contribute**
 
 - 🐛 **Report Bugs** — Help us squash issues
 - 💡 **Suggest Features** — Shape the future of Quick-UI
 - 📝 **Improve Docs** — Help others learn faster
 - 🔧 **Submit Code** — Build features with us
-
-### **🚀 Quick Contribution Setup**
-
-```bash
-git clone https://github.com/silasechegini/Quick-UI.git
-cd Quick-UI
-npm install
-npm run storybook  # Start development environment
-```
 
 [📋 **Read Contributing Guide**](./CONTRIBUTING.md) • [🏷️ **Good First Issues**](https://github.com/silasechegini/Quick-UI/labels/good%20first%20issue)
 

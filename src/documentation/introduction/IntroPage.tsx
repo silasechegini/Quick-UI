@@ -10,6 +10,54 @@ import { Card } from "../../components/Card";
 import styles from "./styles.module.scss";
 import { ICONS } from "@assets/iconType";
 
+// Navigation functions
+const navigateToComponents = () => {
+  // Navigate to Components section in Storybook
+  if (window.parent) {
+    window.parent.postMessage(
+      {
+        type: "storybook-navigate",
+        path: "/?path=/story/components-button--default",
+      },
+      "*",
+    );
+  }
+};
+
+const openGitHub = () => {
+  window.open(
+    "https://github.com/silasechegini/Quick-UI",
+    "_blank",
+    "noopener,noreferrer",
+  );
+};
+
+const openNPMPackage = () => {
+  window.open(
+    "https://www.npmjs.com/package/quick-ui-react",
+    "_blank",
+    "noopener,noreferrer",
+  );
+};
+
+const copyToClipboard = async (text: string) => {
+  try {
+    await navigator.clipboard.writeText(text);
+    // You could add a toast notification here if you have one
+    console.log("Copied to clipboard:", text);
+  } catch (error) {
+    // Fallback for older browsers
+    const textArea = document.createElement("textarea");
+    textArea.value = text;
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand("copy");
+    document.body.removeChild(textArea);
+    console.log("Error:", error);
+    console.log("Copied to clipboard (fallback):", text);
+  }
+};
+
 const IntroPage: React.FC = () => (
   <>
     <div className={styles.introPage}>
@@ -17,21 +65,36 @@ const IntroPage: React.FC = () => (
       <div className={styles.heroSection}>
         <div className={styles.logoContainer}>
           <div className={styles.logoGrid}>
-            <Icon
-              name={ICONS.DASHBOARD_ICON}
-              size={40}
+            <div
               className={styles.logoIcon}
-            />
-            <Icon
-              name={ICONS.SETTINGS_ICON}
-              size={40}
+              onClick={navigateToComponents}
+              onKeyDown={(e) => e.key === "Enter" && navigateToComponents()}
+              tabIndex={0}
+              role="button"
+              aria-label="View Dashboard Components"
+            >
+              <Icon name={ICONS.DASHBOARD_ICON} size={40} />
+            </div>
+            <div
               className={styles.logoIcon}
-            />
-            <Icon
-              name={ICONS.ANALYTICS_ICON}
-              size={40}
+              onClick={openNPMPackage}
+              onKeyDown={(e) => e.key === "Enter" && openNPMPackage()}
+              tabIndex={0}
+              role="button"
+              aria-label="Install from NPM"
+            >
+              <Icon name={ICONS.SETTINGS_ICON} size={40} />
+            </div>
+            <div
               className={styles.logoIcon}
-            />
+              onClick={openGitHub}
+              onKeyDown={(e) => e.key === "Enter" && openGitHub()}
+              tabIndex={0}
+              role="button"
+              aria-label="View Analytics and GitHub Repository"
+            >
+              <Icon name={ICONS.ANALYTICS_ICON} size={40} />
+            </div>
           </div>
           <h1 className={styles.heroTitle}>Quick-UI</h1>
           <p className={styles.heroSubtitle}>
@@ -45,6 +108,7 @@ const IntroPage: React.FC = () => (
             size={BUTTON_SIZES.LARGE}
             icon={<Icon name={ICONS.DOWNLOAD_ICON} size={20} />}
             iconPosition={ICON_POSITIONS.START}
+            onClick={openNPMPackage}
           >
             Get Started
           </Button>
@@ -53,6 +117,7 @@ const IntroPage: React.FC = () => (
             size={BUTTON_SIZES.LARGE}
             icon={<Icon name={ICONS.SEARCH_ICON} size={20} />}
             iconPosition={ICON_POSITIONS.START}
+            onClick={navigateToComponents}
           >
             Browse Components
           </Button>
@@ -116,7 +181,13 @@ const IntroPage: React.FC = () => (
             <h3>Installation</h3>
             <div className={styles.codeBlock}>
               <code>npm install quick-ui-react</code>
-              <Button variant="plain" size="s" className={styles.copyButton}>
+              <Button
+                variant="plain"
+                size="s"
+                className={styles.copyButton}
+                onClick={() => copyToClipboard("npm install quick-ui-react")}
+                ariaLabel="Copy installation command"
+              >
                 <Icon name={ICONS.DOWNLOAD_ICON} size={16} />
               </Button>
             </div>
@@ -138,6 +209,7 @@ import 'quick-ui-react/styles';`}
               icon={<Icon name={ICONS.SEARCH_ICON} size={16} />}
               iconPosition={ICON_POSITIONS.START}
               size={BUTTON_SIZES.LARGE}
+              onClick={navigateToComponents}
             >
               Explore Components
             </Button>
@@ -146,6 +218,7 @@ import 'quick-ui-react/styles';`}
               icon={<Icon name={ICONS.MAIL_ICON} size={16} />}
               iconPosition={ICON_POSITIONS.START}
               size={BUTTON_SIZES.LARGE}
+              onClick={openGitHub}
             >
               GitHub Repository
             </Button>
