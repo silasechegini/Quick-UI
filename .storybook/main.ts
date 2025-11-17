@@ -34,9 +34,7 @@ const config: StorybookConfig = {
         generateScopedName: "[name]__[local]___[hash:base64:5]",
       },
       preprocessorOptions: {
-        scss: {
-          // api: "modern-compiler", // This option might not be available in this version
-        },
+        scss: {},
       },
     };
 
