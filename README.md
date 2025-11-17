@@ -155,11 +155,11 @@ const MyButton: React.FC<ButtonProps> = ({ variant = "primary", ...props }) => {
 Quick-UI follows industry standards by shipping separate CSS files. Import the main stylesheet once in your app:
 
 ```tsx
-// Option 1: Import in your main App.tsx/index.tsx
-import "quick-ui-react/dist/style.css";
-
-// Option 2: Import via package export (same result)
+// Option 1: Import via package export (recommended)
 import "quick-ui-react/styles";
+
+// Option 2: Direct CSS import (also works)
+import "quick-ui-react/dist/style.css";
 ```
 
 ### Custom Styling
