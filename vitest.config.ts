@@ -10,6 +10,20 @@ const dirname =
 
 export default defineConfig({
   plugins: [react()],
+  css: {
+    modules: {
+      localsConvention: "camelCase",
+    },
+    preprocessorOptions: {
+      scss: {
+        additionalData: `
+        @use "@/styles/_variables.scss" as *;
+        @use "@/styles/_mixins.scss" as *;
+        @use "@/styles/_utils.scss" as *;
+      `,
+      },
+    },
+  },
   test: {
     include: ["src/**/*.{test,spec}.{js,ts,tsx}"],
     exclude: ["src/**/*.stories.{js,ts,tsx}"],

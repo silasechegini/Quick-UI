@@ -102,7 +102,7 @@ npm install quick-ui-react
 
 ```tsx
 // main.tsx or App.tsx - Import styles ONCE at the root level
-import "quick-ui-react/dist/style.css";
+import "quick-ui-react/styles";
 
 function App() {
   return (
@@ -478,7 +478,7 @@ npm install quick-ui-react
 <td align="center">
 
 **💬 Discord**<br>
-[Join Community](https://discord.gg/your-discord)<br>
+[Coming Soon](#)<br>
 <sub>Get help & share</sub>
 
 </td>
@@ -492,7 +492,7 @@ npm install quick-ui-react
 If Quick-UI helped you build something awesome, **star this repo** and **share it with fellow developers**!
 
 [![GitHub stars](https://img.shields.io/github/stars/silasechegini/Quick-UI?style=social)](https://github.com/silasechegini/Quick-UI/stargazers)
-[![Twitter Follow](https://img.shields.io/twitter/follow/yourhandle?style=social)](https://twitter.com/yourhandle)
+[![Twitter Follow - Coming Soon](https://img.shields.io/twitter/follow/yourhandle?style=social)](#)
 
 _Built with ❤️ by developers, for developers_
 

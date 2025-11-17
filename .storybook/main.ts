@@ -34,7 +34,13 @@ const config: StorybookConfig = {
         generateScopedName: "[name]__[local]___[hash:base64:5]",
       },
       preprocessorOptions: {
-        scss: {},
+        scss: {
+          additionalData: `
+            @use "@/styles/_variables.scss" as *;
+            @use "@/styles/_mixins.scss" as *;
+            @use "@/styles/_utils.scss" as *;
+          `,
+        },
       },
     };
 
