@@ -20,7 +20,7 @@ export default defineConfig({
     options.loader = {
       ...options.loader,
       ".scss": "css",
-      ".svg": "file",
+      ".svg": "empty",
     };
     // options.logOverride = {
     //   "import-is-undefined": "silent",
