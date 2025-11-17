@@ -6,7 +6,7 @@
     ".storybook",
     "vitest.config.ts",
     "vitest.shims.d.ts",
-    "tsup.config.ts",
+    "vite.config.ts",
     "eslint.config.ts"
   ]
 }

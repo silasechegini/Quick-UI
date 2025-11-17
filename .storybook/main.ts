@@ -35,7 +35,11 @@ const config: StorybookConfig = {
       },
       preprocessorOptions: {
         scss: {
-          // api: "modern-compiler", // This option might not be available in this version
+          additionalData: `
+            @use "@/styles/_variables.scss" as *;
+            @use "@/styles/_mixins.scss" as *;
+            @use "@/styles/_utils.scss" as *;
+          `,
         },
       },
     };

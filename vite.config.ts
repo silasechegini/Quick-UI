@@ -5,6 +5,12 @@ import path from "path";
 import tsconfigPaths from "vite-tsconfig-paths";
 import svgr from "@svgr/rollup";
 import { copyFileSync } from "fs";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+import { visualizer } from "rollup-plugin-visualizer";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 export default defineConfig({
   plugins: [
@@ -48,6 +54,18 @@ export default defineConfig({
         );
       },
     }),
+
+    // Bundle analyzer - only when ANALYZE env is set
+    ...(process.env.ANALYZE
+      ? [
+          visualizer({
+            filename: "dist/stats.html",
+            open: false,
+            gzipSize: true,
+            brotliSize: true,
+          }),
+        ]
+      : []),
   ],
 
   resolve: {
