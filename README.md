@@ -42,7 +42,7 @@ _"Finally, a component library that doesn't fight against me"_ — **Real Develo
 - 💎 **100% TypeScript** with IntelliSense
 - 🔥 **Tree-Shakeable** (only pay for what you use)
 - � **Storybook Documentation**
-- 🧪 **915+ Unit Tests** (99% coverage)
+- 🧪 **900+ Unit Tests** (comprehensive coverage)
 
 </td>
 </tr>
@@ -52,7 +52,7 @@ _"Finally, a component library that doesn't fight against me"_ — **Real Develo
 
 | Feature        | Quick-UI          | Material-UI | Chakra UI | Ant Design |
 | -------------- | ----------------- | ----------- | --------- | ---------- |
-| Bundle Size    | **103KB** ⭐      | 348KB       | 199KB     | 2.7MB      |
+| Bundle Size    | **~180KB** ⭐     | 348KB       | 199KB     | 2.7MB      |
 | TypeScript     | **Native** ⭐     | Good        | Good      | Good       |
 | Customization  | **Effortless** ⭐ | Complex     | Good      | Limited    |
 | Learning Curve | **5 minutes** ⭐  | 2+ hours    | 1 hour    | 3+ hours   |
@@ -339,12 +339,12 @@ function ContactForm() {
 
 ## 🔥 **Performance Benchmarks**
 
-| Metric                  | Quick-UI | Material-UI | Chakra UI |
-| ----------------------- | -------- | ----------- | --------- |
-| **First Load**          | 0.8s ⚡  | 2.1s        | 1.4s      |
-| **Bundle Size**         | 103KB 📦 | 348KB       | 199KB     |
-| **Tree Shaking**        | 100% 🌳  | 80%         | 90%       |
-| **Runtime Performance** | 60fps 🏃‍♂️ | 45fps       | 55fps     |
+| Metric                  | Quick-UI  | Material-UI | Chakra UI |
+| ----------------------- | --------- | ----------- | --------- |
+| **First Load**          | 0.8s ⚡   | 2.1s        | 1.4s      |
+| **Bundle Size**         | ~180KB 📦 | 348KB       | 199KB     |
+| **Tree Shaking**        | 100% 🌳   | 80%         | 90%       |
+| **Runtime Performance** | 60fps 🏃‍♂️  | 45fps       | 55fps     |
 
 _Benchmarks run on identical test applications. [View detailed methodology →]()_
 
@@ -360,7 +360,7 @@ _Benchmarks run on identical test applications. [View detailed methodology →](
 
 ### **🔧 Development Resources**
 
-- [📚 **Storybook Documentation**](https://storybook.js.org/) — Interactive component playground
+- [📚 **Storybook Documentation**](https://storybook.js.org/) — Interactive component playground (run locally)
 - [⚛️ **React Documentation**](https://react.dev/) — Learn React fundamentals
 - [📘 **TypeScript Handbook**](https://www.typescriptlang.org/docs/) — Master TypeScript
 - [♿ **Web Accessibility Guide**](https://web.dev/accessibility/) — Build inclusive experiences
@@ -471,14 +471,14 @@ npm install quick-ui-react
 <td align="center">
 
 **📚 Documentation**<br>
-[Storybook Docs](https://quick-ui-live-demo.netlify.app)<br>
-<sub>Interactive examples</sub>
+[README & Examples](#-quick-start)<br>
+<sub>Getting started guide</sub>
 
 </td>
 <td align="center">
 
-**💬 Discord**<br>
-[Coming Soon](#)<br>
+**💬 Support**<br>
+[GitHub Discussions](https://github.com/silasechegini/Quick-UI/discussions)<br>
 <sub>Get help & share</sub>
 
 </td>
@@ -492,7 +492,8 @@ npm install quick-ui-react
 If Quick-UI helped you build something awesome, **star this repo** and **share it with fellow developers**!
 
 [![GitHub stars](https://img.shields.io/github/stars/silasechegini/Quick-UI?style=social)](https://github.com/silasechegini/Quick-UI/stargazers)
-[![Twitter Follow - Coming Soon](https://img.shields.io/twitter/follow/yourhandle?style=social)](#)
+
+<!-- [![Twitter Follow - Coming Soon](https://img.shields.io/twitter/follow/yourhandle?style=social)](#) -->
 
 _Built with ❤️ by developers, for developers_
 
