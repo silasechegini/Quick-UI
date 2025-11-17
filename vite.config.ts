@@ -4,6 +4,7 @@ import dts from "vite-plugin-dts";
 import path from "path";
 import tsconfigPaths from "vite-tsconfig-paths";
 import svgr from "@svgr/rollup";
+import { copyFileSync } from "fs";
 
 export default defineConfig({
   plugins: [
@@ -39,6 +40,13 @@ export default defineConfig({
         "**/testUtils/**",
         "**/documentation/**",
       ],
+      afterBuild: () => {
+        // Copy styles.d.ts to dist for CSS import type support
+        copyFileSync(
+          path.resolve(__dirname, "styles.d.ts"),
+          path.resolve(__dirname, "dist/styles.d.ts"),
+        );
+      },
     }),
   ],
 

@@ -18,8 +18,14 @@
       "require": "./dist/index.cjs",
       "default": "./dist/index.mjs"
     },
-    "./styles": "./dist/style.css",
-    "./dist/style.css": "./dist/style.css"
+    "./styles": {
+      "types": "./dist/styles.d.ts",
+      "default": "./dist/style.css"
+    },
+    "./dist/style.css": {
+      "types": "./dist/styles.d.ts",
+      "default": "./dist/style.css"
+    }
   },
   "sideEffects": [
     "*.css",
