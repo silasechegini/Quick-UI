@@ -2,12 +2,26 @@
   "name": "quick-ui-react",
   "version": "1.0.3",
   "description": "A modern React component library built with TypeScript",
-  "main": "dist/index.js",
+  "main": "dist/index.cjs.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "style": "dist/index.css",
   "files": [
     "dist",
+    "src"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.cjs.js",
+      "default": "./dist/index.es.js"
+    },
+    "./styles": "./dist/index.css"
+  },
+  "sideEffects": [
+    "*.css",
+    "*.scss",
     "dist/index.css"
   ],
   "engines": {
@@ -15,7 +29,8 @@
     "npm": ">=8.0.0"
   },
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts --out-dir dist --clean",
+    "analyze": "vite build --analyze",
+    "build": "vite build",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
     "lint:fix": "eslint . --ext .ts,.tsx --fix",
     "format": "prettier --write .",
@@ -36,9 +51,6 @@
     "react-components",
     "ui-library",
     "design-system"
-  ],
-  "sideEffects": [
-    "dist/index.css"
   ],
   "author": {
     "name": "Echegini, Ngozi",
@@ -68,6 +80,7 @@
     "@storybook/addon-onboarding": "^10.0.7",
     "@storybook/addon-vitest": "^10.0.7",
     "@storybook/react-vite": "^10.0.7",
+    "@svgr/rollup": "^8.1.0",
     "@testing-library/jest-dom": "^6.8.0",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
@@ -97,13 +110,17 @@
     "playwright": "^1.55.0",
     "prettier": "^3.6.2",
     "react-docgen-typescript": "^2.4.0",
-    "sass": "^1.92.1",
+    "sass": "^1.94.0",
     "storybook": "^10.0.7",
     "ts-jest": "^29.4.4",
     "tsup": "^8.5.0",
     "typescript": "^5.9.2",
     "typescript-eslint": "^8.43.0",
+    "vite": "^7.2.2",
+    "vite-plugin-dts": "^4.5.4",
+    "vite-plugin-libcss": "^1.1.2",
     "vite-plugin-svgr": "^4.5.0",
+    "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.2.4"
   }
 }

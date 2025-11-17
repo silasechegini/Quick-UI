@@ -1,4 +1,4 @@
-import "./index.css";
+import "./styles/index.scss";
 
 export * from "./components/Accordion";
 export * from "./components/Avatar";

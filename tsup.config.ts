@@ -14,8 +14,9 @@ export default defineConfig({
   esbuildPlugins: [
     sassPlugin({
       type: "css",
-      filter: /\.scss$/,
-      transform: (css) => css, // ensures CSS is returned
+      cssImports: true,
+      cache: false,
+      style: "expanded", // Changed to expanded for debugging
     }),
   ],
   esbuildOptions(options) {
@@ -25,8 +26,7 @@ export default defineConfig({
       ".scss": "css",
       ".svg": "empty",
     };
-    // options.logOverride = {
-    //   "import-is-undefined": "silent",
-    // };
   },
+
+  treeshake: false,
 });
