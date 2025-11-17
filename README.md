@@ -169,7 +169,6 @@ Override component styles using CSS classes:
 ```tsx
 // Override component styles
 import { Button } from "quick-ui-react";
-import "quick-ui-react/dist/style.css";
 import "./CustomButton.css";
 
 <Button className="my-custom-button">Styled Button</Button>;
