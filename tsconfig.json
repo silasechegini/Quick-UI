@@ -37,5 +37,15 @@
     "src/types/scss.d.ts",
     "jest.config.js"
   ],
-  "exclude": ["node_modules", "dist", "**/*.stories.tsx", "**/*.test.tsx"]
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.stories.*",
+    "**/*.test.*",
+    "**/*.spec.*",
+    "**/__tests__/**",
+    "**/setupTests.ts",
+    "**/testUtils/**",
+    "**/documentation/**"
+  ]
 }

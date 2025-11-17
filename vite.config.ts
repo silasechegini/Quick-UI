@@ -3,7 +3,6 @@ import react from "@vitejs/plugin-react";
 import dts from "vite-plugin-dts";
 import path from "path";
 import tsconfigPaths from "vite-tsconfig-paths";
-import { cssInjectPlugin } from "./css-inject-plugin";
 import svgr from "@svgr/rollup";
 
 export default defineConfig({
@@ -31,8 +30,16 @@ export default defineConfig({
     dts({
       insertTypesEntry: true,
       include: ["src"],
+      exclude: [
+        "**/__tests__/**",
+        "**/*.test.*",
+        "**/*.spec.*",
+        "**/*.stories.*",
+        "**/setupTests.ts",
+        "**/testUtils/**",
+        "**/documentation/**",
+      ],
     }),
-    cssInjectPlugin(),
   ],
 
   resolve: {
@@ -55,13 +62,6 @@ export default defineConfig({
         `,
       },
     },
-  },
-
-  test: {
-    globals: true,
-    environment: "jsdom",
-    css: true,
-    setupFiles: ["./src/setupTests.ts"],
   },
 
   build: {

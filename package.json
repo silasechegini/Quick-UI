@@ -2,27 +2,29 @@
   "name": "quick-ui-react",
   "version": "1.0.3",
   "description": "A modern React component library built with TypeScript",
-  "main": "dist/index.cjs.js",
+  "main": "dist/index.cjs",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
-  "style": "dist/index.css",
+  "style": "dist/style.css",
   "files": [
     "dist",
-    "src"
+    "README.md",
+    "LICENSE"
   ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.es.js",
-      "require": "./dist/index.cjs.js",
-      "default": "./dist/index.es.js"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.mjs"
     },
-    "./styles": "./dist/index.css"
+    "./styles": "./dist/style.css",
+    "./dist/style.css": "./dist/style.css"
   },
   "sideEffects": [
     "*.css",
     "*.scss",
-    "dist/index.css"
+    "dist/style.css"
   ],
   "engines": {
     "node": ">=18.0.0",

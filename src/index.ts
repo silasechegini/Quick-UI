@@ -12,6 +12,7 @@ export * from "./components/Footer";
 export * from "./components/Header";
 export * from "./components/Icon";
 export * from "./components/Input";
+export * from "./components/Modal";
 export * from "./components/MultiSelect";
 export * from "./components/Page";
 export * from "./components/ProgressBar";
