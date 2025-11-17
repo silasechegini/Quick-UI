@@ -29,8 +29,7 @@
   },
   "sideEffects": [
     "*.css",
-    "*.scss",
-    "dist/style.css"
+    "*.scss"
   ],
   "engines": {
     "node": ">=18.0.0",
