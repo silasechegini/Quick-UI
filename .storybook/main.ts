@@ -1,6 +1,10 @@
+// This file has been automatically migrated to valid ESM format by Storybook.
+import { fileURLToPath } from "node:url";
 import type { StorybookConfig } from "@storybook/react-vite";
-import path from "path";
-import svgr from "vite-plugin-svgr";
+import path, { dirname } from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const config: StorybookConfig = {
   stories: [
@@ -22,19 +26,6 @@ const config: StorybookConfig = {
   },
 
   viteFinal: async (config) => {
-    // Ensure plugins array exists
-    config.plugins = [...(config.plugins || [])];
-
-    // Add SVGR plugin
-    config.plugins.push(
-      svgr({
-        svgrOptions: {
-          exportType: "named",
-        },
-        include: "**/*.svg",
-      }),
-    );
-
     // Configure CSS modules
     config.css = {
       ...config.css,
@@ -44,7 +35,11 @@ const config: StorybookConfig = {
       },
       preprocessorOptions: {
         scss: {
-          api: "modern-compiler",
+          additionalData: `
+            @use "@/styles/_variables.scss" as *;
+            @use "@/styles/_mixins.scss" as *;
+            @use "@/styles/_utils.scss" as *;
+          `,
         },
       },
     };

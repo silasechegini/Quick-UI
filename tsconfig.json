@@ -21,6 +21,7 @@
     "noUnusedParameters": true,
     "noEmit": false,
     "baseUrl": ".",
+    "rootDir": "./src",
     "paths": {
       "@assets/*": ["src/assets/*"],
       "@components/*": ["src/components/*"],
@@ -30,6 +31,21 @@
     },
     "typeRoots": ["./node_modules/@types", "./src/types"]
   },
-  "include": ["src/**/*", "stories/**/*", "jest.config.js"],
-  "exclude": ["node_modules", "dist"]
+  "include": [
+    "src/**/*",
+    "src/types/svg.d.ts",
+    "src/types/scss.d.ts",
+    "jest.config.js"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.stories.*",
+    "**/*.test.*",
+    "**/*.spec.*",
+    "**/__tests__/**",
+    "**/setupTests.ts",
+    "**/testUtils/**",
+    "**/documentation/**"
+  ]
 }

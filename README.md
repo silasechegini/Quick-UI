@@ -98,12 +98,30 @@ _"Finally, a component library that doesn't fight against me"_ — **Real Develo
 npm install quick-ui-react
 ```
 
-### 2. Import and Use Components
+### 2. Import Styles Once (At Root Level)
 
 ```tsx
-import { Button, Card, Avatar } from "quick-ui-react";
+// main.tsx or App.tsx - Import styles ONCE at the root level
+import "quick-ui-react/styles";
 
 function App() {
+  return (
+    <div>
+      {/* Now use components anywhere without importing styles again */}
+      <HomePage />
+      <Dashboard />
+    </div>
+  );
+}
+```
+
+### 3. Use Components Anywhere (No Additional Imports Needed)
+
+```tsx
+// components/HomePage.tsx - No style imports needed!
+import { Button, Card, Avatar } from "quick-ui-react";
+
+function HomePage() {
   return (
     <Card title="Welcome!">
       <Avatar fallbackText="JS" />
@@ -113,7 +131,7 @@ function App() {
 }
 ```
 
-### 3. Explore Components
+### 4. Explore Components
 
 Visit our [live Storybook documentation](https://quick-ui-live-demo.netlify.app) to explore all available components and see interactive examples.
 
@@ -132,14 +150,36 @@ const MyButton: React.FC<ButtonProps> = ({ variant = "primary", ...props }) => {
 
 ## Styling & Customization
 
-Quick-UI uses CSS modules for styling, making customization straightforward:
+### Import Styles (Required)
+
+Quick-UI follows industry standards by shipping separate CSS files. Import the main stylesheet once in your app:
+
+```tsx
+// Option 1: Import via package export (recommended)
+import "quick-ui-react/styles";
+
+// Option 2: Direct CSS import (also works)
+import "quick-ui-react/dist/style.css";
+```
+
+### Custom Styling
+
+Override component styles using CSS classes:
 
 ```tsx
 // Override component styles
 import { Button } from "quick-ui-react";
-import styles from "./CustomButton.module.scss";
+import "./CustomButton.css";
 
-<Button className={styles.customButton}>My Custom Button</Button>;
+<Button className="my-custom-button">Styled Button</Button>;
+```
+
+```css
+/* CustomButton.css */
+.my-custom-button {
+  background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
+  border-radius: 8px;
+}
 ```
 
 ## 🚀 **Quick Start**
@@ -160,9 +200,12 @@ pnpm add quick-ui-react
 ### **Use in 60 Seconds**
 
 ```tsx
+// Step 1: Import styles once in your main file (main.tsx/App.tsx)
+import "quick-ui-react/dist/style.css";
+
+// Step 2: Use components anywhere - no more style imports needed!
 import { Button, Avatar, Card } from "quick-ui-react";
 
-// That's it! No additional setup required ✨
 function App() {
   return (
     <Card title="Welcome to Quick-UI">
@@ -225,7 +268,8 @@ _Each component comes with dark mode, accessibility, and mobile support built-in
 ### **🏪 E-Commerce Product Card**
 
 ```tsx
-import { Card, Button, Badge, Avatar } from "quick-ui-react";
+// No style imports needed - styles already imported at root!
+import { Card, Button, Badge } from "quick-ui-react";
 
 function ProductCard() {
   return (
@@ -244,6 +288,7 @@ function ProductCard() {
 ### **👤 User Profile Dashboard**
 
 ```tsx
+// Components work everywhere once styles are imported at root
 import { Avatar, Card, Button, ProgressBar } from "quick-ui-react";
 
 function UserProfile({ user }) {
@@ -261,6 +306,7 @@ function UserProfile({ user }) {
 ### **📝 Modern Form**
 
 ```tsx
+// Clean component code - no repetitive style imports!
 import { Input, MultiSelect, Toggle, Button } from "quick-ui-react";
 
 function ContactForm() {
@@ -432,7 +478,7 @@ npm install quick-ui-react
 <td align="center">
 
 **💬 Discord**<br>
-[Join Community](https://discord.gg/your-discord)<br>
+[Coming Soon](#)<br>
 <sub>Get help & share</sub>
 
 </td>
@@ -446,7 +492,7 @@ npm install quick-ui-react
 If Quick-UI helped you build something awesome, **star this repo** and **share it with fellow developers**!
 
 [![GitHub stars](https://img.shields.io/github/stars/silasechegini/Quick-UI?style=social)](https://github.com/silasechegini/Quick-UI/stargazers)
-[![Twitter Follow](https://img.shields.io/twitter/follow/yourhandle?style=social)](https://twitter.com/yourhandle)
+[![Twitter Follow - Coming Soon](https://img.shields.io/twitter/follow/yourhandle?style=social)](#)
 
 _Built with ❤️ by developers, for developers_
 

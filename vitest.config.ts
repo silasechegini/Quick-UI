@@ -1,6 +1,5 @@
 import path from "node:path";
 import react from "@vitejs/plugin-react";
-import svgr from "vite-plugin-svgr";
 import { fileURLToPath } from "node:url";
 import { defineConfig } from "vitest/config";
 
@@ -10,7 +9,21 @@ const dirname =
     : path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
-  plugins: [react(), svgr()],
+  plugins: [react()],
+  css: {
+    modules: {
+      localsConvention: "camelCase",
+    },
+    preprocessorOptions: {
+      scss: {
+        additionalData: `
+        @use "@/styles/_variables.scss" as *;
+        @use "@/styles/_mixins.scss" as *;
+        @use "@/styles/_utils.scss" as *;
+      `,
+      },
+    },
+  },
   test: {
     include: ["src/**/*.{test,spec}.{js,ts,tsx}"],
     exclude: ["src/**/*.stories.{js,ts,tsx}"],
