@@ -5,6 +5,7 @@ export default defineConfig({
   entry: ["src/index.ts"],
   format: ["cjs", "esm"],
   dts: true,
+  bundle: true,
   sourcemap: true,
   clean: true,
   minify: false,
@@ -13,6 +14,8 @@ export default defineConfig({
   esbuildPlugins: [
     sassPlugin({
       type: "css",
+      filter: /\.scss$/,
+      transform: (css) => css, // ensures CSS is returned
     }),
   ],
   esbuildOptions(options) {
