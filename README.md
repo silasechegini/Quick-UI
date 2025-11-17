@@ -42,7 +42,7 @@ _"Finally, a component library that doesn't fight against me"_ — **Real Develo
 - 💎 **100% TypeScript** with IntelliSense
 - 🔥 **Tree-Shakeable** (only pay for what you use)
 - � **Storybook Documentation**
-- 🧪 **900+ Unit Tests** (comprehensive coverage)
+- 🧪 **915 Unit Tests** (comprehensive coverage)
 
 </td>
 </tr>
@@ -52,7 +52,7 @@ _"Finally, a component library that doesn't fight against me"_ — **Real Develo
 
 | Feature        | Quick-UI          | Material-UI | Chakra UI | Ant Design |
 | -------------- | ----------------- | ----------- | --------- | ---------- |
-| Bundle Size    | **~180KB** ⭐     | 348KB       | 199KB     | 2.7MB      |
+| Bundle Size    | **~172KB** ⭐     | 348KB       | 199KB     | 2.7MB      |
 | TypeScript     | **Native** ⭐     | Good        | Good      | Good       |
 | Customization  | **Effortless** ⭐ | Complex     | Good      | Limited    |
 | Learning Curve | **5 minutes** ⭐  | 2+ hours    | 1 hour    | 3+ hours   |
@@ -342,7 +342,7 @@ function ContactForm() {
 | Metric                  | Quick-UI  | Material-UI | Chakra UI |
 | ----------------------- | --------- | ----------- | --------- |
 | **First Load**          | 0.8s ⚡   | 2.1s        | 1.4s      |
-| **Bundle Size**         | ~180KB 📦 | 348KB       | 199KB     |
+| **Bundle Size**         | ~172KB 📦 | 348KB       | 199KB     |
 | **Tree Shaking**        | 100% 🌳   | 80%         | 90%       |
 | **Runtime Performance** | 60fps 🏃‍♂️  | 45fps       | 55fps     |
 
