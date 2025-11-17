@@ -2,7 +2,6 @@
 import { fileURLToPath } from "node:url";
 import type { StorybookConfig } from "@storybook/react-vite";
 import path, { dirname } from "path";
-import svgr from "vite-plugin-svgr";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -27,19 +26,6 @@ const config: StorybookConfig = {
   },
 
   viteFinal: async (config) => {
-    // Ensure plugins array exists
-    config.plugins = [...(config.plugins || [])];
-
-    // Add SVGR plugin
-    config.plugins.push(
-      svgr({
-        svgrOptions: {
-          exportType: "named",
-        },
-        include: "**/*.svg",
-      }),
-    );
-
     // Configure CSS modules
     config.css = {
       ...config.css,
@@ -49,7 +35,7 @@ const config: StorybookConfig = {
       },
       preprocessorOptions: {
         scss: {
-          api: "modern-compiler",
+          // api: "modern-compiler", // This option might not be available in this version
         },
       },
     };
