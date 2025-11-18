@@ -60,18 +60,6 @@ _"Finally, a component library that doesn't fight against me"_ — **Real Develo
 
 > **🎯 Quick-UI is 70% smaller and 3x faster to learn than alternatives**
 
-## 🏆 **Success Stories**
-
-<blockquote>
-<p><em>"We switched from Material-UI to Quick-UI and saw our bundle size drop by 60% and development velocity increase by 3x. The TypeScript experience is phenomenal!"</em></p>
-<footer>— <strong>Sarah Chen</strong>, Senior Frontend Developer at TechCorp</footer>
-</blockquote>
-
-<blockquote>
-<p><em>"Finally found a component library that doesn't fight me on customization. Quick-UI's SCSS approach is genius."</em></p>
-<footer>— <strong>Akhilesh Sharda</strong>, Software Developer at Loblaw Digital</footer>
-</blockquote>
-
 ---
 
 ## 🛠️ **Framework Support**
