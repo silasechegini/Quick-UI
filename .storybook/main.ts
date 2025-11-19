@@ -2,6 +2,7 @@
 import { fileURLToPath } from "node:url";
 import type { StorybookConfig } from "@storybook/react-vite";
 import path, { dirname } from "path";
+import tsconfigPaths from "vite-tsconfig-paths";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -25,7 +26,26 @@ const config: StorybookConfig = {
     options: {},
   },
 
+  typescript: {
+    check: true,
+    reactDocgen: "react-docgen-typescript",
+    reactDocgenTypescriptOptions: {
+      shouldExtractLiteralValuesFromEnum: true,
+      shouldRemoveUndefinedFromOptional: true,
+      propFilter: (prop) =>
+        prop?.parent ? !/node_modules/.test(prop.parent.fileName) : true,
+    },
+  },
+
   viteFinal: async (config) => {
+    // Add TypeScript path resolution
+    config.plugins = config?.plugins || [];
+    config.plugins.push(
+      tsconfigPaths({
+        projects: [path.resolve(__dirname, "./tsconfig.json")],
+      }),
+    );
+
     // Configure CSS modules
     config.css = {
       ...config.css,
@@ -44,7 +64,7 @@ const config: StorybookConfig = {
       },
     };
 
-    // Set up path aliases
+    // Set up path aliases to match tsconfig.json paths
     config.resolve = {
       ...config.resolve,
       alias: {
@@ -52,6 +72,7 @@ const config: StorybookConfig = {
         "@assets": path.resolve(__dirname, "../src/assets"),
         "@components": path.resolve(__dirname, "../src/components"),
         "@utils": path.resolve(__dirname, "../src/utils"),
+        "@styles": path.resolve(__dirname, "../src/styles"),
         "@": path.resolve(__dirname, "../src"),
       },
     };

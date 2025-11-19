@@ -1,0 +1,36 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": false,
+    "resolveJsonModule": true,
+    "isolatedModules": false,
+    "noEmit": true,
+    "baseUrl": "../",
+    "rootDir": "../",
+    "paths": {
+      "@assets/*": ["src/assets/*"],
+      "@components/*": ["src/components/*"],
+      "@utils/*": ["src/utils/*"],
+      "@styles/*": ["src/styles/*"],
+      "@*": ["src/*"]
+    },
+    "moduleResolution": "bundler",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true
+  },
+  "include": [
+    "../src/**/*",
+    "../stories/**/*",
+    "../src/types/*.d.ts",
+    "./*.ts"
+  ],
+  "exclude": [
+    "../node_modules",
+    "../dist",
+    "../**/*.test.*",
+    "../**/*.spec.*",
+    "../**/__tests__/**"
+  ]
+}
