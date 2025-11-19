@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { Badge } from "../Badge";
+import { describe, it, expect } from "vitest";
 import {
   BADGE_VARIANTS,
   BADGE_SIZES,
@@ -19,7 +20,7 @@ const getBadgeElement = (container: HTMLElement, isInline: boolean = true) => {
 describe("Badge Component", () => {
   describe("Rendering", () => {
     it("should render without children (inline)", () => {
-      render(<Badge count={5} position="inline" />);
+      render(<Badge count={5} position={BADGE_POSITIONS.INLINE} />);
       expect(screen.getByText("5")).toBeInTheDocument();
     });
 
@@ -34,12 +35,14 @@ describe("Badge Component", () => {
     });
 
     it("should render custom content", () => {
-      render(<Badge content="NEW" position="inline" />);
+      render(<Badge content="NEW" position={BADGE_POSITIONS.INLINE} />);
       expect(screen.getByText("NEW")).toBeInTheDocument();
     });
 
     it("should render dot badge without content", () => {
-      const { container } = render(<Badge type="dot" position="inline" />);
+      const { container } = render(
+        <Badge type={BADGE_TYPES.DOT} position={BADGE_POSITIONS.INLINE} />,
+      );
       const badge = container.firstChild;
       expect(badge).toBeInTheDocument();
       expect(badge?.textContent).toBe("");
@@ -48,30 +51,34 @@ describe("Badge Component", () => {
 
   describe("Count Display", () => {
     it("should display count correctly", () => {
-      render(<Badge count={42} position="inline" />);
+      render(<Badge count={42} position={BADGE_POSITIONS.INLINE} />);
       expect(screen.getByText("42")).toBeInTheDocument();
     });
 
     it("should display max+ when count exceeds max", () => {
-      render(<Badge count={150} max={99} position="inline" />);
+      render(<Badge count={150} max={99} position={BADGE_POSITIONS.INLINE} />);
       expect(screen.getByText("99+")).toBeInTheDocument();
     });
 
     it("should use custom max value", () => {
-      render(<Badge count={1000} max={999} position="inline" />);
+      render(
+        <Badge count={1000} max={999} position={BADGE_POSITIONS.INLINE} />,
+      );
       expect(screen.getByText("999+")).toBeInTheDocument();
     });
 
     it("should not render when count is 0 and showZero is false", () => {
       const { container } = render(
-        <Badge count={0} showZero={false} position="inline" />,
+        <Badge count={0} showZero={false} position={BADGE_POSITIONS.INLINE} />,
       );
       const badge = getBadgeElement(container);
       expect(badge).toHaveClass(styles["invisible"]);
     });
 
     it("should render when count is 0 and showZero is true", () => {
-      render(<Badge count={0} showZero={true} position="inline" />);
+      render(
+        <Badge count={0} showZero={true} position={BADGE_POSITIONS.INLINE} />,
+      );
       expect(screen.getByText("0")).toBeInTheDocument();
     });
   });
@@ -79,7 +86,11 @@ describe("Badge Component", () => {
   describe("Variants", () => {
     it("should apply primary variant class", () => {
       const { container } = render(
-        <Badge variant="primary" count={1} position="inline" />,
+        <Badge
+          variant={BADGE_VARIANTS.PRIMARY}
+          count={1}
+          position={BADGE_POSITIONS.INLINE}
+        />,
       );
       const badge = getBadgeElement(container);
       expect(badge).toHaveClass(styles["variant-primary"]);
@@ -87,7 +98,11 @@ describe("Badge Component", () => {
 
     it("should apply success variant class", () => {
       const { container } = render(
-        <Badge variant="success" count={1} position="inline" />,
+        <Badge
+          variant={BADGE_VARIANTS.SUCCESS}
+          count={1}
+          position={BADGE_POSITIONS.INLINE}
+        />,
       );
       const badge = getBadgeElement(container);
       expect(badge).toHaveClass(styles["variant-success"]);
@@ -95,7 +110,11 @@ describe("Badge Component", () => {
 
     it("should apply error variant class", () => {
       const { container } = render(
-        <Badge variant="error" count={1} position="inline" />,
+        <Badge
+          variant={BADGE_VARIANTS.ERROR}
+          count={1}
+          position={BADGE_POSITIONS.INLINE}
+        />,
       );
       const badge = getBadgeElement(container);
       expect(badge).toHaveClass(styles["variant-error"]);
@@ -103,7 +122,11 @@ describe("Badge Component", () => {
 
     it("should apply warning variant class", () => {
       const { container } = render(
-        <Badge variant="warning" count={1} position="inline" />,
+        <Badge
+          variant={BADGE_VARIANTS.WARNING}
+          count={1}
+          position={BADGE_POSITIONS.INLINE}
+        />,
       );
       const badge = getBadgeElement(container);
       expect(badge).toHaveClass(styles["variant-warning"]);
@@ -113,21 +136,31 @@ describe("Badge Component", () => {
   describe("Sizes", () => {
     it("should apply small size class", () => {
       const { container } = render(
-        <Badge size="sm" count={1} position="inline" />,
+        <Badge
+          size={BADGE_SIZES.SMALL}
+          count={1}
+          position={BADGE_POSITIONS.INLINE}
+        />,
       );
       const badge = getBadgeElement(container);
       expect(badge).toHaveClass(styles["size-sm"]);
     });
 
     it("should apply medium size class by default", () => {
-      const { container } = render(<Badge count={1} position="inline" />);
+      const { container } = render(
+        <Badge count={1} position={BADGE_POSITIONS.INLINE} />,
+      );
       const badge = getBadgeElement(container);
       expect(badge).toHaveClass(styles["size-md"]);
     });
 
     it("should apply large size class", () => {
       const { container } = render(
-        <Badge size="lg" count={1} position="inline" />,
+        <Badge
+          size={BADGE_SIZES.LARGE}
+          count={1}
+          position={BADGE_POSITIONS.INLINE}
+        />,
       );
       const badge = getBadgeElement(container);
       expect(badge).toHaveClass(styles["size-lg"]);
@@ -147,7 +180,7 @@ describe("Badge Component", () => {
 
     it("should apply top-left position class", () => {
       const { container } = render(
-        <Badge position="top-left" count={1}>
+        <Badge position={BADGE_POSITIONS.TOP_LEFT} count={1}>
           <div>Icon</div>
         </Badge>,
       );
@@ -157,7 +190,7 @@ describe("Badge Component", () => {
 
     it("should apply bottom-right position class", () => {
       const { container } = render(
-        <Badge position="bottom-right" count={1}>
+        <Badge position={BADGE_POSITIONS.BOTTOM_RIGHT} count={1}>
           <div>Icon</div>
         </Badge>,
       );
@@ -166,7 +199,9 @@ describe("Badge Component", () => {
     });
 
     it("should apply inline position class", () => {
-      const { container } = render(<Badge position="inline" count={1} />);
+      const { container } = render(
+        <Badge position={BADGE_POSITIONS.INLINE} count={1} />,
+      );
       const badge = getBadgeElement(container);
       expect(badge).toHaveClass(styles["position-inline"]);
     });
@@ -174,13 +209,17 @@ describe("Badge Component", () => {
 
   describe("Types", () => {
     it("should apply standard type class by default", () => {
-      const { container } = render(<Badge count={1} position="inline" />);
+      const { container } = render(
+        <Badge count={1} position={BADGE_POSITIONS.INLINE} />,
+      );
       const badge = getBadgeElement(container);
       expect(badge).toHaveClass(styles["type-standard"]);
     });
 
     it("should apply dot type class", () => {
-      const { container } = render(<Badge type="dot" position="inline" />);
+      const { container } = render(
+        <Badge type={BADGE_TYPES.DOT} position={BADGE_POSITIONS.INLINE} />,
+      );
       const badge = getBadgeElement(container);
       expect(badge).toHaveClass(styles["type-dot"]);
     });
@@ -188,13 +227,17 @@ describe("Badge Component", () => {
 
   describe("Pulse Animation", () => {
     it("should apply pulse class when pulse is true", () => {
-      const { container } = render(<Badge count={1} pulse position="inline" />);
+      const { container } = render(
+        <Badge count={1} pulse position={BADGE_POSITIONS.INLINE} />,
+      );
       const badge = getBadgeElement(container);
       expect(badge).toHaveClass(styles["pulse"]);
     });
 
     it("should not apply pulse class by default", () => {
-      const { container } = render(<Badge count={1} position="inline" />);
+      const { container } = render(
+        <Badge count={1} position={BADGE_POSITIONS.INLINE} />,
+      );
       const badge = getBadgeElement(container);
       expect(badge).not.toHaveClass(styles["pulse"]);
     });
@@ -203,14 +246,16 @@ describe("Badge Component", () => {
   describe("Visibility", () => {
     it("should apply invisible class when invisible is true", () => {
       const { container } = render(
-        <Badge count={1} invisible position="inline" />,
+        <Badge count={1} invisible position={BADGE_POSITIONS.INLINE} />,
       );
       const badge = getBadgeElement(container);
       expect(badge).toHaveClass(styles["invisible"]);
     });
 
     it("should be visible by default", () => {
-      const { container } = render(<Badge count={1} position="inline" />);
+      const { container } = render(
+        <Badge count={1} position={BADGE_POSITIONS.INLINE} />,
+      );
       const badge = getBadgeElement(container);
       expect(badge).not.toHaveClass(styles["invisible"]);
     });
@@ -231,7 +276,11 @@ describe("Badge Component", () => {
 
     it("should apply badgeClassName to badge element", () => {
       const { container } = render(
-        <Badge count={1} badgeClassName="custom-badge" position="inline" />,
+        <Badge
+          count={1}
+          badgeClassName="custom-badge"
+          position={BADGE_POSITIONS.INLINE}
+        />,
       );
       const badge = getBadgeElement(container);
       expect(badge).toHaveClass("custom-badge");
@@ -241,13 +290,23 @@ describe("Badge Component", () => {
   describe("Enums", () => {
     it("should work with BADGE_VARIANTS enum", () => {
       render(
-        <Badge variant={BADGE_VARIANTS.ERROR} count={1} position="inline" />,
+        <Badge
+          variant={BADGE_VARIANTS.ERROR}
+          count={1}
+          position={BADGE_POSITIONS.INLINE}
+        />,
       );
       expect(screen.getByText("1")).toBeInTheDocument();
     });
 
     it("should work with BADGE_SIZES enum", () => {
-      render(<Badge size={BADGE_SIZES.LARGE} count={1} position="inline" />);
+      render(
+        <Badge
+          size={BADGE_SIZES.LARGE}
+          count={1}
+          position={BADGE_POSITIONS.INLINE}
+        />,
+      );
       expect(screen.getByText("1")).toBeInTheDocument();
     });
 
@@ -258,7 +317,7 @@ describe("Badge Component", () => {
 
     it("should work with BADGE_TYPES enum", () => {
       const { container } = render(
-        <Badge type={BADGE_TYPES.DOT} position="inline" />,
+        <Badge type={BADGE_TYPES.DOT} position={BADGE_POSITIONS.INLINE} />,
       );
       const badge = getBadgeElement(container);
       expect(badge).toHaveClass(styles["type-dot"]);
