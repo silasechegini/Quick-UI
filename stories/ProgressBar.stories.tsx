@@ -9,7 +9,7 @@ import {
 import { useState, useEffect } from "react";
 import "../src/styles/index.scss";
 import styles from "./Progress.module.scss";
-import { Button } from "../src/components/Button";
+import { Button, BUTTON_VARIANTS } from "../src/components/Button";
 
 const meta: Meta<typeof ProgressBar> = {
   title: "Components/ProgressBar",
@@ -415,7 +415,9 @@ export const FileUploadExample: Story = {
           <Button
             onClick={startUpload}
             disabled={isUploading}
-            variant={isUploading ? "secondary" : "primary"}
+            variant={
+              isUploading ? BUTTON_VARIANTS.SECONDARY : BUTTON_VARIANTS.PRIMARY
+            }
           >
             {isUploading ? "Uploading..." : "Start Upload"}
           </Button>

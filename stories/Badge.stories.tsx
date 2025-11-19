@@ -70,7 +70,7 @@ type Story = StoryObj<typeof Badge>;
 export const Default: Story = {
   args: {
     count: 5,
-    position: "inline",
+    position: BADGE_POSITIONS.INLINE,
   },
 };
 
@@ -87,8 +87,8 @@ export const WithIcon: Story = {
 
 export const DotBadge: Story = {
   args: {
-    type: "dot",
-    variant: "success",
+    type: BADGE_TYPES.DOT,
+    variant: BADGE_VARIANTS.SUCCESS,
   },
   render: (args) => (
     <Badge {...args}>
@@ -104,20 +104,48 @@ export const DotBadge: Story = {
 export const AllVariants: Story = {
   render: () => (
     <div style={{ display: "flex", gap: "2rem", flexWrap: "wrap" }}>
-      <Badge variant="primary" count={5} position="inline" />
-      <Badge variant="secondary" count={5} position="inline" />
-      <Badge variant="success" count={5} position="inline" />
-      <Badge variant="error" count={5} position="inline" />
-      <Badge variant="warning" count={5} position="inline" />
-      <Badge variant="info" count={5} position="inline" />
-      <Badge variant="neutral" count={5} position="inline" />
+      <Badge
+        variant={BADGE_VARIANTS.PRIMARY}
+        count={5}
+        position={BADGE_POSITIONS.INLINE}
+      />
+      <Badge
+        variant={BADGE_VARIANTS.SECONDARY}
+        count={5}
+        position={BADGE_POSITIONS.INLINE}
+      />
+      <Badge
+        variant={BADGE_VARIANTS.SUCCESS}
+        count={5}
+        position={BADGE_POSITIONS.INLINE}
+      />
+      <Badge
+        variant={BADGE_VARIANTS.ERROR}
+        count={5}
+        position={BADGE_POSITIONS.INLINE}
+      />
+      <Badge
+        variant={BADGE_VARIANTS.WARNING}
+        count={5}
+        position={BADGE_POSITIONS.INLINE}
+      />
+      <Badge
+        variant={BADGE_VARIANTS.INFO}
+        count={5}
+        position={BADGE_POSITIONS.INLINE}
+      />
+      <Badge
+        variant={BADGE_VARIANTS.NEUTRAL}
+        count={5}
+        position={BADGE_POSITIONS.INLINE}
+      />
     </div>
   ),
 };
 
 export const Primary: Story = {
   args: {
-    variant: "primary",
+    variant: BADGE_VARIANTS.PRIMARY,
     count: 5,
   },
   render: (args) => (
@@ -129,7 +157,7 @@ export const Primary: Story = {
 
 export const Success: Story = {
   args: {
-    variant: "success",
+    variant: BADGE_VARIANTS.SUCCESS,
     count: 12,
   },
   render: (args) => (
@@ -141,7 +169,7 @@ export const Success: Story = {
 
 export const Error: Story = {
   args: {
-    variant: "error",
+    variant: BADGE_VARIANTS.ERROR,
     count: 99,
   },
   render: (args) => (
@@ -153,7 +181,7 @@ export const Error: Story = {
 
 export const Warning: Story = {
   args: {
-    variant: "warning",
+    variant: BADGE_VARIANTS.WARNING,
     count: 7,
   },
   render: (args) => (
@@ -170,13 +198,13 @@ export const Warning: Story = {
 export const AllSizes: Story = {
   render: () => (
     <div style={{ display: "flex", gap: "2rem", alignItems: "center" }}>
-      <Badge size="sm" count={5}>
+      <Badge size={BADGE_SIZES.SMALL} count={5}>
         <Icon name={ICONS.ANALYTICS_ICON} size={24} />
       </Badge>
-      <Badge size="md" count={5}>
+      <Badge size={BADGE_SIZES.MEDIUM} count={5}>
         <Icon name={ICONS.ANALYTICS_ICON} size={32} />
       </Badge>
-      <Badge size="lg" count={5}>
+      <Badge size={BADGE_SIZES.LARGE} count={5}>
         <Icon name={ICONS.ANALYTICS_ICON} size={40} />
       </Badge>
     </div>
@@ -185,7 +213,7 @@ export const AllSizes: Story = {
 
 export const SmallSize: Story = {
   args: {
-    size: "sm",
+    size: BADGE_SIZES.SMALL,
     count: 3,
   },
   render: (args) => (
@@ -197,7 +225,7 @@ export const SmallSize: Story = {
 
 export const LargeSize: Story = {
   args: {
-    size: "lg",
+    size: BADGE_SIZES.LARGE,
     count: 88,
   },
   render: (args) => (
@@ -218,13 +246,13 @@ export const AllPositions: Story = {
         <p style={{ marginBottom: "0.5rem", fontSize: "0.875rem" }}>
           Top Right
         </p>
-        <Badge position="top-right" count={5}>
+        <Badge position={BADGE_POSITIONS.TOP_RIGHT} count={5}>
           <Icon name={ICONS.ANALYTICS_ICON} size={40} />
         </Badge>
       </div>
       <div>
         <p style={{ marginBottom: "0.5rem", fontSize: "0.875rem" }}>Top Left</p>
-        <Badge position="top-left" count={5}>
+        <Badge position={BADGE_POSITIONS.TOP_LEFT} count={5}>
           <Icon name={ICONS.ANALYTICS_ICON} size={40} />
         </Badge>
       </div>
@@ -232,7 +260,7 @@ export const AllPositions: Story = {
         <p style={{ marginBottom: "0.5rem", fontSize: "0.875rem" }}>
           Bottom Right
         </p>
-        <Badge position="bottom-right" count={5}>
+        <Badge position={BADGE_POSITIONS.BOTTOM_RIGHT} count={5}>
           <Icon name={ICONS.ANALYTICS_ICON} size={40} />
         </Badge>
       </div>
@@ -240,13 +268,13 @@ export const AllPositions: Story = {
         <p style={{ marginBottom: "0.5rem", fontSize: "0.875rem" }}>
           Bottom Left
         </p>
-        <Badge position="bottom-left" count={5}>
+        <Badge position={BADGE_POSITIONS.BOTTOM_LEFT} count={5}>
           <Icon name={ICONS.ANALYTICS_ICON} size={40} />
         </Badge>
       </div>
       <div>
         <p style={{ marginBottom: "0.5rem", fontSize: "0.875rem" }}>Inline</p>
-        <Badge position="inline" count={5} />
+        <Badge position={BADGE_POSITIONS.INLINE} count={5} />
       </div>
     </div>
   ),
@@ -279,16 +307,32 @@ export const MaxCount: Story = {
 export const DotBadges: Story = {
   render: () => (
     <div style={{ display: "flex", gap: "2rem", flexWrap: "wrap" }}>
-      <Badge type="dot" variant="success" position="bottom-right">
+      <Badge
+        type={BADGE_TYPES.DOT}
+        variant={BADGE_VARIANTS.SUCCESS}
+        position={BADGE_POSITIONS.BOTTOM_RIGHT}
+      >
         <Icon name={ICONS.USER_ICON} size={40} />
       </Badge>
-      <Badge type="dot" variant="error" position="bottom-right">
+      <Badge
+        type={BADGE_TYPES.DOT}
+        variant={BADGE_VARIANTS.ERROR}
+        position={BADGE_POSITIONS.BOTTOM_RIGHT}
+      >
         <Icon name={ICONS.USER_ICON} size={40} />
       </Badge>
-      <Badge type="dot" variant="warning" position="bottom-right">
+      <Badge
+        type={BADGE_TYPES.DOT}
+        variant={BADGE_VARIANTS.WARNING}
+        position={BADGE_POSITIONS.BOTTOM_RIGHT}
+      >
         <Icon name={ICONS.USER_ICON} size={40} />
       </Badge>
-      <Badge type="dot" variant="neutral" position="bottom-right">
+      <Badge
+        type={BADGE_TYPES.DOT}
+        variant={BADGE_VARIANTS.NEUTRAL}
+        position={BADGE_POSITIONS.BOTTOM_RIGHT}
+      >
         <Icon name={ICONS.USER_ICON} size={40} />
       </Badge>
     </div>
@@ -303,7 +347,7 @@ export const PulseAnimation: Story = {
   args: {
     count: 5,
     pulse: true,
-    variant: "error",
+    variant: BADGE_VARIANTS.ERROR,
   },
   render: (args) => (
     <Badge {...args}>
@@ -314,10 +358,10 @@ export const PulseAnimation: Story = {
 
 export const PulseDot: Story = {
   args: {
-    type: "dot",
+    type: BADGE_TYPES.DOT,
     pulse: true,
-    variant: "success",
-    position: "bottom-right",
+    variant: BADGE_VARIANTS.SUCCESS,
+    position: BADGE_POSITIONS.BOTTOM_RIGHT,
   },
   render: (args) => (
     <Badge {...args}>
@@ -333,7 +377,7 @@ export const PulseDot: Story = {
 export const CustomContent: Story = {
   args: {
     content: "NEW",
-    variant: "error",
+    variant: BADGE_VARIANTS.ERROR,
   },
   render: (args) => (
     <Badge {...args}>
@@ -345,10 +389,26 @@ export const CustomContent: Story = {
 export const CustomTextContent: Story = {
   render: () => (
     <div style={{ display: "flex", gap: "2rem", flexWrap: "wrap" }}>
-      <Badge content="NEW" variant="error" position="inline" />
-      <Badge content="HOT" variant="warning" position="inline" />
-      <Badge content="!" variant="error" position="inline" />
-      <Badge content="★" variant="warning" position="inline" />
+      <Badge
+        content="NEW"
+        variant={BADGE_VARIANTS.ERROR}
+        position={BADGE_POSITIONS.INLINE}
+      />
+      <Badge
+        content="HOT"
+        variant={BADGE_VARIANTS.WARNING}
+        position={BADGE_POSITIONS.INLINE}
+      />
+      <Badge
+        content="!"
+        variant={BADGE_VARIANTS.ERROR}
+        position={BADGE_POSITIONS.INLINE}
+      />
+      <Badge
+        content="★"
+        variant={BADGE_VARIANTS.WARNING}
+        position={BADGE_POSITIONS.INLINE}
+      />
     </div>
   ),
 };
@@ -384,7 +444,7 @@ export const ShowZero: Story = {
 
 export const EmailInbox: Story = {
   render: () => (
-    <Badge count={12} variant="primary" max={99}>
+    <Badge count={12} variant={BADGE_VARIANTS.PRIMARY} max={99}>
       <Icon name={ICONS.MAIL_ICON} size={32} />
     </Badge>
   ),
@@ -392,7 +452,7 @@ export const EmailInbox: Story = {
 
 export const ShoppingCart: Story = {
   render: () => (
-    <Badge count={3} variant="error" pulse>
+    <Badge count={3} variant={BADGE_VARIANTS.ERROR} pulse>
       <Icon name={ICONS.SHOPPING_CART_ICON} size={32} />
     </Badge>
   ),
@@ -400,7 +460,7 @@ export const ShoppingCart: Story = {
 
 export const NotificationBell: Story = {
   render: () => (
-    <Badge count={99} variant="error" pulse max={99}>
+    <Badge count={99} variant={BADGE_VARIANTS.ERROR} pulse max={99}>
       <Icon name={ICONS.BELL_ICON} size={32} />
     </Badge>
   ),
@@ -409,7 +469,11 @@ export const NotificationBell: Story = {
 export const OnlineStatus: Story = {
   render: () => (
     <div style={{ display: "flex", gap: "2rem" }}>
-      <Badge type="dot" variant="success" position="bottom-right">
+      <Badge
+        type={BADGE_TYPES.DOT}
+        variant={BADGE_VARIANTS.SUCCESS}
+        position={BADGE_POSITIONS.BOTTOM_RIGHT}
+      >
         <div
           style={{
             width: 48,
@@ -424,7 +488,11 @@ export const OnlineStatus: Story = {
           👤
         </div>
       </Badge>
-      <Badge type="dot" variant="warning" position="bottom-right">
+      <Badge
+        type={BADGE_TYPES.DOT}
+        variant={BADGE_VARIANTS.WARNING}
+        position={BADGE_POSITIONS.BOTTOM_RIGHT}
+      >
         <div
           style={{
             width: 48,
@@ -439,7 +507,11 @@ export const OnlineStatus: Story = {
           👤
         </div>
       </Badge>
-      <Badge type="dot" variant="neutral" position="bottom-right">
+      <Badge
+        type={BADGE_TYPES.DOT}
+        variant={BADGE_VARIANTS.NEUTRAL}
+        position={BADGE_POSITIONS.BOTTOM_RIGHT}
+      >
         <div
           style={{
             width: 48,
@@ -467,10 +539,10 @@ export const Playground: Story = {
     count: 5,
     max: 99,
     showZero: false,
-    variant: "primary",
-    size: "md",
-    position: "top-right",
-    type: "standard",
+    variant: BADGE_VARIANTS.PRIMARY,
+    size: BADGE_SIZES.MEDIUM,
+    position: BADGE_POSITIONS.TOP_RIGHT,
+    type: BADGE_TYPES.STANDARD,
     pulse: false,
     invisible: false,
   },
