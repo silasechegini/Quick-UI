@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { Toggle } from "../Toggle";
@@ -180,9 +181,8 @@ describe("Toggle Component", () => {
       // but expect no change because the input is disabled
       try {
         await user.click(label);
-      } catch (e) {
+      } catch (_e) {
         // If clicking is prevented by pointer-events, that's expected for disabled elements
-        console.log(e);
       }
 
       expect(handleChange).not.toHaveBeenCalled();
