@@ -1,5 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
+import { describe, it, expect, vi } from "vitest";
 import RangeSlider from "../RangeSlider";
 import { mockBoundingClientRect } from "../../testUtils/test_utils";
 
@@ -12,7 +13,7 @@ describe("RangeSlider (dual-thumb)", () => {
   });
 
   it("calls onChange when values change (uncontrolled)", () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     render(<RangeSlider defaultValue={[20, 40]} onChange={handleChange} />);
     const thumbs = screen.getAllByRole("slider");
 
@@ -24,7 +25,7 @@ describe("RangeSlider (dual-thumb)", () => {
   });
 
   it("works in controlled mode", () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     render(<RangeSlider value={[30, 60]} onChange={handleChange} />);
     const thumbs = screen.getAllByRole("slider");
 
@@ -67,7 +68,7 @@ describe("RangeSlider (dual-thumb)", () => {
   });
 
   it("ignores input when disabled", () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     render(
       <RangeSlider defaultValue={[25, 75]} disabled onChange={handleChange} />,
     );

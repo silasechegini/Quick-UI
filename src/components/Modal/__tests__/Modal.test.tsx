@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { vi } from "vitest";
+import { describe, it, expect, beforeEach, vi } from "vitest";
 import { Modal } from "../Modal";
 import { MODAL_SIZES, MODAL_VARIANTS } from "../Modal.types";
 import styles from "../styles.module.scss";
