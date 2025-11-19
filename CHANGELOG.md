@@ -18,10 +18,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.0.4] - 2025-11-17
 
-### Enhanced
+### Changed
 
 - **Component Typing**: Made component typing more robust by introducing enums for component props instead of string literals across multiple components ([#57](https://github.com/silasechegini/Quick-UI/pull/57))
-  - Introduced enums with uppercase snake_case naming (e.g., `INPUT_VARIANTS`, `TOGGLE_SIZES`)
+  - Introduced enums with uppercase snake case naming (e.g., `INPUT_VARIANTS`, `TOGGLE_SIZES`)
   - Replaced string literal types with enum-derived type aliases
   - Updated component implementations to use enum values
   - Reorganized type definition files for better structure
@@ -31,15 +31,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Added TypeScript configuration for Storybook with proper path resolution
   - Enhanced main.ts with vite-tsconfig-paths plugin
 
+- Updated README.md with corrected information
+- Removed success stories section from README ([#55](https://github.com/silasechegini/Quick-UI/pull/55))
+
 ### Fixed
 
 - Updated stories for Button, Chip, Flyout, Header, Input, Page, Slider, and Toggle components with proper enum usage
 - Improved type safety across DebouncedInput stories
-
-### Documentation
-
-- Updated README.md with corrected information
-- Removed success stories section from README ([#55](https://github.com/silasechegini/Quick-UI/pull/55))
 
 ## [1.0.3] - 2025-11-16
 
@@ -52,30 +50,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Removed redundant SCSS @import statements from component files
   - Added TypeScript declarations for CSS imports
 
-### Enhanced
-
-- Improved Storybook rendering configuration
-- Fixed import strategy for component styles
-- Added configurations to apply styles in consumer packages
-
-### Documentation
+### Changed
 
 - Updated README.md with comprehensive setup instructions
 - Added CSS import examples for consumers
 - Updated bundle size information
+- Improved Storybook rendering configuration
+- Fixed import strategy for component styles
+- Added configurations to apply styles in consumer packages
 
 ## [1.0.2] - 2025-11-16
+
+### Changed
+
+- Updated build configuration for better CSS bundling
+- Enhanced Storybook main.ts configuration
+- Updated package dependencies
 
 ### Fixed
 
 - Fixed tsup configuration issues
 - Improved CSS publishing pipeline
-
-### Configuration
-
-- Updated build configuration for better CSS bundling
-- Enhanced Storybook main.ts configuration
-- Updated package dependencies
 
 ## [1.0.1] - 2025-11-16
 
@@ -84,9 +79,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial stable release
 - Fixed SCSS to CSS bundling
 - Proper CSS publishing configuration
-
-### Configuration
-
 - Initial tsup configuration for building
 - Basic Storybook setup
 - Package configuration for npm publishing
