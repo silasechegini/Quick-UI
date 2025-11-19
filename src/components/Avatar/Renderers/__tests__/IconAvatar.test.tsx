@@ -162,9 +162,18 @@ describe("IconAvatar Renderer", () => {
       render(<IconAvatar {...props} />);
 
       const avatar = screen.getByRole("img");
-      expect(avatar).toHaveStyle("border: 2px solid red");
-      expect(avatar).toHaveStyle("padding: 10px");
-      expect(avatar).toHaveStyle("background-color: #0000FF");
+      expect(avatar).toHaveAttribute(
+        "style",
+        expect.stringContaining("border: 2px solid red"),
+      );
+      expect(avatar).toHaveAttribute(
+        "style",
+        expect.stringContaining("padding: 10px"),
+      );
+      expect(avatar).toHaveAttribute(
+        "style",
+        expect.stringContaining("background-color: rgb(0, 0, 255)"),
+      );
     });
 
     it("should allow custom style properties to override generated ones", () => {
@@ -180,8 +189,14 @@ describe("IconAvatar Renderer", () => {
 
       const avatar = screen.getByRole("img");
       // Custom style should be applied
-      expect(avatar).toHaveStyle("border: 1px solid blue");
-      expect(avatar).toHaveStyle("margin: 5px");
+      expect(avatar).toHaveAttribute(
+        "style",
+        expect.stringContaining("border: 1px solid blue"),
+      );
+      expect(avatar).toHaveAttribute(
+        "style",
+        expect.stringContaining("margin: 5px"),
+      );
     });
 
     it("should apply icon wrapper styles", () => {
