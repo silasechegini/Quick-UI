@@ -110,21 +110,21 @@ export const Default: Story = {
 // Image avatar with fallback
 export const ImageAvatar: Story = {
   args: {
-    variant: "image",
+    variant: AVATAR_VARIANTS.IMAGE,
     src: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
     alt: "John Doe",
-    size: "lg",
+    size: AVATAR_SIZES.LARGE,
   },
 };
 
 // Image avatar with fallback demonstration
 export const ImageWithFallback: Story = {
   args: {
-    variant: "image",
+    variant: AVATAR_VARIANTS.IMAGE,
     src: "https://invalid-url-to-trigger-fallback.jpg",
     fallback: "Jane Smith",
     alt: "Jane Smith",
-    size: "lg",
+    size: AVATAR_SIZES.LARGE,
   },
   parameters: {
     docs: {
@@ -139,29 +139,29 @@ export const ImageWithFallback: Story = {
 // Initials avatar
 export const InitialsAvatar: Story = {
   args: {
-    variant: "initials",
+    variant: AVATAR_VARIANTS.INITIALS,
     initials: "AB",
-    size: "lg",
+    size: AVATAR_SIZES.LARGE,
   },
 };
 
 // Initials with custom colors
 export const CustomColorInitials: Story = {
   args: {
-    variant: "initials",
+    variant: AVATAR_VARIANTS.INITIALS,
     initials: "JD",
     backgroundColor: "#4F46E5",
     textColor: "#FFFFFF",
-    size: "lg",
+    size: AVATAR_SIZES.LARGE,
   },
 };
 
 // Icon avatar
 export const IconAvatar: Story = {
   args: {
-    variant: "icon",
+    variant: AVATAR_VARIANTS.ICON,
     icon: <UserIcon />,
-    size: "lg",
+    size: AVATAR_SIZES.LARGE,
   },
   parameters: {
     docs: {
@@ -176,11 +176,11 @@ export const IconAvatar: Story = {
 // Icon with custom colors
 export const CustomColorIcon: Story = {
   args: {
-    variant: "icon",
+    variant: AVATAR_VARIANTS.ICON,
     icon: <UserIcon />,
     backgroundColor: "#22C55E",
     iconColor: "#FFFFFF",
-    size: "lg",
+    size: AVATAR_SIZES.LARGE,
   },
 };
 
@@ -188,12 +188,36 @@ export const CustomColorIcon: Story = {
 export const SizeVariations: Story = {
   render: () => (
     <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-      <Avatar size="xs" variant="initials" initials="XS" />
-      <Avatar size="sm" variant="initials" initials="SM" />
-      <Avatar size="md" variant="initials" initials="MD" />
-      <Avatar size="lg" variant="initials" initials="LG" />
-      <Avatar size="xl" variant="initials" initials="XL" />
-      <Avatar size="xxl" variant="initials" initials="XXL" />
+      <Avatar
+        size={AVATAR_SIZES.EXTRA_SMALL}
+        variant={AVATAR_VARIANTS.INITIALS}
+        initials="XS"
+      />
+      <Avatar
+        size={AVATAR_SIZES.SMALL}
+        variant={AVATAR_VARIANTS.INITIALS}
+        initials="SM"
+      />
+      <Avatar
+        size={AVATAR_SIZES.MEDIUM}
+        variant={AVATAR_VARIANTS.INITIALS}
+        initials="MD"
+      />
+      <Avatar
+        size={AVATAR_SIZES.LARGE}
+        variant={AVATAR_VARIANTS.INITIALS}
+        initials="LG"
+      />
+      <Avatar
+        size={AVATAR_SIZES.EXTRA_LARGE}
+        variant={AVATAR_VARIANTS.INITIALS}
+        initials="XL"
+      />
+      <Avatar
+        size={AVATAR_SIZES.DOUBLE_EXTRA_LARGE}
+        variant={AVATAR_VARIANTS.INITIALS}
+        initials="XXL"
+      />
     </div>
   ),
   parameters: {
@@ -210,9 +234,24 @@ export const SizeVariations: Story = {
 export const ShapeVariations: Story = {
   render: () => (
     <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-      <Avatar shape="circle" variant="initials" initials="CI" size="lg" />
-      <Avatar shape="rounded" variant="initials" initials="RO" size="lg" />
-      <Avatar shape="square" variant="initials" initials="SQ" size="lg" />
+      <Avatar
+        shape={AVATAR_SHAPES.CIRCLE}
+        variant={AVATAR_VARIANTS.INITIALS}
+        initials="CI"
+        size={AVATAR_SIZES.LARGE}
+      />
+      <Avatar
+        shape={AVATAR_SHAPES.ROUNDED}
+        variant={AVATAR_VARIANTS.INITIALS}
+        initials="RO"
+        size={AVATAR_SIZES.LARGE}
+      />
+      <Avatar
+        shape={AVATAR_SHAPES.SQUARE}
+        variant={AVATAR_VARIANTS.INITIALS}
+        initials="SQ"
+        size={AVATAR_SIZES.LARGE}
+      />
     </div>
   ),
   parameters: {
@@ -234,26 +273,37 @@ export const AllVariants: Story = {
           variant="image"
           src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
           alt="Profile"
-          size="lg"
+          size={AVATAR_SIZES.LARGE}
         />
         <div style={{ marginTop: "8px", fontSize: "12px", color: "#666" }}>
           Image
         </div>
       </div>
       <div style={{ textAlign: "center" }}>
-        <Avatar variant="initials" initials="AB" size="lg" />
+        <Avatar
+          variant={AVATAR_VARIANTS.INITIALS}
+          initials="AB"
+          size={AVATAR_SIZES.LARGE}
+        />
         <div style={{ marginTop: "8px", fontSize: "12px", color: "#666" }}>
           Initials
         </div>
       </div>
       <div style={{ textAlign: "center" }}>
-        <Avatar variant="icon" icon={<UserIcon />} size="lg" />
+        <Avatar
+          variant={AVATAR_VARIANTS.ICON}
+          icon={<UserIcon />}
+          size={AVATAR_SIZES.LARGE}
+        />
         <div style={{ marginTop: "8px", fontSize: "12px", color: "#666" }}>
           Icon
         </div>
       </div>
       <div style={{ textAlign: "center" }}>
-        <Avatar variant="placeholder" size="lg" />
+        <Avatar
+          variant={AVATAR_VARIANTS.PLACEHOLDER}
+          size={AVATAR_SIZES.LARGE}
+        />
         <div style={{ marginTop: "8px", fontSize: "12px", color: "#666" }}>
           Placeholder
         </div>
@@ -276,16 +326,45 @@ export const ColorConsistency: Story = {
     <div>
       <h4>Same initials generate consistent colors:</h4>
       <div style={{ display: "flex", gap: "16px", marginBottom: "16px" }}>
-        <Avatar variant="initials" initials="AB" size="md" />
-        <Avatar variant="initials" initials="AB" size="lg" />
-        <Avatar variant="initials" initials="AB" size="xl" shape="square" />
+        <Avatar
+          variant={AVATAR_VARIANTS.INITIALS}
+          initials="AB"
+          size={AVATAR_SIZES.MEDIUM}
+        />
+        <Avatar
+          variant={AVATAR_VARIANTS.INITIALS}
+          initials="AB"
+          size={AVATAR_SIZES.LARGE}
+        />
+        <Avatar
+          variant={AVATAR_VARIANTS.INITIALS}
+          initials="AB"
+          size={AVATAR_SIZES.EXTRA_LARGE}
+          shape={AVATAR_SHAPES.SQUARE}
+        />
       </div>
       <h4>Different initials get different colors:</h4>
       <div style={{ display: "flex", gap: "16px" }}>
-        <Avatar variant="initials" initials="JD" size="lg" />
-        <Avatar variant="initials" initials="SM" size="lg" />
-        <Avatar variant="initials" initials="RW" size="lg" />
-        <Avatar variant="initials" initials="KL" size="lg" />
+        <Avatar
+          variant={AVATAR_VARIANTS.INITIALS}
+          initials="JD"
+          size={AVATAR_SIZES.LARGE}
+        />
+        <Avatar
+          variant={AVATAR_VARIANTS.INITIALS}
+          initials="SM"
+          size={AVATAR_SIZES.LARGE}
+        />
+        <Avatar
+          variant={AVATAR_VARIANTS.INITIALS}
+          initials="RW"
+          size={AVATAR_SIZES.LARGE}
+        />
+        <Avatar
+          variant={AVATAR_VARIANTS.INITIALS}
+          initials="KL"
+          size={AVATAR_SIZES.LARGE}
+        />
       </div>
     </div>
   ),
