@@ -1,5 +1,10 @@
 import { FC, useState } from "react";
-import { PageProps } from "./Page.types";
+import {
+  PAGE_SIDEBAR_POSITIONS,
+  PAGE_SPACINGS,
+  PAGE_VARIANTS,
+  PageProps,
+} from "./Page.types";
 import {
   PageHeaderWrapper,
   PageSidebar,
@@ -29,8 +34,8 @@ import styles from "./styles.module.scss";
  * @returns JSX.Element representing the complete page layout
  */
 export const Page: FC<PageProps> = ({
-  variant = "default",
-  spacing = "normal",
+  variant = PAGE_VARIANTS.DEFAULT,
+  spacing = PAGE_SPACINGS.NORMAL,
   title,
   description,
   children,
@@ -57,12 +62,12 @@ export const Page: FC<PageProps> = ({
 
   // Prepare sidebar configuration for the PageSidebar component
   const sidebarConfig =
-    sidebar && variant === "sidebar"
+    sidebar && variant === PAGE_VARIANTS.SIDEBAR
       ? {
           content: sidebar.content,
           isCollapsible: sidebar.collapsible,
           isCollapsed: isSidebarCollapsed,
-          position: sidebar.position || "left",
+          position: sidebar.position || PAGE_SIDEBAR_POSITIONS.LEFT,
           width: sidebar.width || "300px",
         }
       : undefined;
@@ -73,7 +78,7 @@ export const Page: FC<PageProps> = ({
 
   // Update header config to disable hamburger menu when using sidebar
   const headerConfig =
-    header && variant === "sidebar" && sidebar?.collapsible
+    header && variant === PAGE_VARIANTS.SIDEBAR && sidebar?.collapsible
       ? { ...header, showHamburgerMenu: false }
       : header;
 
@@ -82,9 +87,9 @@ export const Page: FC<PageProps> = ({
       <PageHeaderWrapper header={headerConfig} testId={testId} />
 
       <div
-        className={`${styles.pageBody} ${sidebar?.position === "right" ? styles.rightSidebar : ""}`}
+        className={`${styles.pageBody} ${sidebar?.position === PAGE_SIDEBAR_POSITIONS.RIGHT ? styles.rightSidebar : ""}`}
       >
-        {sidebar?.position !== "right" && (
+        {sidebar?.position !== PAGE_SIDEBAR_POSITIONS.RIGHT && (
           <PageSidebar
             sidebarConfig={sidebarConfig}
             testId={testId}
@@ -103,7 +108,7 @@ export const Page: FC<PageProps> = ({
           </PageMainContent>
         </div>
 
-        {sidebar?.position === "right" && (
+        {sidebar?.position === PAGE_SIDEBAR_POSITIONS.RIGHT && (
           <PageSidebar
             sidebarConfig={sidebarConfig}
             testId={testId}

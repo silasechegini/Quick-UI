@@ -1,5 +1,5 @@
 import React, { useRef, useCallback } from "react";
-import { SingleValueSliderProps } from "./Slider.types";
+import { SingleValueSliderProps, SLIDER_SIZES } from "./Slider.types";
 import { useSlider } from "./hooks/useSlider";
 import { valueToPercent } from "./utils/math";
 import styles from "./styles.module.scss";
@@ -25,7 +25,7 @@ const Slider: React.FC<SingleValueSliderProps> = ({
   min = 0,
   max = 100,
   step = 1,
-  size = "medium",
+  size = SLIDER_SIZES.MEDIUM,
   value: controlledValue,
   defaultValue = 0,
   onChange,
