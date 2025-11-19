@@ -1,5 +1,10 @@
 import { forwardRef, useMemo } from "react";
-import { INPUT_CONFIGURATIONS, InputProps } from "./Input.types";
+import {
+  INPUT_CONFIGURATIONS,
+  INPUT_SIZES,
+  INPUT_VARIANTS,
+  InputProps,
+} from "./Input.types";
 import { Icon } from "../Icon";
 import { ICONS } from "@assets/iconType";
 import styles from "./styles.module.scss";
@@ -33,8 +38,8 @@ import { Button, BUTTON_SIZES, BUTTON_VARIANTS } from "..";
 const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {
-      variant = "primary",
-      size = "m",
+      variant = INPUT_VARIANTS.PRIMARY,
+      size = INPUT_SIZES.M,
       fullWidth = false,
       label,
       helperText,
@@ -62,7 +67,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       .join(" ");
 
     // Override variant to error if error prop is true
-    const effectiveVariant = error ? "error" : variant;
+    const effectiveVariant = error ? INPUT_VARIANTS.ERROR : variant;
 
     // Determine if clear button should be shown
     const shouldShowClear = useMemo(() => {

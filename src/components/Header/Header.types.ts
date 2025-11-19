@@ -17,8 +17,22 @@ export interface HamburgerMenuItem {
   divider?: boolean; // Add a divider after this item
 }
 
-export type HeaderVariant = "default" | "minimal" | "compact";
-export type HeaderPosition = "static" | "sticky" | "fixed";
+export enum HEADER_VARIANTS {
+  DEFAULT = "default",
+  MINIMAL = "minimal",
+  COMPACT = "compact",
+}
+
+export enum HEADER_POSITIONS {
+  STATIC = "static",
+  STICKY = "sticky",
+  FIXED = "fixed",
+}
+
+export type HeaderVariant =
+  (typeof HEADER_VARIANTS)[keyof typeof HEADER_VARIANTS];
+export type HeaderPosition =
+  (typeof HEADER_POSITIONS)[keyof typeof HEADER_POSITIONS];
 
 export interface HeaderProps {
   /**
