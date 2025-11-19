@@ -1,3 +1,34 @@
+## Version History Summary
+
+This changelog covers the rapid development and stabilization of the Quick-UI React component library from November 16-18, 2025. The project went through several iterations to establish proper build tooling, CSS handling, and type safety:
+
+- **[1.0.1]**: Initial release with basic functionality
+- **[1.0.2] and [1.0.3]**: Build system improvements and CSS compilation fixes
+- **[1.0.4]**: Major enhancement focusing on type safety and Storybook configuration
+- **[1.0.5]**: Final polish with conflict resolution and cleanup
+
+### Key Improvements Across Versions
+
+1. **Build System Evolution**: Migrated from tsup to vite for better CSS handling and bundling
+2. **Type Safety Enhancement**: Systematic replacement of string literals with TypeScript enums across all components
+3. **Developer Experience**: Improved Storybook configuration with proper TypeScript path resolution
+4. **Documentation**: Comprehensive README updates with accurate installation and usage instructions
+5. **Code Quality**: Enhanced component typing patterns and consistent enum usage
+
+### Components Enhanced
+
+- Accordion, Avatar, Badge, Button, Card, Chip, ComboBox, Flyout, Footer, Header, Icon, Input, Modal, MultiSelect, Page, ProgressBar, Radio, Slider, Switch, Toggle
+
+### Technical Infrastructure
+
+- **Build**: Vite-based build system with proper CSS extraction
+- **Testing**: Jest and Vitest configuration
+- **Documentation**: Storybook with TypeScript support and path mapping
+- **Type Safety**: Comprehensive enum-based typing system
+- **Styling**: SCSS-based styling with proper bundling and export configuration
+
+---
+
 # Changelog
 
 All notable changes to this project will be documented in this file.
@@ -82,31 +113,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## Version History Summary
-
-This changelog covers the rapid development and stabilization of the Quick-UI React component library from November 16-18, 2025. The project went through several iterations to establish proper build tooling, CSS handling, and type safety:
-
-- **[1.0.1]**: Initial release with basic functionality
-- **[1.0.2] and [1.0.3]**: Build system improvements and CSS compilation fixes
-- **[1.0.4]**: Major enhancement focusing on type safety and Storybook configuration
-- **[1.0.5]**: Final polish with conflict resolution and cleanup
-
-### Key Improvements Across Versions
-
-1. **Build System Evolution**: Migrated from tsup to vite for better CSS handling and bundling
-2. **Type Safety Enhancement**: Systematic replacement of string literals with TypeScript enums across all components
-3. **Developer Experience**: Improved Storybook configuration with proper TypeScript path resolution
-4. **Documentation**: Comprehensive README updates with accurate installation and usage instructions
-5. **Code Quality**: Enhanced component typing patterns and consistent enum usage
-
-### Components Enhanced
-
-- Accordion, Avatar, Badge, Button, Card, Chip, ComboBox, Flyout, Footer, Header, Icon, Input, Modal, MultiSelect, Page, ProgressBar, Radio, Slider, Switch, Toggle
-
-### Technical Infrastructure
-
-- **Build**: Vite-based build system with proper CSS extraction
-- **Testing**: Jest and Vitest configuration
-- **Documentation**: Storybook with TypeScript support and path mapping
-- **Type Safety**: Comprehensive enum-based typing system
-- **Styling**: SCSS-based styling with proper bundling and export configuration
+[1.0.5]: https://github.com/silasechegini/Quick-UI/compare/v1.0.4...v1.0.5
+[1.0.4]: https://github.com/silasechegini/Quick-UI/compare/v1.0.3...v1.0.4
+[1.0.3]: https://github.com/silasechegini/Quick-UI/compare/v1.0.2...v1.0.3
+[1.0.2]: https://github.com/silasechegini/Quick-UI/compare/v1.0.1...v1.0.2
+[1.0.1]: https://github.com/silasechegini/Quick-UI/releases/tag/v1.0.1
