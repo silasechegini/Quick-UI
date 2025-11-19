@@ -180,7 +180,6 @@ describe("Toggle Component", () => {
       // but expect no change because the input is disabled
       try {
         await user.click(label);
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch {
         // If clicking is prevented by pointer-events, that's expected for disabled elements
       }
