@@ -1,3 +1,4 @@
+import { describe, it, expect } from "vitest";
 import { clamp, roundToStep, valueToPercent } from "../math";
 
 describe("math utilities", () => {
