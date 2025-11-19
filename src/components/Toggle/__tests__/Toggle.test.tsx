@@ -178,12 +178,7 @@ describe("Toggle Component", () => {
 
       // Try to click the label (which should be safe even for disabled elements)
       // but expect no change because the input is disabled
-      try {
-        await user.click(label);
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      } catch (_e) {
-        // If clicking is prevented by pointer-events, that's expected for disabled elements
-      }
+      await user.click(label);
 
       expect(handleChange).not.toHaveBeenCalled();
       expect(input).not.toBeChecked(); // Should remain unchecked
