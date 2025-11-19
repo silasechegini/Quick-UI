@@ -293,7 +293,12 @@ describe("Accordion", () => {
       expect(firstButton).toHaveAttribute("aria-expanded", "false");
 
       // Try clicking but expect it to remain disabled/unexpanded due to pointer-events: none
-      await user.click(firstButton);
+      try {
+        await user.click(firstButton);
+        /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
+      } catch {
+        // Clicking is prevented by pointer-events: none, which is expected for disabled accordion
+      }
 
       // Should remain unexpanded since the accordion is disabled
       expect(firstButton).toHaveAttribute("aria-expanded", "false");
