@@ -37,7 +37,7 @@ export type AccordionVariant =
 export type AccordionSize =
   (typeof ACCORDION_SIZES)[keyof typeof ACCORDION_SIZES];
 export type ExpandMode = (typeof EXPAND_MODES)[keyof typeof EXPAND_MODES];
-export type IconPosition =
+export type AccordionIconPosition =
   (typeof ACCORDION_ICON_POSITIONS)[keyof typeof ACCORDION_ICON_POSITIONS];
 
 /**
@@ -84,7 +84,7 @@ export interface AccordionProps
   /** Custom expand/collapse icon */
   expandIcon?: ReactNode;
   /** Position of the expand icon */
-  iconPosition?: IconPosition;
+  iconPosition?: AccordionIconPosition;
   /** Whether all items are disabled */
   disabled?: boolean;
   /** Whether to show dividers between items */
@@ -127,7 +127,7 @@ export interface AccordionItemProps
   /** Custom expand icon */
   expandIcon?: ReactNode;
   /** Icon position */
-  iconPosition: IconPosition;
+  iconPosition: AccordionIconPosition;
   /** Global disabled state */
   disabled?: boolean;
   /** Whether to elevate when expanded */
