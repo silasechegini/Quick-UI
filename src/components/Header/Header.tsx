@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { HeaderProps } from "./Header.types";
+import { HEADER_POSITIONS, HEADER_VARIANTS, HeaderProps } from "./Header.types";
 import {
   HeaderBrand,
   HeaderNavigation,
@@ -31,8 +31,8 @@ import styles from "./styles.module.scss";
  * @returns JSX.Element representing the header component
  */
 const Header: FC<HeaderProps> = ({
-  variant = "default",
-  position = "static",
+  variant = HEADER_VARIANTS.DEFAULT,
+  position = HEADER_POSITIONS.STATIC,
   logo,
   brandName,
   onBrandClick,

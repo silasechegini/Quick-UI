@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import { FocusTrap } from "focus-trap-react";
 import styles from "./styles.module.scss";
-import { FlyoutProps } from "./Flyout.types";
+import { FLYOUT_ROLES, FlyoutProps } from "./Flyout.types";
 import FlyoutHeader from "./components/FlyoutHeader";
 import FlyoutBody from "./components/FlyoutBody";
 import FlyoutFooter from "./components/FlyoutFooter";
@@ -29,7 +29,7 @@ import FlyoutFooter from "./components/FlyoutFooter";
  * @returns JSX.Element representing the flyout component
  */
 const Flyout = ({
-  role = "dialog",
+  role = FLYOUT_ROLES.DIALOG,
   isOpen,
   onClose,
   width = "400px",

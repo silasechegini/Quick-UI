@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { ChipProps } from "./Chip.types";
+import { CHIP_SIZES, CHIP_VARIANTS, ChipProps } from "./Chip.types";
 import { Button, BUTTON_SIZES, BUTTON_VARIANTS } from "@components/Button";
 import { Icon } from "@components/Icon";
 import { buildClassNames } from "@utils/classNames";
@@ -57,8 +57,8 @@ const Chip: React.FC<ChipProps> = ({
         [
           styles.chipContainer,
           styles.chip,
-          styles[variant || "ghost"],
-          styles[size || "medium"],
+          styles[variant || CHIP_VARIANTS.GHOST],
+          styles[size || CHIP_SIZES.MEDIUM],
         ],
         {
           [styles.chip_with_icon]: !!(leadingIcon || trailingIcon),
@@ -80,11 +80,11 @@ const Chip: React.FC<ChipProps> = ({
 
   const iconSize = useMemo(() => {
     switch (size) {
-      case "small":
+      case CHIP_SIZES.SMALL:
         return 16;
-      case "large":
+      case CHIP_SIZES.LARGE:
         return 24;
-      case "medium":
+      case CHIP_SIZES.MEDIUM:
       default:
         return 20;
     }

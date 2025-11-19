@@ -4,6 +4,7 @@ import { DebouncedInput } from "../src/components/Input";
 import { useState } from "react";
 import styles from "./input.module.scss";
 import { ICONS } from "@assets/iconType";
+import { INPUT_VARIANTS } from "@components/Input/Input.types";
 
 const meta = {
   title: "Components/DebouncedInput",
@@ -175,10 +176,10 @@ export const ClearableFormValidation: Story = {
           onBlur={validateEmail}
           variant={
             isValid === false
-              ? "error"
+              ? INPUT_VARIANTS.ERROR
               : isValid === true
-                ? "success"
-                : "primary"
+                ? INPUT_VARIANTS.SUCCESS
+                : INPUT_VARIANTS.PRIMARY
           }
           error={isValid === false}
           errorMessage={

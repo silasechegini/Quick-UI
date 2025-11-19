@@ -1,6 +1,30 @@
 import type { IconKey, ICONS } from "@assets/iconType";
 import { ReactNode } from "react";
 
+/**
+ * Header component type definitions
+ */
+
+/** Enums for Header component variants and positions */
+export enum HEADER_VARIANTS {
+  DEFAULT = "default",
+  MINIMAL = "minimal",
+  COMPACT = "compact",
+}
+
+export enum HEADER_POSITIONS {
+  STATIC = "static",
+  STICKY = "sticky",
+  FIXED = "fixed",
+}
+
+/** Type aliases for Header component props */
+export type HeaderVariant =
+  (typeof HEADER_VARIANTS)[keyof typeof HEADER_VARIANTS];
+export type HeaderPosition =
+  (typeof HEADER_POSITIONS)[keyof typeof HEADER_POSITIONS];
+
+/** User information */
 export interface User {
   name: string;
   email?: string;
@@ -8,6 +32,7 @@ export interface User {
   role?: string;
 }
 
+/** Hamburger menu item configuration */
 export interface HamburgerMenuItem {
   id: string;
   label: string;
@@ -17,9 +42,7 @@ export interface HamburgerMenuItem {
   divider?: boolean; // Add a divider after this item
 }
 
-export type HeaderVariant = "default" | "minimal" | "compact";
-export type HeaderPosition = "static" | "sticky" | "fixed";
-
+/** HeaderProps - Props for the Header component */
 export interface HeaderProps {
   /**
    * Visual variant of the header
