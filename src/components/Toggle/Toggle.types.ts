@@ -1,6 +1,16 @@
 import { InputHTMLAttributes } from "react";
 
-export type ToggleSize = "small" | "medium" | "large";
+/* Toggle component type definitions */
+
+/** Enums for Toggle component props */
+export enum TOGGLE_SIZES {
+  SMALL = "small",
+  MEDIUM = "medium",
+  LARGE = "large",
+}
+
+/** Type aliases for Toggle component props */
+export type ToggleSize = (typeof TOGGLE_SIZES)[keyof typeof TOGGLE_SIZES];
 
 export type ToggleProps = {
   /**

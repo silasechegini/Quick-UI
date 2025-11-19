@@ -1,10 +1,37 @@
 import { InputHTMLAttributes } from "react";
 import { IconKey } from "@assets/iconType";
 
-export type InputVariant = "primary" | "secondary" | "error" | "success";
+/**
+ * Enums and types for Input component variants and sizes
+ */
 
-export type InputSize = "xs" | "s" | "m" | "l" | "xl";
+/** Enums for Input component variants and sizes */
+export enum INPUT_VARIANTS {
+  PRIMARY = "primary",
+  SECONDARY = "secondary",
+  ERROR = "error",
+  SUCCESS = "success",
+}
 
+export enum INPUT_SIZES {
+  XS = "xs",
+  S = "s",
+  M = "m",
+  L = "l",
+  XL = "xl",
+}
+
+export enum INPUT_CONFIGURATIONS {
+  SINGLE = "single",
+  MULTI_SELECT = "multi-select",
+}
+
+/** Type aliases for Input component props */
+export type InputVariant = (typeof INPUT_VARIANTS)[keyof typeof INPUT_VARIANTS];
+export type InputSize = (typeof INPUT_SIZES)[keyof typeof INPUT_SIZES];
+export type InputConfiguration =
+  (typeof INPUT_CONFIGURATIONS)[keyof typeof INPUT_CONFIGURATIONS];
+/** Props for the Input component */
 export interface InputProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
   /**
@@ -81,7 +108,7 @@ export interface InputProps
   /**
    * Configuration for the input
    */
-  configuration?: "multi-select";
+  configuration?: InputConfiguration;
 }
 
 export interface DebouncedInputProps extends Omit<InputProps, "onChange"> {
@@ -95,9 +122,4 @@ export interface DebouncedInputProps extends Omit<InputProps, "onChange"> {
    * @default 300
    */
   debounceDelay?: number;
-}
-
-export enum INPUT_CONFIGURATIONS {
-  SINGLE = "single",
-  MULTI_SELECT = "multi-select",
 }

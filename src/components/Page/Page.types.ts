@@ -1,9 +1,37 @@
 import { ReactNode } from "react";
 import { HeaderProps } from "../Header/Header.types";
 
-export type PageVariant = "default" | "centered" | "fullwidth" | "sidebar";
-export type PageSpacing = "compact" | "normal" | "spacious";
+/**
+ * Page component type definitions
+ */
 
+/** Enums for Page component variants and spacings */
+export enum PAGE_VARIANTS {
+  DEFAULT = "default",
+  CENTERED = "centered",
+  FULLWIDTH = "fullwidth",
+  SIDEBAR = "sidebar",
+}
+
+export enum PAGE_SPACINGS {
+  COMPACT = "compact",
+  NORMAL = "normal",
+  SPACIOUS = "spacious",
+}
+
+export enum PAGE_SIDEBAR_POSITIONS {
+  LEFT = "left",
+  RIGHT = "right",
+}
+
+/** Type aliases for Page component props */
+export type PageVariant = (typeof PAGE_VARIANTS)[keyof typeof PAGE_VARIANTS];
+export type PageSpacing = (typeof PAGE_SPACINGS)[keyof typeof PAGE_SPACINGS];
+export type PageSidebarPosition =
+  (typeof PAGE_SIDEBAR_POSITIONS)[keyof typeof PAGE_SIDEBAR_POSITIONS];
+
+/** PageHeaderConfig - Configuration for the page header
+ */
 export interface PageHeaderConfig extends Omit<HeaderProps, "testId"> {
   /**
    * Whether to show the header
@@ -19,7 +47,7 @@ export interface PageSidebarConfig {
   /**
    * Sidebar position
    */
-  position?: "left" | "right";
+  position?: PageSidebarPosition;
   /**
    * Sidebar width
    */

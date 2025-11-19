@@ -1,5 +1,5 @@
 import React, { useRef, useCallback } from "react";
-import { RangeSliderProps } from "./Slider.types";
+import { RangeSliderProps, SLIDER_SIZES } from "./Slider.types";
 import { useSlider } from "./hooks/useSlider";
 import { valueToPercent } from "./utils/math";
 import styles from "./styles.module.scss";
@@ -9,7 +9,7 @@ const RangeSlider: React.FC<RangeSliderProps> = ({
   min = 0,
   max = 100,
   step = 1,
-  size = "medium",
+  size = SLIDER_SIZES.MEDIUM,
   value: controlledValue,
   defaultValue = [20, 80],
   onChange,

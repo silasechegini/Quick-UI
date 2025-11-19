@@ -1,5 +1,5 @@
 import React, { forwardRef, useState, useId } from "react";
-import { ToggleProps } from "./Toggle.types";
+import { TOGGLE_SIZES, ToggleProps } from "./Toggle.types";
 import { combineClasses } from "../../utils";
 import styles from "./styles.module.scss";
 import { Icon } from "@components/Icon";
@@ -27,7 +27,7 @@ import { ICONS } from "@assets/iconType";
 export const Toggle = forwardRef<HTMLInputElement, ToggleProps>(
   (
     {
-      size = "medium",
+      size = TOGGLE_SIZES.MEDIUM,
       checked,
       defaultChecked = false,
       disabled = false,
