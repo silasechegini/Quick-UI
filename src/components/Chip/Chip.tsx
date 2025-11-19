@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { CHIP_SIZES, ChipProps } from "./Chip.types";
+import { CHIP_SIZES, CHIP_VARIANTS, ChipProps } from "./Chip.types";
 import { Button, BUTTON_SIZES, BUTTON_VARIANTS } from "@components/Button";
 import { Icon } from "@components/Icon";
 import { buildClassNames } from "@utils/classNames";
@@ -57,7 +57,7 @@ const Chip: React.FC<ChipProps> = ({
         [
           styles.chipContainer,
           styles.chip,
-          styles[variant || "ghost"],
+          styles[variant || CHIP_VARIANTS.GHOST],
           styles[size || CHIP_SIZES.MEDIUM],
         ],
         {
