@@ -1,12 +1,9 @@
 {
+  "extends": "./tsconfig.json",
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
     "lib": ["DOM", "ESNext"],
-    "declaration": true,
-    "declarationDir": "dist/types",
-    "declarationMap": true,
-    "outDir": "dist",
     "jsx": "react-jsx",
     "moduleResolution": "Node",
     "esModuleInterop": true,
@@ -17,11 +14,10 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "noImplicitAny": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noEmit": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noEmit": true,
     "baseUrl": ".",
-    "rootDir": "./src",
     "paths": {
       "@assets/*": ["src/assets/*"],
       "@components/*": ["src/components/*"],
@@ -29,18 +25,17 @@
       "@styles/*": ["src/styles/*"],
       "@*": ["src/*"]
     },
-    "typeRoots": ["./node_modules/@types", "./src/types"]
+    "typeRoots": ["./node_modules/@types", "./src/types"],
+    "types": ["vitest/globals", "@testing-library/jest-dom"]
   },
-  "include": ["src/**/*", "src/types/svg.d.ts", "src/types/scss.d.ts"],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "**/*.stories.*",
+  "include": [
+    "src/**/*",
+    "src/types/svg.d.ts",
+    "src/types/scss.d.ts",
+    "vitest.shims.d.ts",
+    "vitest.globals.d.ts",
     "**/*.test.*",
-    "**/*.spec.*",
-    "**/__tests__/**",
-    "**/setupTests.ts",
-    "**/testUtils/**",
-    "**/documentation/**"
-  ]
+    "**/*.spec.*"
+  ],
+  "exclude": ["node_modules", "dist", "**/*.stories.*", "**/documentation/**"]
 }
