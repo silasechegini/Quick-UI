@@ -77,8 +77,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Initial stable release
-- Fixed SCSS to CSS bundling
-- Proper CSS publishing configuration
+- Added SCSS to CSS bundling support
+- Added CSS publishing configuration
 - Initial tsup configuration for building
 - Basic Storybook setup
 - Package configuration for npm publishing
@@ -89,10 +89,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 This changelog covers the rapid development and stabilization of the Quick-UI React component library from November 16-18, 2025. The project went through several iterations to establish proper build tooling, CSS handling, and type safety:
 
-- **v1.0.1**: Initial release with basic functionality
-- **v1.0.2-v1.0.3**: Build system improvements and CSS compilation fixes
-- **v1.0.4**: Major enhancement focusing on type safety and Storybook configuration
-- **v1.0.5**: Final polish with conflict resolution and cleanup
+- **[1.0.1]**: Initial release with basic functionality
+- **[1.0.2]-[1.0.3]**: Build system improvements and CSS compilation fixes
+- **[1.0.4]**: Major enhancement focusing on type safety and Storybook configuration
+- **[1.0.5]**: Final polish with conflict resolution and cleanup
 
 ### Key Improvements Across Versions
 
