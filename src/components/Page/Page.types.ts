@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import { HeaderProps } from "../Header/Header.types";
 
 /**
- * Type aliases for Page component props
+ * Page component type definitions
  */
 
 /** Enums for Page component variants and spacings */
