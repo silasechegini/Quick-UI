@@ -1,8 +1,9 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { vi } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { Toggle } from "../Toggle";
 import userEvent from "@testing-library/user-event";
 import { createRef } from "react";
+import { TOGGLE_SIZES } from "../Toggle.types";
 
 describe("Toggle Component", () => {
   describe("Basic Rendering", () => {
@@ -31,21 +32,25 @@ describe("Toggle Component", () => {
     });
 
     it("should apply size variants correctly", () => {
-      const { getByTestId, unmount } = render(<Toggle size="small" />);
+      const { getByTestId, unmount } = render(
+        <Toggle size={TOGGLE_SIZES.SMALL} />,
+      );
       const smallSlider = getByTestId("toggle-slider");
       expect(smallSlider).toBeTruthy();
       expect(smallSlider).toHaveAttribute("data-size", "small");
       unmount();
 
       const { getByTestId: getByTestIdMedium, unmount: unmountMedium } = render(
-        <Toggle size="medium" />,
+        <Toggle size={TOGGLE_SIZES.MEDIUM} />,
       );
       const mediumSlider = getByTestIdMedium("toggle-slider");
       expect(mediumSlider).toBeTruthy();
       expect(mediumSlider).toHaveAttribute("data-size", "medium");
       unmountMedium();
 
-      const { getByTestId: getByTestIdLarge } = render(<Toggle size="large" />);
+      const { getByTestId: getByTestIdLarge } = render(
+        <Toggle size={TOGGLE_SIZES.LARGE} />,
+      );
       const largeSlider = getByTestIdLarge("toggle-slider");
       expect(largeSlider).toBeTruthy();
       expect(largeSlider).toHaveAttribute("data-size", "large");
@@ -68,10 +73,12 @@ describe("Toggle Component", () => {
     it("should call onChange when clicked", async () => {
       const handleChange = vi.fn();
       const user = userEvent.setup();
-      render(<Toggle checked={false} onChange={handleChange} />);
+      render(
+        <Toggle checked={false} onChange={handleChange} label="Test Toggle" />,
+      );
 
-      const input = screen.getByRole("checkbox");
-      await user.click(input);
+      const slider = screen.getByTestId("toggle-slider");
+      await user.click(slider);
 
       expect(handleChange).toHaveBeenCalledTimes(1);
       expect(handleChange).toHaveBeenCalledWith(true, expect.any(Object));
@@ -80,10 +87,13 @@ describe("Toggle Component", () => {
     it("should not update internal state when controlled", async () => {
       const handleChange = vi.fn();
       const user = userEvent.setup();
-      render(<Toggle checked={false} onChange={handleChange} />);
+      render(
+        <Toggle checked={false} onChange={handleChange} label="Test Toggle" />,
+      );
 
       const input = screen.getByRole("checkbox");
-      await user.click(input);
+      const slider = screen.getByTestId("toggle-slider");
+      await user.click(slider);
 
       // Component should remain unchecked as it's controlled
       expect(input).not.toBeChecked();
@@ -108,29 +118,36 @@ describe("Toggle Component", () => {
 
     it("should toggle state when clicked", async () => {
       const user = userEvent.setup();
-      render(<Toggle defaultChecked={false} />);
+      render(<Toggle defaultChecked={false} label="Test Toggle" />);
       const input = screen.getByRole("checkbox");
+      const slider = screen.getByTestId("toggle-slider");
 
       expect(input).not.toBeChecked();
 
-      await user.click(input);
+      await user.click(slider);
       expect(input).toBeChecked();
 
-      await user.click(input);
+      await user.click(slider);
       expect(input).not.toBeChecked();
     });
 
     it("should call onChange with new state", async () => {
       const handleChange = vi.fn();
       const user = userEvent.setup();
-      render(<Toggle defaultChecked={false} onChange={handleChange} />);
+      render(
+        <Toggle
+          defaultChecked={false}
+          onChange={handleChange}
+          label="Test Toggle"
+        />,
+      );
 
-      const input = screen.getByRole("checkbox");
-      await user.click(input);
+      const slider = screen.getByTestId("toggle-slider");
+      await user.click(slider);
 
       expect(handleChange).toHaveBeenCalledWith(true, expect.any(Object));
 
-      await user.click(input);
+      await user.click(slider);
       expect(handleChange).toHaveBeenCalledWith(false, expect.any(Object));
     });
   });
@@ -145,13 +162,31 @@ describe("Toggle Component", () => {
     it("should not respond to clicks when disabled", async () => {
       const handleChange = vi.fn();
       const user = userEvent.setup();
-      render(<Toggle disabled={true} onChange={handleChange} />);
+      render(
+        <Toggle
+          disabled={true}
+          onChange={handleChange}
+          label="Disabled Toggle"
+        />,
+      );
 
       const input = screen.getByRole("checkbox");
-      await user.click(input);
+      const label = screen.getByLabelText("Disabled Toggle");
 
+      // Verify element is disabled
       expect(input).toBeDisabled();
+
+      // Try to click the label (which should be safe even for disabled elements)
+      // but expect no change because the input is disabled
+      try {
+        await user.click(label);
+      } catch (e) {
+        // If clicking is prevented by pointer-events, that's expected for disabled elements
+        console.log(e);
+      }
+
       expect(handleChange).not.toHaveBeenCalled();
+      expect(input).not.toBeChecked(); // Should remain unchecked
     });
     it("should apply disabled class to container", () => {
       const { container } = render(<Toggle disabled={true} />);
@@ -304,13 +339,19 @@ describe("Toggle Component", () => {
     it("should handle rapid clicks", async () => {
       const handleChange = vi.fn();
       const user = userEvent.setup();
-      render(<Toggle defaultChecked={false} onChange={handleChange} />);
+      render(
+        <Toggle
+          defaultChecked={false}
+          onChange={handleChange}
+          label="Test Toggle"
+        />,
+      );
 
-      const input = screen.getByRole("checkbox");
+      const slider = screen.getByTestId("toggle-slider");
 
-      await user.click(input);
-      await user.click(input);
-      await user.click(input);
+      await user.click(slider);
+      await user.click(slider);
+      await user.click(slider);
 
       expect(handleChange).toHaveBeenCalledTimes(3);
     });

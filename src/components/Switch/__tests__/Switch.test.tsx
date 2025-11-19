@@ -1,7 +1,12 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { vi } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { Switch } from "../Switch";
 import { ICONS } from "@assets/iconType";
+import {
+  SWITCH_LABEL_POSITIONS,
+  SWITCH_SIZES,
+  SWITCH_VARIANTS,
+} from "../Switch.types";
 
 describe("Switch Component", () => {
   describe("Basic Rendering", () => {
@@ -19,7 +24,10 @@ describe("Switch Component", () => {
 
     it("should render with label on the left", () => {
       const { container } = render(
-        <Switch label="Dark mode" labelPosition="left" />,
+        <Switch
+          label="Dark mode"
+          labelPosition={SWITCH_LABEL_POSITIONS.LEFT}
+        />,
       );
       expect(screen.getByText("Dark mode")).toBeInTheDocument();
       const label = container.querySelector("label");
@@ -32,19 +40,25 @@ describe("Switch Component", () => {
     });
 
     it("should apply size variants correctly", () => {
-      const { container: smallContainer } = render(<Switch size="small" />);
+      const { container: smallContainer } = render(
+        <Switch size={SWITCH_SIZES.SMALL} />,
+      );
       const smallSwitch = smallContainer.querySelector(
         "span[class*='switchWrapper']",
       );
       expect(smallSwitch?.className).toMatch(/small/);
 
-      const { container: mediumContainer } = render(<Switch size="medium" />);
+      const { container: mediumContainer } = render(
+        <Switch size={SWITCH_SIZES.MEDIUM} />,
+      );
       const mediumSwitch = mediumContainer.querySelector(
         "span[class*='switchWrapper']",
       );
       expect(mediumSwitch?.className).toMatch(/medium/);
 
-      const { container: largeContainer } = render(<Switch size="large" />);
+      const { container: largeContainer } = render(
+        <Switch size={SWITCH_SIZES.LARGE} />,
+      );
       const largeSwitch = largeContainer.querySelector(
         "span[class*='switchWrapper']",
       );
@@ -53,7 +67,7 @@ describe("Switch Component", () => {
 
     it("should apply variant styles correctly", () => {
       const { container: primaryContainer } = render(
-        <Switch variant="primary" />,
+        <Switch variant={SWITCH_VARIANTS.PRIMARY} />,
       );
       const primarySwitch = primaryContainer.querySelector(
         "span[class*='switchWrapper']",
@@ -61,7 +75,7 @@ describe("Switch Component", () => {
       expect(primarySwitch?.className).toMatch(/primary/);
 
       const { container: secondaryContainer } = render(
-        <Switch variant="secondary" />,
+        <Switch variant={SWITCH_VARIANTS.SECONDARY} />,
       );
       const secondarySwitch = secondaryContainer.querySelector(
         "span[class*='switchWrapper']",
@@ -69,7 +83,7 @@ describe("Switch Component", () => {
       expect(secondarySwitch?.className).toMatch(/secondary/);
 
       const { container: successContainer } = render(
-        <Switch variant="success" />,
+        <Switch variant={SWITCH_VARIANTS.SUCCESS} />,
       );
       const successSwitch = successContainer.querySelector(
         "span[class*='switchWrapper']",
@@ -77,7 +91,7 @@ describe("Switch Component", () => {
       expect(successSwitch?.className).toMatch(/success/);
 
       const { container: dangerContainer } = render(
-        <Switch variant="danger" />,
+        <Switch variant={SWITCH_VARIANTS.DANGER} />,
       );
       const dangerSwitch = dangerContainer.querySelector(
         "span[class*='switchWrapper']",
