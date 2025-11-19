@@ -126,7 +126,8 @@ describe("PlaceholderAvatar Renderer", () => {
       render(<PlaceholderAvatar {...props} />);
 
       const avatar = screen.getByRole("img");
-      // RGB values with 'dd' appended are invalid CSS, so no style should be applied
+      // Should not apply a gradient background style when given an RGB color value,
+      // because appending 'dd' to an RGB value is invalid CSS and no gradient should be rendered.
       expect(avatar).not.toHaveAttribute(
         "style",
         expect.stringContaining("linear-gradient"),

@@ -295,9 +295,9 @@ describe("Accordion", () => {
       // Try clicking but expect it to remain disabled/unexpanded due to pointer-events: none
       try {
         await user.click(firstButton);
+        /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
       } catch (e) {
         // Clicking is prevented by pointer-events: none, which is expected for disabled accordion
-        console.log(e);
       }
 
       // Should remain unexpanded since the accordion is disabled
