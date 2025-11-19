@@ -62,12 +62,7 @@ export default [
 
   // Node.js/CommonJS files configuration
   {
-    files: [
-      "jest.config.js",
-      "__mocks__/**/*.js",
-      "*.config.js",
-      "scripts/**/*.js",
-    ],
+    files: ["__mocks__/**/*.js", "*.config.js", "scripts/**/*.js"],
     languageOptions: {
       ecmaVersion: 2022,
       sourceType: "commonjs",

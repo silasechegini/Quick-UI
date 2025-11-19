@@ -1,4 +1,5 @@
 import { renderHook } from "@testing-library/react";
+import { describe, it, expect } from "vitest";
 import { useSliderSizeClasses } from "../useSliderSizeClasses";
 
 // Mock styles object that mimics CSS modules

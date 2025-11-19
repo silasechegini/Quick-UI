@@ -13,6 +13,7 @@ export default defineConfig({
   css: {
     modules: {
       localsConvention: "camelCase",
+      generateScopedName: "[name]__[local]___[hash:base64:5]",
     },
     preprocessorOptions: {
       scss: {
@@ -30,6 +31,10 @@ export default defineConfig({
     environment: "jsdom",
     setupFiles: ["./src/setupTests.ts"],
     globals: true,
+    css: true,
+    typecheck: {
+      tsconfig: "./tsconfig.test.json",
+    },
   },
   resolve: {
     alias: {

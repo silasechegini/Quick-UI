@@ -71,7 +71,10 @@ describe("ImageAvatar Renderer", () => {
       render(<ImageAvatar {...props} />);
 
       const avatar = screen.getByLabelText("Test avatar");
-      expect(avatar).toHaveStyle("border: 2px solid red");
+      expect(avatar).toHaveAttribute(
+        "style",
+        expect.stringContaining("border: 2px solid red"),
+      );
     });
 
     it("should forward additional props", () => {
@@ -283,8 +286,14 @@ describe("ImageAvatar Renderer", () => {
       render(<ImageAvatar {...props} />);
 
       const avatar = screen.getByLabelText("Test avatar");
-      expect(avatar).toHaveStyle("border: 2px solid red");
-      expect(avatar).toHaveStyle("padding: 10px");
+      expect(avatar).toHaveAttribute(
+        "style",
+        expect.stringContaining("border: 2px solid red"),
+      );
+      expect(avatar).toHaveAttribute(
+        "style",
+        expect.stringContaining("padding: 10px"),
+      );
     });
   });
 });

@@ -1,6 +1,7 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
+import { describe, it, expect, vi } from "vitest";
 import { Accordion } from "../Accordion";
 import {
   AccordionItemData,
@@ -182,7 +183,7 @@ describe("Accordion", () => {
 
     it("should call onChange when item is toggled", async () => {
       const user = userEvent.setup();
-      const handleChange = jest.fn();
+      const handleChange = vi.fn();
 
       render(
         <Accordion items={mockItems} expanded={[]} onChange={handleChange} />,
@@ -287,8 +288,18 @@ describe("Accordion", () => {
       render(<Accordion items={mockItems} disabled={true} />);
 
       const firstButton = screen.getByRole("button", { name: /first item/i });
-      await user.click(firstButton);
 
+      // Verify the button starts unexpanded
+      expect(firstButton).toHaveAttribute("aria-expanded", "false");
+
+      // Try clicking but expect it to remain disabled/unexpanded due to pointer-events: none
+      try {
+        await user.click(firstButton);
+      } catch {
+        // Clicking is prevented by pointer-events: none, which is expected for disabled accordion
+      }
+
+      // Should remain unexpanded since the accordion is disabled
       expect(firstButton).toHaveAttribute("aria-expanded", "false");
     });
   });
@@ -343,7 +354,7 @@ describe("Accordion", () => {
   describe("Callbacks", () => {
     it("should call onBeforeExpand before expanding", async () => {
       const user = userEvent.setup();
-      const onBeforeExpand = jest.fn();
+      const onBeforeExpand = vi.fn();
 
       render(<Accordion items={mockItems} onBeforeExpand={onBeforeExpand} />);
 
@@ -355,7 +366,7 @@ describe("Accordion", () => {
 
     it("should call onAfterExpand after expanding", async () => {
       const user = userEvent.setup();
-      const onAfterExpand = jest.fn();
+      const onAfterExpand = vi.fn();
 
       render(
         <Accordion
@@ -378,7 +389,7 @@ describe("Accordion", () => {
 
     it("should call onBeforeCollapse before collapsing", async () => {
       const user = userEvent.setup();
-      const onBeforeCollapse = jest.fn();
+      const onBeforeCollapse = vi.fn();
 
       render(
         <Accordion

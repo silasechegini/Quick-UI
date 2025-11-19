@@ -37,7 +37,10 @@ describe("Avatar Component", () => {
       const customStyle = { border: "2px solid red" };
       render(<Avatar style={customStyle} />);
       const avatar = screen.getByRole("img");
-      expect(avatar).toHaveStyle("border: 2px solid red");
+      expect(avatar).toHaveAttribute(
+        "style",
+        expect.stringContaining("border: 2px solid red"),
+      );
     });
 
     it("should render with custom aria label", () => {

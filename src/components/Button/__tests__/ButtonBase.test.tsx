@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { vi } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import ButtonBase from "../ButtonBase";
 import {
   BUTTON_VARIANTS,

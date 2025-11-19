@@ -1,4 +1,5 @@
 import { renderHook, act } from "@testing-library/react";
+import { describe, it, expect, vi } from "vitest";
 import { useSlider } from "../useSlider";
 
 describe("useSlider", () => {
@@ -67,7 +68,7 @@ describe("useSlider", () => {
     });
 
     it("should call onChange callback when value updates", () => {
-      const onChange = jest.fn();
+      const onChange = vi.fn();
       const { result } = renderHook(() =>
         useSlider<number>({
           min: 0,
@@ -86,7 +87,7 @@ describe("useSlider", () => {
     });
 
     it("should clamp values to min/max bounds", () => {
-      const onChange = jest.fn();
+      const onChange = vi.fn();
       const { result } = renderHook(() =>
         useSlider<number>({
           min: 0,
@@ -111,7 +112,7 @@ describe("useSlider", () => {
     });
 
     it("should round values to nearest step", () => {
-      const onChange = jest.fn();
+      const onChange = vi.fn();
       const { result } = renderHook(() =>
         useSlider<number>({
           min: 0,
@@ -136,7 +137,7 @@ describe("useSlider", () => {
     });
 
     it("should handle decimal steps correctly", () => {
-      const onChange = jest.fn();
+      const onChange = vi.fn();
       const { result } = renderHook(() =>
         useSlider<number>({
           min: 0,
@@ -219,7 +220,7 @@ describe("useSlider", () => {
     });
 
     it("should call onChange callback with range value", () => {
-      const onChange = jest.fn();
+      const onChange = vi.fn();
       const { result } = renderHook(() =>
         useSlider({
           min: 0,
@@ -238,7 +239,7 @@ describe("useSlider", () => {
     });
 
     it("should clamp both range values to min/max bounds", () => {
-      const onChange = jest.fn();
+      const onChange = vi.fn();
       const { result } = renderHook(() =>
         useSlider({
           min: 0,
@@ -257,7 +258,7 @@ describe("useSlider", () => {
     });
 
     it("should round both range values to nearest step", () => {
-      const onChange = jest.fn();
+      const onChange = vi.fn();
       const { result } = renderHook(() =>
         useSlider({
           min: 0,
@@ -276,7 +277,7 @@ describe("useSlider", () => {
     });
 
     it("should handle overlapping range values", () => {
-      const onChange = jest.fn();
+      const onChange = vi.fn();
       const { result } = renderHook(() =>
         useSlider({
           min: 0,
@@ -317,7 +318,7 @@ describe("useSlider", () => {
     });
 
     it("should handle step larger than range", () => {
-      const onChange = jest.fn();
+      const onChange = vi.fn();
       const { result } = renderHook(() =>
         useSlider<number>({
           min: 0,
@@ -337,7 +338,7 @@ describe("useSlider", () => {
     });
 
     it("should handle negative ranges", () => {
-      const onChange = jest.fn();
+      const onChange = vi.fn();
       const { result } = renderHook(() =>
         useSlider<number>({
           min: -100,
@@ -356,7 +357,7 @@ describe("useSlider", () => {
     });
 
     it("should memoize updateValue function properly", () => {
-      const onChange = jest.fn();
+      const onChange = vi.fn();
       const { result, rerender } = renderHook(
         ({ min, max, step, defaultValue, controlledValue, onChange }) =>
           useSlider<number>({

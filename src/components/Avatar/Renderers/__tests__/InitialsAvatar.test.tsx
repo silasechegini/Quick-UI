@@ -182,9 +182,18 @@ describe("InitialsAvatar Renderer", () => {
       render(<InitialsAvatar {...props} />);
 
       const avatar = screen.getByRole("img");
-      expect(avatar).toHaveStyle("border: 2px solid red");
-      expect(avatar).toHaveStyle("padding: 10px");
-      expect(avatar).toHaveStyle("background-color: #0000FF");
+      expect(avatar).toHaveAttribute(
+        "style",
+        expect.stringContaining("border: 2px solid red"),
+      );
+      expect(avatar).toHaveAttribute(
+        "style",
+        expect.stringContaining("padding: 10px"),
+      );
+      expect(avatar).toHaveAttribute(
+        "style",
+        expect.stringContaining("background-color: rgb(0, 0, 255)"),
+      );
     });
 
     it("should custom style properties override generated ones", () => {
@@ -200,8 +209,14 @@ describe("InitialsAvatar Renderer", () => {
 
       const avatar = screen.getByRole("img");
       // Custom style should be applied
-      expect(avatar).toHaveStyle("border: 2px solid red");
-      expect(avatar).toHaveStyle("padding: 10px");
+      expect(avatar).toHaveAttribute(
+        "style",
+        expect.stringContaining("border: 2px solid red"),
+      );
+      expect(avatar).toHaveAttribute(
+        "style",
+        expect.stringContaining("padding: 10px"),
+      );
     });
   });
 

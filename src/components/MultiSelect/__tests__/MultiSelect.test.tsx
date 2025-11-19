@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { vi } from "vitest";
+import { describe, it, expect, beforeEach, vi } from "vitest";
 import MultiSelect from "../MultiSelect";
 import { MultiSelectOption } from "../MultiSelect.types";
 import styles from "../styles.module.scss";

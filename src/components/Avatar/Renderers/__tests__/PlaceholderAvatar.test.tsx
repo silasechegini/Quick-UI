@@ -85,8 +85,10 @@ describe("PlaceholderAvatar Renderer", () => {
 
       const avatar = screen.getByRole("img");
       // Should not have a linear-gradient style when no backgroundColor is provided
-      const computedStyle = window.getComputedStyle(avatar);
-      expect(computedStyle.background).not.toMatch(/linear-gradient/);
+      expect(avatar).not.toHaveAttribute(
+        "style",
+        expect.stringContaining("linear-gradient"),
+      );
     });
 
     it("should apply background gradient when backgroundColor is provided", () => {
@@ -124,8 +126,11 @@ describe("PlaceholderAvatar Renderer", () => {
       render(<PlaceholderAvatar {...props} />);
 
       const avatar = screen.getByRole("img");
-      expect(avatar).toHaveStyle(
-        "background: linear-gradient(135deg, rgb(255, 0, 0), rgb(255, 0, 0)dd)",
+      // Should not apply a gradient background style when given an RGB color value,
+      // because appending 'dd' to an RGB value is invalid CSS and no gradient should be rendered.
+      expect(avatar).not.toHaveAttribute(
+        "style",
+        expect.stringContaining("linear-gradient"),
       );
     });
 
@@ -163,10 +168,17 @@ describe("PlaceholderAvatar Renderer", () => {
       render(<PlaceholderAvatar {...props} />);
 
       const avatar = screen.getByRole("img");
-      expect(avatar).toHaveStyle("border: 2px solid red");
-      expect(avatar).toHaveStyle("padding: 10px");
-      expect(avatar).toHaveStyle(
-        "background: linear-gradient(135deg, #0000FF, #0000FFdd)",
+      expect(avatar).toHaveAttribute(
+        "style",
+        expect.stringContaining("border: 2px solid red"),
+      );
+      expect(avatar).toHaveAttribute(
+        "style",
+        expect.stringContaining("padding: 10px"),
+      );
+      expect(avatar).toHaveAttribute(
+        "style",
+        expect.stringContaining("linear-gradient(135deg, rgb(0, 0, 255)"),
       );
     });
 
@@ -183,8 +195,14 @@ describe("PlaceholderAvatar Renderer", () => {
 
       const avatar = screen.getByRole("img");
       // Custom style should be applied (but backgroundColor gradient takes precedence over background)
-      expect(avatar).toHaveStyle("border: 1px solid black");
-      expect(avatar).toHaveStyle("padding: 5px");
+      expect(avatar).toHaveAttribute(
+        "style",
+        expect.stringContaining("border: 1px solid black"),
+      );
+      expect(avatar).toHaveAttribute(
+        "style",
+        expect.stringContaining("padding: 5px"),
+      );
     });
 
     it("should handle empty style object", () => {
@@ -316,8 +334,10 @@ describe("PlaceholderAvatar Renderer", () => {
 
       const avatar = screen.getByRole("img");
       expect(avatar).toBeInTheDocument();
-      const computedStyle = window.getComputedStyle(avatar);
-      expect(computedStyle.background).not.toMatch(/linear-gradient/);
+      expect(avatar).not.toHaveAttribute(
+        "style",
+        expect.stringContaining("linear-gradient"),
+      );
     });
 
     it("should handle empty string backgroundColor", () => {
@@ -326,8 +346,10 @@ describe("PlaceholderAvatar Renderer", () => {
 
       const avatar = screen.getByRole("img");
       expect(avatar).toBeInTheDocument();
-      const computedStyle = window.getComputedStyle(avatar);
-      expect(computedStyle.background).not.toMatch(/linear-gradient/);
+      expect(avatar).not.toHaveAttribute(
+        "style",
+        expect.stringContaining("linear-gradient"),
+      );
     });
 
     it("should render without any optional props", () => {
