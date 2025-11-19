@@ -4,7 +4,7 @@ This changelog covers the rapid development and stabilization of the Quick-UI Re
 
 - [1.0.1] - 2025-11-16: Initial release with basic functionality
 - [1.0.2] - 2025-11-17, [1.0.3] - 2025-11-17: Build system improvements and CSS compilation fixes
-- [1.0.4] - 2025-11-18: Major enhancement focusing on type safety and Storybook configuration
+- [1.0.4] - 2025-11-17: Major enhancement focusing on type safety and Storybook configuration
 - [1.0.5] - 2025-11-18: Final polish with conflict resolution and cleanup
 
 ### Key Improvements Across Versions
