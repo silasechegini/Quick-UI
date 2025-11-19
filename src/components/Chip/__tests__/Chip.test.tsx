@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { vi } from "vitest";
+import { describe, it, expect, beforeEach, vi } from "vitest";
 import Chip from "../Chip";
 import { CHIP_SIZES, CHIP_VARIANTS, CHIP_STATUSES } from "../Chip.types";
 import styles from "../styles.module.scss";
@@ -305,7 +305,9 @@ describe("Chip Component", () => {
     });
 
     it("should use correct icon size based on chip size", () => {
-      render(<Chip {...defaultProps} interactive={true} size="small" />);
+      render(
+        <Chip {...defaultProps} interactive={true} size={CHIP_SIZES.SMALL} />,
+      );
       expect(screen.getByTestId("icon-clear_icon")).toHaveAttribute(
         "data-size",
         "16",
@@ -313,7 +315,9 @@ describe("Chip Component", () => {
     });
 
     it("should use medium icon size for medium chip", () => {
-      render(<Chip {...defaultProps} interactive={true} size="medium" />);
+      render(
+        <Chip {...defaultProps} interactive={true} size={CHIP_SIZES.MEDIUM} />,
+      );
       expect(screen.getByTestId("icon-clear_icon")).toHaveAttribute(
         "data-size",
         "20",
@@ -321,7 +325,9 @@ describe("Chip Component", () => {
     });
 
     it("should use large icon size for large chip", () => {
-      render(<Chip {...defaultProps} interactive={true} size="large" />);
+      render(
+        <Chip {...defaultProps} interactive={true} size={CHIP_SIZES.LARGE} />,
+      );
       expect(screen.getByTestId("icon-clear_icon")).toHaveAttribute(
         "data-size",
         "24",

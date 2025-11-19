@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import Input from "../Input";
+import { INPUT_SIZES, INPUT_VARIANTS } from "../Input.types";
 
 describe("Input Component", () => {
   beforeEach(() => {
@@ -42,17 +43,17 @@ describe("Input Component", () => {
     });
 
     it("applies secondary variant", () => {
-      render(<Input variant="secondary" />);
+      render(<Input variant={INPUT_VARIANTS.SECONDARY} />);
       expect(screen.getByRole("textbox").className).toContain("secondary");
     });
 
     it("applies error variant", () => {
-      render(<Input variant="error" />);
+      render(<Input variant={INPUT_VARIANTS.ERROR} />);
       expect(screen.getByRole("textbox").className).toContain("error");
     });
 
     it("applies success variant", () => {
-      render(<Input variant="success" />);
+      render(<Input variant={INPUT_VARIANTS.SUCCESS} />);
       expect(screen.getByRole("textbox").className).toContain("success");
     });
   });
@@ -64,22 +65,22 @@ describe("Input Component", () => {
     });
 
     it("applies extra small size", () => {
-      render(<Input size="xs" />);
+      render(<Input size={INPUT_SIZES.XS} />);
       expect(screen.getByRole("textbox").className).toContain("xs");
     });
 
     it("applies small size", () => {
-      render(<Input size="s" />);
+      render(<Input size={INPUT_SIZES.S} />);
       expect(screen.getByRole("textbox").className).toContain("s");
     });
 
     it("applies large size", () => {
-      render(<Input size="l" />);
+      render(<Input size={INPUT_SIZES.L} />);
       expect(screen.getByRole("textbox").className).toContain("l");
     });
 
     it("applies extra large size", () => {
-      render(<Input size="xl" />);
+      render(<Input size={INPUT_SIZES.XL} />);
       expect(screen.getByRole("textbox").className).toContain("xl");
     });
   });
@@ -93,7 +94,13 @@ describe("Input Component", () => {
     });
 
     it("overrides variant when error is true", () => {
-      render(<Input variant="success" error errorMessage="Error occurred" />);
+      render(
+        <Input
+          variant={INPUT_VARIANTS.SUCCESS}
+          error
+          errorMessage="Error occurred"
+        />,
+      );
       const input = screen.getByRole("textbox");
       expect(input.className).toContain("error");
       expect(input.className).not.toContain("success");
