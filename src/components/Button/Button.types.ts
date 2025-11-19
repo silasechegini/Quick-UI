@@ -6,10 +6,53 @@ import { ButtonHTMLAttributes, ReactNode, ElementType } from "react";
  * It includes props for different button variants, sizes, and icon positions.
  * It also defines the base props for the button and specific props for icon buttons.
  */
-export type ButtonVariants = "primary" | "secondary" | "tertiary" | "plain";
-type ButtonSizes = "xxl" | "xl" | "l" | "m" | "s" | "xs";
-type IconPosition = "start" | "end" | "default";
-type ButtonShapes = "square" | "circular" | "pill";
+
+/**
+ * Enums for Button Component
+ * These enums define the possible values for button types, sizes, variants, and icon positions.
+ */
+export enum BUTTON_TYPES {
+  BUTTON = "button",
+  SUBMIT = "submit",
+  RESET = "reset",
+}
+
+/** Enums for Button Sizes, Variants, and Icon Positions */
+export enum BUTTON_SIZES {
+  XXLARGE = "xxl",
+  XLARGE = "xl",
+  LARGE = "l",
+  MEDIUM = "m",
+  SMALL = "s",
+  EXTRASMALL = "xs",
+}
+
+/** Enums for Button Variants */
+export enum BUTTON_VARIANTS {
+  PRIMARY = "primary",
+  SECONDARY = "secondary",
+  TERTIARY = "tertiary",
+  PLAIN = "plain",
+}
+
+export enum BUTTON_SHAPES {
+  SQUARE = "square",
+  CIRCULAR = "circular",
+  PILL = "pill",
+}
+
+/** Enums for Icon Positions */
+export enum ICON_POSITIONS {
+  START = "start",
+  END = "end",
+  DEFAULT = "default",
+}
+
+export type ButtonVariants =
+  (typeof BUTTON_VARIANTS)[keyof typeof BUTTON_VARIANTS];
+export type ButtonSizes = (typeof BUTTON_SIZES)[keyof typeof BUTTON_SIZES];
+export type IconPosition = (typeof ICON_POSITIONS)[keyof typeof ICON_POSITIONS];
+export type ButtonShapes = (typeof BUTTON_SHAPES)[keyof typeof BUTTON_SHAPES];
 
 /**
  * BaseProps - Common properties for all button types
@@ -69,44 +112,3 @@ export type ButtonProps = BaseProps &
 export type IconButtonProps = Omit<ButtonProps, "children" | "iconPosition"> & {
   label: string;
 };
-
-/**
- * Enums for Button Component
- * These enums define the possible values for button types, sizes, variants, and icon positions.
- */
-export enum BUTTON_TYPES {
-  BUTTON = "button",
-  SUBMIT = "submit",
-  RESET = "reset",
-}
-
-/** Enums for Button Sizes, Variants, and Icon Positions */
-export enum BUTTON_SIZES {
-  XXLARGE = "xxl",
-  XLARGE = "xl",
-  LARGE = "l",
-  MEDIUM = "m",
-  SMALL = "s",
-  EXTRASMALL = "xs",
-}
-
-/** Enums for Button Variants */
-export enum BUTTON_VARIANTS {
-  PRIMARY = "primary",
-  SECONDARY = "secondary",
-  TERTIARY = "tertiary",
-  PLAIN = "plain",
-}
-
-export enum BUTTON_SHAPES {
-  SQUARE = "square",
-  CIRCULAR = "circular",
-  PILL = "pill",
-}
-
-/** Enums for Icon Positions */
-export enum ICON_POSITIONS {
-  START = "start",
-  END = "end",
-  DEFAULT = "default",
-}

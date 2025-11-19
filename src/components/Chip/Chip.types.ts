@@ -1,19 +1,6 @@
-export interface ChipProps {
-  text: string;
-  size?: "small" | "medium" | "large";
-  status?: "info" | "success" | "warning" | "error" | { class: string };
-  className?: string;
-  ariaLabel?: string;
-  style?: React.CSSProperties;
-  onRemove?: (event: React.MouseEvent<HTMLButtonElement>) => void;
-  disabled?: boolean;
-  variant?: "solid" | "outline" | "ghost";
-  children?: React.ReactNode;
-  interactive?: boolean;
-  leadingIcon?: React.ReactNode;
-  trailingIcon?: React.ReactNode;
-}
+/** Type and enum definitions for Chip component */
 
+/** Enums for Chip component props */
 export enum CHIP_SIZES {
   SMALL = "small",
   MEDIUM = "medium",
@@ -31,4 +18,27 @@ export enum CHIP_STATUSES {
   SUCCESS = "success",
   WARNING = "warning",
   ERROR = "error",
+}
+
+/** Type aliases for Chip component props */
+export type ChipSizes = (typeof CHIP_SIZES)[keyof typeof CHIP_SIZES];
+export type ChipVariants = (typeof CHIP_VARIANTS)[keyof typeof CHIP_VARIANTS];
+export type ChipStatuses = (typeof CHIP_STATUSES)[keyof typeof CHIP_STATUSES];
+
+/** Props for the Chip component */
+
+export interface ChipProps {
+  text: string;
+  size?: ChipSizes;
+  status?: ChipStatuses | { class: string };
+  className?: string;
+  ariaLabel?: string;
+  style?: React.CSSProperties;
+  onRemove?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  disabled?: boolean;
+  variant?: ChipVariants;
+  children?: React.ReactNode;
+  interactive?: boolean;
+  leadingIcon?: React.ReactNode;
+  trailingIcon?: React.ReactNode;
 }

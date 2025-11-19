@@ -1,5 +1,12 @@
 import { HTMLAttributes, ReactNode } from "react";
 
+export enum FLYOUT_ROLES {
+  DIALOG = "dialog",
+  COMPLEMENTARY = "complementary",
+}
+
+export type FlyoutRole = (typeof FLYOUT_ROLES)[keyof typeof FLYOUT_ROLES];
+
 export interface FlyoutProps extends HTMLAttributes<HTMLElement> {
   children?: ReactNode;
   headerChildren?: ReactNode;
@@ -12,7 +19,7 @@ export interface FlyoutProps extends HTMLAttributes<HTMLElement> {
   };
   width?: string | number;
   height?: string | number;
-  role?: "dialog" | "complementary";
+  role?: FlyoutRole;
   ariaLabelledBy?: string;
   ariaDescribedBy?: string;
   isOpen: boolean;
