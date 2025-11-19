@@ -1,11 +1,11 @@
 ## Version History Summary
 
-This changelog covers the rapid development and stabilization of the Quick-UI React component library from November 16-18, 2025. The project went through several iterations to establish proper build tooling, CSS handling, and type safety:
+This changelog covers the rapid development and stabilization of the Quick-UI React component library from November 16-18, 2025. The project is scheduled to go through several iterations to establish proper build tooling, CSS handling, and type safety:
 
-- **[1.0.1]**: Initial release with basic functionality
-- **[1.0.2] and [1.0.3]**: Build system improvements and CSS compilation fixes
-- **[1.0.4]**: Major enhancement focusing on type safety and Storybook configuration
-- **[1.0.5]**: Final polish with conflict resolution and cleanup
+- [1.0.1] - 2025-11-16: Initial release with basic functionality
+- [1.0.2] - 2025-11-17, [1.0.3] - 2025-11-17: Build system improvements and CSS compilation fixes
+- [1.0.4] - 2025-11-18: Major enhancement focusing on type safety and Storybook configuration
+- [1.0.5] - 2025-11-18: Final polish with conflict resolution and cleanup
 
 ### Key Improvements Across Versions
 
