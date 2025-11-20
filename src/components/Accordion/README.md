@@ -4,19 +4,19 @@ A robust, accessible accordion component with advanced features and stunning vis
 
 ## Features
 
-- ✨ **Multiple Expansion Modes**: Single or multiple items can be expanded simultaneously
-- ⌨️ **Full Keyboard Navigation**: Arrow keys, Home, End, Enter, and Space support
-- 🎨 **5 Visual Variants**: Default, Outlined, Filled, Glass (Glassmorphism), and Gradient
-- 📏 **3 Size Options**: Small, Medium, and Large
-- 🎯 **Smooth Animations**: Dynamic height calculations for seamless transitions
-- 🔄 **Loading States**: Built-in loading indicators
-- 🚫 **Disabled States**: Individual or global disable support
-- 🎭 **Icon Customization**: Custom icons with flexible positioning
-- 📱 **Fully Responsive**: Works beautifully on all screen sizes
-- ♿ **Accessibility First**: ARIA compliant with screen reader support
-- 🎛️ **Controlled & Uncontrolled**: Supports both usage patterns
-- 🪝 **Lifecycle Callbacks**: Before/after expand and collapse hooks
-- 🎪 **Rich Content Support**: Accepts any React node as content
+- **Multiple Expansion Modes**: Single or multiple items can be expanded simultaneously
+- **Full Keyboard Navigation**: Arrow keys, Home, End, Enter, and Space support
+- **5 Visual Variants**: Default, Outlined, Filled, Glass (Glassmorphism), and Gradient
+- **3 Size Options**: Small, Medium, and Large
+- **Smooth Animations**: Dynamic height calculations for seamless transitions
+- **Loading States**: Built-in loading indicators
+- **Disabled States**: Individual or global disable support
+- **Icon Customization**: Custom icons with flexible positioning
+- **Fully Responsive**: Works beautifully on all screen sizes
+- **Accessibility First**: ARIA compliant with screen reader support
+- **Controlled & Uncontrolled**: Supports both usage patterns
+- **Lifecycle Callbacks**: Before/after expand and collapse hooks
+- **Rich Content Support**: Accepts any React node as content
 
 ## Installation
 
