@@ -342,9 +342,9 @@ _Benchmarks run on identical test applications. [View detailed methodology →](
 
 ### **Getting Started**
 
-- [**Quick Start Guide**](#-quick-start) — Get up and running in 5 minutes
-- [**Components Gallery**](#-components-gallery) — Browse all available components
-- [**Real-World Examples**](#-real-world-examples) — Copy-paste ready code samples
+- [**Quick Start Guide**](#quick-start) — Get up and running in 5 minutes
+- [**Components Gallery**](#components-gallery) — Browse all available components
+- [**Real-World Examples**](#real-world-examples) — Copy-paste ready code samples
 
 ### **Development Resources**
 
