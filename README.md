@@ -50,8 +50,8 @@ _"Finally, a component library that doesn't fight against me"_ — **Real Develo
 
 ### **How Quick-UI Stacks Up**
 
-| Feature        | Quick-UI          | Material-UI | Chakra UI | Ant Design |
-| -------------- | ----------------- | ----------- | --------- | ---------- |
+| Feature        | Quick-UI       | Material-UI | Chakra UI | Ant Design |
+| -------------- | -------------- | ----------- | --------- | ---------- |
 | Bundle Size    | **~172KB**     | 348KB       | 199KB     | 2.7MB      |
 | TypeScript     | **Native**     | Good        | Good      | Good       |
 | Customization  | **Effortless** | Complex     | Good      | Limited    |
@@ -64,8 +64,8 @@ _"Finally, a component library that doesn't fight against me"_ — **Real Develo
 
 ## **Framework Support**
 
-| Framework            | Status                 | Notes                         |
-| -------------------- | ---------------------- | ----------------------------- |
+| Framework            | Status              | Notes                         |
+| -------------------- | ------------------- | ----------------------------- |
 | **React 19**         | **Fully Supported** | Optimized for latest features |
 | **Next.js 15**       | **Fully Supported** | SSR/SSG ready                 |
 | **Vite**             | **Fully Supported** | Lightning fast HMR            |
@@ -327,12 +327,12 @@ function ContactForm() {
 
 ## **Performance Benchmarks**
 
-| Metric                  | Quick-UI  | Material-UI | Chakra UI |
-| ----------------------- | --------- | ----------- | --------- |
-| **First Load**          | 0.8s   | 2.1s        | 1.4s      |
-| **Bundle Size**         | ~172KB | 348KB       | 199KB     |
-| **Tree Shaking**        | 100%   | 80%         | 90%       |
-| **Runtime Performance** | 60fps  | 45fps       | 55fps     |
+| Metric                  | Quick-UI | Material-UI | Chakra UI |
+| ----------------------- | -------- | ----------- | --------- |
+| **First Load**          | 0.8s     | 2.1s        | 1.4s      |
+| **Bundle Size**         | ~172KB   | 348KB       | 199KB     |
+| **Tree Shaking**        | 100%     | 80%         | 90%       |
+| **Runtime Performance** | 60fps    | 45fps       | 55fps     |
 
 _Benchmarks run on identical test applications. [View detailed methodology →]()_
 
