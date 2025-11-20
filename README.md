@@ -13,7 +13,7 @@
 
 **Build beautiful React apps 10x faster with components that just work™**
 
-[Install Now](#-quick-start) • [Try Live Demo](https://quick-ui-live-demo.netlify.app) • [Browse Components](#-components-gallery) • [See Benchmarks](#-why-quick-ui)
+[Install Now](#quick-start) • [Try Live Demo](https://quick-ui-live-demo.netlify.app) • [Browse Components](#components-gallery) • [See Benchmarks](#why-quick-ui)
 
 ---
 
@@ -434,7 +434,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 npm install quick-ui-react
 ```
 
-[**Browse Components**](https://quick-ui-live-demo.netlify.app) • [**Try Playground**](https://codesandbox.io/p/sandbox/quick-ui-playground) • [**Read Docs**](#-quick-start) • [**Join Community**](https://discord.gg/your-discord)
+[**Browse Components**](https://quick-ui-live-demo.netlify.app) • [**Try Playground**](https://codesandbox.io/p/sandbox/quick-ui-playground) • [**Read Docs**](#quick-start) • [**Join Community**](https://discord.gg/your-discord)
 
 ---
 
@@ -459,7 +459,7 @@ npm install quick-ui-react
 <td align="center">
 
 **Documentation**<br>
-[README & Examples](#-quick-start)<br>
+[README & Examples](#quick-start)<br>
 <sub>Getting started guide</sub>
 
 </td>
