@@ -11,7 +11,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB)](https://reactjs.org/)
 
-** Build beautiful React apps 10x faster with components that just work™**
+**Build beautiful React apps 10x faster with components that just work™**
 
 [Install Now](#-quick-start) • [Try Live Demo](https://quick-ui-live-demo.netlify.app) • [Browse Components](#-components-gallery) • [See Benchmarks](#-why-quick-ui)
 
@@ -273,7 +273,7 @@ function ProductCard() {
 }
 ```
 
-### *User Profile Dashboard**
+### **User Profile Dashboard**
 
 ```tsx
 // Components work everywhere once styles are imported at root
@@ -346,14 +346,14 @@ _Benchmarks run on identical test applications. [View detailed methodology →](
 - [**Components Gallery**](#-components-gallery) — Browse all available components
 - [**Real-World Examples**](#-real-world-examples) — Copy-paste ready code samples
 
-### ** Development Resources**
+### **Development Resources**
 
 - [**Storybook Documentation**](https://storybook.js.org/) — Interactive component playground (run locally)
 - [**React Documentation**](https://react.dev/) — Learn React fundamentals
 - [**TypeScript Handbook**](https://www.typescriptlang.org/docs/) — Master TypeScript
 - [**Web Accessibility Guide**](https://web.dev/accessibility/) — Build inclusive experiences
 
-### ** Build Tools & Testing**
+### **Build Tools & Testing**
 
 - [**Vite Documentation**](https://vitejs.dev/) — Lightning fast build tool
 - [**Vitest Guide**](https://vitest.dev/) — Unit testing framework
