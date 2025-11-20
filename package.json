@@ -57,7 +57,9 @@
     "component-library",
     "react-components",
     "ui-library",
-    "design-system"
+    "design-system",
+    "Frontend",
+    "Front-end"
   ],
   "author": {
     "name": "Echegini, Ngozi",
