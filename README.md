@@ -1,6 +1,6 @@
 <div align="center">
 
-# ⚡ Quick-UI React
+# Quick-UI React ⚡️⚡️
 
 ### _The React Component Library That Developers Actually Want to Use_
 
@@ -11,9 +11,9 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB)](https://reactjs.org/)
 
-**🏆 Build beautiful React apps 10x faster with components that just work™**
+** Build beautiful React apps 10x faster with components that just work™**
 
-[📦 Install Now](#-quick-start) • [🎮 Try Live Demo](https://quick-ui-live-demo.netlify.app) • [📚 Browse Components](#-components-gallery) • [⚡ See Benchmarks](#-why-quick-ui)
+[Install Now](#-quick-start) • [Try Live Demo](https://quick-ui-live-demo.netlify.app) • [Browse Components](#-components-gallery) • [See Benchmarks](#-why-quick-ui)
 
 ---
 
@@ -21,56 +21,56 @@ _"Finally, a component library that doesn't fight against me"_ — **Real Develo
 
 </div>
 
-## 🎯 **Why Quick-UI?**
+## **Why Quick-UI?**
 
 <table>
 <tr>
 <td>
 
-### **⚡ Blazing Fast Development**
+### **Blazing Fast Development**
 
-- 🚀 **20+ Production-Ready Components**
-- 🎨 **Zero Configuration Styling**
-- � **Mobile-First Design**
-- ♿ **WCAG 2.1 AA Accessible**
+- **20+ Production-Ready Components**
+- **Zero Configuration Styling**
+- **Mobile-First Design**
+- **WCAG 2.1 AA Accessible**
 
 </td>
 <td>
 
-### **🏗️ Developer Experience**
+### **Developer Experience**
 
-- 💎 **100% TypeScript** with IntelliSense
-- 🔥 **Tree-Shakeable** (only pay for what you use)
-- � **Storybook Documentation**
-- 🧪 **915 Unit Tests** (comprehensive coverage)
+- **100% TypeScript** with IntelliSense
+- **Tree-Shakeable** (only pay for what you use)
+- **Storybook Documentation**
+- **915 Unit Tests** (comprehensive coverage)
 
 </td>
 </tr>
 </table>
 
-### **🆚 How Quick-UI Stacks Up**
+### **How Quick-UI Stacks Up**
 
 | Feature        | Quick-UI          | Material-UI | Chakra UI | Ant Design |
 | -------------- | ----------------- | ----------- | --------- | ---------- |
-| Bundle Size    | **~172KB** ⭐     | 348KB       | 199KB     | 2.7MB      |
-| TypeScript     | **Native** ⭐     | Good        | Good      | Good       |
-| Customization  | **Effortless** ⭐ | Complex     | Good      | Limited    |
-| Learning Curve | **5 minutes** ⭐  | 2+ hours    | 1 hour    | 3+ hours   |
-| Performance    | **Optimized** ⭐  | Heavy       | Good      | Heavy      |
+| Bundle Size    | **~172KB**     | 348KB       | 199KB     | 2.7MB      |
+| TypeScript     | **Native**     | Good        | Good      | Good       |
+| Customization  | **Effortless** | Complex     | Good      | Limited    |
+| Learning Curve | **5 minutes**  | 2+ hours    | 1 hour    | 3+ hours   |
+| Performance    | **Optimized**  | Heavy       | Good      | Heavy      |
 
-> **🎯 Quick-UI is 70% smaller and 3x faster to learn than alternatives**
+> **Quick-UI is 70% smaller and 3x faster to learn than alternatives**
 
 ---
 
-## 🛠️ **Framework Support**
+## **Framework Support**
 
 | Framework            | Status                 | Notes                         |
 | -------------------- | ---------------------- | ----------------------------- |
-| **React 19**         | ✅ **Fully Supported** | Optimized for latest features |
-| **Next.js 15**       | ✅ **Fully Supported** | SSR/SSG ready                 |
-| **Vite**             | ✅ **Fully Supported** | Lightning fast HMR            |
-| **Create React App** | ✅ **Fully Supported** | Zero config needed            |
-| **Remix**            | ✅ **Fully Supported** | Perfect for full-stack        |
+| **React 19**         | **Fully Supported** | Optimized for latest features |
+| **Next.js 15**       | **Fully Supported** | SSR/SSG ready                 |
+| **Vite**             | **Fully Supported** | Lightning fast HMR            |
+| **Create React App** | **Fully Supported** | Zero config needed            |
+| **Remix**            | **Fully Supported** | Perfect for full-stack        |
 
 ### **Requirements**
 
@@ -170,7 +170,7 @@ import "./CustomButton.css";
 }
 ```
 
-## 🚀 **Quick Start**
+## **Quick Start**
 
 ### **Install in 30 Seconds**
 
@@ -206,14 +206,14 @@ function App() {
 }
 ```
 
-**🎉 You're done! Your app now has beautiful, accessible components.**
+**You're done! Your app now has beautiful, accessible components.**
 
 ---
 
-## 📸 **Components Gallery**
+## **Components Gallery**
 
 <details>
-<summary><b>🎨 View All 20+ Components</b></summary>
+<summary><b>View All 20+ Components</b></summary>
 
 ### **📱 Layout & Navigation**
 
@@ -223,7 +223,7 @@ function App() {
 - **Page** — Complete page layouts
 - **Sidebar** — Collapsible side navigation
 
-### **🎛️ Form Controls**
+### **Form Controls**
 
 - **Button** — Primary, secondary, ghost variants
 - **Input** — Text inputs with validation
@@ -233,7 +233,7 @@ function App() {
 - **Radio** — Stylish radio button groups
 - **Switch** — iOS-style switches
 
-### **📊 Data Display**
+### **Data Display**
 
 - **Avatar** — Smart user avatars with fallbacks
 - **Badge** — Status and notification indicators
@@ -241,7 +241,7 @@ function App() {
 - **ProgressBar** — Loading and progress indication
 - **Accordion** — Expandable content sections
 
-### **🎭 Interactive**
+### **Interactive**
 
 - **Flyout** — Modal dialogs and overlays
 - **Slider** — Range and value sliders
@@ -251,9 +251,9 @@ _Each component comes with dark mode, accessibility, and mobile support built-in
 
 </details>
 
-## 💡 **Real-World Examples**
+## **Real-World Examples**
 
-### **🏪 E-Commerce Product Card**
+### **E-Commerce Product Card**
 
 ```tsx
 // No style imports needed - styles already imported at root!
@@ -273,7 +273,7 @@ function ProductCard() {
 }
 ```
 
-### **👤 User Profile Dashboard**
+### *User Profile Dashboard**
 
 ```tsx
 // Components work everywhere once styles are imported at root
@@ -291,7 +291,7 @@ function UserProfile({ user }) {
 }
 ```
 
-### **📝 Modern Form**
+### **Modern Form**
 
 ```tsx
 // Clean component code - no repetitive style imports!
@@ -312,7 +312,7 @@ function ContactForm() {
 }
 ```
 
-> **🎯 Each example works out-of-the-box with zero configuration!**
+> **Each example works out-of-the-box with zero configuration!**
 
 ---
 
@@ -325,43 +325,43 @@ function ContactForm() {
 - Mobile Safari (iOS 12+)
 - Chrome Mobile (Android 8+)
 
-## 🔥 **Performance Benchmarks**
+## **Performance Benchmarks**
 
 | Metric                  | Quick-UI  | Material-UI | Chakra UI |
 | ----------------------- | --------- | ----------- | --------- |
-| **First Load**          | 0.8s ⚡   | 2.1s        | 1.4s      |
-| **Bundle Size**         | ~172KB 📦 | 348KB       | 199KB     |
-| **Tree Shaking**        | 100% 🌳   | 80%         | 90%       |
-| **Runtime Performance** | 60fps 🏃‍♂️  | 45fps       | 55fps     |
+| **First Load**          | 0.8s   | 2.1s        | 1.4s      |
+| **Bundle Size**         | ~172KB | 348KB       | 199KB     |
+| **Tree Shaking**        | 100%   | 80%         | 90%       |
+| **Runtime Performance** | 60fps  | 45fps       | 55fps     |
 
 _Benchmarks run on identical test applications. [View detailed methodology →]()_
 
 ---
 
-## 🎓 **Learning Resources**
+## **Learning Resources**
 
-### **📖 Getting Started**
+### **Getting Started**
 
-- [🚀 **Quick Start Guide**](#-quick-start) — Get up and running in 5 minutes
-- [📸 **Components Gallery**](#-components-gallery) — Browse all available components
-- [💡 **Real-World Examples**](#-real-world-examples) — Copy-paste ready code samples
+- [**Quick Start Guide**](#-quick-start) — Get up and running in 5 minutes
+- [**Components Gallery**](#-components-gallery) — Browse all available components
+- [**Real-World Examples**](#-real-world-examples) — Copy-paste ready code samples
 
-### **🔧 Development Resources**
+### ** Development Resources**
 
-- [📚 **Storybook Documentation**](https://storybook.js.org/) — Interactive component playground (run locally)
-- [⚛️ **React Documentation**](https://react.dev/) — Learn React fundamentals
-- [📘 **TypeScript Handbook**](https://www.typescriptlang.org/docs/) — Master TypeScript
-- [♿ **Web Accessibility Guide**](https://web.dev/accessibility/) — Build inclusive experiences
+- [**Storybook Documentation**](https://storybook.js.org/) — Interactive component playground (run locally)
+- [**React Documentation**](https://react.dev/) — Learn React fundamentals
+- [**TypeScript Handbook**](https://www.typescriptlang.org/docs/) — Master TypeScript
+- [**Web Accessibility Guide**](https://web.dev/accessibility/) — Build inclusive experiences
 
-### **🛠️ Build Tools & Testing**
+### ** Build Tools & Testing**
 
-- [⚡ **Vite Documentation**](https://vitejs.dev/) — Lightning fast build tool
-- [🧪 **Vitest Guide**](https://vitest.dev/) — Unit testing framework
-- [🎨 **SCSS Documentation**](https://sass-lang.com/documentation/) — Styling with Sass
+- [**Vite Documentation**](https://vitejs.dev/) — Lightning fast build tool
+- [**Vitest Guide**](https://vitest.dev/) — Unit testing framework
+- [**SCSS Documentation**](https://sass-lang.com/documentation/) — Styling with Sass
 
 ---
 
-## 🛠️ **Development & Contributing**
+## **Development & Contributing**
 
 ### **For Contributors**
 
@@ -405,18 +405,18 @@ Quick-UI/
 └── dist/              # Built library output
 ```
 
-### **🤝 Contributing Guidelines**
+### **Contributing Guidelines**
 
 We ❤️ contributions! Quick-UI is built by the community, for the community.
 
-#### **🎯 Ways to Contribute**
+#### **Ways to Contribute**
 
-- 🐛 **Report Bugs** — Help us squash issues
-- 💡 **Suggest Features** — Shape the future of Quick-UI
-- 📝 **Improve Docs** — Help others learn faster
-- 🔧 **Submit Code** — Build features with us
+- **Report Bugs** — Help us squash issues
+- **Suggest Features** — Shape the future of Quick-UI
+- **Improve Docs** — Help others learn faster
+- **Submit Code** — Build features with us
 
-[📋 **Read Contributing Guide**](./CONTRIBUTING.md) • [🏷️ **Good First Issues**](https://github.com/silasechegini/Quick-UI/labels/good%20first%20issue)
+[**Read Contributing Guide**](./CONTRIBUTING.md) • [**Good First Issues**](https://github.com/silasechegini/Quick-UI/labels/good%20first%20issue)
 
 ## License
 
@@ -426,7 +426,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 <div align="center">
 
-## 🚀 **Ready to Build Something Amazing?**
+## **Ready to Build Something Amazing?**
 
 ### **Get Quick-UI in 30 seconds and start building faster than ever before.**
 
@@ -434,38 +434,38 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 npm install quick-ui-react
 ```
 
-[📚 **Browse Components**](https://quick-ui-live-demo.netlify.app) • [🎮 **Try Playground**](https://codesandbox.io/p/sandbox/quick-ui-playground) • [📖 **Read Docs**](#-quick-start) • [💬 **Join Community**](https://discord.gg/your-discord)
+[**Browse Components**](https://quick-ui-live-demo.netlify.app) • [**Try Playground**](https://codesandbox.io/p/sandbox/quick-ui-playground) • [**Read Docs**](#-quick-start) • [**Join Community**](https://discord.gg/your-discord)
 
 ---
 
-### **🤝 Support & Community**
+### **Support & Community**
 
 <table>
 <tr>
 <td align="center">
 
-**📦 NPM**<br>
+**NPM**<br>
 [quick-ui-react](https://www.npmjs.com/package/quick-ui-react)<br>
 <sub>Official package</sub>
 
 </td>
 <td align="center">
 
-**🐛 Issues**<br>
+**Issues**<br>
 [GitHub Issues](https://github.com/silasechegini/Quick-UI/issues)<br>
 <sub>Bug reports & features</sub>
 
 </td>
 <td align="center">
 
-**📚 Documentation**<br>
+**Documentation**<br>
 [README & Examples](#-quick-start)<br>
 <sub>Getting started guide</sub>
 
 </td>
 <td align="center">
 
-**💬 Support**<br>
+**Support**<br>
 [GitHub Discussions](https://github.com/silasechegini/Quick-UI/discussions)<br>
 <sub>Get help & share</sub>
 
@@ -475,7 +475,7 @@ npm install quick-ui-react
 
 ---
 
-### **⭐ Show Some Love**
+### **Show Some Love**
 
 If Quick-UI helped you build something awesome, **star this repo** and **share it with fellow developers**!
 
