@@ -297,10 +297,10 @@ Use conventional commits:
 
 ## Getting Help
 
-- 📚 Check existing components for examples
-- 🐛 Open an issue for bugs
-- 💡 Open a discussion for feature ideas
-- 📖 Refer to Storybook documentation
+- Check existing components for examples
+- Open an issue for bugs
+- Open a discussion for feature ideas
+- Refer to Storybook documentation
 
 ## Code of Conduct
 
