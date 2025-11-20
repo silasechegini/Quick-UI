@@ -1,6 +1,6 @@
 <div align="center">
 
-# Quick-UI React ⚡️⚡️
+# Quick-UI React
 
 ### _The React Component Library That Developers Actually Want to Use_
 
