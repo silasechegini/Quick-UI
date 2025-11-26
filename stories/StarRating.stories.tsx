@@ -3,6 +3,7 @@ import { StarRating } from "../src/components";
 import { useState } from "react";
 import { FaHeart, FaThumbsUp } from "react-icons/fa";
 import { AiFillLike } from "react-icons/ai";
+import { STAR_SIZES, STAR_VARIANTS } from "@components/Ratings/Star/types";
 
 const meta = {
   title: "Components/StarRating",
@@ -68,7 +69,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     count: 5,
-    size: "medium",
+    size: STAR_SIZES.MEDIUM,
   },
 };
 
@@ -77,7 +78,7 @@ export const WithDefaultValue: Story = {
   args: {
     count: 5,
     defaultValue: 3,
-    size: "medium",
+    size: STAR_SIZES.MEDIUM,
   },
 };
 
@@ -88,7 +89,7 @@ export const WithValue: Story = {
     defaultValue: 4.5,
     showValue: true,
     allowHalf: true,
-    size: "medium",
+    size: STAR_SIZES.MEDIUM,
   },
 };
 
@@ -105,19 +106,19 @@ export const Sizes: Story = {
     >
       <div>
         <label>Small: </label>
-        <StarRating size="small" defaultValue={3} />
+        <StarRating size={STAR_SIZES.SMALL} defaultValue={3} />
       </div>
       <div>
         <label>Medium: </label>
-        <StarRating size="medium" defaultValue={3} />
+        <StarRating size={STAR_SIZES.MEDIUM} defaultValue={3} />
       </div>
       <div>
         <label>Large: </label>
-        <StarRating size="large" defaultValue={3} />
+        <StarRating size={STAR_SIZES.LARGE} defaultValue={3} />
       </div>
       <div>
         <label>Extra Large: </label>
-        <StarRating size="extra-large" defaultValue={3} />
+        <StarRating size={STAR_SIZES.EXTRA_LARGE} defaultValue={3} />
       </div>
     </div>
   ),
@@ -136,15 +137,15 @@ export const Variants: Story = {
     >
       <div>
         <label>Filled (default): </label>
-        <StarRating variant="filled" defaultValue={3} />
+        <StarRating variant={STAR_VARIANTS.FILLED} defaultValue={3} />
       </div>
       <div>
         <label>Outlined: </label>
-        <StarRating variant="outlined" defaultValue={3} />
+        <StarRating variant={STAR_VARIANTS.OUTLINED} defaultValue={3} />
       </div>
       <div>
         <label>Rounded: </label>
-        <StarRating variant="rounded" defaultValue={3} />
+        <StarRating variant={STAR_VARIANTS.ROUNDED} defaultValue={3} />
       </div>
     </div>
   ),
@@ -157,7 +158,7 @@ export const HalfRatings: Story = {
     allowHalf: true,
     defaultValue: 3.5,
     showValue: true,
-    size: "large",
+    size: STAR_SIZES.LARGE,
   },
 };
 
@@ -169,7 +170,7 @@ export const CustomColors: Story = {
     inactiveColor: "#e0e7ff",
     activeColor: "#6366f1",
     hoverColor: "#4f46e5",
-    size: "large",
+    size: STAR_SIZES.LARGE,
   },
 };
 

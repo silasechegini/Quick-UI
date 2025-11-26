@@ -6,7 +6,13 @@ import React, {
   useId,
 } from "react";
 import { FaStar, FaRegStar, FaStarHalf } from "react-icons/fa";
-import { StarRatingProps, StarItemProps, StarSize } from "./types";
+import {
+  StarRatingProps,
+  StarItemProps,
+  StarSize,
+  STAR_VARIANTS,
+  STAR_SIZES,
+} from "./types";
 import { buildClassNames } from "@utils/index";
 import styles from "./styles.module.scss";
 
@@ -15,7 +21,7 @@ const SIZE_MAP: Record<StarSize, number> = {
   small: 16,
   medium: 20,
   large: 24,
-  "extra-large": 32,
+  xLarge: 32,
 };
 
 // Star Item Component
@@ -112,8 +118,8 @@ export const StarRating = forwardRef<HTMLDivElement, StarRatingProps>(
       onStarClick,
       onStarHover,
       onStarLeave,
-      size = "medium",
-      variant = "filled",
+      size = STAR_SIZES.MEDIUM,
+      variant = STAR_VARIANTS.FILLED,
       activeColor = "#ffc107",
       inactiveColor = "#e4e5e9",
       hoverColor,
@@ -148,7 +154,8 @@ export const StarRating = forwardRef<HTMLDivElement, StarRatingProps>(
     const displayValue = hoveredValue !== null ? hoveredValue : currentValue;
 
     // Calculate star size
-    const starSize = typeof size === "number" ? size : SIZE_MAP[size];
+    const starSize =
+      typeof size === "number" ? size : SIZE_MAP[size as StarSize];
 
     // Validate props
     const validatedCount = Math.max(1, Math.min(count, 10)); // Limit to reasonable range

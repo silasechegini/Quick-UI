@@ -3,6 +3,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import StarRating from "./index";
 import { FaHeart } from "react-icons/fa";
+import { STAR_SIZES, STAR_VARIANTS } from "./types";
 
 describe("StarRating", () => {
   it("renders with default props", () => {
@@ -83,13 +84,15 @@ describe("StarRating", () => {
   });
 
   it("applies size classes correctly", () => {
-    render(<StarRating size="large" data-testid="star-rating" />);
+    render(<StarRating size={STAR_SIZES.LARGE} data-testid="star-rating" />);
     const container = screen.getByTestId("star-rating");
     expect(container.className).toContain("sizeLarge");
   });
 
   it("applies variant classes correctly", () => {
-    render(<StarRating variant="outlined" data-testid="star-rating" />);
+    render(
+      <StarRating variant={STAR_VARIANTS.OUTLINED} data-testid="star-rating" />,
+    );
     const stars = screen.getAllByRole("button");
     // Just check that the variant prop is accepted without error
     expect(stars).toHaveLength(5);

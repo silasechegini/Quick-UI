@@ -1,8 +1,27 @@
 import { ReactNode, CSSProperties } from "react";
 import { IconType } from "react-icons";
 
-export type StarSize = "small" | "medium" | "large" | "extra-large";
-export type StarVariant = "filled" | "outlined" | "rounded";
+/**
+ * Star Rating Component Types
+ */
+
+// Enums for sizes and variants
+export enum STAR_SIZES {
+  SMALL = "small",
+  MEDIUM = "medium",
+  LARGE = "large",
+  EXTRA_LARGE = "xLarge",
+}
+
+export enum STAR_VARIANTS {
+  FILLED = "filled",
+  OUTLINED = "outlined",
+  ROUNDED = "rounded",
+}
+
+// Type definitions
+export type StarSize = (typeof STAR_SIZES)[keyof typeof STAR_SIZES];
+export type StarVariant = (typeof STAR_VARIANTS)[keyof typeof STAR_VARIANTS];
 
 export interface StarRatingProps {
   /**
