@@ -404,7 +404,9 @@ export const StarRating = forwardRef<HTMLDivElement, StarRatingProps>(
         id={componentId}
         data-testid={testId}
         role="radiogroup"
-        aria-label={ariaLabel || `Rating: ${formattedValue}`}
+        aria-label={
+          !ariaLabelledBy ? ariaLabel || `Rating: ${formattedValue}` : undefined
+        }
         aria-labelledby={ariaLabelledBy}
         aria-required={false}
         aria-readonly={readOnly}

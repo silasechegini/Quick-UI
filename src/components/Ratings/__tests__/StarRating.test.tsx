@@ -3,7 +3,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import StarRating from "../Star/index";
 import { FaHeart } from "react-icons/fa";
-import { STAR_SIZES, STAR_VARIANTS } from "../Star/types";
+import { STAR_SIZES, STAR_VARIANTS } from "../Star/Star.types";
 
 describe("StarRating", () => {
   it("renders with default props", () => {
@@ -419,6 +419,7 @@ describe("StarRating", () => {
     // Keyboard navigation should default to full rating even with allowHalf=true
     expect(handleChange).toHaveBeenCalledWith(3);
   });
+
   it("renders children when provided", () => {
     render(
       <StarRating>
