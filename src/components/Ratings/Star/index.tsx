@@ -13,7 +13,7 @@ import {
   STAR_VARIANTS,
   STAR_SIZES,
 } from "./Star.types";
-import { buildClassNames } from "@utils/index";
+import { buildClassNames, toPascalCase } from "@utils/index";
 import styles from "./styles.module.scss";
 
 // Size mappings
@@ -21,7 +21,7 @@ const SIZE_MAP: Record<StarSize, number> = {
   small: 16,
   medium: 20,
   large: 24,
-  xLarge: 32,
+  extraLarge: 32,
 };
 
 // Star Item Component
@@ -76,11 +76,7 @@ const StarItem = React.memo<StarItemProps>(
         [styles.starDisabled]: !!disabled,
         [styles.starReadOnly]: !!readOnly,
         [styles.starInteractive]: !!isInteractive,
-        [styles[
-          `star${variant
-            .replace(/-([a-z])/g, (_, letter) => letter.toUpperCase())
-            .replace(/^./, (c) => c.toUpperCase())}`
-        ]]: true,
+        [styles[`star${toPascalCase(variant)}`]]: true,
       },
       className,
     );
@@ -164,13 +160,19 @@ export const StarRating = forwardRef<HTMLDivElement, StarRatingProps>(
 
     // Event handlers
     const handleStarClick = useCallback(
-      (starIndex: number, event?: React.MouseEvent) => {
+      (starIndex: number, event?: React.MouseEvent | React.KeyboardEvent) => {
         if (disabled || readOnly) return;
 
         let newRating = starIndex + 1; // Default to full star
 
-        // If allowHalf is true and we have mouse event, detect position within star
-        if (allowHalf && event) {
+        // If allowHalf is true and we have mouse event with clientX, detect position within star
+        if (
+          allowHalf &&
+          event &&
+          "clientX" in event &&
+          typeof event.clientX === "number" &&
+          event.currentTarget
+        ) {
           const rect = event.currentTarget.getBoundingClientRect();
           const clickX = event.clientX - rect.left;
           const starWidth = rect.width;
@@ -238,7 +240,7 @@ export const StarRating = forwardRef<HTMLDivElement, StarRatingProps>(
                 (starElements[prevIndex] as HTMLElement).focus();
               }
             } catch (error) {
-              if (process.env.NODE_ENV !== "test") console.error(error);
+              if (process.env.NODE_ENV !== "production") console.error(error);
               // Silently handle errors during testing when elements may be unmounted
             }
             break;
@@ -258,7 +260,7 @@ export const StarRating = forwardRef<HTMLDivElement, StarRatingProps>(
                 (starElements[nextIndex] as HTMLElement).focus();
               }
             } catch (error) {
-              if (process.env.NODE_ENV !== "test") console.error(error);
+              if (process.env.NODE_ENV !== "production") console.error(error);
               // Silently handle errors during testing when elements may be unmounted
             }
             break;
@@ -267,7 +269,7 @@ export const StarRating = forwardRef<HTMLDivElement, StarRatingProps>(
           case "Enter":
           case " ":
             event.preventDefault();
-            handleStarClick(starIndex, event as unknown as React.MouseEvent);
+            handleStarClick(starIndex, event);
             break;
 
           case "Home": {
@@ -280,7 +282,7 @@ export const StarRating = forwardRef<HTMLDivElement, StarRatingProps>(
                 (starElements[0] as HTMLElement).focus();
               }
             } catch (error) {
-              if (process.env.NODE_ENV !== "test") console.error(error);
+              if (process.env.NODE_ENV !== "production") console.error(error);
               // Silently handle errors during testing when elements may be unmounted
             }
             break;
@@ -297,7 +299,7 @@ export const StarRating = forwardRef<HTMLDivElement, StarRatingProps>(
                 (starElements[lastIndex] as HTMLElement).focus();
               }
             } catch (error) {
-              if (process.env.NODE_ENV !== "test") console.error(error);
+              if (process.env.NODE_ENV !== "production") console.error(error);
               // Silently handle errors during testing when elements may be unmounted
             }
             break;
@@ -314,10 +316,13 @@ export const StarRating = forwardRef<HTMLDivElement, StarRatingProps>(
           const starValue = index + 1;
           const isHovered = hoveredValue !== null && starValue <= hoveredValue;
           const isFilled = starValue <= displayValue;
-          const isHalfFilled = allowHalf && starValue - 0.5 === displayValue;
+          const isHalfFilled =
+            allowHalf &&
+            Math.abs(starValue - 0.5 - displayValue) < Number.EPSILON;
           const isSelected = Math.ceil(currentValue) === starValue;
           const isChecked = isFilled || isHalfFilled; // For ARIA, checked means this star is filled
-          const shouldBeFocusable = index === 0 || isSelected; // First star or currently selected star gets tabIndex=0
+          const shouldBeFocusable =
+            isSelected || (index === 0 && currentValue === 0); // First star or currently selected star gets tabIndex=0
 
           return (
             <StarItem
@@ -378,11 +383,7 @@ export const StarRating = forwardRef<HTMLDivElement, StarRatingProps>(
 
     const sizeClassName =
       typeof size === "string"
-        ? styles[
-            `size${size
-              .replace(/-([a-z])/g, (_, letter) => letter.toUpperCase())
-              .replace(/^./, (c) => c.toUpperCase())}`
-          ]
+        ? styles[`size${toPascalCase(size)}`]
         : undefined;
 
     const containerClasses = buildClassNames(

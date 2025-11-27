@@ -218,7 +218,10 @@ describe("StarRating", () => {
     vi.spyOn(secondStar, "getBoundingClientRect").mockReturnValue(mockRect);
 
     // Simulate click on left side of star (clientX = 25, which is < width/2)
-    fireEvent.click(secondStar, { clientX: 25 });
+    fireEvent.click(secondStar, {
+      clientX: 25,
+      nativeEvent: new MouseEvent("click", { clientX: 25 }),
+    });
 
     expect(handleChange).toHaveBeenCalledWith(1.5); // Half rating for left side click
   });
@@ -383,7 +386,10 @@ describe("StarRating", () => {
     vi.spyOn(fourthStar, "getBoundingClientRect").mockReturnValue(mockRect);
 
     // Click left side for half rating
-    fireEvent.click(fourthStar, { clientX: 30 });
+    fireEvent.click(fourthStar, {
+      clientX: 30,
+      nativeEvent: new MouseEvent("click", { clientX: 30 }),
+    });
 
     expect(handleChange).toHaveBeenCalledWith(3.5);
 

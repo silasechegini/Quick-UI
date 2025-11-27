@@ -10,7 +10,7 @@ export enum STAR_SIZES {
   SMALL = "small",
   MEDIUM = "medium",
   LARGE = "large",
-  EXTRA_LARGE = "xLarge",
+  EXTRA_LARGE = "extraLarge",
 }
 
 export enum STAR_VARIANTS {
