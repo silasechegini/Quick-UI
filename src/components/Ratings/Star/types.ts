@@ -189,11 +189,14 @@ export interface StarItemProps {
   variant: StarVariant;
   disabled: boolean;
   readOnly: boolean;
-  onClick: () => void;
+  onClick: (event: React.MouseEvent) => void;
   onMouseEnter: () => void;
   onMouseLeave: () => void;
+  onKeyDown?: (event: React.KeyboardEvent) => void;
+  tabIndex?: number;
   className?: string;
   style?: CSSProperties;
   index: number;
   "aria-label"?: string;
+  "aria-checked"?: boolean;
 }

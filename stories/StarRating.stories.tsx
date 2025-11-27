@@ -19,7 +19,7 @@ const meta = {
     },
     size: {
       control: { type: "select" },
-      options: ["small", "medium", "large", "extraLarge"],
+      options: ["small", "medium", "large", "xLarge"],
       description: "Size of the star icons",
     },
     variant: {
@@ -335,7 +335,7 @@ export const WithEvents: Story = {
         <StarRating
           defaultValue={2}
           onChange={(value) => addEvent(`Changed to ${value}`)}
-          onStarHover={(_index, value) => addEvent(`Hovered  ${value}`)}
+          onStarHover={(_index, value) => addEvent(`Hovered ${value}`)}
           onStarClick={(_index, value) => addEvent(`Clicked ${value}`)}
           showValue
           allowHalf
@@ -385,7 +385,7 @@ export const Accessibility: Story = {
         <label>With description:</label>
         <StarRating
           aria-label="Rate this product from 1 to 5 stars"
-          aria-describedby="rating-desc"
+          aria-labelledby="rating-desc"
           defaultValue={3}
         />
         <div

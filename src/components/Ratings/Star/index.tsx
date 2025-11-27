@@ -42,10 +42,13 @@ const StarItem = React.memo<StarItemProps>(
     onClick,
     onMouseEnter,
     onMouseLeave,
+    onKeyDown,
+    tabIndex = -1,
     className,
     style,
     index,
     "aria-label": ariaLabel,
+    "aria-checked": ariaChecked,
   }) => {
     const isInteractive = !disabled && !readOnly;
 
@@ -73,8 +76,11 @@ const StarItem = React.memo<StarItemProps>(
         [styles.starDisabled]: !!disabled,
         [styles.starReadOnly]: !!readOnly,
         [styles.starInteractive]: !!isInteractive,
-        [styles[`star${variant.charAt(0).toUpperCase() + variant.slice(1)}`]]:
-          true,
+        [styles[
+          `star${variant
+            .replace(/-([a-z])/g, (_, letter) => letter.toUpperCase())
+            .replace(/^./, (c) => c.toUpperCase())}`
+        ]]: true,
       },
       className,
     );
@@ -92,14 +98,10 @@ const StarItem = React.memo<StarItemProps>(
           ...style,
         }}
         aria-label={ariaLabel || `Star ${index + 1}`}
-        role="button"
-        tabIndex={isInteractive ? 0 : -1}
-        onKeyDown={(e) => {
-          if (isInteractive && (e.key === "Enter" || e.key === " ")) {
-            e.preventDefault();
-            onClick();
-          }
-        }}
+        aria-checked={ariaChecked}
+        role="radio"
+        tabIndex={tabIndex}
+        onKeyDown={isInteractive ? onKeyDown : undefined}
       />
     );
   },
@@ -149,6 +151,9 @@ export const StarRating = forwardRef<HTMLDivElement, StarRatingProps>(
     const isControlled = value !== undefined;
     const [internalValue, setInternalValue] = useState(defaultValue);
     const [hoveredValue, setHoveredValue] = useState<number | null>(null);
+    const [focusedStarIndex, setFocusedStarIndex] = useState<number | null>(
+      null,
+    );
 
     const currentValue = isControlled ? value : internalValue;
     const displayValue = hoveredValue !== null ? hoveredValue : currentValue;
@@ -162,10 +167,23 @@ export const StarRating = forwardRef<HTMLDivElement, StarRatingProps>(
 
     // Event handlers
     const handleStarClick = useCallback(
-      (starIndex: number) => {
+      (starIndex: number, event?: React.MouseEvent) => {
         if (disabled || readOnly) return;
 
-        const newRating = allowHalf ? starIndex + 0.5 : starIndex + 1;
+        let newRating = starIndex + 1; // Default to full star
+
+        // If allowHalf is true and we have mouse event, detect position within star
+        if (allowHalf && event) {
+          const rect = event.currentTarget.getBoundingClientRect();
+          const clickX = event.clientX - rect.left;
+          const starWidth = rect.width;
+
+          // If click is in the left half of the star, set half rating
+          if (clickX <= starWidth / 2) {
+            newRating = starIndex + 0.5;
+          }
+        }
+
         const finalRating = Math.min(newRating, validatedCount);
 
         if (!isControlled) {
@@ -204,6 +222,104 @@ export const StarRating = forwardRef<HTMLDivElement, StarRatingProps>(
       onStarLeave?.();
     }, [disabled, readOnly, onStarLeave]);
 
+    const handleKeyDown = useCallback(
+      (event: React.KeyboardEvent, starIndex: number) => {
+        if (disabled || readOnly) return;
+
+        switch (event.key) {
+          case "ArrowLeft":
+          case "ArrowDown": {
+            event.preventDefault();
+            const prevIndex =
+              starIndex > 0 ? starIndex - 1 : validatedCount - 1;
+            setFocusedStarIndex(prevIndex);
+            // Focus the previous star element
+            try {
+              const parent = event.currentTarget?.parentElement;
+              if (!parent) return;
+              const starElements = parent.querySelectorAll('[role="radio"]');
+              if (starElements && starElements[prevIndex]) {
+                (starElements[prevIndex] as HTMLElement).focus();
+              }
+            } catch (error) {
+              console.error(error);
+              // Silently handle errors during testing when elements may be unmounted
+            }
+            break;
+          }
+
+          case "ArrowRight":
+          case "ArrowUp": {
+            event.preventDefault();
+            const nextIndex =
+              starIndex < validatedCount - 1 ? starIndex + 1 : 0;
+            setFocusedStarIndex(nextIndex);
+            // Focus the next star element
+            try {
+              const parent = event.currentTarget?.parentElement;
+              if (!parent) return;
+              const starElements = parent.querySelectorAll('[role="radio"]');
+              if (starElements && starElements[nextIndex]) {
+                (starElements[nextIndex] as HTMLElement).focus();
+              }
+            } catch (error) {
+              console.error(error);
+              // Silently handle errors during testing when elements may be unmounted
+            }
+            break;
+          }
+
+          case "Enter":
+          case " ":
+            event.preventDefault();
+            handleStarClick(starIndex, event as unknown as React.MouseEvent);
+            break;
+
+          case "Home": {
+            event.preventDefault();
+            setFocusedStarIndex(0);
+            try {
+              const parent = event.currentTarget?.parentElement;
+              if (!parent) return;
+              const starElements = parent.querySelectorAll('[role="radio"]');
+              if (starElements && starElements[0]) {
+                (starElements[0] as HTMLElement).focus();
+              }
+            } catch (error) {
+              console.error(error);
+              // Silently handle errors during testing when elements may be unmounted
+            }
+            break;
+          }
+
+          case "End": {
+            event.preventDefault();
+            const lastIndex = validatedCount - 1;
+            setFocusedStarIndex(lastIndex);
+            try {
+              const parent = event.currentTarget?.parentElement;
+              if (!parent) return;
+              const starElements = parent.querySelectorAll('[role="radio"]');
+              if (starElements && starElements[lastIndex]) {
+                (starElements[lastIndex] as HTMLElement).focus();
+              }
+            } catch (error) {
+              console.error(error);
+              // Silently handle errors during testing when elements may be unmounted
+            }
+            break;
+          }
+        }
+      },
+      [
+        disabled,
+        readOnly,
+        validatedCount,
+        handleStarClick,
+        setFocusedStarIndex,
+      ],
+    );
+
     // Generate stars
     const stars = useMemo(
       () =>
@@ -212,6 +328,9 @@ export const StarRating = forwardRef<HTMLDivElement, StarRatingProps>(
           const isHovered = hoveredValue !== null && starValue <= hoveredValue;
           const isFilled = starValue <= displayValue;
           const isHalfFilled = allowHalf && starValue - 0.5 === displayValue;
+          const isSelected = Math.ceil(currentValue) === starValue;
+          const isChecked = isFilled || isHalfFilled; // For ARIA, checked means this star is filled
+          const shouldBeFocusable = index === 0 || isSelected; // First star or currently selected star gets tabIndex=0
 
           return (
             <StarItem
@@ -229,12 +348,15 @@ export const StarRating = forwardRef<HTMLDivElement, StarRatingProps>(
               variant={variant}
               disabled={disabled}
               readOnly={readOnly}
-              onClick={() => handleStarClick(index)}
+              onClick={(event) => handleStarClick(index, event)}
               onMouseEnter={() => handleStarHover(index)}
               onMouseLeave={handleMouseLeave}
+              onKeyDown={(event) => handleKeyDown(event, index)}
+              tabIndex={shouldBeFocusable && !disabled && !readOnly ? 0 : -1}
               className={starClassName}
               style={starStyle}
-              aria-label={`Rate ${starValue} out of ${validatedCount} stars`}
+              aria-label={`${isSelected ? "Current rating: " : ""}${starValue} out of ${validatedCount} stars`}
+              aria-checked={isChecked}
             />
           );
         }),
@@ -255,8 +377,11 @@ export const StarRating = forwardRef<HTMLDivElement, StarRatingProps>(
         handleStarClick,
         handleStarHover,
         handleMouseLeave,
+        handleKeyDown,
         starClassName,
         starStyle,
+        currentValue,
+        focusedStarIndex,
       ],
     );
 
@@ -267,7 +392,11 @@ export const StarRating = forwardRef<HTMLDivElement, StarRatingProps>(
 
     const sizeClassName =
       typeof size === "string"
-        ? styles[`size${size.charAt(0).toUpperCase() + size.slice(1)}`]
+        ? styles[
+            `size${size
+              .replace(/-([a-z])/g, (_, letter) => letter.toUpperCase())
+              .replace(/^./, (c) => c.toUpperCase())}`
+          ]
         : undefined;
 
     const containerClasses = buildClassNames(
