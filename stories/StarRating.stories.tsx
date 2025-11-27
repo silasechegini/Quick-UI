@@ -1,9 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { StarRating } from "../src/components";
+import { StarRating, STAR_SIZES, STAR_VARIANTS } from "@components/Ratings";
 import { useState } from "react";
 import { FaHeart, FaThumbsUp } from "react-icons/fa";
 import { AiFillLike } from "react-icons/ai";
-import { STAR_SIZES, STAR_VARIANTS } from "@components/Ratings/Star/types";
 
 const meta = {
   title: "Components/StarRating",
@@ -19,12 +18,12 @@ const meta = {
     },
     size: {
       control: { type: "select" },
-      options: ["small", "medium", "large", "xLarge"],
+      options: Object.values(STAR_SIZES),
       description: "Size of the star icons",
     },
     variant: {
       control: { type: "select" },
-      options: ["filled", "outlined", "rounded"],
+      options: Object.values(STAR_VARIANTS),
       description: "Visual style variant",
     },
     allowHalf: {

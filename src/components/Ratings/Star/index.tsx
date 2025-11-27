@@ -12,7 +12,7 @@ import {
   StarSize,
   STAR_VARIANTS,
   STAR_SIZES,
-} from "./types";
+} from "./Star.types";
 import { buildClassNames } from "@utils/index";
 import styles from "./styles.module.scss";
 
@@ -151,9 +151,6 @@ export const StarRating = forwardRef<HTMLDivElement, StarRatingProps>(
     const isControlled = value !== undefined;
     const [internalValue, setInternalValue] = useState(defaultValue);
     const [hoveredValue, setHoveredValue] = useState<number | null>(null);
-    const [focusedStarIndex, setFocusedStarIndex] = useState<number | null>(
-      null,
-    );
 
     const currentValue = isControlled ? value : internalValue;
     const displayValue = hoveredValue !== null ? hoveredValue : currentValue;
@@ -232,7 +229,6 @@ export const StarRating = forwardRef<HTMLDivElement, StarRatingProps>(
             event.preventDefault();
             const prevIndex =
               starIndex > 0 ? starIndex - 1 : validatedCount - 1;
-            setFocusedStarIndex(prevIndex);
             // Focus the previous star element
             try {
               const parent = event.currentTarget?.parentElement;
@@ -242,7 +238,7 @@ export const StarRating = forwardRef<HTMLDivElement, StarRatingProps>(
                 (starElements[prevIndex] as HTMLElement).focus();
               }
             } catch (error) {
-              console.error(error);
+              if (process.env.NODE_ENV !== "test") console.error(error);
               // Silently handle errors during testing when elements may be unmounted
             }
             break;
@@ -253,7 +249,6 @@ export const StarRating = forwardRef<HTMLDivElement, StarRatingProps>(
             event.preventDefault();
             const nextIndex =
               starIndex < validatedCount - 1 ? starIndex + 1 : 0;
-            setFocusedStarIndex(nextIndex);
             // Focus the next star element
             try {
               const parent = event.currentTarget?.parentElement;
@@ -263,7 +258,7 @@ export const StarRating = forwardRef<HTMLDivElement, StarRatingProps>(
                 (starElements[nextIndex] as HTMLElement).focus();
               }
             } catch (error) {
-              console.error(error);
+              if (process.env.NODE_ENV !== "test") console.error(error);
               // Silently handle errors during testing when elements may be unmounted
             }
             break;
@@ -277,7 +272,6 @@ export const StarRating = forwardRef<HTMLDivElement, StarRatingProps>(
 
           case "Home": {
             event.preventDefault();
-            setFocusedStarIndex(0);
             try {
               const parent = event.currentTarget?.parentElement;
               if (!parent) return;
@@ -286,7 +280,7 @@ export const StarRating = forwardRef<HTMLDivElement, StarRatingProps>(
                 (starElements[0] as HTMLElement).focus();
               }
             } catch (error) {
-              console.error(error);
+              if (process.env.NODE_ENV !== "test") console.error(error);
               // Silently handle errors during testing when elements may be unmounted
             }
             break;
@@ -295,7 +289,6 @@ export const StarRating = forwardRef<HTMLDivElement, StarRatingProps>(
           case "End": {
             event.preventDefault();
             const lastIndex = validatedCount - 1;
-            setFocusedStarIndex(lastIndex);
             try {
               const parent = event.currentTarget?.parentElement;
               if (!parent) return;
@@ -304,20 +297,14 @@ export const StarRating = forwardRef<HTMLDivElement, StarRatingProps>(
                 (starElements[lastIndex] as HTMLElement).focus();
               }
             } catch (error) {
-              console.error(error);
+              if (process.env.NODE_ENV !== "test") console.error(error);
               // Silently handle errors during testing when elements may be unmounted
             }
             break;
           }
         }
       },
-      [
-        disabled,
-        readOnly,
-        validatedCount,
-        handleStarClick,
-        setFocusedStarIndex,
-      ],
+      [disabled, readOnly, validatedCount, handleStarClick],
     );
 
     // Generate stars
@@ -381,7 +368,6 @@ export const StarRating = forwardRef<HTMLDivElement, StarRatingProps>(
         starClassName,
         starStyle,
         currentValue,
-        focusedStarIndex,
       ],
     );
 

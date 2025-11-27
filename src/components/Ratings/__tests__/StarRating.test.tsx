@@ -1,9 +1,9 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
-import StarRating from "./index";
+import StarRating from "../Star/index";
 import { FaHeart } from "react-icons/fa";
-import { STAR_SIZES, STAR_VARIANTS } from "./types";
+import { STAR_SIZES, STAR_VARIANTS } from "../Star/types";
 
 describe("StarRating", () => {
   it("renders with default props", () => {
