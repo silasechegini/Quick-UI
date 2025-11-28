@@ -47,6 +47,12 @@
   margin-right: 10px;
 }
 
+.iconOnly {
+  min-width: var(--width-16) !important;
+  min-height: var(--width-16) !important;
+  box-sizing: border-box;
+}
+
 @keyframes spin {
   from {
     transform: rotate(0deg);
@@ -134,7 +140,7 @@
 
 .s {
   font-size: var(--font-size-sm);
-  padding: 0.4rem 1rem;
+  padding: 0.4rem 0.8rem;
   min-width: var(--width-80);
   max-width: var(--width-110);
 }

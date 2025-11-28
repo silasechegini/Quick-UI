@@ -54,6 +54,7 @@ const ButtonBase: React.FC<ButtonProps> = ({
     styles[shape],
     fullWidth && styles.fullWidth,
     isLoading && styles.loading,
+    isIconOnly ? styles.iconOnly : undefined,
     className,
     styleOverride?.className,
   );

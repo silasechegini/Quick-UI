@@ -1,6 +1,6 @@
 {
   "name": "quick-ui-react",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "A modern React component library built with TypeScript",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
@@ -79,7 +79,8 @@
     "classnames": "^2.5.1",
     "focus-trap-react": "^11.0.4",
     "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "react-dom": "^19.1.1",
+    "react-icons": "^5.5.0"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^4.1.2",

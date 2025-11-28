@@ -18,3 +18,4 @@ export * from "./Radio";
 export * from "./Slider";
 export * from "./Switch";
 export * from "./Toggle";
+export * from "./Ratings";

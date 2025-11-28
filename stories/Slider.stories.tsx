@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Slider } from "../src/components/Slider";
+import { Slider, SLIDER_SIZES } from "@components/Slider";
 
 const meta = {
   title: "Components/Slider",
@@ -61,20 +61,20 @@ export const Disabled: Story = {
 export const Small: Story = {
   args: {
     defaultValue: 40,
-    size: "small",
+    size: SLIDER_SIZES.SMALL,
   },
 };
 
 export const Medium: Story = {
   args: {
     defaultValue: 40,
-    size: "medium",
+    size: SLIDER_SIZES.MEDIUM,
   },
 };
 
 export const Large: Story = {
   args: {
     defaultValue: 40,
-    size: "large",
+    size: SLIDER_SIZES.LARGE,
   },
 };

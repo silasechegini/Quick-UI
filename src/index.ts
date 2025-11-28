@@ -20,4 +20,5 @@ export * from "./components/Radio";
 export * from "./components/Slider";
 export * from "./components/Switch";
 export * from "./components/Toggle";
+export * from "./components/Ratings";
 export * from "./utils";
