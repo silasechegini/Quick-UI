@@ -35,6 +35,7 @@ const StarItem = React.memo<StarItemProps>(
     inactiveColor,
     hoverColor,
     filledIcon: FilledIcon = FaStar,
+    halfIcon: HalfIcon = FaStarHalf,
     emptyIcon: EmptyIcon = FaRegStar,
     variant,
     disabled,
@@ -60,7 +61,7 @@ const StarItem = React.memo<StarItemProps>(
     };
 
     const getStarIcon = () => {
-      if (halfFilled) return FaStarHalf;
+      if (halfFilled) return HalfIcon;
       if (filled) return FilledIcon;
       return EmptyIcon;
     };
@@ -70,8 +71,6 @@ const StarItem = React.memo<StarItemProps>(
     const starClasses = buildClassNames(
       [styles.star],
       {
-        [styles.starFilled]: !!filled,
-        [styles.starHalf]: !!halfFilled,
         [styles.starHovered]: !!hovered,
         [styles.starDisabled]: !!disabled,
         [styles.starReadOnly]: !!readOnly,
@@ -309,6 +308,14 @@ export const StarRating = forwardRef<HTMLDivElement, StarRatingProps>(
       [disabled, readOnly, validatedCount, handleStarClick],
     );
 
+    const memoizedHandlers = useMemo(() => {
+      return Array.from({ length: validatedCount }, (_, index) => ({
+        onClick: (event: React.MouseEvent) => handleStarClick(index, event),
+        onMouseEnter: () => handleStarHover(index),
+        onKeyDown: (event: React.KeyboardEvent) => handleKeyDown(event, index),
+      }));
+    }, [handleStarClick, handleStarHover, handleKeyDown]);
+
     // Generate stars
     const stars = useMemo(
       () =>
@@ -340,10 +347,10 @@ export const StarRating = forwardRef<HTMLDivElement, StarRatingProps>(
               variant={variant}
               disabled={disabled}
               readOnly={readOnly}
-              onClick={(event) => handleStarClick(index, event)}
-              onMouseEnter={() => handleStarHover(index)}
+              onClick={memoizedHandlers[index].onClick}
+              onMouseEnter={memoizedHandlers[index].onMouseEnter}
               onMouseLeave={handleMouseLeave}
-              onKeyDown={(event) => handleKeyDown(event, index)}
+              onKeyDown={memoizedHandlers[index].onKeyDown}
               tabIndex={shouldBeFocusable && !disabled && !readOnly ? 0 : -1}
               className={starClassName}
               style={starStyle}

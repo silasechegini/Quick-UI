@@ -26,6 +26,7 @@ export type StarVariant = (typeof STAR_VARIANTS)[keyof typeof STAR_VARIANTS];
 export interface StarRatingProps {
   /**
    * The number of stars to display
+   * will be clamped between 1 and 10
    * @default 5
    */
   count?: number;
@@ -185,6 +186,7 @@ export interface StarItemProps {
   inactiveColor: string;
   hoverColor?: string;
   filledIcon?: IconType;
+  halfIcon?: IconType;
   emptyIcon?: IconType;
   variant: StarVariant;
   disabled: boolean;

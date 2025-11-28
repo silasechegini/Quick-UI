@@ -382,11 +382,7 @@ export const Accessibility: Story = {
       </div>
       <div>
         <label>With description:</label>
-        <StarRating
-          aria-label="Rate this product from 1 to 5 stars"
-          aria-labelledby="rating-desc"
-          defaultValue={3}
-        />
+        <StarRating aria-labelledby="rating-desc" defaultValue={3} />
         <div
           id="rating-desc"
           style={{ fontSize: "12px", color: "#6b7280", marginTop: "4px" }}
