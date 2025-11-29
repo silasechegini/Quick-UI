@@ -14,18 +14,14 @@ import { ICONS } from "@assets/iconType";
 // Navigation functions
 const navigateToComponents = () => {
   // Navigate to Components docs section in Storybook
-  if (window.parent && window.parent !== window) {
-    // We're in an iframe, update the parent window's URL
-    const parentUrl = new URL(window.parent.location.href);
-    parentUrl.searchParams.set("path", "/docs/components-accordion--docs");
-    try {
+  try {
+    if (window.parent && window.parent !== window) {
+      const parentUrl = new URL(window.parent.location.href);
+      parentUrl.searchParams.set("path", "/docs/components-accordion--docs");
       window.parent.location.href = parentUrl.toString();
-    } catch (error) {
-      // Handle potential SecurityError due to cross-origin restrictions
-      console.error("Unable to set parent window location:", error);
     }
-  } else {
-    // Fallback if not in iframe
+  } catch {
+    // fallback if not in iframe
     const url = new URL(window.location.href);
     url.searchParams.set("path", "/docs/components-accordion--docs");
     window.location.href = url.toString();

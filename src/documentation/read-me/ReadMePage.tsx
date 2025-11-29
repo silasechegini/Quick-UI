@@ -128,11 +128,11 @@ const ReadMePage: React.FC = () => (
           margin: 0,
         }}
       >
-        {`// Import Quick-UI styles ONCE in root file;
+        {`// Import Quick-UI styles ONCE in root file
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import 'quick-ui-react/styles' // Import Quick-UI styles;
+import 'quick-ui-react/styles'; // Import Quick-UI styles
 import App from './App';
 
 const root = ReactDOM.createRoot(
@@ -362,7 +362,7 @@ function UserProfile({ user }) {
         value={user.completionPercent} 
         label="Profile Complete" 
       />
-      <Button variant={BUTTON_VARIANTS.OUTLINE}>Edit Profile</Button>
+      <Button variant={BUTTON_VARIANTS.SECONDARY}>Edit Profile</Button>
     </Card>
   );
 }`}
