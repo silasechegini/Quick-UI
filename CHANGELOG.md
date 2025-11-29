@@ -36,6 +36,77 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.9] - 2025-11-28
+
+### Added
+
+- New StarRating component with full accessibility support
+  - Supports full and half-star ratings
+  - Keyboard navigation with arrow keys
+  - Custom icons support
+  - Controlled and uncontrolled modes
+  - Custom value formatters
+  - Hover effects and visual feedback
+- New copy icon (COPY_ICON) to icon library
+- Enhanced Button component with CIRCULAR shape option
+
+### Changed
+
+- Updated IntroPage to use copy icon instead of download icon for copy-to-clipboard action
+- Improved Storybook navigation in documentation pages
+
+### Fixed
+
+- Fixed TypeScript path resolution issues in .storybook/tsconfig.json
+- Resolved custom icon half-rating visual inconsistency by disabling half icons when custom icons are used
+
+## [1.0.8] - 2025-11-27
+
+### Changed
+
+- Updated package keywords for better discoverability
+
+## [1.0.7] - 2025-11-19
+
+### Changed
+
+- Improved README.md for enhanced clarity and style
+- Cleaned up component documentation by removing redundant README files
+
+### Removed
+
+- Deleted individual README files from Accordion, Badge, Modal, and ProgressBar components
+
+### Fixed
+
+- Fixed duplicate feature entries in Accordion README
+- Fixed formatting issues in CONTRIBUTING.md
+
+## [1.0.6] - 2025-11-19
+
+### Changed
+
+- Complete migration from Jest to Vitest testing framework
+- Updated all test files to use Vitest imports (describe, it, expect, vi)
+- Replaced `jest.fn()` with `vi.fn()` across all test files
+- Enhanced test assertions and configurations
+
+### Added
+
+- Added vitest.config.ts enhancements
+- Added vitest.shims.d.ts for TypeScript support
+- Added vitest.globals.d.ts for global types
+- Added tsconfig.test.json for test-specific configuration
+- Added @vitest/ui for better testing UI
+
+### Removed
+
+- Removed Jest configuration files (jest.config.js, tsconfig.jest.json)
+
+### Dependencies
+
+- Updated jsdom, @types/node, and other testing-related dependencies
+
 ## [1.0.5] - 2025-11-18
 
 ### Fixed
