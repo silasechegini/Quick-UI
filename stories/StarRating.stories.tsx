@@ -286,7 +286,7 @@ export const Controlled: Story = {
           <label>Controlled Rating (current: {rating}): </label>
           <StarRating
             value={rating}
-            onChange={(value) => setRating(value)}
+            onChange={(value: number) => setRating(value)}
             allowHalf
             showValue
           />
@@ -333,9 +333,13 @@ export const WithEvents: Story = {
       >
         <StarRating
           defaultValue={2}
-          onChange={(value) => addEvent(`Changed to ${value}`)}
-          onStarHover={(_index, value) => addEvent(`Hovered ${value}`)}
-          onStarClick={(_index, value) => addEvent(`Clicked ${value}`)}
+          onChange={(value: number) => addEvent(`Changed to ${value}`)}
+          onStarHover={(_index: number, value: number) =>
+            addEvent(`Hovered ${value}`)
+          }
+          onStarClick={(_index: number, value: number) =>
+            addEvent(`Clicked ${value}`)
+          }
           showValue
           allowHalf
         />

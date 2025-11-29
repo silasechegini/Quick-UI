@@ -7,6 +7,7 @@ import { ReactComponent as chevronLeftIcon } from "./icons/chevron_left.svg";
 import { ReactComponent as chevronRightIcon } from "./icons/chevron_right.svg";
 import { ReactComponent as dropdownArrowIcon } from "./icons/dropdown_arrow.svg";
 import { ReactComponent as clearIcon } from "./icons/clear.svg";
+import { ReactComponent as copyIcon } from "./icons/copy.svg";
 import { ReactComponent as plusIcon } from "./icons/plus.svg";
 import { ReactComponent as minusIcon } from "./icons/minus.svg";
 import { ReactComponent as checkmarkIcon } from "./icons/checkmark.svg";
@@ -48,6 +49,7 @@ const iconSvgMapping: { [key in IconKey]: FC<SVGProps<SVGSVGElement>> } = {
   clear_icon: clearIcon,
   close_icon: closeIcon,
   clock_icon: clockIcon,
+  copy_icon: copyIcon,
   dashboard_icon: dashboardIcon,
   download_icon: downloadIcon,
   dropdown_arrow_icon: dropdownArrowIcon,

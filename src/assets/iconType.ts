@@ -10,6 +10,7 @@ export type IconKey =
   | "clear_icon"
   | "clock_icon"
   | "close_icon"
+  | "copy_icon"
   | "dashboard_icon"
   | "download_icon"
   | "dropdown_arrow_icon"
@@ -47,6 +48,7 @@ export enum ICONS {
   CLEAR_ICON = "clear_icon",
   CLOCK_ICON = "clock_icon",
   CLOSE_ICON = "close_icon",
+  COPY_ICON = "copy_icon",
   DASHBOARD_ICON = "dashboard_icon",
   DOWNLOAD_ICON = "download_icon",
   DROPDOWN_ARROW_ICON = "dropdown_arrow_icon",

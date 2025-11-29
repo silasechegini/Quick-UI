@@ -53,7 +53,7 @@ const ReadMePage: React.FC = () => (
         }}
       >
         <h3 style={{ color: "#059669", margin: "0 0 0.5rem 0" }}>
-          ⚡ Blazing Fast
+          Blazing Fast
         </h3>
         <ul style={{ margin: 0, paddingLeft: "1rem" }}>
           <li>20+ Production-Ready Components</li>
@@ -71,7 +71,7 @@ const ReadMePage: React.FC = () => (
         }}
       >
         <h3 style={{ color: "#7c3aed", margin: "0 0 0.5rem 0" }}>
-          🏗️ Developer Experience
+          Developer Experience
         </h3>
         <ul style={{ margin: 0, paddingLeft: "1rem" }}>
           <li>100% TypeScript with IntelliSense</li>
@@ -89,7 +89,7 @@ const ReadMePage: React.FC = () => (
         paddingBottom: "0.5rem",
       }}
     >
-      🚀 Getting Started
+      Getting Started
     </h2>
     <div
       style={{
@@ -116,7 +116,38 @@ const ReadMePage: React.FC = () => (
       </pre>
 
       <h3 style={{ color: "#0f172a", margin: "1rem 0 1rem 0" }}>
-        2. Import and Use Components
+        2. In Root Component, Import Styles
+      </h3>
+      <pre
+        style={{
+          background: "#1e293b",
+          color: "#e2e8f0",
+          padding: "1rem",
+          borderRadius: "6px",
+          overflow: "auto",
+          margin: 0,
+        }}
+      >
+        {`// Import Quick-UI styles ONCE in root file;
+
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import 'quick-ui-react/styles' // Import Quick-UI styles;
+import App from './App';
+
+const root = ReactDOM.createRoot(
+  document.getElementById('root') as HTMLElement
+);
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+}`}
+      </pre>
+
+      <h3 style={{ color: "#0f172a", margin: "1rem 0 1rem 0" }}>
+        3. Import and Use Components
       </h3>
       <pre
         style={{
@@ -148,7 +179,7 @@ function App() {
         paddingBottom: "0.5rem",
       }}
     >
-      📸 Available Components
+      Available Components
     </h2>
     <div
       style={{
@@ -160,7 +191,7 @@ function App() {
     >
       <div>
         <h4 style={{ color: "#059669", margin: "0 0 0.5rem 0" }}>
-          📱 Layout & Navigation
+          Layout & Navigation
         </h4>
         <ul style={{ margin: 0, paddingLeft: "1rem", fontSize: "0.9rem" }}>
           <li>Card</li>
@@ -171,7 +202,7 @@ function App() {
       </div>
       <div>
         <h4 style={{ color: "#7c3aed", margin: "0 0 0.5rem 0" }}>
-          🎛️ Form Controls
+          Form Controls
         </h4>
         <ul style={{ margin: 0, paddingLeft: "1rem", fontSize: "0.9rem" }}>
           <li>Button</li>
@@ -184,7 +215,7 @@ function App() {
       </div>
       <div>
         <h4 style={{ color: "#dc2626", margin: "0 0 0.5rem 0" }}>
-          📊 Data Display
+          Data Display
         </h4>
         <ul style={{ margin: 0, paddingLeft: "1rem", fontSize: "0.9rem" }}>
           <li>Avatar</li>
@@ -196,7 +227,7 @@ function App() {
       </div>
       <div>
         <h4 style={{ color: "#ea580c", margin: "0 0 0.5rem 0" }}>
-          🎭 Interactive
+          Interactive
         </h4>
         <ul style={{ margin: 0, paddingLeft: "1rem", fontSize: "0.9rem" }}>
           <li>Flyout</li>
@@ -213,7 +244,7 @@ function App() {
         paddingBottom: "0.5rem",
       }}
     >
-      💻 TypeScript Support
+      TypeScript Support
     </h2>
     <div
       style={{
@@ -235,11 +266,11 @@ function App() {
           overflow: "auto",
         }}
       >
-        {`import { Button, ButtonProps } from 'quick-ui-react';
+        {`import { Button, ButtonProps, BUTTON_VARIANTS } from 'quick-ui-react';
 
 // Full type safety and autocompletion
 const MyButton: React.FC<ButtonProps> = ({ 
-  variant = 'primary', 
+  variant = BUTTON_VARIANTS.PRIMARY, 
   ...props 
 }) => {
   return <Button variant={variant} {...props} />;
@@ -254,7 +285,7 @@ const MyButton: React.FC<ButtonProps> = ({
         paddingBottom: "0.5rem",
       }}
     >
-      💡 Real-World Examples
+      Real-World Examples
     </h2>
     <div
       style={{
@@ -265,7 +296,7 @@ const MyButton: React.FC<ButtonProps> = ({
       }}
     >
       <h3 style={{ color: "#0f172a", margin: "0 0 1rem 0" }}>
-        🏪 E-Commerce Product Card
+        E-Commerce Product Card
       </h3>
       <pre
         style={{
@@ -277,15 +308,20 @@ const MyButton: React.FC<ButtonProps> = ({
           marginBottom: "1rem",
         }}
       >
-        {`import { Card, Button, Badge } from 'quick-ui-react';
+        {`import { 
+  Card, 
+  Button, 
+  Badge, 
+  BADGE_VARIANTS, 
+  BUTTON_VARIANTS } from 'quick-ui-react';
 
 function ProductCard() {
   return (
     <Card>
-      <Badge variant="success">Best Seller</Badge>
+      <Badge variant={BADGE_VARIANTS.SUCCESS}>Best Seller</Badge>
       <h3>Wireless Headphones</h3>
       <p>$199.99</p>
-      <Button variant="primary" fullWidth>
+      <Button variant={BUTTON_VARIANTS.PRIMARY} fullWidth>
         Add to Cart
       </Button>
     </Card>
@@ -294,7 +330,7 @@ function ProductCard() {
       </pre>
 
       <h3 style={{ color: "#0f172a", margin: "1rem 0 1rem 0" }}>
-        👤 User Profile Dashboard
+        User Profile Dashboard
       </h3>
       <pre
         style={{
@@ -305,7 +341,13 @@ function ProductCard() {
           overflow: "auto",
         }}
       >
-        {`import { Avatar, Card, Button, ProgressBar } from 'quick-ui-react';
+        {`import { 
+  Avatar, 
+  Card, 
+  Button, 
+  ProgressBar, 
+  BUTTON_VARIANTS, 
+  AVATAR_SIZES } from 'quick-ui-react';
 
 function UserProfile({ user }) {
   return (
@@ -313,14 +355,14 @@ function UserProfile({ user }) {
       <Avatar 
         src={user.avatar} 
         fallbackText={user.initials} 
-        size="large" 
+        size={AVATAR_SIZES.LARGE} 
       />
       <h2>{user.name}</h2>
       <ProgressBar 
         value={user.completionPercent} 
         label="Profile Complete" 
       />
-      <Button variant="outline">Edit Profile</Button>
+      <Button variant={BUTTON_VARIANTS.OUTLINE}>Edit Profile</Button>
     </Card>
   );
 }`}
@@ -334,7 +376,7 @@ function UserProfile({ user }) {
         paddingBottom: "0.5rem",
       }}
     >
-      📚 Resources & Links
+      Resources & Links
     </h2>
     <div
       style={{
@@ -353,7 +395,7 @@ function UserProfile({ user }) {
         }}
       >
         <h4 style={{ color: "#0369a1", margin: "0 0 0.5rem 0" }}>
-          📦 NPM Package
+          NPM Package
         </h4>
         <p style={{ margin: "0 0 0.5rem 0", fontSize: "0.9rem" }}>
           <a
@@ -377,7 +419,7 @@ function UserProfile({ user }) {
         }}
       >
         <h4 style={{ color: "#059669", margin: "0 0 0.5rem 0" }}>
-          📚 Documentation
+          Documentation
         </h4>
         <p style={{ margin: "0 0 0.5rem 0", fontSize: "0.9rem" }}>
           <a
@@ -400,7 +442,7 @@ function UserProfile({ user }) {
           border: "1px solid #fde047",
         }}
       >
-        <h4 style={{ color: "#ca8a04", margin: "0 0 0.5rem 0" }}>🐛 Issues</h4>
+        <h4 style={{ color: "#ca8a04", margin: "0 0 0.5rem 0" }}>Issues</h4>
         <p style={{ margin: "0 0 0.5rem 0", fontSize: "0.9rem" }}>
           <a
             href="https://github.com/silasechegini/Quick-UI/issues"
@@ -425,7 +467,7 @@ function UserProfile({ user }) {
       }}
     >
       <h2 style={{ margin: "0 0 1rem 0", color: "white" }}>
-        🚀 Ready to Get Started?
+        Ready to Get Started?
       </h2>
       <p style={{ margin: "0 0 1.5rem 0", opacity: 0.9 }}>
         Install Quick-UI and start building beautiful React apps in minutes!
