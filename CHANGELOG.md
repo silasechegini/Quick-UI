@@ -6,7 +6,6 @@ This changelog covers the development and evolution of the Quick-UI React compon
 - [1.0.2] - 2025-11-17, [1.0.3] - 2025-11-17: Build system improvements and CSS compilation fixes
 - [1.0.4] - 2025-11-17: Major enhancement focusing on type safety and Storybook configuration
 - [1.0.5] - 2025-11-18: Final polish with conflict resolution and cleanup
-- [1.0.6] - 2025-11-19: Complete migration from Jest to Vitest testing framework
 - [1.0.7] - 2025-11-19: Documentation improvements and component README cleanup
 - [1.0.8] - 2025-11-27: Package metadata and keyword optimization
 - [1.0.9] - 2025-11-28: New StarRating component and UI enhancements
@@ -18,9 +17,8 @@ This changelog covers the development and evolution of the Quick-UI React compon
 3. **Developer Experience**: Improved Storybook configuration with proper TypeScript path resolution
 4. **Documentation**: Comprehensive README updates with accurate installation and usage instructions
 5. **Code Quality**: Enhanced component typing patterns and consistent enum usage
-6. **Testing Infrastructure**: Complete migration from Jest to Vitest with enhanced test configurations
-7. **Component Library Growth**: Added new interactive components like StarRating with full accessibility support
-8. **Icon System**: Expanded icon library with new icons for better UX
+6. **Component Library Growth**: Added new interactive components like StarRating with full accessibility support
+7. **Icon System**: Expanded icon library with new icons for better UX
 
 ### Components Enhanced
 
@@ -89,31 +87,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fixed duplicate feature entries in Accordion README
 - Fixed formatting issues in CONTRIBUTING.md
-
-## [1.0.6] - 2025-11-19
-
-### Changed
-
-- Complete migration from Jest to Vitest testing framework
-- Updated all test files to use Vitest imports (describe, it, expect, vi)
-- Replaced `jest.fn()` with `vi.fn()` across all test files
-- Enhanced test assertions and configurations
-
-### Added
-
-- Added vitest.config.ts enhancements
-- Added vitest.shims.d.ts for TypeScript support
-- Added vitest.globals.d.ts for global types
-- Added tsconfig.test.json for test-specific configuration
-- Added @vitest/ui for better testing UI
-
-### Removed
-
-- Removed Jest configuration files (jest.config.js, tsconfig.jest.json)
-
-### Dependencies
-
-- Updated jsdom, @types/node, and other testing-related dependencies
 
 ## [1.0.5] - 2025-11-18
 
@@ -192,6 +165,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+[1.0.9]: https://github.com/silasechegini/Quick-UI/compare/v1.0.8...v1.0.9
+[1.0.8]: https://github.com/silasechegini/Quick-UI/compare/v1.0.7...v1.0.8
+[1.0.7]: https://github.com/silasechegini/Quick-UI/compare/v1.0.5...v1.0.7
 [1.0.5]: https://github.com/silasechegini/Quick-UI/compare/v1.0.4...v1.0.5
 [1.0.4]: https://github.com/silasechegini/Quick-UI/compare/v1.0.3...v1.0.4
 [1.0.3]: https://github.com/silasechegini/Quick-UI/compare/v1.0.2...v1.0.3
