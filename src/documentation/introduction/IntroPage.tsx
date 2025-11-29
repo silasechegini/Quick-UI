@@ -2,6 +2,7 @@ import React from "react";
 import { Icon } from "../../components/Icon";
 import {
   Button,
+  BUTTON_SHAPES,
   BUTTON_SIZES,
   BUTTON_VARIANTS,
   ICON_POSITIONS,
@@ -12,15 +13,18 @@ import { ICONS } from "@assets/iconType";
 
 // Navigation functions
 const navigateToComponents = () => {
-  // Navigate to Components section in Storybook
-  if (window.parent) {
-    window.parent.postMessage(
-      {
-        type: "storybook-navigate",
-        path: "/?path=/story/components-button--default",
-      },
-      "*",
-    );
+  // Navigate to Components docs section in Storybook
+  try {
+    if (window.parent && window.parent !== window) {
+      const parentUrl = new URL(window.parent.location.href);
+      parentUrl.searchParams.set("path", "/docs/components-accordion--docs");
+      window.parent.location.href = parentUrl.toString();
+    }
+  } catch {
+    // fallback if not in iframe
+    const url = new URL(window.location.href);
+    url.searchParams.set("path", "/docs/components-accordion--docs");
+    window.location.href = url.toString();
   }
 };
 
@@ -182,14 +186,14 @@ const IntroPage: React.FC = () => (
             <div className={styles.codeBlock}>
               <code>npm install quick-ui-react</code>
               <Button
-                variant="plain"
-                size="s"
+                variant={BUTTON_VARIANTS.TERTIARY}
+                size={BUTTON_SIZES.EXTRASMALL}
+                shape={BUTTON_SHAPES.CIRCULAR}
                 className={styles.copyButton}
                 onClick={() => copyToClipboard("npm install quick-ui-react")}
                 ariaLabel="Copy installation command"
-              >
-                <Icon name={ICONS.DOWNLOAD_ICON} size={16} />
-              </Button>
+                icon={<Icon name={ICONS.COPY_ICON} size={16} />}
+              />
             </div>
           </div>
 
@@ -197,9 +201,41 @@ const IntroPage: React.FC = () => (
             <h3>Usage</h3>
             <div className={styles.codeBlock}>
               <code>
-                {`import { Button, Card } from 'quick-ui-react';
-import 'quick-ui-react/styles';`}
+                {`// In root file (e.g., index.tsx or App.tsx)
+
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+// Import Quick-UI styles via package export - ONCE
+import 'quick-ui-react/styles';  
+
+const root = ReactDOM.createRoot(
+  document.getElementById('root') as HTMLElement
+);
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+`}
               </code>
+            </div>
+            <div className={styles.codeBlock}>
+              <code>{`
+/**
+ * In any component file - QUICK-UI styles are already 
+ * imported globally and will apply automatically.
+*/
+import { Button, Card, BUTTON_VARIANTS } from 'quick-ui-react';
+
+const MyComponent: React.FC = () => (
+  <Card>
+    <Button variant={BUTTON_VARIANTS.PRIMARY}>Click Me</Button>
+  </Card>
+); 
+
+export default MyComponent;
+                `}</code>
             </div>
           </div>
 
