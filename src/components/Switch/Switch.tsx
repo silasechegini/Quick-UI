@@ -162,13 +162,8 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
 
     return (
       <label className={containerClasses} htmlFor={switchId}>
-        {label && labelPosition === SWITCH_LABEL_POSITIONS.LEFT && (
-          <span className={labelClasses}>{label}</span>
-        )}
         {switchContent}
-        {label && labelPosition === SWITCH_LABEL_POSITIONS.RIGHT && (
-          <span className={labelClasses}>{label}</span>
-        )}
+        {label && <span className={labelClasses}>{label}</span>}
       </label>
     );
   },
