@@ -35,7 +35,6 @@ export type SwitchVariant =
 export type SwitchLabelPosition =
   (typeof SWITCH_LABEL_POSITIONS)[keyof typeof SWITCH_LABEL_POSITIONS];
 
-/** Props for the Switch component */
 export interface SwitchProps {
   /**
    * Whether the switch is checked (controlled mode)
