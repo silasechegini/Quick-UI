@@ -5,22 +5,20 @@ import { IconKey } from "@assets/iconType";
  * Switch component types and enums
  */
 
-// enum for switch label positions
-
-// Label position options
+/** Label position options for the Switch component */
 export enum SWITCH_LABEL_POSITIONS {
   LEFT = "left",
   RIGHT = "right",
 }
 
-// Size options for the Switch component
+/** Size options for the Switch component */
 export enum SWITCH_SIZES {
   SMALL = "small",
   MEDIUM = "medium",
   LARGE = "large",
 }
 
-// Variant/color scheme options for the Switch component
+/** Variant/color scheme options for the Switch component */
 export enum SWITCH_VARIANTS {
   PRIMARY = "primary",
   SECONDARY = "secondary",
@@ -28,7 +26,7 @@ export enum SWITCH_VARIANTS {
   DANGER = "danger",
 }
 
-// Type definitions for Switch component props
+/** Type definitions for Switch component props */
 export type SwitchSize = (typeof SWITCH_SIZES)[keyof typeof SWITCH_SIZES];
 
 export type SwitchVariant =
@@ -37,7 +35,7 @@ export type SwitchVariant =
 export type SwitchLabelPosition =
   (typeof SWITCH_LABEL_POSITIONS)[keyof typeof SWITCH_LABEL_POSITIONS];
 
-// Props for the Switch component
+/** Props for the Switch component */
 export interface SwitchProps {
   /**
    * Whether the switch is checked (controlled mode)
