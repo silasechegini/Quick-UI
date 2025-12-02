@@ -265,7 +265,7 @@ export const CustomIndeterminateStyles: Story = {
         <ProgressBar
           value={0}
           indeterminate
-          className={styles.customIndeterminate}
+          className={styles.rainbowIndeterminate}
         />
       </div>
 

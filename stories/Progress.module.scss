@@ -5,13 +5,17 @@
  */
 
 /* Custom indeterminate state override using CSS custom properties */
-.customIndeterminate {
+.rainbowIndeterminate {
   --indeterminate-background: linear-gradient(
     90deg,
     transparent 0%,
-    #ff6b6b 25%,
-    #4ecdc4 50%,
-    #45b7d1 75%,
+    #ff6b6b 14.28%,
+    #ffa500 28.56%,
+    #ffff00 42.84%,
+    #00ff00 57.12%,
+    #0000ff 71.4%,
+    #4b0082 85.68%,
+    #9400d3 100%,
     transparent 100%
   );
   --indeterminate-animation-name: custom-indeterminate;
