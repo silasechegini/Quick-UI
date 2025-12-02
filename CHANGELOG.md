@@ -9,6 +9,7 @@ This changelog covers the development and evolution of the Quick-UI React compon
 - [1.0.7] - 2025-11-19: Documentation improvements and component README cleanup
 - [1.0.8] - 2025-11-27: Package metadata and keyword optimization
 - [1.0.9] - 2025-11-28: New StarRating component and UI enhancements
+- [1.0.10] - 2025-12-02: Bug fixes in Switch component, and Documentation
 
 ### Key Improvements Across Versions
 
@@ -41,6 +42,17 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [1.0.10] - 2025-12-02
+
+### Changed
+
+- Updated the README page to reflect the current state of the project
+- Improved storybook component documentation
+
+### Fixed
+
+- Fixed label positioning in Switch Component
 
 ## [1.0.9] - 2025-11-28
 
@@ -165,6 +177,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+[1.0.10]: https://github.com/silasechegini/Quick-UI/compare/QUI_RC_6...QUI_RC_7
 [1.0.9]: https://github.com/silasechegini/Quick-UI/compare/QUI_RC_5...QUI_RC_6
 [1.0.8]: https://github.com/silasechegini/Quick-UI/compare/QUI_RC_4...QUI_RC_5
 [1.0.7]: https://github.com/silasechegini/Quick-UI/releases/tag/QUI_RC_4
