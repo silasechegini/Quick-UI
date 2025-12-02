@@ -8,6 +8,7 @@ import Icon from "../src/components/Icon/Icon";
 const meta: Meta<typeof RadioGroup> = {
   title: "Components/RadioGroup",
   component: RadioGroup,
+  tags: ["autodocs"],
   parameters: {
     layout: "padded",
     docs: {

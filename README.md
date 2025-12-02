@@ -15,10 +15,6 @@
 
 [Install Now](#quick-start) • [Try Live Demo](https://quick-ui-live-demo.netlify.app) • [Browse Components](#components-gallery) • [See Benchmarks](#why-quick-ui)
 
----
-
-_"Finally, a component library that doesn't fight against me"_ — **Real Developer Quote**
-
 </div>
 
 ## **Why Quick-UI?**
@@ -48,7 +44,7 @@ _"Finally, a component library that doesn't fight against me"_ — **Real Develo
 </tr>
 </table>
 
-### **How Quick-UI Stacks Up**
+<!-- ### **How Quick-UI Stacks Up**
 
 | Feature        | Quick-UI       | Material-UI | Chakra UI | Ant Design |
 | -------------- | -------------- | ----------- | --------- | ---------- |
@@ -58,7 +54,7 @@ _"Finally, a component library that doesn't fight against me"_ — **Real Develo
 | Learning Curve | **5 minutes**  | 2+ hours    | 1 hour    | 3+ hours   |
 | Performance    | **Optimized**  | Heavy       | Good      | Heavy      |
 
-> **Quick-UI is 70% smaller and 3x faster to learn than alternatives**
+> **Quick-UI is 70% smaller and 3x faster to learn than alternatives** -->
 
 ---
 
@@ -88,9 +84,14 @@ npm install quick-ui-react
 
 ### 2. Import Styles Once (At Root Level)
 
+Quick-UI follows industry standards by shipping separate CSS files. Import the main stylesheet once in your app:
+
 ```tsx
-// main.tsx or App.tsx - Import styles ONCE at the root level
+// Option 1: Import via package export (recommended)
 import "quick-ui-react/styles";
+
+// Option 2: Direct CSS import (also works)
+import "quick-ui-react/dist/style.css";
 
 function App() {
   return (
@@ -106,7 +107,7 @@ function App() {
 ### 3. Use Components Anywhere (No Additional Imports Needed)
 
 ```tsx
-// components/HomePage.tsx - No style imports needed!
+// components/HomePage.tsx
 import { Button, Card, Avatar } from "quick-ui-react";
 
 function HomePage() {
@@ -136,116 +137,42 @@ const MyButton: React.FC<ButtonProps> = ({ variant = "primary", ...props }) => {
 };
 ```
 
-## Styling & Customization
-
-### Import Styles (Required)
-
-Quick-UI follows industry standards by shipping separate CSS files. Import the main stylesheet once in your app:
-
-```tsx
-// Option 1: Import via package export (recommended)
-import "quick-ui-react/styles";
-
-// Option 2: Direct CSS import (also works)
-import "quick-ui-react/dist/style.css";
-```
-
-### Custom Styling
-
-Override component styles using CSS classes:
-
-```tsx
-// Override component styles
-import { Button } from "quick-ui-react";
-import "./CustomButton.css";
-
-<Button className="my-custom-button">Styled Button</Button>;
-```
-
-```css
-/* CustomButton.css */
-.my-custom-button {
-  background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
-  border-radius: 8px;
-}
-```
-
-## **Quick Start**
-
-### **Install in 30 Seconds**
-
-```bash
-# NPM
-npm install quick-ui-react
-
-# Yarn
-yarn add quick-ui-react
-
-# PNPM
-pnpm add quick-ui-react
-```
-
-### **Use in 60 Seconds**
-
-```tsx
-// Step 1: Import styles once in your main file (main.tsx/App.tsx)
-import "quick-ui-react/dist/style.css";
-
-// Step 2: Use components anywhere - no more style imports needed!
-import { Button, Avatar, Card } from "quick-ui-react";
-
-function App() {
-  return (
-    <Card title="Welcome to Quick-UI">
-      <Avatar src="/avatar.jpg" fallbackText="JD" />
-      <Button variant="primary" onClick={() => alert("It just works!")}>
-        Get Started
-      </Button>
-    </Card>
-  );
-}
-```
-
-**You're done! Your app now has beautiful, accessible components.**
-
----
-
 ## **Components Gallery**
 
 <details>
 <summary><b>View All 20+ Components</b></summary>
 
-### **📱 Layout & Navigation**
+### **Layout & Navigation**
 
-- **Card** — Beautiful content containers
-- **Header** — Responsive navigation bars
-- **Footer** — Clean page footers
-- **Page** — Complete page layouts
-- **Sidebar** — Collapsible side navigation
+- **Card** - Beautiful content containers
+- **Header** - Responsive navigation bars
+- **Footer** - Clean page footers
+- **Page** - Complete page layouts
+- **Sidebar** - Collapsible side navigation
 
 ### **Form Controls**
 
-- **Button** — Primary, secondary, ghost variants
-- **Input** — Text inputs with validation
-- **MultiSelect** — Advanced dropdown selection
-- **ComboBox** — Searchable dropdowns
-- **Toggle** — Clean on/off switches
-- **Radio** — Stylish radio button groups
-- **Switch** — iOS-style switches
+- **Button** - Primary, secondary, ghost variants
+- **Input** - Text inputs with validation
+- **MultiSelect** - Advanced dropdown selection
+- **ComboBox** - Searchable dropdowns
+- **Toggle** - Clean on/off switches
+- **Radio** - Stylish radio button groups
+- **Switch** - iOS-style switches
 
 ### **Data Display**
 
-- **Avatar** — Smart user avatars with fallbacks
-- **Badge** — Status and notification indicators
-- **Chip** — Tag and label components
-- **ProgressBar** — Loading and progress indication
-- **Accordion** — Expandable content sections
+- **Avatar** - Smart user avatars with fallbacks
+- **Badge** - Status and notification indicators
+- **Chip** - Tag and label components
+- **ProgressBar** - Loading and progress indication
+- **Accordion** - Expandable content sections
 
 ### **Interactive**
 
-- **Flyout** — Modal dialogs and overlays
-- **Slider** — Range and value sliders
-- **Icon** — Comprehensive icon system
+- **Flyout** - Modal dialogs and overlays
+- **Slider** - Range and value sliders
+- **Icon** - Comprehensive icon system
 
 _Each component comes with dark mode, accessibility, and mobile support built-in!_
 
@@ -256,7 +183,6 @@ _Each component comes with dark mode, accessibility, and mobile support built-in
 ### **E-Commerce Product Card**
 
 ```tsx
-// No style imports needed - styles already imported at root!
 import { Card, Button, Badge } from "quick-ui-react";
 
 function ProductCard() {
@@ -276,7 +202,6 @@ function ProductCard() {
 ### **User Profile Dashboard**
 
 ```tsx
-// Components work everywhere once styles are imported at root
 import { Avatar, Card, Button, ProgressBar } from "quick-ui-react";
 
 function UserProfile({ user }) {
@@ -294,7 +219,6 @@ function UserProfile({ user }) {
 ### **Modern Form**
 
 ```tsx
-// Clean component code - no repetitive style imports!
 import { Input, MultiSelect, Toggle, Button } from "quick-ui-react";
 
 function ContactForm() {
@@ -327,12 +251,19 @@ function ContactForm() {
 
 ## **Performance Benchmarks**
 
-| Metric                  | Quick-UI | Material-UI | Chakra UI |
+| Metric                  | Quick-UI |
+| ----------------------- | -------- |
+| **First Load**          | 0.8s     |
+| **Bundle Size**         | ~172KB   |
+| **Tree Shaking**        | 100%     |
+| **Runtime Performance** | 60fps    |
+
+<!-- | Metric                  | Quick-UI | Material-UI | Chakra UI |
 | ----------------------- | -------- | ----------- | --------- |
 | **First Load**          | 0.8s     | 2.1s        | 1.4s      |
 | **Bundle Size**         | ~172KB   | 348KB       | 199KB     |
 | **Tree Shaking**        | 100%     | 80%         | 90%       |
-| **Runtime Performance** | 60fps    | 45fps       | 55fps     |
+| **Runtime Performance** | 60fps    | 45fps       | 55fps     | -->
 
 _Benchmarks run on identical test applications. [View detailed methodology →]()_
 
@@ -342,79 +273,26 @@ _Benchmarks run on identical test applications. [View detailed methodology →](
 
 ### **Getting Started**
 
-- [**Quick Start Guide**](#quick-start) — Get up and running in 5 minutes
-- [**Components Gallery**](#components-gallery) — Browse all available components
-- [**Real-World Examples**](#real-world-examples) — Copy-paste ready code samples
+- [**Quick Start Guide**](#quick-start) - Get up and running in 5 minutes
+- [**Components Gallery**](#components-gallery) - Browse all available components
+- [**Real-World Examples**](#real-world-examples) - Copy-paste ready code samples
 
 ### **Development Resources**
 
-- [**Storybook Documentation**](https://storybook.js.org/) — Interactive component playground (run locally)
-- [**React Documentation**](https://react.dev/) — Learn React fundamentals
-- [**TypeScript Handbook**](https://www.typescriptlang.org/docs/) — Master TypeScript
-- [**Web Accessibility Guide**](https://web.dev/accessibility/) — Build inclusive experiences
+- [**Storybook Documentation**](https://storybook.js.org/) - Interactive component playground (run locally)
+- [**React Documentation**](https://react.dev/) - Learn React fundamentals
+- [**TypeScript Handbook**](https://www.typescriptlang.org/docs/) - Master TypeScript
+- [**Web Accessibility Guide**](https://web.dev/accessibility/) - Build inclusive experiences
 
 ### **Build Tools & Testing**
 
-- [**Vite Documentation**](https://vitejs.dev/) — Lightning fast build tool
-- [**Vitest Guide**](https://vitest.dev/) — Unit testing framework
-- [**SCSS Documentation**](https://sass-lang.com/documentation/) — Styling with Sass
+- [**Vite Documentation**](https://vitejs.dev/) - Lightning fast build tool
+- [**Vitest Guide**](https://vitest.dev/) - Unit testing framework
+- [**SCSS Documentation**](https://sass-lang.com/documentation/) - Styling with Sass
 
 ---
 
 ## **Development & Contributing**
-
-### **For Contributors**
-
-Want to help improve Quick-UI? Here's how to get started:
-
-#### **Development Setup**
-
-```bash
-# 1. Clone the repository
-git clone https://github.com/silasechegini/Quick-UI.git
-cd Quick-UI
-
-# 2. Install dependencies
-npm install
-
-# 3. Start development server
-npm run storybook
-```
-
-#### **Available Scripts**
-
-| Script               | Description                  |
-| -------------------- | ---------------------------- |
-| `npm run storybook`  | Start development server     |
-| `npm run build`      | Build library for production |
-| `npm run test`       | Run all tests                |
-| `npm run test:watch` | Run tests in watch mode      |
-| `npm run lint`       | Check code quality           |
-| `npm run format`     | Format code with Prettier    |
-
-#### **Project Structure**
-
-```
-Quick-UI/
-├── src/
-│   ├── components/      # React components
-│   ├── assets/         # Icons and static files
-│   ├── styles/         # Global SCSS styles
-│   └── index.ts        # Main exports
-├── stories/            # Storybook stories
-└── dist/              # Built library output
-```
-
-### **Contributing Guidelines**
-
-We ❤️ contributions! Quick-UI is built by the community, for the community.
-
-#### **Ways to Contribute**
-
-- **Report Bugs** — Help us squash issues
-- **Suggest Features** — Shape the future of Quick-UI
-- **Improve Docs** — Help others learn faster
-- **Submit Code** — Build features with us
 
 [**Read Contributing Guide**](./CONTRIBUTING.md) • [**Good First Issues**](https://github.com/silasechegini/Quick-UI/labels/good%20first%20issue)
 
@@ -435,8 +313,6 @@ npm install quick-ui-react
 ```
 
 [**Browse Components**](https://quick-ui-live-demo.netlify.app) • [**Try Playground**](https://codesandbox.io/p/sandbox/quick-ui-playground) • [**Read Docs**](#quick-start) • [**Join Community**](https://discord.gg/your-discord)
-
----
 
 ### **Support & Community**
 
