@@ -15,10 +15,6 @@
 
 [Install Now](#quick-start) • [Try Live Demo](https://quick-ui-live-demo.netlify.app) • [Browse Components](#components-gallery) • [See Benchmarks](#why-quick-ui)
 
----
-
-_"Finally, a component library that doesn't fight against me"_ - **Real Developer Quote**
-
 </div>
 
 ## **Why Quick-UI?**
