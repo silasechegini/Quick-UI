@@ -62,22 +62,32 @@ const ButtonBase: React.FC<ButtonProps> = ({
   const content = (
     <>
       {isLoading && (
-        <span className={styles.icon}>
+        <span className={styles.icon} aria-hidden="true">
           <Icon name={ICONS.LOADING_ICON} size={16} />
         </span>
       )}
       {!isLoading && icon && iconPosition === ICON_POSITIONS.START && (
-        <span className={combineClasses(styles.icon, styles.iconStart)}>
+        <span
+          className={combineClasses(styles.icon, styles.iconStart)}
+          aria-hidden="true"
+        >
           {icon}
         </span>
       )}
       {children && <span className={styles.label}>{children}</span>}
       {!isLoading && icon && iconPosition === ICON_POSITIONS.END && (
-        <span className={combineClasses(styles.icon, styles.iconEnd)}>
+        <span
+          className={combineClasses(styles.icon, styles.iconEnd)}
+          aria-hidden="true"
+        >
           {icon}
         </span>
       )}
-      {!isLoading && isIconOnly && <span className={styles.icon}>{icon}</span>}
+      {!isLoading && isIconOnly && (
+        <span className={styles.icon} aria-hidden="true">
+          {icon}
+        </span>
+      )}
     </>
   );
 
@@ -87,6 +97,8 @@ const ButtonBase: React.FC<ButtonProps> = ({
       style={styleOverride?.style}
       disabled={isLoading || disabled}
       aria-label={isIconOnly ? ariaLabel : undefined}
+      aria-busy={isLoading ? true : undefined}
+      aria-disabled={disabled ? true : undefined}
       {...rest}
     >
       {content}
