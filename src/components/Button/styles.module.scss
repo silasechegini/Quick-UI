@@ -107,17 +107,13 @@
 }
 
 .primary:hover:not(:disabled) {
-  background-color: var(
-    --color-primary-dark,
-    hsl(from var(--color-primary) h s calc(l * 0.9))
-  );
+  background-color: var(--color-primary);
+  filter: brightness(0.9);
 }
 
 .primary:active:not(:disabled) {
-  background-color: var(
-    --color-primary-darker,
-    hsl(from var(--color-primary) h s calc(l * 0.85))
-  );
+  background-color: var(--color-primary);
+  filter: brightness(0.85);
 }
 
 .secondary {
@@ -127,25 +123,15 @@
 }
 
 .secondary:hover:not(:disabled) {
-  background-color: var(
-    --color-secondary-dark,
-    hsl(from var(--color-secondary) h s calc(l * 0.9))
-  );
-  border-color: var(
-    --color-secondary-dark,
-    hsl(from var(--color-secondary) h s calc(l * 0.9))
-  );
+  background-color: var(--color-secondary);
+  border-color: var(--color-secondary);
+  filter: brightness(0.9);
 }
 
 .secondary:active:not(:disabled) {
-  background-color: var(
-    --color-secondary-darker,
-    hsl(from var(--color-secondary) h s calc(l * 0.85))
-  );
-  border-color: var(
-    --color-secondary-darker,
-    hsl(from var(--color-secondary) h s calc(l * 0.85))
-  );
+  background-color: var(--color-secondary);
+  border-color: var(--color-secondary);
+  filter: brightness(0.85);
 }
 
 .tertiary {

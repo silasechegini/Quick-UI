@@ -211,6 +211,36 @@ describe("ButtonBase Component", () => {
       expect(screen.queryByTestId("test-icon")).not.toBeInTheDocument();
       expect(screen.getByTestId("icon-loading_icon")).toBeInTheDocument();
     });
+
+    it("should set aria-busy to true when loading", () => {
+      render(<ButtonBase {...defaultProps} isLoading={true} />);
+      const button = screen.getByRole("button");
+      expect(button).toHaveAttribute("aria-busy", "true");
+    });
+
+    it("should not have aria-busy when not loading", () => {
+      render(<ButtonBase {...defaultProps} isLoading={false} />);
+      const button = screen.getByRole("button");
+      expect(button).not.toHaveAttribute("aria-busy");
+    });
+
+    it("should toggle aria-busy when loading state changes", () => {
+      const { rerender } = render(
+        <ButtonBase {...defaultProps} isLoading={false} />,
+      );
+      const button = screen.getByRole("button");
+
+      // Initially not loading
+      expect(button).not.toHaveAttribute("aria-busy");
+
+      // Change to loading
+      rerender(<ButtonBase {...defaultProps} isLoading={true} />);
+      expect(button).toHaveAttribute("aria-busy", "true");
+
+      // Change back to not loading
+      rerender(<ButtonBase {...defaultProps} isLoading={false} />);
+      expect(button).not.toHaveAttribute("aria-busy");
+    });
   });
 
   describe("Full Width", () => {
@@ -295,6 +325,18 @@ describe("ButtonBase Component", () => {
       );
       const button = screen.getByRole("button");
       expect(button).toBeDisabled();
+    });
+
+    it("should set aria-disabled to true when disabled", () => {
+      render(<ButtonBase {...defaultProps} disabled={true} />);
+      const button = screen.getByRole("button");
+      expect(button).toHaveAttribute("aria-disabled", "true");
+    });
+
+    it("should not have aria-disabled when not disabled", () => {
+      render(<ButtonBase {...defaultProps} disabled={false} />);
+      const button = screen.getByRole("button");
+      expect(button).not.toHaveAttribute("aria-disabled");
     });
   });
 
