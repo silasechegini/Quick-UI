@@ -326,18 +326,6 @@ describe("ButtonBase Component", () => {
       const button = screen.getByRole("button");
       expect(button).toBeDisabled();
     });
-
-    it("should set aria-disabled to true when disabled", () => {
-      render(<ButtonBase {...defaultProps} disabled={true} />);
-      const button = screen.getByRole("button");
-      expect(button).toHaveAttribute("aria-disabled", "true");
-    });
-
-    it("should not have aria-disabled when not disabled", () => {
-      render(<ButtonBase {...defaultProps} disabled={false} />);
-      const button = screen.getByRole("button");
-      expect(button).not.toHaveAttribute("aria-disabled");
-    });
   });
 
   describe("Event Handling", () => {

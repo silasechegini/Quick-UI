@@ -98,7 +98,6 @@ const ButtonBase: React.FC<ButtonProps> = ({
       disabled={isLoading || disabled}
       aria-label={isIconOnly ? ariaLabel : undefined}
       aria-busy={isLoading ? true : undefined}
-      aria-disabled={disabled ? true : undefined}
       {...rest}
     >
       {content}
