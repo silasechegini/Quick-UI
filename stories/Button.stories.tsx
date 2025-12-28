@@ -114,7 +114,7 @@ export const IconOnly: Story = {
     size: BUTTON_SIZES.SMALL,
     icon: <Icon name={ICONS.CHECKMARK_ICON} size={16} />,
     ariaLabel: "Confirm",
-    iconPosition: ICON_POSITIONS.DEFAULT,
+    iconPosition: ICON_POSITIONS.START,
   },
 };
 

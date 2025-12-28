@@ -18,7 +18,7 @@ const Button: React.FC<ButtonProps> = ({
   variant = BUTTON_VARIANTS.PRIMARY,
   icon,
   children,
-  iconPosition = ICON_POSITIONS.DEFAULT,
+  iconPosition = ICON_POSITIONS.START,
   ariaLabel,
   ...rest
 }) => {

@@ -32,7 +32,7 @@ import { ICONS } from "@assets/iconType";
 const ButtonBase: React.FC<ButtonProps> = ({
   children,
   icon,
-  iconPosition = ICON_POSITIONS.DEFAULT,
+  iconPosition = ICON_POSITIONS.START,
   isLoading = false,
   size = BUTTON_SIZES.MEDIUM,
   shape = BUTTON_SHAPES.SQUARE,
@@ -80,11 +80,6 @@ const ButtonBase: React.FC<ButtonProps> = ({
           className={combineClasses(styles.icon, styles.iconEnd)}
           aria-hidden="true"
         >
-          {icon}
-        </span>
-      )}
-      {!isLoading && isIconOnly && (
-        <span className={styles.icon} aria-hidden="true">
           {icon}
         </span>
       )}
