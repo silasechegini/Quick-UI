@@ -140,7 +140,7 @@ describe("Button Component", () => {
       expect(screen.getByTestId("button-base")).toHaveAttribute("icon");
       expect(screen.getByTestId("button-base")).toHaveAttribute(
         "iconPosition",
-        ICON_POSITIONS.DEFAULT,
+        ICON_POSITIONS.START,
       );
     });
 
@@ -175,7 +175,7 @@ describe("Button Component", () => {
     it("should render icon-only button with default aria-label", () => {
       render(<Button icon={testIcon} />);
       const button = screen.getByTestId("button-base");
-      expect(button).toHaveAttribute("aria-label", "icon button");
+      expect(button).toHaveAttribute("ariaLabel", "Button");
     });
 
     it("should render icon-only button with custom aria-label", () => {
@@ -275,6 +275,64 @@ describe("Button Component", () => {
       render(<Button {...defaultProps} disabled />);
       const button = screen.getByTestId("button-base");
       expect(button).toHaveAttribute("disabled");
+    });
+
+    describe("Development warnings", () => {
+      const originalEnv = process.env.NODE_ENV;
+      let consoleWarnSpy: ReturnType<typeof vi.spyOn>;
+
+      beforeEach(() => {
+        consoleWarnSpy = vi.spyOn(console, "warn").mockImplementation(() => {});
+      });
+
+      afterEach(() => {
+        consoleWarnSpy.mockRestore();
+        process.env.NODE_ENV = originalEnv;
+      });
+
+      it("should warn when icon-only button lacks ariaLabel in development", () => {
+        process.env.NODE_ENV = "development";
+        const testIcon = <span>🔔</span>;
+
+        render(<Button icon={testIcon} />);
+
+        expect(consoleWarnSpy).toHaveBeenCalledWith(
+          expect.stringContaining(
+            'Button: Icon-only buttons should have an "ariaLabel" prop for accessibility',
+          ),
+        );
+      });
+
+      it("should not warn when icon-only button has ariaLabel", () => {
+        process.env.NODE_ENV = "development";
+        const testIcon = <span>🔔</span>;
+
+        render(<Button icon={testIcon} ariaLabel="Notifications" />);
+
+        expect(consoleWarnSpy).not.toHaveBeenCalled();
+      });
+
+      it("should not warn when button has children (not icon-only)", () => {
+        process.env.NODE_ENV = "development";
+        const testIcon = <span>🔔</span>;
+
+        render(
+          <Button icon={testIcon} iconPosition={ICON_POSITIONS.START}>
+            Notifications
+          </Button>,
+        );
+
+        expect(consoleWarnSpy).not.toHaveBeenCalled();
+      });
+
+      it("should not warn in production mode even without ariaLabel", () => {
+        process.env.NODE_ENV = "production";
+        const testIcon = <span>🔔</span>;
+
+        render(<Button icon={testIcon} />);
+
+        expect(consoleWarnSpy).not.toHaveBeenCalled();
+      });
     });
   });
 

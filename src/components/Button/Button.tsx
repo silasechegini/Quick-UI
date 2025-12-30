@@ -18,19 +18,26 @@ const Button: React.FC<ButtonProps> = ({
   variant = BUTTON_VARIANTS.PRIMARY,
   icon,
   children,
-  iconPosition = ICON_POSITIONS.DEFAULT,
+  iconPosition = ICON_POSITIONS.START,
   ariaLabel,
   ...rest
 }) => {
   const isIconOnly = icon && !children;
+
+  // Warn in development if icon-only button lacks aria-label
+  if (process.env.NODE_ENV === "development" && isIconOnly && !ariaLabel) {
+    console.warn(
+      'Button: Icon-only buttons should have an "ariaLabel" prop for accessibility. ' +
+        "Please provide a descriptive label for screen reader users.",
+    );
+  }
 
   return (
     <ButtonBase
       variant={variant}
       icon={icon}
       iconPosition={iconPosition}
-      ariaLabel={ariaLabel}
-      {...(isIconOnly && !ariaLabel ? { "aria-label": "icon button" } : {})}
+      ariaLabel={ariaLabel || (isIconOnly ? "Button" : undefined)}
       {...rest}
     >
       {children}
