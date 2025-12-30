@@ -140,7 +140,7 @@ describe("Button Component", () => {
       expect(screen.getByTestId("button-base")).toHaveAttribute("icon");
       expect(screen.getByTestId("button-base")).toHaveAttribute(
         "iconPosition",
-        ICON_POSITIONS.DEFAULT,
+        ICON_POSITIONS.START,
       );
     });
 
